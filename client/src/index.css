@@ -77,6 +77,25 @@
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
   --font-poppins : "Poppins", sans-serif;
+
+  /* custom palette */
+  --brand-color:#93268F;
+  --brand-color2:#F4E9F4;
+  --brand-red:#EE443F;
+  --brand-red2:#FDECEC;
+  --brand-green:#34C759;
+  --brand-green2:#EBF9EE;
+  --brand-yellow:#FFCC4B;
+  --brand-yellow2:#FFFAED;
+  --brand-button:#ECF1FC;
+  --brand-gray:#313339;
+  --brand-gray2:#878A99;
+  --brand-gray3:#6D717F; 
+  --brand-gray4:#52555F; 
+  --brand-faded:#F0F1F2;
+  --brand-faded2:#F7F8F8; 
+  --brand-header:#495057;
+  --brand-header2:#9599AD;
 }
 
 .dark {
