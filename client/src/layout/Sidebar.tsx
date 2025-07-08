@@ -2,16 +2,12 @@ import * as React from "react";
 import {
   ChevronRight,
   ChevronsUpDown,
-  BadgeCheck,
-  Bell,
-  LogOut,
   type LucideIcon,
 } from "lucide-react";
 
 import {
   Sidebar as SidebarRoot,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarInset,
   SidebarRail,
@@ -32,16 +28,13 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-  DropdownMenuGroup,
 } from "../components/ui/dropdown-menu";
 import { SidebarData } from "@/constants/sidebarContents";
 
@@ -69,16 +62,13 @@ function AppSidebar(props: React.ComponentProps<typeof SidebarRoot>) {
   const [activeTeam, setActiveTeam] = React.useState(SidebarData.teams[0]);
 
   return (
-    <SidebarRoot collapsible="icon" {...props}>
+    <SidebarRoot collapsible="icon" {...props} className="fixed top-15 h-[calc(100vh-60px)]">
       <SidebarHeader>
         <TeamSwitcher teams={SidebarData.teams} onTeamChange={setActiveTeam} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={activeTeam.navMain || SidebarData.navMain} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={SidebarData.user} />
-      </SidebarFooter>
       <SidebarRail />
     </SidebarRoot>
   );
@@ -115,7 +105,7 @@ function TeamSwitcher({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+              <div className="bg-[var(--brand-color)] text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg b">
                 <activeTeam.logo className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -221,79 +211,3 @@ function NavMain({
   );
 }
 
-function NavUser({
-  user,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
-}) {
-  const { isMobile } = useSidebar();
-
-  return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage
-                  src="https://github.com/evilrabbit.png"
-                  alt="@evilrabbit"
-                />
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
-            </SidebarMenuButton>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-            side={isMobile ? "bottom" : "right"}
-            align="end"
-            sideOffset={4}
-          >
-            <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage
-                    src="https://github.com/evilrabbit.png"
-                    alt="@evilrabbit"
-                  />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
-              Log out
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </SidebarMenuItem>
-    </SidebarMenu>
-  );
-}
