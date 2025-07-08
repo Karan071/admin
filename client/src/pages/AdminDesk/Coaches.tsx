@@ -41,7 +41,7 @@ import {
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Mars, Venus, Flag } from "lucide-react";
 import { coachTableData } from "@/data/Data";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 const color = "text-[var(--brand-gray3)]";
 const Up = <CircleArrowUp className="text-[var(--brand-green)] h-6" />;
