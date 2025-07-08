@@ -1,7 +1,13 @@
 export default function Coaches() {
     return (
-        <div>
-            
+        <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+                <h1 className="text-2xl font-bold">Coaches</h1>
+                <p className="text-sm text-gray-500">
+                    Coaches are the people who help you learn and grow.
+                </p>
+            </div>
+            Coaches
         </div>
     )
 }

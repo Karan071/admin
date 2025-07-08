@@ -27,7 +27,7 @@ export default function AppRoutes() {
       <Route path="masterclasses" element={<Masterclasses />} />
       <Route path="courses" element={<Courses />} />
       <Route path="access-codes" element={<AccessCodes />} />
-      <Route path="desk-users" element={<DeskUsers />} />
+      <Route path="users" element={<DeskUsers />} />
 
       {/* Coach Desk Routes */}
     </Routes>

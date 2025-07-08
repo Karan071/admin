@@ -9,10 +9,12 @@ export default function MainLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex h-screen w-screen">
+      <div className="flex flex-col w-screen h-screen">
         <Navbar />
-        <div className="flex flex-1 overflow-auto">
-          <SidebarLayout />
+        <div className="flex flex-1 overflow-hidden">
+          <aside className="flex-none">
+            <SidebarLayout />
+          </aside>
           <main className="flex-1 overflow-auto p-4">{children}</main>
         </div>
       </div>
