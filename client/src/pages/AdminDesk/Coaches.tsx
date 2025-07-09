@@ -42,6 +42,7 @@ import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Mars, Venus, Flag } from "lucide-react";
 import { coachTableData } from "@/data/Data";
 import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useRef } from "react";
 
 const color = "text-[var(--brand-gray3)]";
 const Up = <CircleArrowUp className="text-[var(--brand-green)] h-6" />;
@@ -216,6 +217,30 @@ function CoachTableSection() {
     }
   };
 
+ useEffect(() => {
+  const allRows = document.querySelectorAll("tr[data-id]");
+
+  allRows.forEach((row) => {
+    const id = Number(row.getAttribute("data-id"));
+    const isInStack = selectedCoachStack.some((coach) => coach.id === id);
+    const isTop = focusedCoachId === id;
+
+    // Remove previous styles
+    row.classList.remove(
+      "bg-[var(--brand-color3)]",
+      "border-l-[var(--brand-color)]"
+    );
+
+    if (isInStack) {
+      row.classList.add("bg-[var(--brand-color3)]");
+
+      if (isTop) {
+        row.classList.add("border-l-[var(--brand-color)]");
+      }
+    }
+  });
+}, [selectedCoachStack, focusedCoachId]);
+
   const removeCoach = (userId: number) => {
     setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
     if (focusedCoachId === userId) {
@@ -246,47 +271,10 @@ function CoachTableSection() {
   };
 
   return (
-    <div className="flex flex-row gap-4 w-full h-max shadow-2xs">
+    <div className="flex flex-row gap-4 w-full h-max flex-wrap">
       <div className="flex-1 rounded-md border bg-white">
-        <div className="flex items-center justify-between border-b p-5 mt-auto">
-          <div className="flex justify-end items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="select-all"
-                checked={
-                  selectedUsers.length === currentRecords.length &&
-                  currentRecords.length > 0
-                }
-                onCheckedChange={toggleSelectAll}
-              />
-              <label htmlFor="select-all" className="text-sm font-medium">
-                Select All
-              </label>
-              {selectedUsers.length > 0 && (
-                <Badge variant="outline" className="ml-2">
-                  {selectedUsers.length} selected
-                </Badge>
-              )}
-              <div className="flex justify-end items-center gap-4">
-                {selectedUsers.length > 0 && (
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm">
-                      <Bell className="mr-2 h-4 w-4" />
-                      Send Notification
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="mr-2 h-4 w-4" />
-                      Export Selected
-                    </Button>
-                    <Button variant="destructive" size="sm">
-                      <X className="mr-2 h-4 w-4" />
-                      Mark Inactive
-                    </Button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+        <div className="flex items-center justify-between border-b p-4 mt-auto">
+          
           <div className="flex justify-end items-center gap-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -313,7 +301,7 @@ function CoachTableSection() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <div className="flex justify-around items-center border rounded-md overflow-hidden bg-white shadow-sm">
+            <div className="flex justify-around items-center border rounded-md overflow-hidden bg-white">
               <Input
                 placeholder="Search"
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -331,11 +319,10 @@ function CoachTableSection() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto text-[var(--brand-gray)]">
           <Table>
-            <TableHeader>
+            <TableHeader className="bg-[var(--brand-faded)] hover:bg-[var(--brand-faded)]">
               <TableRow>
-                <TableHead className="w-[40px]"></TableHead>
                 <TableHead
                   onClick={() => requestSort("profile.name")}
                   className="cursor-pointer"
@@ -398,18 +385,11 @@ function CoachTableSection() {
             <TableBody>
               {currentRecords.map((user) => (
                 <TableRow
-                  key={user.id}
-                  className="cursor-pointer hover:bg-[#F4E9F4] hover:border-l-4  hover:border-l-[#93268F]"
-                  onClick={() => handleRowClick(user)}
+                    key={user.id}
+                    data-id={user.id}
+                    className="cursor-pointer hover:bg-[var(--brand-color2)] hover:border-l-4 hover:border-l-[var(--brand-color)] border-l-4 border-transparent"
+                    onClick={() => handleRowClick(user)}
                 >
-                  <TableCell>
-                    <Checkbox
-                      checked={selectedUsers.includes(user.id.toString())}
-                      onCheckedChange={() =>
-                        toggleSelectUser(user.id.toString())
-                      }
-                    />
-                  </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-4">
                       <div className="h-14 w-14 rounded-full bg-gray-200 overflow-hidden">
@@ -547,7 +527,10 @@ function CoachTableSection() {
         </div>
       </div>
 
-      <div className="h-[500px] w-100 sticky top-[50px]">
+
+
+
+      <div className="h-[500px] min-w-100 sticky xxl:top-[10px] ">
         <AnimatePresence>
           {selectedCoachStack.map((coach, index) => {
             const isTopCard =
@@ -558,9 +541,9 @@ function CoachTableSection() {
             return (
               <motion.div
                 key={coach.id}
-                className="absolute left-0 right-0 mx-auto max-w-md w-full cursor-pointer"
+                className="absolute left-0 right-0 mx-auto max-w-md w-full h-max cursor-pointer"
                 style={{
-                  top: `${cardIndex * 20}px`,
+                  top: `${cardIndex * 30}px`,
                   zIndex: isTopCard ? 100 : 10 + cardIndex,
                 }}
                 onClick={() => bringToTop(coach.id)}
@@ -575,7 +558,7 @@ function CoachTableSection() {
                 whileHover={isTopCard ? {} : { scale: 0.97 }}
               >
                 <motion.div
-                  className="relative border border-border rounded-lg overflow-hidden shadow-md bg-background"
+                  className="relative border h-full border-border rounded-lg overflow-hidden shadow-md bg-background"
                   whileTap={isTopCard ? { scale: 0.98 } : {}}
                 >
                   {!isTopCard && (
@@ -605,60 +588,62 @@ function CoachTableSection() {
                   )}
 
                   {isTopCard && (
+                    
                     <motion.div
-                      className="flex flex-col justify-center items-center p-6"
+                      className="flex  flex-col  justify-center items-center p-6"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
                     >
+                      <div className="flex-col ">
                       <motion.img
                         src={coach.profile.photo}
                         alt={coach.profile.name}
                         className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg"
                         whileHover={{ scale: 1.05 }}
                       />
-                      <h1 className="text-xl font-semibold mt-4 text-foreground">
+                      <h1 className="text-xl font-semibold mt-4 text-[var(--brand-gray)]">
                         {coach.profile.name}
                       </h1>
-                      <h2 className="text-sm text-muted-foreground mb-2">
+                      <h2 className="text-sm text-[var(--brand-gray3)] mb-2">
                         {coach.orgLinked}
                       </h2>
 
                       <div className="flex justify-center gap-3 mt-2">
                         <motion.button
-                          className="bg-green-100 rounded-full p-2 hover:bg-green-200 transition-colors"
+                          className="bg-[var(--brand-green2)] rounded-full p-2 hover:[var(--brand-green2)/80] transition-colors"
                           title="Call"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <Phone className="w-5 h-5 text-green-500" />
+                          <Phone className="w-5 h-5 text-[var(--brand-green)]" />
                         </motion.button>
                         <motion.button
-                          className="bg-red-100 rounded-full p-2 hover:bg-red-200 transition-colors"
+                          className="bg-[var(--brand-red2)] rounded-full p-2 hover:bg-[var(--brand-red2)/80] transition-colors"
                           title="Email"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <Mail className="w-5 h-5 text-destructive" />
+                          <Mail className="w-5 h-5 text-[var(--brand-red)]" />
                         </motion.button>
                         <motion.button
-                          className="bg-yellow-100 rounded-full p-2 hover:bg-yellow-200 transition-colors"
+                          className="bg-[var(--brand-yellow2)] rounded-full p-2 hover:bg-[var(--brand-yellow2)/80] transition-colors"
                           title="Message"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <MessageCircle className="w-5 h-5 text-yellow-500" />
+                          <MessageCircle className="w-5 h-5 text-[var(--brand-yellow)]" />
                         </motion.button>
                       </div>
-
+                      </div>
                       <div className="mt-6 text-sm text-left w-full">
-                        <h3 className="font-semibold text-muted-foreground mb-1">
+                        <h3 className="font-semibold text-[var(--brand-gray4)] mb-1">
                           PERSONAL INFORMATION
                         </h3>
-                        <p className="text-muted-foreground text-sm mb-4">
+                        <p className="text-[var(--brand-gray3)] text-sm mb-4">
                           This coach has not added a bio.
                         </p>
-                        <div className="grid grid-cols-2 gap-y-2 text-sm text-foreground">
+                        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--brand-gray3)]">
                           <div className="font-medium">Designation</div>
                           <div>{coach.profile.type}</div>
                           <div className="font-medium">Email ID</div>
@@ -669,10 +654,10 @@ function CoachTableSection() {
                           <div>-</div>
                           <div className="font-medium">Tags</div>
                           <div className="flex gap-2">
-                            <Badge variant="outline" className="text-xs">
+                            <Badge variant="outline" className="text-xs bg-[var(--brand-color2)]">
                               Lead
                             </Badge>
-                            <Badge variant="outline" className="text-xs">
+                            <Badge variant="outline" className="text-xs bg-[var(--brand-color2)]">
                               Partner
                             </Badge>
                           </div>

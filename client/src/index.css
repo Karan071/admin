@@ -41,6 +41,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /*new*/
+  --breakpoint-xxl: 1690px;
+
 }
 
 :root {
@@ -81,6 +84,7 @@
   /* custom palette */
   --brand-color:#93268F;
   --brand-color2:#F4E9F4;
+  --brand-color3:#F4E9F480;
   --brand-red:#EE443F;
   --brand-red2:#FDECEC;
   --brand-green:#34C759;
@@ -92,7 +96,7 @@
   --brand-gray2:#878A99;
   --brand-gray3:#6D717F; 
   --brand-gray4:#52555F; 
-  --brand-faded:#F0F1F2;
+  --brand-faded:#E9EAEC;
   --brand-faded2:#F7F8F8; 
   --brand-header:#495057;
   --brand-header2:#9599AD;
