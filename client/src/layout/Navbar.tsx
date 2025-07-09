@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { Search, Bell, Maximize } from "lucide-react";
+import { Search, Bell, Maximize, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,12 +12,14 @@ import AimshalaLogo from "@/assets/logos/aimshala-light.png";
 import AimshalaLogoDark from "@/assets/logos/aimshala_dark.png";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useTheme } from "@/components/theme-provider";
+import { useEffect, useRef } from "react";
 
 interface NavbarProps {}
 
 export default function Navbar({}: NavbarProps) {
   const { theme } = useTheme();
   const dark = theme === "dark";
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -28,6 +30,20 @@ export default function Navbar({}: NavbarProps) {
       document.exitFullscreen();
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <header
@@ -52,13 +68,21 @@ export default function Navbar({}: NavbarProps) {
               />
             )}
           </div>
-          <div className="relative hidden lg:block">
-            <Search className="absolute lg:left-2.5 lg:top-2.5 top-2 h-4 w-4 text-gray-600" />
-            <Input
-              type="search"
-              placeholder="Search..."
-              className="w-[200px] pl-8 md:w-[250px] bg-[#F3F3F8] rounded-[4px] h-[38px] border-0"
-            />
+          <div className="relative">
+            <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600 z-10" />
+            <div className="relative">
+              <Input
+                ref={searchInputRef}
+                type="search"
+                placeholder="Search..."
+                className="w-[260px] pl-8 pr-20 md:w-[270px] bg-[#F3F3F8] rounded-[4px] h-[38px] border-0"
+              />
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
+                <Command className="h-3 w-3 text-gray-500" />
+                <span className="text-xs text-gray-500">|</span>
+                <span className="text-xs text-gray-500">K</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
