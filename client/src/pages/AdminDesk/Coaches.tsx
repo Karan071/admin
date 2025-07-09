@@ -20,8 +20,6 @@ import {
 } from "lucide-react";
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import { useState } from "react";
-import { Bell, Download, X } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
@@ -42,7 +40,7 @@ import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Mars, Venus, Flag } from "lucide-react";
 import { coachTableData } from "@/data/Data";
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const color = "text-[var(--brand-gray3)]";
 const Up = <CircleArrowUp className="text-[var(--brand-green)] h-6" />;
@@ -148,7 +146,7 @@ function Buttonbar() {
 }
 
 function CoachTableSection() {
-  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  // const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(5);
   const [sortConfig, setSortConfig] = useState<{
@@ -196,15 +194,15 @@ function CoachTableSection() {
     setSortConfig({ key, direction });
   };
 
-  const toggleSelectAll = () => {
-    if (selectedUsers.length === currentRecords.length) {
-      setSelectedUsers([]);
-    } else {
-      setSelectedUsers(
-        currentRecords.map((user): string => user.id.toString())
-      );
-    }
-  };
+  // const toggleSelectAll = () => {
+  //   if (selectedUsers.length === currentRecords.length) {
+  //     setSelectedUsers([]);
+  //   } else {
+  //     setSelectedUsers(
+  //       currentRecords.map((user): string => user.id.toString())
+  //     );
+  //   }
+  // };
 
   const bringToTop = (userId: number) => {
     const coach = selectedCoachStack.find((c) => c.id === userId);
@@ -262,13 +260,13 @@ function CoachTableSection() {
     }
   };
 
-  const toggleSelectUser = (userId: string) => {
-    if (selectedUsers.includes(userId)) {
-      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
-    } else {
-      setSelectedUsers([...selectedUsers, userId]);
-    }
-  };
+  // const toggleSelectUser = (userId: string) => {
+  //   if (selectedUsers.includes(userId)) {
+  //     setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+  //   } else {
+  //     setSelectedUsers([...selectedUsers, userId]);
+  //   }
+  // };
 
   return (
     <div className="flex flex-row gap-4 w-full h-max flex-wrap">
