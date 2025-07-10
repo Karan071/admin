@@ -318,8 +318,8 @@ function CoachTableSection() {
           </div>
         </div>
 
-        <div className="overflow-x-auto text-[var(--brand-gray)]">
-          <Table>
+        <div className="overflow-x-auto  text-[var(--brand-gray)] w-full px-0 mx-0">
+          <Table className="w-full caption-top border-collapse overflow-y-visible">
             <TableHeader className="bg-[var(--brand-faded)] hover:bg-[var(--brand-faded)]">
               <TableRow>
                 <TableHead
@@ -381,12 +381,12 @@ function CoachTableSection() {
                 <TableHead className="text-[var(--brand-gray)]">Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="overflow-y-visible">
               {currentRecords.map((user) => (
                 <TableRow
                     key={user.id}
                     data-id={user.id}
-                    className="cursor-pointer hover:bg-[var(--brand-color2)] hover:border-l-4 hover:border-l-[var(--brand-color)] border-l-4 border-transparent"
+                    className="cursor-pointer hover:bg-[var(--brand-color2)] hover:border-l-[var(--brand-color)] border-l-4 border-transparent"
                     onClick={() => handleRowClick(user)}
                 >
                   <TableCell>
@@ -485,7 +485,7 @@ function CoachTableSection() {
           </Table>
         </div>
 
-        <div className="flex items-center justify-between border-t p-4 flex-wrap gap-2">
+        <div className="flex items-center justify-between p-4 flex-wrap gap-2">
           <div className="flex items-center gap-4">
             <span className="text-sm text-[var(--brand-gray2)]">
               Showing {indexOfFirstRecord + 1}-
@@ -529,8 +529,8 @@ function CoachTableSection() {
 
 
 
-
-      <div className="lg:h-[500px] lg:min-w-100 sticky xxl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
+    <div className="xl:block hidden">
+      <div className="lg:h-[500px] lg:min-w-100 sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
         <AnimatePresence>
           {selectedCoachStack.map((coach, index) => {
             const isTopCard =
@@ -599,7 +599,7 @@ function CoachTableSection() {
                       <motion.img
                         src={coach.profile.photo}
                         alt={coach.profile.name}
-                        className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg"
+                        className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg m-auto"
                         whileHover={{ scale: 1.05 }}
                       />
                       <h1 className="text-xl font-semibold mt-4 text-[var(--brand-gray)]">
@@ -673,6 +673,7 @@ function CoachTableSection() {
           })}
         </AnimatePresence>
       </div>
+    </div>
     </div>
   );
 }

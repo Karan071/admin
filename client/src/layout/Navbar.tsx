@@ -69,28 +69,28 @@ export default function Navbar({}: NavbarProps) {
             )}
           </div>
           <div className="relative">
-            <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600 z-10" />
+            <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[var(--brand-gray3)] z-10" />
             <div className="relative">
               <Input
                 ref={searchInputRef}
                 type="search"
                 placeholder="Search..."
-                className="w-[260px] pl-8 pr-20 md:w-[270px] bg-[#F3F3F8] rounded-[4px] h-[38px] border-0"
+                className="w-[260px] pl-8 pr-20 md:w-[270px] bg-[var(--brand-faded2)] rounded-[4px] h-[38px] border-0"
               />
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
-                <Command className="h-3 w-3 text-gray-500" />
-                <span className="text-xs text-gray-500">|</span>
-                <span className="text-xs text-gray-500">K</span>
+                <Command className="h-3 w-3 text-[var(--brand-gray3)]" />
+                <span className="text-xs text-[var(--brand-gray3)]">|</span>
+                <span className="text-xs text-[var(--brand-gray3)]">K</span>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="flex items-center lg:gap-3 gap-6">
-        <Button variant="outline" size="icon" onClick={toggleFullScreen}>
-          <Maximize className="h-5 w-5 border-0 text-gray-400" />
-        </Button>
-        <Search className="h-5 w-5 border-0 text-gray-400 block lg:hidden" />
+        <button onClick={toggleFullScreen}>
+          <Maximize className="h-5 w-5 border-0 text-[var(--brand-gray3)]" />
+        </button>
+        <Search className="h-5 w-5 border-0 text-[var(--brand-gray3)] block lg:hidden" />
         <ModeToggle />
         <div className="relative">
           <div className="w-4 h-4 py-0.5 rounded-full bg-[#FF7F41] text-white text-[8px] text-center absolute -top-2 -right-1">
