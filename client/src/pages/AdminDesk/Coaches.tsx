@@ -43,8 +43,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
 
 const color = "text-[var(--brand-gray3)]";
-const Up = <CircleArrowUp className="text-[var(--brand-green)] h-6" />;
-const Down = <CircleArrowDown className="text-[var(--brand-red)] h-6" />;
+const Up = <CircleArrowUp className="text-[var(--brand-green)] h-4" />;
+const Down = <CircleArrowDown className="text-[var(--brand-red)] h-4" />;
 
 const stats = [
   {
@@ -96,7 +96,7 @@ function StatsCards() {
   return (
     <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5 ">
       {stats.map((stat, index) => (
-        <Card key={index} className="xl:rounded-sm shadow-2xs">
+        <Card key={index} className="xl:rounded-sm shadow-none">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
             <div className="flex justify-between h-full items-center">
               <div
@@ -104,7 +104,7 @@ function StatsCards() {
               >
                 {stat.title}
               </div>
-              {stat.performance}
+                {stat.performance}
             </div>
             <div className="flex  items-center gap-4">
               <div className={`rounded-full `}>
@@ -121,7 +121,7 @@ function StatsCards() {
 
 function Buttonbar() {
   return (
-    <div className="flex justify-between px-4 py-3 bg-white rounded-sm shadow-2xs border">
+    <div className="flex justify-between px-4 py-3 bg-white rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
         <Plus className="h-3 w-3" />
         <span className="">Add Contacts</span>
@@ -155,8 +155,8 @@ function CoachTableSection() {
   } | null>(null);
   const [selectedCoachStack, setSelectedCoachStack] = useState<
     typeof coachTableData
-  >([]);
-  const [focusedCoachId, setFocusedCoachId] = useState<number | null>(null);
+  >(coachTableData[0] ? [coachTableData[0]] : []);
+  const [focusedCoachId, setFocusedCoachId] = useState<number | null>( coachTableData[0]?.id || null);
 
   // Sorting logic
   const sortedData = [...coachTableData];
@@ -269,23 +269,23 @@ function CoachTableSection() {
   // };
 
   return (
-    <div className="flex flex-row gap-4 w-full h-max flex-wrap">
-      <div className="flex-1 rounded-md border bg-white">
+    <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
+      <div className="flex-1 rounded-md border bg-white overflow-x-auto xl:min-w-auto min-w-full">
         <div className="flex items-center justify-between border-b p-4 mt-auto">
           
           <div className="flex justify-end items-center gap-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
-                  variant="outline"
+                  variant="border"
                   size="sm"
-                  className="flex items-center gap-2 text-sm"
+                  className="flex items-center gap-2 text-sm text-[var(--brand-gray)]"
                 >
                   {recordsPerPage}
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="text-[var(--brand-gray)]">
                 {[5, 10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
@@ -293,13 +293,14 @@ function CoachTableSection() {
                       setRecordsPerPage(size);
                       setCurrentPage(1);
                     }}
+                    className="text-[var(--brand-gray)]"
                   >
                     {size}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <div className="flex justify-around items-center border rounded-md overflow-hidden bg-white">
+            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-white">
               <Input
                 placeholder="Search"
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -307,11 +308,11 @@ function CoachTableSection() {
               <Button
                 type="submit"
                 size="icon"
-                variant="ghost"
-                className="rounded-none rounded-r-md bg-gray-200"
+                variant="standard"
+                className="rounded-none rounded-r-md bg-[var(--brand-button)]"
                 aria-label="Search"
               >
-                <Search className="h-5 w-5 text-gray-500" />
+                <Search className="h-5 w-5 text-[var(--brand-gray3)]" />
               </Button>
             </div>
           </div>
@@ -323,7 +324,7 @@ function CoachTableSection() {
               <TableRow>
                 <TableHead
                   onClick={() => requestSort("profile.name")}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-[var(--brand-gray)]"
                 >
                   Profile{" "}
                   {sortConfig?.key === "profile.name" &&
@@ -331,7 +332,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("contact.email")}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-[var(--brand-gray)]"
                 >
                   Contact{" "}
                   {sortConfig?.key === "contact.email" &&
@@ -339,7 +340,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("status")}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-[var(--brand-gray)]"
                 >
                   Status{" "}
                   {sortConfig?.key === "status" &&
@@ -347,7 +348,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("sessions.total")}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-[var(--brand-gray)]"
                 >
                   Sessions{" "}
                   {sortConfig?.key === "sessions.total" &&
@@ -355,7 +356,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("assessments")}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-[var(--brand-gray)]"
                 >
                   Assessments{" "}
                   {sortConfig?.key === "assessments" &&
@@ -363,7 +364,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("orgLinked")}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-[var(--brand-gray)]"
                 >
                   Org Linked{" "}
                   {sortConfig?.key === "orgLinked" &&
@@ -371,13 +372,13 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("lastActive")}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-[var(--brand-gray)]"
                 >
                   Last Active / DOJ{" "}
                   {sortConfig?.key === "lastActive" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
-                <TableHead>Actions</TableHead>
+                <TableHead className="text-[var(--brand-gray)]">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -390,7 +391,7 @@ function CoachTableSection() {
                 >
                   <TableCell>
                     <div className="flex items-center gap-4">
-                      <div className="h-14 w-14 rounded-full bg-gray-200 overflow-hidden">
+                      <div className="h-14 w-14 rounded-full overflow-hidden">
                         <img
                           src={user.profile.photo}
                           alt={user.profile.name}
@@ -409,7 +410,7 @@ function CoachTableSection() {
                           </div>
                           <div>
                             <Badge
-                              variant="outline"
+                              variant="brand"
                               className="text-xs font-light"
                             >
                               {user.profile.type}
@@ -417,13 +418,13 @@ function CoachTableSection() {
                           </div>
                         </div>
                         <div className="flex justify-start items-center gap-2">
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-[var(--brand-gray2)] text-xs">
                             {user.specialty}
                           </div>
                         </div>
                         <div>
                           <div className="flex justify-start items-center gap-2">
-                            <div className="text-xs text-gray-900 italic">
+                            <div className="text-xs text-[var(--brand-gray)] italic">
                               {`@${user.profile.userid}`}
                             </div>
                           </div>
@@ -435,17 +436,17 @@ function CoachTableSection() {
                   </TableCell>
                   <TableCell>
                     <div className="text-sm">{user.contact.email}</div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-[var(--brand-gray2)]">
                       {user.contact.phone}
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="outline">{user.status}</Badge>
+                    <Badge variant="standard">{user.status}</Badge>
                   </TableCell>
                   <TableCell>
                     <div className="text-sm">
                       <div>{`${user.sessions.total}`}</div>
-                      <div className="text-xs text-gray-400">{`${user.sessions.completed} Completed`}</div>
+                      <div className="text-xs text-[var(--brand-gray2)]">{`${user.sessions.completed} Completed`}</div>
                     </div>
                   </TableCell>
                   <TableCell>
@@ -454,24 +455,25 @@ function CoachTableSection() {
                   <TableCell>{user.orgLinked}</TableCell>
                   <TableCell>
                     <div className="text-sm">{user.lastActive}</div>
-                    <div className="text-xs text-gray-500">{user.joined}</div>
+                    <div className="text-xs text-[var(--brand-gray2)]">{user.joined}</div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <Button
                         variant="standard"
                         size="sm"
+                        className="bg-white border-0 shadow-none"
                         // onClick={() => navigate(`/user-details/${user.id}`)}
                       >
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View</span>
                       </Button>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="bg-white border-0 shadow-none">
                         <MessageCircle className="h-4 w-4" />
                         <span className="sr-only">Chat</span>
                       </Button>
 
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="bg-white border-0 shadow-none">
                         <Flag className="h-4 w-4" />
                         <span className="sr-only">Flag</span>
                       </Button>
@@ -485,15 +487,15 @@ function CoachTableSection() {
 
         <div className="flex items-center justify-between border-t p-4 flex-wrap gap-2">
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-[var(--brand-gray2)]">
               Showing {indexOfFirstRecord + 1}-
               {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
               {sortedData.length} explorers
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ">
             <Button
-              variant="outline"
+              variant="border"
               size="icon"
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
@@ -503,16 +505,16 @@ function CoachTableSection() {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <Button
                 key={page}
-                variant={page === currentPage ? "default" : "outline"}
+                variant={page === currentPage ? "brand" : "border"}
                 size="sm"
-                className="h-8 w-8 p-0"
+                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--brand-gray4)]"}`}
                 onClick={() => setCurrentPage(page)}
               >
                 {page}
               </Button>
             ))}
             <Button
-              variant="outline"
+              variant="border"
               size="icon"
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
@@ -528,7 +530,7 @@ function CoachTableSection() {
 
 
 
-      <div className="h-[500px] min-w-100 sticky xxl:top-[10px] ">
+      <div className="lg:h-[500px] lg:min-w-100 sticky xxl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
         <AnimatePresence>
           {selectedCoachStack.map((coach, index) => {
             const isTopCard =
@@ -539,7 +541,7 @@ function CoachTableSection() {
             return (
               <motion.div
                 key={coach.id}
-                className="absolute left-0 right-0 mx-auto max-w-md w-full h-max cursor-pointer"
+                className="absolute left-0 right-0 mx-auto max-w-md w-full h-max cursor-pointer shadow-none"
                 style={{
                   top: `${cardIndex * 30}px`,
                   zIndex: isTopCard ? 100 : 10 + cardIndex,
@@ -556,7 +558,7 @@ function CoachTableSection() {
                 whileHover={isTopCard ? {} : { scale: 0.97 }}
               >
                 <motion.div
-                  className="relative border h-full border-border rounded-lg overflow-hidden shadow-md bg-background"
+                  className="relative border h-full border-border rounded-lg overflow-hidden bg-background"
                   whileTap={isTopCard ? { scale: 0.98 } : {}}
                 >
                   {!isTopCard && (
@@ -652,10 +654,10 @@ function CoachTableSection() {
                           <div>-</div>
                           <div className="font-medium">Tags</div>
                           <div className="flex gap-2">
-                            <Badge variant="outline" className="text-xs bg-[var(--brand-color2)]">
+                            <Badge variant="brand" className="text-xs ">
                               Lead
                             </Badge>
-                            <Badge variant="outline" className="text-xs bg-[var(--brand-color2)]">
+                            <Badge variant="brand" className="text-xs">
                               Partner
                             </Badge>
                           </div>

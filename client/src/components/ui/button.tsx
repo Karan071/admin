@@ -23,6 +23,8 @@ const buttonVariants = cva(
         standard:"bg-[var(--brand-button)] text-[var(--brand-gray4)] shadow-xs hover:bg-[var(--brand-button)]/70",
         brand:"bg-[var(--brand-color)] text-white shadow-xs hover:bg-[var(--brand-color)]/70 text-[14px]",
         delete:"bg-[var(--brand-button)] text-[var(--brand-red)] shadow-xs hover:bg-[var(--brand-button)]/70",
+        border:
+          "border bg-white hover:bg-[var(--brand-faded2)] text-[var(--var-gray4)] dark:bg-[var(--brand-gray2)/30]  dark:hover:bg-[var(--brand-gray2)/70] ",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
