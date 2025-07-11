@@ -654,7 +654,7 @@ function OrganisationTable() {
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <Button
-                            variant="standard"
+                            variant="noborder"
                             size="sm"
                             className="bg-white border-0 shadow-none"
                             // onClick={() => navigate(`/user-details/${user.id}`)}
@@ -662,12 +662,12 @@ function OrganisationTable() {
                             <Eye className="h-4 w-4" />
                             <span className="sr-only">View</span>
                           </Button>
-                          <Button variant="outline" size="sm" className="bg-white border-0 shadow-none">
+                          <Button variant="noborder" size="sm" className="bg-white border-0 shadow-none">
                             <MessageCircle className="h-4 w-4" />
                             <span className="sr-only">Chat</span>
                           </Button>
     
-                          <Button variant="outline" size="sm" className="bg-white border-0 shadow-none">
+                          <Button variant="noborder" size="sm" className="bg-white border-0 shadow-none">
                             <Flag className="h-4 w-4" />
                             <span className="sr-only">Flag</span>
                           </Button>
@@ -724,7 +724,7 @@ function OrganisationTable() {
     
     
         <div className="xl:block hidden">
-          <div className="lg:h-[500px] lg:min-w-100 sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
+          <div className="lg:h-[500px] min-w-90  sticky xl:top-[10px] shadow-none lg:scale-100 h-fit">
             <AnimatePresence>
               {selectedCoachStack.map((coach, index) => {
                 const isTopCard =

@@ -41,10 +41,12 @@ import { Mars, Venus, Flag } from "lucide-react";
 import { coachTableData } from "@/data/Data";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
+import { cn } from "@/lib/utils";
 
-const color = "text-[var(--brand-gray3)]";
-const Up = <CircleArrowUp className="text-[var(--brand-green)] h-4" />;
-const Down = <CircleArrowDown className="text-[var(--brand-red)] h-4" />;
+const color = "text-[var(--text)]";
+const color2 ="text-[var(--text-head)]";
+const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
+const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 
 const stats = [
   {
@@ -83,7 +85,7 @@ export default function Coaches() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold">Coaches</h1>
+        <h1 className="text-2xl font-bold text-[var(--text)]">Coaches</h1>
         <StatsCards />
         <Buttonbar />
         <CoachTableSection />
@@ -94,9 +96,9 @@ export default function Coaches() {
 
 function StatsCards() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5 ">
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5">
       {stats.map((stat, index) => (
-        <Card key={index} className="xl:rounded-sm shadow-none">
+        <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
             <div className="flex justify-between h-full items-center">
               <div
@@ -108,9 +110,9 @@ function StatsCards() {
             </div>
             <div className="flex  items-center gap-4">
               <div className={`rounded-full `}>
-                <stat.icon className={`h-8 w-8 ${color}`} />
+                <stat.icon className={`h-8 w-8 ${color2}`} />
               </div>
-              <div className={`${color} text-2xl`}>{stat.value}</div>
+              <div className={`${color2} text-2xl`}>{stat.value}</div>
             </div>
           </CardHeader>
         </Card>
@@ -121,7 +123,7 @@ function StatsCards() {
 
 function Buttonbar() {
   return (
-    <div className="flex justify-between px-4 py-3 bg-white rounded-sm gap-4 border flex-wrap shadow-none">
+    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
         <Plus className="h-3 w-3" />
         <span className="">Add Contacts</span>
@@ -270,22 +272,22 @@ function CoachTableSection() {
 
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
-      <div className="flex-1 rounded-md border bg-white overflow-x-auto xl:min-w-auto min-w-full">
+      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
         <div className="flex items-center justify-between border-b p-4 mt-auto">
           
-          <div className="flex justify-end items-center gap-4">
+          <div className="flex justify-end items-center gap-4 ">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="border"
                   size="sm"
-                  className="flex items-center gap-2 text-sm text-[var(--brand-gray)]"
+                  className="flex items-center gap-2 text-low text-[var(--text-head)]"
                 >
                   {recordsPerPage}
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="text-[var(--brand-gray)]">
+              <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
                 {[5, 10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
@@ -293,14 +295,14 @@ function CoachTableSection() {
                       setRecordsPerPage(size);
                       setCurrentPage(1);
                     }}
-                    className="text-[var(--brand-gray)]"
+                    className="text-[var(--text)] focus:bg-[var(--faded)]"
                   >
                     {size}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-white">
+            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -309,22 +311,22 @@ function CoachTableSection() {
                 type="submit"
                 size="icon"
                 variant="standard"
-                className="rounded-none rounded-r-md bg-[var(--brand-button)]"
+                className="rounded-none rounded-r-md bg-[var(--button)]"
                 aria-label="Search"
               >
-                <Search className="h-5 w-5 text-[var(--brand-gray3)]" />
+                <Search className="h-5 w-5 text-[var(--text)]" />
               </Button>
             </div>
           </div>
         </div>
 
-        <div className="overflow-x-auto  text-[var(--brand-gray)] w-full px-0 mx-0">
+        <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
           <Table className="w-full caption-top border-collapse overflow-y-visible">
-            <TableHeader className="bg-[var(--brand-faded)] hover:bg-[var(--brand-faded)]">
+            <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
               <TableRow>
                 <TableHead
                   onClick={() => requestSort("profile.name")}
-                  className="cursor-pointer text-[var(--brand-gray)]"
+                  className="cursor-pointer text-[var(--text)] text-low"
                 >
                   Profile{" "}
                   {sortConfig?.key === "profile.name" &&
@@ -332,7 +334,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("contact.email")}
-                  className="cursor-pointer text-[var(--brand-gray)]"
+                  className="cursor-pointer text-[var(--text)]"
                 >
                   Contact{" "}
                   {sortConfig?.key === "contact.email" &&
@@ -340,7 +342,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("status")}
-                  className="cursor-pointer text-[var(--brand-gray)]"
+                  className="cursor-pointer text-[var(--text)]"
                 >
                   Status{" "}
                   {sortConfig?.key === "status" &&
@@ -348,7 +350,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("sessions.total")}
-                  className="cursor-pointer text-[var(--brand-gray)]"
+                  className="cursor-pointer text-[var(--text)]"
                 >
                   Sessions{" "}
                   {sortConfig?.key === "sessions.total" &&
@@ -356,7 +358,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("assessments")}
-                  className="cursor-pointer text-[var(--brand-gray)]"
+                  className="cursor-pointer text-[var(--text)]"
                 >
                   Assessments{" "}
                   {sortConfig?.key === "assessments" &&
@@ -364,7 +366,7 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("orgLinked")}
-                  className="cursor-pointer text-[var(--brand-gray)]"
+                  className="cursor-pointer text-[var(--text)]"
                 >
                   Org Linked{" "}
                   {sortConfig?.key === "orgLinked" &&
@@ -372,24 +374,37 @@ function CoachTableSection() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("lastActive")}
-                  className="cursor-pointer text-[var(--brand-gray)]"
+                  className="cursor-pointer text-[var(--text)]"
                 >
                   Last Active / DOJ{" "}
                   {sortConfig?.key === "lastActive" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
-                <TableHead className="text-[var(--brand-gray)]">Actions</TableHead>
+                <TableHead className="text-[var(--text)]">Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className="overflow-y-visible">
+            <TableBody className="overflow-visible relative z-0">
               {currentRecords.map((user) => (
                 <TableRow
                     key={user.id}
                     data-id={user.id}
-                    className="cursor-pointer hover:bg-[var(--brand-color2)] hover:border-l-[var(--brand-color)] border-l-4 border-transparent"
+                    className={cn(
+                    "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
+                    selectedCoachStack.some((c) => c.id === user.id)
+                    ? "bg-[var(--brand-color3)]"
+                    : ""
+                    )}
                     onClick={() => handleRowClick(user)}
-                >
-                  <TableCell>
+                    >
+                  <TableCell  className={cn(
+                    "pl-4 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
+                    selectedCoachStack.some((c) => c.id === user.id)
+                      ? focusedCoachId === user.id
+                        ? "border-[var(--brand-color)]"
+                        : "border-transparent"
+                      : "border-transparent"
+                    )}
+                  >
                     <div className="flex items-center gap-4">
                       <div className="h-14 w-14 rounded-full overflow-hidden">
                         <img
@@ -418,13 +433,13 @@ function CoachTableSection() {
                           </div>
                         </div>
                         <div className="flex justify-start items-center gap-2">
-                          <div className="text-[var(--brand-gray2)] text-xs">
+                          <div className="text-[var(--text)] text-xs">
                             {user.specialty}
                           </div>
                         </div>
                         <div>
                           <div className="flex justify-start items-center gap-2">
-                            <div className="text-xs text-[var(--brand-gray)] italic">
+                            <div className="text-xs text-[var(--text)] italic">
                               {`@${user.profile.userid}`}
                             </div>
                           </div>
@@ -435,8 +450,8 @@ function CoachTableSection() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-sm">{user.contact.email}</div>
-                    <div className="text-xs text-[var(--brand-gray2)]">
+                    <div className="text-low">{user.contact.email}</div>
+                    <div className="text-xs text-[var(--text)]">
                       {user.contact.phone}
                     </div>
                   </TableCell>
@@ -444,23 +459,23 @@ function CoachTableSection() {
                     <Badge variant="standard">{user.status}</Badge>
                   </TableCell>
                   <TableCell>
-                    <div className="text-sm">
+                    <div className="text-low">
                       <div>{`${user.sessions.total}`}</div>
-                      <div className="text-xs text-[var(--brand-gray2)]">{`${user.sessions.completed} Completed`}</div>
+                      <div className="text-xs text-[var(--text)]">{`${user.sessions.completed} Completed`}</div>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-sm">{user.assessments}</div>
+                    <div className="text-low">{user.assessments}</div>
                   </TableCell>
                   <TableCell>{user.orgLinked}</TableCell>
                   <TableCell>
-                    <div className="text-sm">{user.lastActive}</div>
-                    <div className="text-xs text-[var(--brand-gray2)]">{user.joined}</div>
+                    <div className="text-low">{user.lastActive}</div>
+                    <div className="text-xs text-[var(--text)]">{user.joined}</div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <Button
-                        variant="standard"
+                        variant="noborder"
                         size="sm"
                         className="bg-white border-0 shadow-none"
                         // onClick={() => navigate(`/user-details/${user.id}`)}
@@ -468,12 +483,12 @@ function CoachTableSection() {
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View</span>
                       </Button>
-                      <Button variant="outline" size="sm" className="bg-white border-0 shadow-none">
+                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
                         <MessageCircle className="h-4 w-4" />
                         <span className="sr-only">Chat</span>
                       </Button>
 
-                      <Button variant="outline" size="sm" className="bg-white border-0 shadow-none">
+                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
                         <Flag className="h-4 w-4" />
                         <span className="sr-only">Flag</span>
                       </Button>
@@ -485,9 +500,9 @@ function CoachTableSection() {
           </Table>
         </div>
 
-        <div className="flex items-center justify-between p-4 flex-wrap gap-2">
+        <div className="flex items-center justify-between flex-wrap gap-2 p-4">
           <div className="flex items-center gap-4">
-            <span className="text-sm text-[var(--brand-gray2)]">
+            <span className="text-low text-[var(--text)]">
               Showing {indexOfFirstRecord + 1}-
               {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
               {sortedData.length} explorers
@@ -507,7 +522,7 @@ function CoachTableSection() {
                 key={page}
                 variant={page === currentPage ? "brand" : "border"}
                 size="sm"
-                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--brand-gray4)]"}`}
+                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"}`}
                 onClick={() => setCurrentPage(page)}
               >
                 {page}
@@ -530,7 +545,7 @@ function CoachTableSection() {
 
 
     <div className="xl:block hidden">
-      <div className="lg:h-[500px] lg:min-w-100 sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
+      <div className="lg:h-[500px] xl:min-w-90 xxl:min-w-100  sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
         <AnimatePresence>
           {selectedCoachStack.map((coach, index) => {
             const isTopCard =
@@ -563,7 +578,7 @@ function CoachTableSection() {
                 >
                   {!isTopCard && (
                     <motion.div
-                      className="flex items-center justify-between text-xs text-muted-foreground px-4 py-2 bg-accent/10 rounded-t-lg z-10"
+                      className="flex items-center justify-between text-xs text-[var(--text)] px-4 py-2 bg-accent/10 rounded-t-lg z-10"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.1 }}
@@ -579,7 +594,7 @@ function CoachTableSection() {
                             e.stopPropagation();
                             removeCoach(coach.id);
                           }}
-                          className="text-destructive hover:text-destructive/70 text-[16px]"
+                          className="text-[var(--red)] hover:text-[var(--red)/70] text-[16px]"
                         >
                           ×
                         </button>
@@ -602,48 +617,48 @@ function CoachTableSection() {
                         className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg m-auto"
                         whileHover={{ scale: 1.05 }}
                       />
-                      <h1 className="text-xl font-semibold mt-4 text-[var(--brand-gray)]">
+                      <h1 className="text-xl font-semibold mt-4 text-[var(--text-head)]">
                         {coach.profile.name}
                       </h1>
-                      <h2 className="text-sm text-[var(--brand-gray3)] mb-2">
+                      <h2 className="text-sm text-[var(--text)] mb-2">
                         {coach.orgLinked}
                       </h2>
 
                       <div className="flex justify-center gap-3 mt-2">
                         <motion.button
-                          className="bg-[var(--brand-green2)] rounded-full p-2 hover:[var(--brand-green2)/80] transition-colors"
+                          className="bg-[var(--green2)] rounded-full p-2 hover:[var(--green2)/80] transition-colors"
                           title="Call"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <Phone className="w-5 h-5 text-[var(--brand-green)]" />
+                          <Phone className="w-5 h-5 text-[var(--green)]" />
                         </motion.button>
                         <motion.button
-                          className="bg-[var(--brand-red2)] rounded-full p-2 hover:bg-[var(--brand-red2)/80] transition-colors"
+                          className="bg-[var(--red2)] rounded-full p-2 hover:bg-[var(--red2)/80] dark:bg-[var(--red2)] transition-colors"
                           title="Email"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <Mail className="w-5 h-5 text-[var(--brand-red)]" />
+                          <Mail className="w-5 h-5 text-[var(--red)]" />
                         </motion.button>
                         <motion.button
-                          className="bg-[var(--brand-yellow2)] rounded-full p-2 hover:bg-[var(--brand-yellow2)/80] transition-colors"
+                          className="bg-[var(--yellow2)] dark:bg-[var(--yellow2)] rounded-full p-2 hover:bg-[var(--yellow2)/80] transition-colors"
                           title="Message"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <MessageCircle className="w-5 h-5 text-[var(--brand-yellow)]" />
+                          <MessageCircle className="w-5 h-5 text-[var(--yellow)]" />
                         </motion.button>
                       </div>
                       </div>
                       <div className="mt-6 text-sm text-left w-full">
-                        <h3 className="font-semibold text-[var(--brand-gray4)] mb-1">
+                        <h3 className="font-semibold text-[var(--text-head)] mb-1">
                           PERSONAL INFORMATION
                         </h3>
-                        <p className="text-[var(--brand-gray3)] text-sm mb-4">
+                        <p className="text-[var(--text)] text-sm mb-4">
                           This coach has not added a bio.
                         </p>
-                        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--brand-gray3)]">
+                        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--text)]">
                           <div className="font-medium">Designation</div>
                           <div>{coach.profile.type}</div>
                           <div className="font-medium">Email ID</div>

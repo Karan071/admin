@@ -44,6 +44,8 @@
   /*new*/
   --breakpoint-xxl: 1690px;
 
+  --text-low:0.875rem;
+
 }
 
 :root {
@@ -82,24 +84,21 @@
   --font-poppins : "Poppins", sans-serif;
 
   /* custom palette */
+  --background:#FFFFFF;
   --brand-color:#93268F;
-  --brand-color2:#F4E9F4;
-  --brand-color3:#F4E9F480;
-  --brand-red:#EE443F;
-  --brand-red2:#FDECEC;
-  --brand-green:#34C759;
-  --brand-green2:#EBF9EE;
-  --brand-yellow:#FFCC4B;
-  --brand-yellow2:#FFFAED;
-  --brand-button:#ECF1FC;
-  --brand-gray:#313339;
-  --brand-gray2:#878A99;
-  --brand-gray3:#6D717F; 
-  --brand-gray4:#52555F; 
-  --brand-faded:#E9EAEC;
-  --brand-faded2:#F7F8F8; 
-  --brand-header:#495057;
-  --brand-header2:#9599AD;
+  --brand-color2:#DEBCDC;
+  --brand-color3:#F4E9F4;
+  --red:#EE443F;
+  --red2:#FDECEC;
+  --green:#34C759;
+  --green2:#EBF9EE;
+  --yellow:#FFCC4B;
+  --yellow2:#FFFAED;
+  --button:#EEEEEE;
+  --text-head:#41444C;
+  --text:#6D717F;
+  --faded:#F0F1F2;
+  --layout:#F7F8F8;
 }
 
 .dark {
@@ -134,6 +133,24 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
+
+  --background:#313339;
+  --faded:#26282C;
+  --brand-color2:#93268F33;
+  --brand-color3:#41444C;
+  --button:#26282C;
+  --text-head:#F0F1F2;
+  --text:#D2D3D7;
+  --layout:#1A1D21;
+  --headerbg:#41444C;
+
+  --red:#EE443F;
+  --red2:#FDECEC;
+  --green:#34C759;
+  --green2:#EBF9EE;
+  --yellow:#FFCC4B;
+  --yellow2:#FFFAED;
+
 }
 
 .html, body {

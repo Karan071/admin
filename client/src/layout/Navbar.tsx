@@ -47,7 +47,7 @@ export default function Navbar({}: NavbarProps) {
 
   return (
     <header
-      className={`flex h-15 items-center justify-between border-b bg-white px-[20px] dark:bg-gray-900 w-full overflow-hidden top-0 left-0 ${
+      className={`flex h-15 items-center justify-between border-b bg-[var(--background)] px-[20px]  w-full overflow-hidden top-0 left-0 ${
         dark ? "dark" : ""
       }`}
     >
@@ -68,19 +68,19 @@ export default function Navbar({}: NavbarProps) {
               />
             )}
           </div>
-          <div className="relative">
-            <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[var(--brand-gray3)] z-10" />
+          <div className="relative hidden md:block">
+            <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[var(--text)] z-10" />
             <div className="relative">
               <Input
                 ref={searchInputRef}
                 type="search"
                 placeholder="Search..."
-                className="w-[260px] pl-8 pr-20 md:w-[270px] bg-[var(--brand-faded2)] rounded-[4px] h-[38px] border-0"
+                className="w-[260px] pl-8 pr-20 md:w-[270px] bg-[var(--faded)] dark:bg-[var(--faded)] rounded-[4px] h-[38px] border-0"
               />
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
-                <Command className="h-3 w-3 text-[var(--brand-gray3)]" />
-                <span className="text-xs text-[var(--brand-gray3)]">|</span>
-                <span className="text-xs text-[var(--brand-gray3)]">K</span>
+                <Command className="h-3 w-3 text-[var(--text)]" />
+                <span className="text-xs text-[var(--text)]">|</span>
+                <span className="text-xs text-[var(--text)]">K</span>
               </div>
             </div>
           </div>
@@ -88,23 +88,21 @@ export default function Navbar({}: NavbarProps) {
       </div>
       <div className="flex items-center lg:gap-3 gap-6">
         <button onClick={toggleFullScreen}>
-          <Maximize className="h-5 w-5 border-0 text-[var(--brand-gray3)]" />
+          <Maximize className="h-5 w-5 border-0 text-[var(--text)] hidden xxl:block" />
         </button>
-        <Search className="h-5 w-5 border-0 text-[var(--brand-gray3)] block lg:hidden" />
+        <Search className="h-5 w-5 border-0 text-[var(--text)] block md:hidden" />
         <ModeToggle />
         <div className="relative">
-          <div className="w-4 h-4 py-0.5 rounded-full bg-[#FF7F41] text-white text-[8px] text-center absolute -top-2 -right-1">
+          <div className="w-4 h-4 py-0.5 rounded-full bg-[var(--red)] text-white text-[8px] text-center absolute -top-2 -right-1">
             3
           </div>
-          <Button variant="outline">
-            <Bell className=" text-gray-400" />
-          </Button>
+            <Bell className=" text-[var(--text)] h-5 w-5" />
         </div>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
-              variant="ghost"
+              variant="faded"
               className="flex items-center h-full md:pt-4  md:pb-4  md:px-5 p-0 rounded-0"
             >
               <Avatar className="md:h-8 md:w-8">
@@ -114,8 +112,8 @@ export default function Navbar({}: NavbarProps) {
                 />
               </Avatar>
               <div>
-                <span className="hidden md:block text-[14px]">Anna Adame</span>
-                <span className="hidden md:block text-left text-gray-400 font-light">
+                <span className="hidden md:block text-[var(--text-head)]">Anna Adame</span>
+                <span className="hidden md:block text-left text-[var(--text)] font-light">
                   Founder
                 </span>
               </div>

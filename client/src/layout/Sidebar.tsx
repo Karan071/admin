@@ -43,7 +43,7 @@ export default function SidebarLayout() {
   return (
     <div>
       <AppSidebar />
-      <SidebarInset>
+      <SidebarInset >
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-10" />
@@ -62,11 +62,11 @@ function AppSidebar(props: React.ComponentProps<typeof SidebarRoot>) {
   const [activeTeam, setActiveTeam] = React.useState(SidebarData.teams[0]);
 
   return (
-    <SidebarRoot collapsible="icon" {...props} className="fixed top-15 h-[calc(100vh-60px)]">
-      <SidebarHeader>
+    <SidebarRoot collapsible="icon" {...props} className="fixed top-15 h-[calc(100vh-60px)] " >
+      <SidebarHeader className="bg-[var(--background)]">
         <TeamSwitcher teams={SidebarData.teams} onTeamChange={setActiveTeam} />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="bg-[var(--background)]">
         <NavMain items={activeTeam.navMain || SidebarData.navMain} />
       </SidebarContent>
       <SidebarRail />
@@ -97,7 +97,7 @@ function TeamSwitcher({
   if (!activeTeam) return null;
 
   return (
-    <SidebarMenu>
+    <SidebarMenu >
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -105,36 +105,36 @@ function TeamSwitcher({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="bg-[var(--brand-color)] text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg b">
+              <div className="bg-[var(--brand-color)] dark:bg-white text-white dark:text-[var(--brand-color)] flex aspect-square size-8 items-center justify-center rounded-lg b">
                 <activeTeam.logo className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{activeTeam.name}</span>
-                <span className="truncate text-xs">{activeTeam.plan}</span>
+                <span className="truncate font-medium text-[var(--text-head)]">{activeTeam.name}</span>
+                <span className="truncate text-xs text-[var(--text)]">{activeTeam.plan}</span>
               </div>
-              <ChevronsUpDown className="ml-auto" />
+              <ChevronsUpDown className="ml-auto text-[var(--text)]" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg text-[var(--text)] "
             align="start"
             side={isMobile ? "bottom" : "right"}
             sideOffset={4}
           >
-            <DropdownMenuLabel className="text-muted-foreground text-xs">
+            <DropdownMenuLabel className="text-xs">
               Desks
             </DropdownMenuLabel>
             {teams.map((team, index) => (
               <DropdownMenuItem
                 key={team.name}
                 onClick={() => handleTeamChange(team)}
-                className="gap-2 p-2"
+                className="gap-2 p-2 focus:bg-[var(--faded)]"
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
-                  <team.logo className="size-3.5 shrink-0" />
+                  <team.logo className="size-3.5 shrink-0 text-[var(--text)]" />
                 </div>
                 {team.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                <DropdownMenuShortcut className="text-[var(--text)]">⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
@@ -160,7 +160,7 @@ function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-[var(--text-head)]">Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) =>
           item.items ? (
@@ -169,23 +169,23 @@ function NavMain({
               key={item.title}
               asChild
               defaultOpen={item.isActive}
-              className="group/collapsible"
+              className="group/collapsible text-[var(--text)]"
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
-                    {item.icon && <item.icon className="size-4" />}
-                    <span>{item.title}</span>
-                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  <SidebarMenuButton tooltip={item.title} className="text-[var(--text)]">
+                    {item.icon && <item.icon className="size-4 text-[var(--text)]" />}
+                    <span className="text-[var(--text)]">{item.title}</span>
+                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 text-[var(--text)]" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
                     {item.items.map((subItem) => (
-                      <SidebarMenuSubItem key={subItem.title}>
+                      <SidebarMenuSubItem key={subItem.title} className="text-[var(--text)]">
                         <SidebarMenuSubButton asChild>
                           <a href={subItem.url}>
-                            <span>{subItem.title}</span>
+                            <span className="text-[var(--text)]">{subItem.title}</span>
                           </a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -197,10 +197,10 @@ function NavMain({
           ) : (
             // Render simple link if the item has no sub-items
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title} asChild>
+              <SidebarMenuButton tooltip={item.title} asChild className="text-[var(--text)]">
                 <a href={item.url}>
-                  {item.icon && <item.icon className="size-4" />}
-                  <span>{item.title}</span>
+                  {item.icon && <item.icon className="size-4 text-[var(--text)]" />}
+                  <span className="text-[var(--text)]">{item.title}</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>

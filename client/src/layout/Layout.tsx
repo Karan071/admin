@@ -11,7 +11,7 @@ export default function MainLayout({
     <SidebarProvider>
       <div className="flex flex-col w-screen h-screen">
         <Navbar />
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 overflow-hidden bg-[var(--layout)]">
           <aside className="flex-none">
             <SidebarLayout />
           </aside>

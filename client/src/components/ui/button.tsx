@@ -20,11 +20,16 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        standard:"bg-[var(--brand-button)] text-[var(--brand-gray4)] shadow-xs hover:bg-[var(--brand-button)]/70",
+        standard:"bg-[var(--button)] text-[var(--text)] shadow-xs hover:bg-[var(--button)]/70",
         brand:"bg-[var(--brand-color)] text-white shadow-xs hover:bg-[var(--brand-color)]/70 text-[14px]",
-        delete:"bg-[var(--brand-button)] text-[var(--brand-red)] shadow-xs hover:bg-[var(--brand-button)]/70",
+        delete:"bg-[var(--button)] text-[var(--red)] shadow-xs hover:bg-[var(--button)]/70",
         border:
-          "border bg-white hover:bg-[var(--brand-faded2)] text-[var(--var-gray4)] dark:bg-[var(--brand-gray2)/30]  dark:hover:bg-[var(--brand-gray2)/70] ",
+          "border bg-[var(--background)] hover:bg-[var(--faded)] text-[var(--text)] dark:bg-[var(--text)/30]  dark:hover:bg-[var(--text)/70] ",
+        noborder:
+          " bg-[var(--background)] hover:bg-[var(--faded)] dark:bg-[var(--text)/30]",
+        faded:
+          "bg-[var(--faded)] dark:hover:bg-[var(--faded)]",
+        
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
