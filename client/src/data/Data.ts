@@ -3690,3 +3690,339 @@ export const AbuseTableData = [
     "actions": ["Review", "Escalate"]
   }
 ];
+
+export const ReviewTableData = [
+  {
+    "id": 1,
+    "user": "Niharika Sharma",
+    "submittedOn": "18 May 2025",
+    "submittedFor": "Platform Experience",
+    "submittedBy": "Web App",
+    "rating": "★★★★★",
+    "content": "Flawless experience with smooth navigation",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 2,
+    "user": "Deepak Rawat",
+    "submittedOn": "17 May 2025",
+    "submittedFor": "Learning Module",
+    "submittedBy": "Mobile App",
+    "rating": "★★★★☆",
+    "content": "More examples would enhance sessions",
+    "status": "Pending",
+    "actions": ["Respond", "Resolve"]
+  },
+  {
+    "id": 3,
+    "user": "Tanya Mehta",
+    "submittedOn": "16 May 2025",
+    "submittedFor": "Career Session",
+    "submittedBy": "WhatsApp",
+    "rating": "★★★★★",
+    "content": "Very helpful and structured session",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 4,
+    "user": "Rajeev Bansal",
+    "submittedOn": "15 May 2025",
+    "submittedFor": "Mentor Feedback",
+    "submittedBy": "Web App",
+    "rating": "★★★☆☆",
+    "content": "Expected more detailed advice",
+    "status": "Archived",
+    "actions": ["Restore"]
+  },
+  {
+    "id": 5,
+    "user": "Priya Sen",
+    "submittedOn": "14 May 2025",
+    "submittedFor": "Session Booking",
+    "submittedBy": "Mobile App",
+    "rating": "★★★★☆",
+    "content": "Easy to book but a bit slow",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 6,
+    "user": "Kunal Arora",
+    "submittedOn": "13 May 2025",
+    "submittedFor": "Support",
+    "submittedBy": "Email",
+    "rating": "★★☆☆☆",
+    "content": "Late response from support team",
+    "status": "Pending",
+    "actions": ["Respond", "Resolve"]
+  },
+  {
+    "id": 7,
+    "user": "Ritika Gupta",
+    "submittedOn": "12 May 2025",
+    "submittedFor": "Content Feedback",
+    "submittedBy": "Web App",
+    "rating": "★★★★★",
+    "content": "Loved the visuals and depth of content",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 8,
+    "user": "Aman Verma",
+    "submittedOn": "11 May 2025",
+    "submittedFor": "Technical Support",
+    "submittedBy": "Chatbot",
+    "rating": "★★★☆☆",
+    "content": "Bot was helpful but limited in solutions",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 9,
+    "user": "Sneha Mishra",
+    "submittedOn": "10 May 2025",
+    "submittedFor": "Webinar Feedback",
+    "submittedBy": "Web App",
+    "rating": "★★★★★",
+    "content": "Engaging and informative session",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 10,
+    "user": "Varun Sethi",
+    "submittedOn": "09 May 2025",
+    "submittedFor": "Profile Review",
+    "submittedBy": "Mobile App",
+    "rating": "★★★☆☆",
+    "content": "Could use more personalized suggestions",
+    "status": "Pending",
+    "actions": ["Respond", "Resolve"]
+  },
+  {
+    "id": 11,
+    "user": "Meghna Tiwari",
+    "submittedOn": "08 May 2025",
+    "submittedFor": "Mock Interview",
+    "submittedBy": "Web App",
+    "rating": "★★★★☆",
+    "content": "Good feedback but want more questions",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 12,
+    "user": "Devansh Kapoor",
+    "submittedOn": "07 May 2025",
+    "submittedFor": "Course Suggestion",
+    "submittedBy": "Mobile App",
+    "rating": "★★★☆☆",
+    "content": "Suggestions were generic",
+    "status": "Archived",
+    "actions": ["Restore"]
+  },
+  {
+    "id": 13,
+    "user": "Neha Rathore",
+    "submittedOn": "06 May 2025",
+    "submittedFor": "Mentorship",
+    "submittedBy": "WhatsApp",
+    "rating": "★★★★★",
+    "content": "The mentor provided great insights",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 14,
+    "user": "Siddharth Jain",
+    "submittedOn": "05 May 2025",
+    "submittedFor": "App Usability",
+    "submittedBy": "Mobile App",
+    "rating": "★★★★☆",
+    "content": "Minor bugs but good overall experience",
+    "status": "Pending",
+    "actions": ["Respond", "Resolve"]
+  },
+  {
+    "id": 15,
+    "user": "Shivani Thakur",
+    "submittedOn": "04 May 2025",
+    "submittedFor": "Account Setup",
+    "submittedBy": "Web App",
+    "rating": "★★★★★",
+    "content": "Setup was quick and easy to follow",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  }
+]
+
+export const FeedbackTableData = [
+  {
+    "id": 1,
+    "user": "Riya Kapoor",
+    "submittedOn": "18 May 2025",
+    "submittedFor": "Session Interface",
+    "screenshot": "View",
+    "message": "Icons are too small on mobile",
+    "canBeContacted": "Yes",
+    "status": "Pending",
+    "actions": ["View", "Resolve"]
+  },
+  {
+    "id": 2,
+    "user": "Sarthak Jain",
+    "submittedOn": "17 May 2025",
+    "submittedFor": "ACE Test Navigation",
+    "screenshot": "No",
+    "message": "Flow is unclear for test submission",
+    "canBeContacted": "No",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 3,
+    "user": "Aarti Mehta",
+    "submittedOn": "16 May 2025",
+    "submittedFor": "Platform Homepage",
+    "screenshot": "View",
+    "message": "Content overlaps with image slider",
+    "canBeContacted": "Yes",
+    "status": "Pending",
+    "actions": ["Assign", "Resolve"]
+  },
+  {
+    "id": 4,
+    "user": "Kunal Desai",
+    "submittedOn": "15 May 2025",
+    "submittedFor": "Assessment Reports",
+    "screenshot": "No",
+    "message": "Graphs don't show properly on Firefox",
+    "canBeContacted": "Yes",
+    "status": "Archived",
+    "actions": ["Restore"]
+  },
+  {
+    "id": 5,
+    "user": "Meena Soni",
+    "submittedOn": "14 May 2025",
+    "submittedFor": "Quiz Timer",
+    "screenshot": "View",
+    "message": "Timer resets when network reconnects",
+    "canBeContacted": "No",
+    "status": "Pending",
+    "actions": ["View", "Resolve"]
+  },
+  {
+    "id": 6,
+    "user": "Yash Raj",
+    "submittedOn": "13 May 2025",
+    "submittedFor": "Mentorship Card",
+    "screenshot": "View",
+    "message": "Card details cut off on smaller screens",
+    "canBeContacted": "Yes",
+    "status": "Pending",
+    "actions": ["Assign", "Resolve"]
+  },
+  {
+    "id": 7,
+    "user": "Simran Kaur",
+    "submittedOn": "12 May 2025",
+    "submittedFor": "WhatsApp Bot",
+    "screenshot": "No",
+    "message": "Bot didn't respond after 3rd message",
+    "canBeContacted": "Yes",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 8,
+    "user": "Rahul Anand",
+    "submittedOn": "11 May 2025",
+    "submittedFor": "Mobile App Feedback",
+    "screenshot": "View",
+    "message": "Login screen loads slowly on iOS",
+    "canBeContacted": "Yes",
+    "status": "Pending",
+    "actions": ["View", "Resolve"]
+  },
+  {
+    "id": 9,
+    "user": "Preeti Chauhan",
+    "submittedOn": "10 May 2025",
+    "submittedFor": "Calendar Sync",
+    "screenshot": "No",
+    "message": "Events not syncing with Google Calendar",
+    "canBeContacted": "No",
+    "status": "Archived",
+    "actions": ["Restore"]
+  },
+  {
+    "id": 10,
+    "user": "Rohit Bhardwaj",
+    "submittedOn": "09 May 2025",
+    "submittedFor": "Session Reminder Email",
+    "screenshot": "View",
+    "message": "Reminder email not received",
+    "canBeContacted": "Yes",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 11,
+    "user": "Shweta Goyal",
+    "submittedOn": "08 May 2025",
+    "submittedFor": "Dashboard Insights",
+    "screenshot": "View",
+    "message": "Insights panel is not updating",
+    "canBeContacted": "Yes",
+    "status": "Pending",
+    "actions": ["Assign", "Resolve"]
+  },
+  {
+    "id": 12,
+    "user": "Dev Mehta",
+    "submittedOn": "07 May 2025",
+    "submittedFor": "Notification Settings",
+    "screenshot": "No",
+    "message": "Unable to disable email notifications",
+    "canBeContacted": "No",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  },
+  {
+    "id": 13,
+    "user": "Naina Kapoor",
+    "submittedOn": "06 May 2025",
+    "submittedFor": "Payment Gateway",
+    "screenshot": "View",
+    "message": "Card payment failed multiple times",
+    "canBeContacted": "Yes",
+    "status": "Pending",
+    "actions": ["View", "Resolve"]
+  },
+  {
+    "id": 14,
+    "user": "Abhay Nair",
+    "submittedOn": "05 May 2025",
+    "submittedFor": "Learning Module UI",
+    "screenshot": "No",
+    "message": "Sidebar overlaps content on scroll",
+    "canBeContacted": "Yes",
+    "status": "Archived",
+    "actions": ["Restore"]
+  },
+  {
+    "id": 15,
+    "user": "Tanvi Rana",
+    "submittedOn": "04 May 2025",
+    "submittedFor": "Session Feedback",
+    "screenshot": "View",
+    "message": "Session was good but audio was choppy",
+    "canBeContacted": "Yes",
+    "status": "Resolved",
+    "actions": ["View", "Archive"]
+  }
+]
