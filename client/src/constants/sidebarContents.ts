@@ -104,27 +104,27 @@ export const SidebarData = {
       navMain: [
         {
           title: "Approval Desk",
-          url: "#",
+          url: "approval",
           icon: ThumbsUp,
         },
         {
           title: "Coaches Profiles",
-          url: "#",
+          url: "payments",
           icon: Users,
         },
         {
           title: "Organisations Profiles",
-          url: "#",
+          url: "payout",
           icon: Building2,
         },
         {
           title: "Google Map Listing",
-          url: "#",
+          url: "pl",
           icon: MapPin,
         },
         {
           title: "Forms",
-          url: "#",
+          url: "reports",
           icon: FileText,
         },
       ],
@@ -163,12 +163,12 @@ export const SidebarData = {
       navMain: [
         {
           title: "Relation Desk",
-          url: "#",
+          url: "relation",
           icon: Handshake,
         },
         {
           title: "User/Org Search",
-          url: "#",
+          url: "user-org-search",
           icon: Search,
         },
         {
@@ -176,10 +176,10 @@ export const SidebarData = {
           url: "#",
           icon: TrendingUp,
           items: [
-            { title: "Active Users", url: "#", icon: Users },
-            { title: "Explorers", url: "#", icon: Users },
-            { title: "Coaches", url: "#", icon: Users },
-            { title: "Partners", url: "#", icon: Handshake },
+            { title: "Active Users", url: "active-users", icon: Users },
+            { title: "Explorers", url: "explorers", icon: Users },
+            { title: "Coaches", url: "coaches", icon: Users },
+            { title: "Partners", url: "partners", icon: Handshake },
           ],
         },
         {
@@ -187,19 +187,19 @@ export const SidebarData = {
           url: "#",
           icon: AlertCircle,
           items: [
-            { title: "Problems", url: "#", icon: AlertCircle },
-            { title: "Bugs", url: "#", icon: Bug },
-            { title: "Abuses", url: "#", icon: Shield },
+            { title: "Problems", url: "problems", icon: AlertCircle },
+            { title: "Bugs", url: "bugs", icon: Bug },
+            { title: "Abuses", url: "abuses", icon: Shield },
           ],
         },
         {
           title: "Feedback",
-          url: "#",
+          url: "feedback",
           icon: MessageSquare,
         },
         {
           title: "Review",
-          url: "#",
+          url: "review",
           icon: Star,
         },
       ],
@@ -211,27 +211,27 @@ export const SidebarData = {
       navMain: [
         {
           title: "Finance Desk",
-          url: "#",
+          url: "finance",
           icon: Wallet,
         },
         {
           title: "Payments",
-          url: "#",
+          url: "payments",
           icon: CreditCard,
         },
         {
           title: "Payouts",
-          url: "#",
+          url: "payout",
           icon: DollarSign,
         },
         {
           title: "P&L",
-          url: "#",
+          url: "pl",
           icon: PieChart,
         },
         {
           title: "Reports",
-          url: "#",
+          url: "reports",
           icon: FileBarChart,
         },
       ],

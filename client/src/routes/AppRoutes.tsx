@@ -33,6 +33,18 @@ import { Help as DigitalHelp } from "@/pages/DigitalDesk/Help";
 import { Faqs as DigitalFaqs } from "@/pages/DigitalDesk/Faqs";
 import { Teams as DigitalTeam } from "@/pages/DigitalDesk/Teams";
 
+import { Finance as FinanceDesk } from "@/pages/FinanceDesk/Finance";
+import { Payments as FinancePayments } from "@/pages/FinanceDesk/Payments";
+import { Payout as FinancePayout } from "@/pages/FinanceDesk/Payout";
+import { PL as FinancePL } from "@/pages/FinanceDesk/PL";
+import { Reports as FinanceReports } from "@/pages/FinanceDesk/Reports";
+
+import { Approvals as ApprovalDesk } from "@/pages/ApprovalDesk/Approval";
+import { Forms as ApprovalForms } from "@/pages/ApprovalDesk/Forms";
+import { GoogleMap as ApprovalGoogleMaps } from "@/pages/ApprovalDesk/Googlemap";
+import { ProfileCoach as ApprovalProfileCoach } from "@/pages/ApprovalDesk/ProfileCoach";
+import { ProfileOrg as ApprovalProfileOrg } from "@/pages/ApprovalDesk/ProfileOrg";
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -72,6 +84,21 @@ export default function AppRoutes() {
       <Route path="help-articles" element={<DigitalHelp />} />
       <Route path="faqs" element={<DigitalFaqs />} />
       <Route path="teams" element={<DigitalTeam />} />
+
+      {/* Finance Desk */}
+      <Route path="finance" element={<FinanceDesk/>}/>
+      <Route path="payments" element={<FinancePayments/>}/>
+      <Route path="payout" element={<FinancePayout/>}/>
+      <Route path="pl" element={<FinancePL/>}/>
+      <Route path="reports" element={<FinanceReports/>}/>
+
+      {/* Approval Desk */}
+      <Route path="approval" element={<ApprovalDesk/>}/>
+      <Route path="forms" element={<ApprovalForms/>}/>
+      <Route path="google-map" element={<ApprovalGoogleMaps/>}/>
+      <Route path="profile-coach" element={<ApprovalProfileCoach/>}/>
+      <Route path="profile-org" element={<ApprovalProfileOrg/>}/>
+      
     </Routes>
   );
 }
