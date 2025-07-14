@@ -3690,3 +3690,37 @@ export const AbuseTableData = [
     "actions": ["Review", "Escalate"]
   }
 ];
+export const TemplateTableData = [
+  {
+    id: "1",
+    name: "UG Assessment Reminder",
+    channel: "WhatsApp",
+    type: "Utility",
+    status: "Approved",
+    metaStatus: "In Review",
+  },
+  {
+    id: "2",
+    name: "Feedback Recovery Email",
+    channel: "Email",
+    type: "Utility",
+    status: "Approved",
+    metaStatus: "In Review",
+  },
+  {
+    id: "3",
+    name: "Promotion – Masterclass",
+    channel: "WhatsApp",
+    type: "Marketing",
+    status: "Pending",
+    metaStatus: "Rejected",
+  },
+  {
+    id: "4",
+    name: "Coach Toolkit Followup",
+    channel: "WhatsApp",
+    type: "Utility",
+    status: "Pending",
+    metaStatus: "Not Pushed",
+  },
+];
