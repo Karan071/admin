@@ -32,7 +32,7 @@ import {
   MapPin,
   Bug,
   Compass,
-  Monitor,
+  // Monitor,
 } from "lucide-react";
 
 export const SidebarData = {
@@ -134,24 +134,24 @@ export const SidebarData = {
       logo: AudioWaveform,
       plan: "Digital Content",
       navMain: [
-        {
-          title: "Digital Desk",
-          url: "#",
-          icon: Monitor,
-        },
+        // {
+        //   title: "Digital Desk",
+        //   url: "#",
+        //   icon: Monitor,
+        // },
         {
           title: "Contents",
           url: "#",
           icon: FileText,
           items: [
-            { title: "Insights", url: "#", icon: TrendingUp },
-            { title: "Video library", url: "#", icon: Video },
-            { title: "In the news", url: "#", icon: Newspaper },
-            { title: "Testimonials", url: "#", icon: MessageSquare },
-            { title: "Libraries", url: "#", icon: Library },
-            { title: "Help Articles", url: "#", icon: HelpCircle },
-            { title: "FAQs", url: "#", icon: HelpCircle },
-            { title: "Team Profiles", url: "#", icon: Users },
+            { title: "Insights", url: "insights", icon: TrendingUp },
+            { title: "Video library", url: "video-library", icon: Video },
+            { title: "In the news", url: "in-news", icon: Newspaper },
+            { title: "Testimonials", url: "testimonials", icon: MessageSquare },
+            { title: "Libraries", url: "library", icon: Library },
+            { title: "Help Articles", url: "help-articles", icon: HelpCircle },
+            { title: "FAQs", url: "faqs", icon: HelpCircle },
+            { title: "Team Profiles", url: "teams", icon: Users },
           ],
         },
       ],
