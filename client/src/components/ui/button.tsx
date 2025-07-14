@@ -24,7 +24,7 @@ const buttonVariants = cva(
         brand:"bg-[var(--brand-color)] text-white shadow-xs hover:bg-[var(--brand-color)]/70 text-[14px]",
         delete:"bg-[var(--button)] text-[var(--red)] shadow-xs hover:bg-[var(--button)]/70",
         border:
-          "border bg-[var(--background)] hover:bg-[var(--faded)] text-[var(--text)] dark:bg-[var(--text)/30]  dark:hover:bg-[var(--text)/70] ",
+          "border bg-[var(--background)] hover:bg-[var(--faded)] text-[var(--text)] dark:bg-[var(--text)/30]  dark:hover:bg-[var(--background)] ",
         noborder:
           " bg-[var(--background)] hover:bg-[var(--faded)] dark:bg-[var(--text)/30]",
         faded:

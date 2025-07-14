@@ -1,16 +1,14 @@
 import { Button } from "@/components/ui/button";
 import {
-  Plus,
-  Trash2,
-  Funnel,
-  EllipsisVertical,
   Search,
-  Phone,
-  Mail,
-  MessageCircle,
   Eye,
+  Building2,
+  Filter,
+  Check,
+  X,
+  Bell,
 } from "lucide-react";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Users,
   UserCheck,
@@ -37,57 +35,77 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { Mars, Venus, Flag } from "lucide-react";
 import { coachTableData } from "@/data/Data";
-import { motion, AnimatePresence } from "motion/react";
+//import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { Checkbox } from "@/components/ui/checkbox";
+import { DatePickerWithRange } from "@/components/application-component/date-range-picker";
 
 const color = "text-[var(--text)]";
-const color2 ="text-[var(--text-head)]";
+const color2 = "text-[var(--text-head)]";
 const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 
 const stats = [
   {
-    title: "Total Users",
-    value: "12,457",
+    title: "Total Coaches",
+    value: "1,234",
     icon: Users,
     performance: Up,
   },
   {
-    title: "Active Learners (30 Days)",
-    value: "4,385",
+    title: "Pending Approvals",
+    value: "34",
     icon: UserCheck,
     performance: Up,
   },
   {
-    title: "New Signups (This Week)",
-    value: "312",
+    title: "New This Week",
+    value: "27",
     icon: UserPlus,
     performance: Down,
   },
   {
-    title: "Total Enquiries",
-    value: "642",
+    title: "Sessions Conducted",
+    value: "4,860",
     icon: MessageSquare,
     performance: Up,
   },
   {
-    title: "Users with Sessions Booked",
-    value: "1,205",
+    title: "Masterclasses Hosted",
+    value: "67",
     icon: Calendar,
     performance: Down,
+  },
+  {
+    title: "Coaches with Orgs",
+    value: "182",
+    icon: Building2,
+    performance: Up,
   },
 ];
 
 export default function Coaches() {
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-[var(--text)]">Coaches</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-head)]">Coaches</h1>
         <StatsCards />
-        <Buttonbar />
+        {/*<Buttonbar />*/}
+        {showFilter && <AdvancedFilters />}
+        <div className="flex justify-end mt-4 p-4 ">
+          <Button
+            variant="border"
+            onClick={() => setShowFilter(!showFilter)}
+            className="flex items-center gap-2"
+          >
+            <Filter className="h-4 w-4" />
+            {showFilter ? "Hide Filters" : "Show Filters"}
+          </Button>
+        </div>
+
         <CoachTableSection />
       </div>
     </div>
@@ -96,7 +114,7 @@ export default function Coaches() {
 
 function StatsCards() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5">
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
       {stats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -106,7 +124,7 @@ function StatsCards() {
               >
                 {stat.title}
               </div>
-                {stat.performance}
+              {stat.performance}
             </div>
             <div className="flex  items-center gap-4">
               <div className={`rounded-full `}>
@@ -121,7 +139,172 @@ function StatsCards() {
   );
 }
 
-function Buttonbar() {
+
+
+function AdvancedFilters() {
+  return (
+    <div className="py-2">
+      <Card className="mt-8 shadow-none bg-[var(--background)]">
+        <CardHeader>
+          <CardTitle className="text-lg text-[var(--text-head)]">Filters</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 text-[var(--text)]">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Name / Email / Phone</label>
+              <Input placeholder="Search by name, email or phone" className="mt-2" />
+            </div>
+
+            <div className="space-y-5">
+              <label className="text-sm font-medium">Status</label>
+              <div className="flex flex-wrap gap-4 mt-2">
+                <div className="flex items-center space-x-2 ">
+                  <Checkbox id="Approved" className="h-4 w-4" />
+                  <label htmlFor="Approved" className="text-sm">
+                    Approved
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Pending" />
+                  <label htmlFor="Pending" className="text-sm">
+                    Pending
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Blocked" />
+                  <label htmlFor="Blocked" className="text-sm">
+                    Blocked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Specialisation</label>
+              <div className="flex flex-wrap gap-4 mt-2">
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Career" />
+                  <label htmlFor="Career" className="text-sm">
+                    Career
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Psychology" />
+                  <label htmlFor="Psychology" className="text-sm">
+                    Psychology
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="STEM" />
+                  <label htmlFor="STEM" className="text-sm">
+                    STEM
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Design" />
+                  <label htmlFor="Design" className="text-sm">
+                    Design
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Law" />
+                  <label htmlFor="Law" className="text-sm">
+                    Law
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Session Type</label>
+              <div className="flex flex-wrap gap-4 mt-2">
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="1:1" />
+                  <label htmlFor="1:1" className="text-sm">
+                    1:1
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Group" />
+                  <label htmlFor="Group" className="text-sm">
+                    Group
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="Instant" />
+                  <label htmlFor="Instant" className="text-sm">
+                    Instant
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="B2B" />
+                  <label htmlFor="B2B" className="text-sm">
+                    B2B
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Organisation Linked</label>
+              <div className="flex flex-wrap gap-4 mt-2">
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="yes" />
+                  <label htmlFor="yes" className="text-sm">
+                    Yes
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="no" />
+                  <label htmlFor="no" className="text-sm">
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">State / City</label>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="border" className="w-full justify-between mt-2">
+                    <span>Select location</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[200px] text-[var(--text)]">
+                  <DropdownMenuItem>Delhi</DropdownMenuItem>
+                  <DropdownMenuItem>Mumbai</DropdownMenuItem>
+                  <DropdownMenuItem>Bangalore</DropdownMenuItem>
+                  <DropdownMenuItem>Chennai</DropdownMenuItem>
+                  <DropdownMenuItem>Hyderabad</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Last Active</label>
+              <div className="">
+                <DatePickerWithRange />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 flex justify-end gap-2 ">
+            <Button variant="border">Reset</Button>
+            <Button variant="brand">Apply Filters</Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+
+
+
+/*function Buttonbar() {
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
@@ -146,9 +329,11 @@ function Buttonbar() {
     </div>
   );
 }
+*/
+
 
 function CoachTableSection() {
-  // const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(5);
   const [sortConfig, setSortConfig] = useState<{
@@ -158,7 +343,7 @@ function CoachTableSection() {
   const [selectedCoachStack, setSelectedCoachStack] = useState<
     typeof coachTableData
   >(coachTableData[0] ? [coachTableData[0]] : []);
-  const [focusedCoachId, setFocusedCoachId] = useState<number | null>( coachTableData[0]?.id || null);
+  const [focusedCoachId, setFocusedCoachId] = useState<number | null>(coachTableData[0]?.id || null);
 
   // Sorting logic
   const sortedData = [...coachTableData];
@@ -195,16 +380,15 @@ function CoachTableSection() {
     }
     setSortConfig({ key, direction });
   };
-
-  // const toggleSelectAll = () => {
-  //   if (selectedUsers.length === currentRecords.length) {
-  //     setSelectedUsers([]);
-  //   } else {
-  //     setSelectedUsers(
-  //       currentRecords.map((user): string => user.id.toString())
-  //     );
-  //   }
-  // };
+  
+ const toggleSelectAll = () => {   if (selectedUsers.length === currentRecords.length) {
+    setSelectedUsers([]);   
+    } else {
+    setSelectedUsers(
+      currentRecords.map((user): number => user.id)
+     );
+  } 
+};
 
   const bringToTop = (userId: number) => {
     const coach = selectedCoachStack.find((c) => c.id === userId);
@@ -217,36 +401,36 @@ function CoachTableSection() {
     }
   };
 
- useEffect(() => {
-  const allRows = document.querySelectorAll("tr[data-id]");
+  useEffect(() => {
+    const allRows = document.querySelectorAll("tr[data-id]");
 
-  allRows.forEach((row) => {
-    const id = Number(row.getAttribute("data-id"));
-    const isInStack = selectedCoachStack.some((coach) => coach.id === id);
-    const isTop = focusedCoachId === id;
+    allRows.forEach((row) => {
+      const id = Number(row.getAttribute("data-id"));
+      const isInStack = selectedCoachStack.some((coach) => coach.id === id);
+      const isTop = focusedCoachId === id;
 
-    // Remove previous styles
-    row.classList.remove(
-      "bg-[var(--brand-color3)]",
-      "border-l-[var(--brand-color)]"
-    );
+      // Remove previous styles
+      row.classList.remove(
+        "bg-[var(--brand-color3)]",
+        "border-l-[var(--brand-color)]"
+      );
 
-    if (isInStack) {
-      row.classList.add("bg-[var(--brand-color3)]");
+      if (isInStack) {
+        row.classList.add("bg-[var(--brand-color3)]");
 
-      if (isTop) {
-        row.classList.add("border-l-[var(--brand-color)]");
+        if (isTop) {
+          row.classList.add("border-l-[var(--brand-color)]");
+        }
       }
-    }
-  });
-}, [selectedCoachStack, focusedCoachId]);
+    });
+  }, [selectedCoachStack, focusedCoachId]);
 
-  const removeCoach = (userId: number) => {
+  {/*const removeCoach = (userId: number) => {
     setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
     if (focusedCoachId === userId) {
       setFocusedCoachId(null);
     }
-  };
+  };*/}
 
   const handleRowClick = (user: (typeof coachTableData)[0]) => {
     // Double-click detected
@@ -262,19 +446,52 @@ function CoachTableSection() {
     }
   };
 
-  // const toggleSelectUser = (userId: string) => {
-  //   if (selectedUsers.includes(userId)) {
-  //     setSelectedUsers(selectedUsers.filter((id) => id !== userId));
-  //   } else {
-  //     setSelectedUsers([...selectedUsers, userId]);
-  //   }
-  // };
+  const toggleSelectUser = (userId: number) => {
+     if (selectedUsers.includes(userId)) {
+       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+     } else {
+       setSelectedUsers([...selectedUsers, userId]);
+     }
+   };
 
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        <div className="flex items-center justify-between border-b p-4 mt-auto">
-          
+        <div className="flex items-center justify-between border-b p-4 mt-auto h-20">
+          <div className="flex items-center justify-between pl-0 p-4">
+                <div className="flex items-center gap-2 border-none shadow-none">
+                    <Checkbox
+                        id="select-all"
+                        checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
+                        onCheckedChange={toggleSelectAll}
+                    />
+                    <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                        Select All
+                    </label>
+                    {selectedUsers.length > 0 && (
+                        <Badge variant="border" className="ml-2 ">
+                            {selectedUsers.length} selected
+                        </Badge>
+                    )}
+                </div>
+
+                {selectedUsers.length > 0 && (
+                    <div className="flex gap-2 ml-2">
+                        <Button variant="border" size="sm">
+                            <Bell className="h-4 w-4" />
+                            Send Reminder
+                        </Button>
+                        <Button variant="border" size="sm">
+                            <Check className=" h-4 w-4" />
+                             Approve All
+                        </Button>
+                        <Button variant="delete" size="sm">
+                            <X className=" h-4 w-4" />
+                            Block / Remove
+                        </Button>
+                    </div>
+                )}
+          </div>
           <div className="flex justify-end items-center gap-4 ">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -317,6 +534,7 @@ function CoachTableSection() {
                 <Search className="h-5 w-5 text-[var(--text)]" />
               </Button>
             </div>
+            
           </div>
         </div>
 
@@ -324,12 +542,21 @@ function CoachTableSection() {
           <Table className="w-full caption-top border-collapse overflow-y-visible">
             <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
               <TableRow>
+                <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
                   onClick={() => requestSort("profile.name")}
                   className="cursor-pointer text-[var(--text)] text-low"
                 >
                   Profile{" "}
                   {sortConfig?.key === "profile.name" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("Specialty")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Specialty{" "}
+                  {sortConfig?.key === "Specialty" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
@@ -386,24 +613,30 @@ function CoachTableSection() {
             <TableBody className="overflow-visible relative z-0">
               {currentRecords.map((user) => (
                 <TableRow
-                    key={user.id}
-                    data-id={user.id}
-                    className={cn(
+                  key={user.id}
+                  data-id={user.id}
+                  className={cn(
                     "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
                     selectedCoachStack.some((c) => c.id === user.id)
-                    ? "bg-[var(--brand-color3)]"
-                    : ""
-                    )}
-                    onClick={() => handleRowClick(user)}
-                    >
-                  <TableCell  className={cn(
-                    "pl-4 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
+                      ? "bg-[var(--brand-color3)]"
+                      : ""
+                  )}
+                  onClick={() => handleRowClick(user)}
+                >
+                  <TableCell className={cn(
+                    "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
                     selectedCoachStack.some((c) => c.id === user.id)
                       ? focusedCoachId === user.id
                         ? "border-[var(--brand-color)]"
                         : "border-transparent"
                       : "border-transparent"
-                    )}
+                  )}>
+                      <Checkbox
+                          checked={selectedUsers.includes(user.id)}
+                          onCheckedChange={() => toggleSelectUser(user.id)}
+                      />
+                  </TableCell>
+                  <TableCell 
                   >
                     <div className="flex items-center gap-4">
                       <div className="h-14 w-14 rounded-full overflow-hidden">
@@ -416,37 +649,17 @@ function CoachTableSection() {
                       <div>
                         <div className="flex justify-start items-center">
                           <div className="font-medium">{user.profile.name}</div>
-                          <div className="flex items-center gap-1 ">
-                            {user.profile.gender === "M" ? (
-                              <Mars className="h-4" />
-                            ) : (
-                              <Venus className="h-4" />
-                            )}
-                          </div>
-                          <div>
-                            <Badge
-                              variant="brand"
-                              className="text-xs font-light"
-                            >
-                              {user.profile.type}
-                            </Badge>
-                          </div>
-                        </div>
-                        <div className="flex justify-start items-center gap-2">
-                          <div className="text-[var(--text)] text-xs">
-                            {user.specialty}
-                          </div>
-                        </div>
-                        <div>
-                          <div className="flex justify-start items-center gap-2">
-                            <div className="text-xs text-[var(--text)] italic">
-                              {`@${user.profile.userid}`}
-                            </div>
-                          </div>
-
-                          <div className="flex justify-start gap-2 mt-1"></div>
                         </div>
                       </div>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap gap-1">
+                      {user.specialty.split(",").map((special, id) => (
+                        <Badge key={id} variant="standard">
+                          {special}
+                        </Badge>
+                      ))}
                     </div>
                   </TableCell>
                   <TableCell>
@@ -478,19 +691,19 @@ function CoachTableSection() {
                         variant="noborder"
                         size="sm"
                         className="bg-white border-0 shadow-none"
-                        // onClick={() => navigate(`/user-details/${user.id}`)}
+                      // onClick={() => navigate(`/user-details/${user.id}`)}
                       >
-                        <Eye className="h-4 w-4" />
+                        <Eye className="h-4 w-3" />
                         <span className="sr-only">View</span>
                       </Button>
                       <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <MessageCircle className="h-4 w-4" />
-                        <span className="sr-only">Chat</span>
+                        <Check className="h-4 w-3" />
+                        <span className="sr-only">Approve</span>
                       </Button>
 
                       <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <Flag className="h-4 w-4" />
-                        <span className="sr-only">Flag</span>
+                        <X className="h-4 w-3" />
+                        <span className="sr-only">Block</span>
                       </Button>
                     </div>
                   </TableCell>
@@ -544,151 +757,146 @@ function CoachTableSection() {
 
 
 
-    <div className="xl:block hidden">
-      <div className="lg:h-[500px] xl:min-w-90 xxl:min-w-100  sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
-        <AnimatePresence>
-          {selectedCoachStack.map((coach, index) => {
-            const isTopCard =
-              coach.id === Number(focusedCoachId) ||
-              (focusedCoachId === null && index === 0);
-            const cardIndex = selectedCoachStack.length - 1 - index;
+    {/*<div className="xl:block hidden">
+    <div className="lg:h-[500px] xl:min-w-90 xxl:min-w-100 sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
+    <AnimatePresence>
+      {selectedCoachStack.map((coach, index) => {
+        const isTopCard =
+          coach.id === Number(focusedCoachId) ||
+          (focusedCoachId === null && index === 0);
+        const cardIndex = selectedCoachStack.length - 1 - index;
 
-            return (
-              <motion.div
-                key={coach.id}
-                className="absolute left-0 right-0 mx-auto max-w-md w-full h-max cursor-pointer shadow-none"
-                style={{
-                  top: `${cardIndex * 30}px`,
-                  zIndex: isTopCard ? 100 : 10 + cardIndex,
-                }}
-                onClick={() => bringToTop(coach.id)}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{
-                  opacity: 1,
-                  scale: isTopCard ? 1 : 0.95,
-                }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                whileHover={isTopCard ? {} : { scale: 0.97 }}
-              >
-                <motion.div
-                  className="relative border h-full border-border rounded-lg overflow-hidden bg-background"
-                  whileTap={isTopCard ? { scale: 0.98 } : {}}
-                >
-                  {!isTopCard && (
-                    <motion.div
-                      className="flex items-center justify-between text-xs text-[var(--text)] px-4 py-2 bg-accent/10 rounded-t-lg z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      <div>
-                        <span className="truncate max-w-[100px] block">
-                          {coach.profile.name}
-                        </span>
-                      </div>
-                      <div>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            removeCoach(coach.id);
-                          }}
-                          className="text-[var(--red)] hover:text-[var(--red)/70] text-[16px]"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
+        return (
+          <motion.div
+            key={coach.id}
+            className="absolute left-0 right-0 mx-auto max-w-md w-full h-max cursor-pointer shadow-none"
+            style={{
+              top: `${cardIndex * 30}px`,
+              zIndex: isTopCard ? 100 : 10 + cardIndex,
+            }}
+            onClick={() => bringToTop(coach.id)}
+            layout
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{
+              opacity: 1,
+              scale: isTopCard ? 1 : 0.95,
+            }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileHover={isTopCard ? {} : { scale: 0.97 }}
+          >
+            <div className="relative border h-full border-border rounded-lg overflow-hidden bg-background">
+              
+              {!isTopCard && (
+                <div className="flex items-center justify-between text-xs text-[var(--text)] px-4 py-2 bg-accent/10 rounded-t-lg z-10">
+                  <span className="truncate max-w-[100px] block">{coach.profile.name}</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeCoach(coach.id);
+                    }}
+                    className="text-[var(--red)] hover:text-[var(--red)/70] text-[16px]"
+                  >
+                    ×
+                  </button>
+                </div>
+              )}
 
-                  {isTopCard && (
+              
+              {isTopCard && (
+                <div className="flex flex-col justify-center items-center p-6">
+                  <div className="w-full max-w-md space-y-6">
+
                     
-                    <motion.div
-                      className="flex  flex-col  justify-center items-center p-6"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <div className="flex-col ">
-                      <motion.img
+                    <section className="text-center">
+                      <img
                         src={coach.profile.photo}
                         alt={coach.profile.name}
-                        className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg m-auto"
-                        whileHover={{ scale: 1.05 }}
+                        className="w-28 h-28 rounded-full object-cover border-4 border-primary mx-auto shadow-md"
                       />
-                      <h1 className="text-xl font-semibold mt-4 text-[var(--text-head)]">
-                        {coach.profile.name}
-                      </h1>
-                      <h2 className="text-sm text-[var(--text)] mb-2">
-                        {coach.orgLinked}
-                      </h2>
+                      <h1 className="text-xl font-semibold mt-4 text-[var(--text-head)]">{coach.profile.name}</h1>
+                      <div className="text-sm text-[var(--text)] mb-2">
+                        {coach.profile.gender === "M" ? "Male" : "Female"} &bull; {coach.orgLinked}
+                      </div>
 
                       <div className="flex justify-center gap-3 mt-2">
-                        <motion.button
-                          className="bg-[var(--green2)] rounded-full p-2 hover:[var(--green2)/80] transition-colors"
-                          title="Call"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
+                        <button className="bg-[var(--green2)] rounded-full p-2" title="Call">
                           <Phone className="w-5 h-5 text-[var(--green)]" />
-                        </motion.button>
-                        <motion.button
-                          className="bg-[var(--red2)] rounded-full p-2 hover:bg-[var(--red2)/80] dark:bg-[var(--red2)] transition-colors"
-                          title="Email"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
+                        </button>
+                        <button className="bg-[var(--red2)] rounded-full p-2" title="Email">
                           <Mail className="w-5 h-5 text-[var(--red)]" />
-                        </motion.button>
-                        <motion.button
-                          className="bg-[var(--yellow2)] dark:bg-[var(--yellow2)] rounded-full p-2 hover:bg-[var(--yellow2)/80] transition-colors"
-                          title="Message"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
+                        </button>
+                        <button className="bg-[var(--yellow2)] rounded-full p-2" title="Message">
                           <MessageCircle className="w-5 h-5 text-[var(--yellow)]" />
-                        </motion.button>
+                        </button>
                       </div>
+                    </section>
+
+                    
+                    <section className="text-sm text-[var(--text)]">
+                      <div className="grid grid-cols-2 gap-y-2">
+                        <div className="font-medium">Email ID</div>
+                        <div>{coach.contact.email}</div>
+                        <div className="font-medium">Phone No</div>
+                        <div>{coach.contact.phone}</div>
+                        <div className="font-medium">Public Profile</div>
+                        <div className="text-blue-600 underline cursor-pointer">View Profile</div>
                       </div>
-                      <div className="mt-6 text-sm text-left w-full">
-                        <h3 className="font-semibold text-[var(--text-head)] mb-1">
-                          PERSONAL INFORMATION
-                        </h3>
-                        <p className="text-[var(--text)] text-sm mb-4">
-                          This coach has not added a bio.
-                        </p>
-                        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--text)]">
-                          <div className="font-medium">Designation</div>
-                          <div>{coach.profile.type}</div>
-                          <div className="font-medium">Email ID</div>
-                          <div>{coach.contact.email}</div>
-                          <div className="font-medium">Phone No</div>
-                          <div>{coach.contact.phone}</div>
-                          <div className="font-medium">Lead Score</div>
-                          <div>-</div>
-                          <div className="font-medium">Tags</div>
-                          <div className="flex gap-2">
-                            <Badge variant="brand" className="text-xs ">
-                              Lead
-                            </Badge>
-                            <Badge variant="brand" className="text-xs">
-                              Partner
-                            </Badge>
-                          </div>
-                          <div className="font-medium">Last Contacted</div>
-                          <div>{coach.lastActive}</div>
-                        </div>
+                    </section>
+
+                    
+                    <section className="text-sm text-[var(--text)]">
+                      <h3 className="font-semibold text-[var(--text-head)] mb-1">Activities</h3>
+                      <div className="grid grid-cols-2 gap-y-2">
+                        <div className="font-medium">Sessions Delivered</div>
+                        <div>{coach.sessions?.total || 0}</div>
+                        <div className="font-medium">Ratings</div>
+                        <div>⭐ 4.5</div>
+                        <div className="font-medium">Assessments Used</div>
+                        <div>{coach.assessments || 0}</div>
+                        <div className="font-medium">Masterclasses</div>
+                        <div>—</div>
+                        <div className="font-medium">Topics Covered</div>
+                        <div>—</div>
                       </div>
-                    </motion.div>
-                  )}
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </div>
-    </div>
-    </div>
+                    </section>
+
+                    
+                    <section className="text-sm text-[var(--text)]">
+                      <h3 className="font-semibold text-[var(--text-head)] mb-1">Organisation & Assignments</h3>
+                      <div className="grid grid-cols-2 gap-y-2">
+                        <div className="font-medium">Linked Institutions</div>
+                        <div>{coach.orgLinked}</div>
+                        <div className="font-medium">Segments</div>
+                        <div>UG, Career Changers</div>
+                        <div className="font-medium">Availability</div>
+                        <div>Weekends</div>
+                      </div>
+                    </section>
+
+                    
+                    <section className="text-sm text-[var(--text)]">
+                      <h3 className="font-semibold text-[var(--text-head)] mb-1">Internal Notes</h3>
+                      <div className="grid grid-cols-2 gap-y-2">
+                        <div className="font-medium">Admin Comments</div>
+                        <div>—</div>
+                        <div className="font-medium">Consultant Reviews</div>
+                        <div>—</div>
+                        <div className="font-medium">Warnings</div>
+                        <div>None</div>
+                      </div>
+                    </section>
+
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        );
+      })}
+    </AnimatePresence>
+  </div>
+</div>*/}
+   </div>
   );
 }
