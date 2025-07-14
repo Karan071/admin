@@ -88,7 +88,7 @@ export default function Navbar({}: NavbarProps) {
       </div>
       <div className="flex items-center lg:gap-3 gap-6">
         <button onClick={toggleFullScreen}>
-          <Maximize className="h-5 w-5 border-0 text-[var(--text)] hidden xxl:block" />
+          <Maximize className="h-5 w-5 border-0 text-[var(--text)]" />
         </button>
         <Search className="h-5 w-5 border-0 text-[var(--text)] block md:hidden" />
         <ModeToggle />

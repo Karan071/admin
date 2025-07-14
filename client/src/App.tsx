@@ -10,7 +10,6 @@ export default function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route >    {/*element={<AuthRoute />} */}
           <Route
             path="/dashboard/*"
             element={
@@ -19,7 +18,6 @@ export default function App() {
               </Layout>
             }
           />
-        </Route>
       </Routes>
     </ThemeProvider>
   );
