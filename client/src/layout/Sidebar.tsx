@@ -13,7 +13,6 @@ import {
   SidebarRail,
   SidebarTrigger,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
@@ -67,7 +66,7 @@ function AppSidebar(props: React.ComponentProps<typeof SidebarRoot>) {
         <TeamSwitcher teams={SidebarData.teams} onTeamChange={setActiveTeam} />
       </SidebarHeader>
       <SidebarContent className="bg-[var(--background)]">
-        <NavMain items={activeTeam.navMain || SidebarData.navMain} />
+        <NavMain items={activeTeam.navMain} />
       </SidebarContent>
       <SidebarRail />
     </SidebarRoot>
@@ -160,7 +159,6 @@ function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="text-[var(--text-head)]">Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) =>
           item.items ? (

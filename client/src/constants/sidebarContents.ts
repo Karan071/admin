@@ -16,9 +16,6 @@ import {
   TrendingUp,
   Wallet,
   Star,
-  History,
-  Rocket,
-  Atom,
   ClipboardList,
   Shield,
   AlertCircle,
@@ -31,8 +28,6 @@ import {
   Handshake,
   MapPin,
   Bug,
-  Compass,
-  // Monitor,
 } from "lucide-react";
 
 export const SidebarData = {
@@ -119,12 +114,12 @@ export const SidebarData = {
         },
         {
           title: "Google Map Listing",
-          url: "pl",
+          url: "google-map",
           icon: MapPin,
         },
         {
           title: "Forms",
-          url: "reports",
+          url: "forms",
           icon: FileText,
         },
       ],
@@ -234,40 +229,6 @@ export const SidebarData = {
           url: "reports",
           icon: FileBarChart,
         },
-      ],
-    },
-  ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: Rocket,
-      isActive: true,
-      items: [
-        { title: "History", url: "#", icon: History },
-        { title: "Starred", url: "#", icon: Star },
-        { title: "Settings", url: "#", icon: Settings },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Atom,
-      items: [
-        { title: "Genesis", url: "#", icon: Rocket },
-        { title: "Explorer", url: "#", icon: Compass },
-        { title: "Quantum", url: "#", icon: Atom },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        { title: "Introduction", url: "#", icon: BookOpen },
-        { title: "Get Started", url: "#", icon: Rocket },
-        { title: "Tutorials", url: "#", icon: ClipboardList },
-        { title: "Changelog", url: "#", icon: History },
       ],
     },
   ],
