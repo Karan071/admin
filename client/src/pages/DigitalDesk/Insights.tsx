@@ -50,9 +50,8 @@ interface Filters {
     published: boolean;
     pending: boolean;
   };
-  dateRange: { from: Date; to: Date } | undefined;
+  dateRange: { from?: Date; to?: Date } | undefined;
 }
-
 
 const tabs = [
   { id: "published", label: "Published", icon: BookOpenCheck },
@@ -246,7 +245,7 @@ interface PendingItem extends BaseItem {
 
 type ContentItem = PublishedItem | DraftItem | PendingItem;
 
-export  function Insights() {
+export function Insights() {
   const [activeTab, setActiveTab] = useState("published");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [filtersOpen, setFiltersOpen] = useState(false);

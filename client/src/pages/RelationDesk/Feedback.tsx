@@ -218,36 +218,46 @@ function FeedbackTable() {
           <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
             <TableRow>
               <TableHead
-                className="text-[var(--text)] cursor-pointer"
                 onClick={() => requestSort("user")}
+                className="cursor-pointer text-[var(--text)]"
               >
-                User
+                User{" "}
+                {sortConfig?.key === "user" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
               <TableHead
-                className="text-[var(--text)] cursor-pointer"
                 onClick={() => requestSort("submittedOn")}
+                className="cursor-pointer text-[var(--text)]"
               >
-                Submitted On
+                Submitted On{" "}
+                {sortConfig?.key === "submittedOn" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
               <TableHead
-                className="text-[var(--text)] cursor-pointer"
                 onClick={() => requestSort("submittedFor")}
+                className="cursor-pointer text-[var(--text)]"
               >
-                Submitted For
+                Submitted For{" "}
+                {sortConfig?.key === "submittedFor" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
               <TableHead className="text-[var(--text)]">Screenshot</TableHead>
               <TableHead className="text-[var(--text)]">Message</TableHead>
               <TableHead
-                className="text-[var(--text)] cursor-pointer"
                 onClick={() => requestSort("canBeContacted")}
+                className="cursor-pointer text-[var(--text)]"
               >
-                Can Be Contacted
+                Can Be Contacted{" "}
+                {sortConfig?.key === "canBeContacted" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
               <TableHead
-                className="text-[var(--text)] cursor-pointer"
                 onClick={() => requestSort("status")}
+                className="cursor-pointer text-[var(--text)]"
               >
-                Status
+                Status{" "}
+                {sortConfig?.key === "status" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
               <TableHead className="text-[var(--text)]">Actions</TableHead>
             </TableRow>
@@ -283,9 +293,7 @@ function FeedbackTable() {
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge>
-                    {feedback.status}
-                  </Badge>
+                  <Badge>{feedback.status}</Badge>
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">

@@ -1,17 +1,10 @@
 import { Button } from "@/components/ui/button";
 import {
   Plus,
-  Trash2,
   Funnel,
-  EllipsisVertical,
   Search,
-  Settings,
-  Phone,
-  Mail,
-  MessageCircle,
   ExternalLink,
   Upload,
-  Tags,
   Download,
   Eye,
 } from "lucide-react";
@@ -36,7 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { Trash, Edit, Play ,Bookmark} from "lucide-react";
+import { Trash, Edit} from "lucide-react";
 import { VideoTableData } from "@/data/Data";
 
 import { useEffect } from "react";

@@ -1,7 +1,21 @@
 import { Card, CardHeader } from "@/components/ui/card";
-import { Users, UserCheck, UserPlus, Funnel, Plus, Trash2, ChevronDown, Eye, Search, MessageCircle, Flag, ChevronLeft, ChevronRight } from "lucide-react"
+import {
+  Users,
+  UserCheck,
+  UserPlus,
+  Funnel,
+  Plus,
+  Trash2,
+  ChevronDown,
+  Eye,
+  Search,
+  MessageCircle,
+  Flag,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AbuseTableData } from "@/data/Data"
+import { AbuseTableData } from "@/data/Data";
 import { Badge } from "@/components/ui/badge";
 
 import {
@@ -55,7 +69,7 @@ export function Abuses() {
       <Buttonbar />
       <AbuseTable />
     </div>
-  )
+  );
 }
 
 function StatsCards() {
@@ -158,7 +172,6 @@ function AbuseTable() {
       {/* Table controls and header */}
       <div className="flex items-center justify-between border-b p-4">
         <div className="flex justify-end items-center gap-4">
-          
           <div className="flex items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
             <Input
               placeholder="Search"
@@ -182,15 +195,57 @@ function AbuseTable() {
         <Table className="w-full caption-top border-collapse overflow-y-visible">
           <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
             <TableRow>
-              <TableHead className="text-[var(--text)]">Reported By</TableHead>
-              <TableHead className="text-[var(--text)]">Submitted On</TableHead>
-              <TableHead className="text-[var(--text)]">
-                Reported In
+              <TableHead
+                onClick={() => requestSort("reportedBy")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Reported By{" "}
+                {sortConfig?.key === "reportedBy" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
-              <TableHead className="text-[var(--text)]">Reported Content</TableHead>
-              <TableHead className="text-[var(--text)]">Reason</TableHead>
-              <TableHead className="text-[var(--text)] ">Status</TableHead>
-              <TableHead className="text-[var(--text)] flex justify-center items-center">Actions</TableHead>
+              <TableHead
+                onClick={() => requestSort("submittedOn")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Submitted On{" "}
+                {sortConfig?.key === "submittedOn" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("reportedIn")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Reported In{" "}
+                {sortConfig?.key === "reportedIn" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("reportedContent")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Reported Content{" "}
+                {sortConfig?.key === "reportedContent" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("reason")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Reason{" "}
+                {sortConfig?.key === "reason" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("status")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Status{" "}
+                {sortConfig?.key === "status" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead className="text-[var(--text)] flex justify-center items-center">
+                Actions
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -199,16 +254,16 @@ function AbuseTable() {
                 key={abuse.id}
                 className="hover:bg-[var(--brand-color2)]"
               >
-                <TableCell className="font-medium">{abuse.reportedBy}</TableCell>
+                <TableCell className="font-medium">
+                  {abuse.reportedBy}
+                </TableCell>
                 <TableCell>{abuse.submittedOn}</TableCell>
                 <TableCell>{abuse.reportedIn}</TableCell>
                 <TableCell>{abuse.reportedContent}</TableCell>
                 <TableCell>{abuse.reason}</TableCell>
                 <TableCell>
                   <Badge
-                    variant={
-                      abuse.status === "Resolved" ? "brand" : "standard"
-                    }
+                    variant={abuse.status === "Resolved" ? "brand" : "standard"}
                   >
                     {abuse.status}
                   </Badge>
@@ -281,8 +336,9 @@ function AbuseTable() {
               key={page}
               variant={page === currentPage ? "brand" : "border"}
               size="sm"
-              className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"
-                }`}
+              className={`h-8 w-8 p-0 ${
+                page === currentPage ? "text-white" : "text-[var(--text)]"
+              }`}
               onClick={() => setCurrentPage(page)}
             >
               {page}
