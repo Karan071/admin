@@ -1,15 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Plus,
-
-  Funnel,
-
-  Search,
-
-  Upload,
-  Tags,
-  Eye,
-} from "lucide-react";
+import { Plus, Funnel, Search, Upload, Tags, Eye } from "lucide-react";
 
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -29,32 +19,26 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { Trash, Edit, Play ,Bookmark} from "lucide-react";
-import {TemplateTableData  } from "@/data/Data";
+import { Trash, Edit, Bookmark } from "lucide-react";
+import { TemplateTableData } from "@/data/Data";
 
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-
-
-
-
-export  function Testimonials() {
+export function Testimonials() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-[var(--text)]">
-    Manage Templates
+          Manage Templates
         </h1>
-      
+
         <Buttonbar />
         <Templates />
       </div>
     </div>
   );
 }
-
-
 
 function Buttonbar() {
   return (
@@ -90,22 +74,19 @@ function Buttonbar() {
 
       {/* Right-aligned buttons */}
       <div className="flex flex-wrap gap-4">
-      
         {/* Export Video Analytics */}
         <Button variant="standard" size="new">
           <Upload className="h-3 w-3" />
           <span>Template Requests (from Team)</span>
         </Button>
 
-        
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="standard" size="new">
               <Funnel className="h-4 w-4" />
-                  Filter 
+              Filter
             </Button>
           </DropdownMenuTrigger>
-        
         </DropdownMenu>
       </div>
     </div>
@@ -119,21 +100,25 @@ function Templates() {
     key: string;
     direction: "ascending" | "descending";
   } | null>(null);
-  const [selectedCoachStack, setSelectedCoachStack] = useState<typeof TemplateTableData>(
-    TemplateTableData[0] ? [TemplateTableData[0]] : []
-  );
+  const [selectedCoachStack, setSelectedCoachStack] = useState<
+    typeof TemplateTableData
+  >(TemplateTableData[0] ? [TemplateTableData[0]] : []);
   const [focusedCoachId, setFocusedCoachId] = useState<string | null>(
     TemplateTableData[0]?.id || null
   );
-
 
   const sortedData = [...TemplateTableData];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
       const aValue = a[sortConfig.key as keyof typeof a];
       const bValue = b[sortConfig.key as keyof typeof b];
-      
-     
+
+      if (aValue < bValue) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (aValue > bValue) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
       return 0;
     });
   }
@@ -141,7 +126,10 @@ function Templates() {
   const totalPages = Math.ceil(sortedData.length / recordsPerPage);
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = sortedData.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = sortedData.slice(
+    indexOfFirstRecord,
+    indexOfLastRecord
+  );
 
   const requestSort = (key: string) => {
     let direction: "ascending" | "descending" = "ascending";
@@ -331,30 +319,10 @@ function Templates() {
                     <div className="text-low">{template.type}</div>
                   </TableCell>
                   <TableCell>
-                    <Badge 
-                      variant={
-                        template.status === "Approved" 
-                          ? "brand" 
-                          : template.status === "Pending"
-                            ? "border" 
-                            : "delete"
-                      }
-                    >
-                      {template.status}
-                    </Badge>
+                    <Badge>{template.status}</Badge>
                   </TableCell>
                   <TableCell>
-                    <Badge 
-                      variant={
-                        template.metaStatus === "In Review" 
-                          ? "border" 
-                          : template.metaStatus === "Active"
-                            ? "brand" 
-                            : "delete"
-                      }
-                    >
-                      {template.metaStatus}
-                    </Badge>
+                    <Badge>{template.metaStatus}</Badge>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">

@@ -9,8 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Search,
-  MessageCircle,
-  Flag,
   Eye,
   Check,
   Archive,
@@ -219,17 +217,48 @@ function FeedbackTable() {
         <Table className="w-full caption-top border-collapse overflow-y-visible">
           <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
             <TableRow>
-              <TableHead className="text-[var(--text)]">User</TableHead>
-              <TableHead className="text-[var(--text)]">Submitted On</TableHead>
-              <TableHead className="text-[var(--text)]">
-                Submitted For
+              <TableHead
+                onClick={() => requestSort("user")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                User{" "}
+                {sortConfig?.key === "user" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("submittedOn")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Submitted On{" "}
+                {sortConfig?.key === "submittedOn" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("submittedFor")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Submitted For{" "}
+                {sortConfig?.key === "submittedFor" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
               <TableHead className="text-[var(--text)]">Screenshot</TableHead>
               <TableHead className="text-[var(--text)]">Message</TableHead>
-              <TableHead className="text-[var(--text)]">
-                Can Be Contacted
+              <TableHead
+                onClick={() => requestSort("canBeContacted")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Can Be Contacted{" "}
+                {sortConfig?.key === "canBeContacted" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
-              <TableHead className="text-[var(--text)]">Status</TableHead>
+              <TableHead
+                onClick={() => requestSort("status")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Status{" "}
+                {sortConfig?.key === "status" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
               <TableHead className="text-[var(--text)]">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -264,9 +293,7 @@ function FeedbackTable() {
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge>
-                    {feedback.status}
-                  </Badge>
+                  <Badge>{feedback.status}</Badge>
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">

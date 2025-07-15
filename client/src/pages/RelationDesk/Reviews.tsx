@@ -222,16 +222,56 @@ function ReviewTable() {
         <Table className="w-full caption-top border-collapse overflow-y-visible">
           <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
             <TableRow>
-              <TableHead className="text-[var(--text)]">User</TableHead>
-              <TableHead className="text-[var(--text)]">Submitted On</TableHead>
-              <TableHead className="text-[var(--text)]">
-                Submitted For
+              <TableHead
+                onClick={() => requestSort("user")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                User{" "}
+                {sortConfig?.key === "user" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
               </TableHead>
-              <TableHead className="text-[var(--text)]">Submitted By</TableHead>
-              <TableHead className="text-[var(--text)]">Rating</TableHead>
+              <TableHead
+                onClick={() => requestSort("submittedOn")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Submitted On{" "}
+                {sortConfig?.key === "submittedOn" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("submittedFor")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Submitted For{" "}
+                {sortConfig?.key === "submittedFor" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("submittedBy")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Submitted By{" "}
+                {sortConfig?.key === "submittedBy" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead
+                onClick={() => requestSort("rating")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Rating{" "}
+                {sortConfig?.key === "rating" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
               <TableHead className="text-[var(--text)]">Content</TableHead>
-              <TableHead className="text-[var(--text)] ">Status</TableHead>
-              <TableHead className= "text-[var(--text)] flex justify-center items-center">Actions</TableHead>
+              <TableHead
+                onClick={() => requestSort("status")}
+                className="cursor-pointer text-[var(--text)]"
+              >
+                Status{" "}
+                {sortConfig?.key === "status" &&
+                  (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              </TableHead>
+              <TableHead className="text-[var(--text)]">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
