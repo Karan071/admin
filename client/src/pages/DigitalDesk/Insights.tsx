@@ -50,7 +50,7 @@ interface Filters {
     published: boolean;
     pending: boolean;
   };
-  dateRange: { from?: Date; to?: Date } | undefined;
+  dateRange: { from?: Date; to?: Date } | undefined; // Make `from` and `to` optional
 }
 
 const tabs = [
@@ -197,7 +197,7 @@ function InsightsAdvancedFilters({
             <label className="text-sm font-medium">Date Range</label>
             <div className="mt-2">
               <DatePickerWithRange
-                value={filters.dateRange}
+                // value={filters.dateRange}
                 onChange={(range) =>
                   setFilters({ ...filters, dateRange: range })
                 }

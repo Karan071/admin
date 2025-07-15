@@ -197,10 +197,10 @@ function NavMain({
             // Render simple link if the item has no sub-items
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title} asChild className="text-[var(--text)]">
-                <a href={item.url}>
+                <Link to={item.url}>
                   {item.icon && <item.icon className="size-4 text-[var(--text)]" />}
                   <span className="text-[var(--text)]">{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           )
