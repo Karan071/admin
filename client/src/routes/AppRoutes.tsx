@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+
+// Admin Desk Components
 import Coaches from "@/pages/AdminDesk/Coaches";
 import Explorers from "@/pages/AdminDesk/Explorers";
 import Organisations from "@/pages/AdminDesk/Organisations";
@@ -12,6 +14,7 @@ import Courses from "@/pages/AdminDesk/Manage/Courses";
 import AccessCodes from "@/pages/AdminDesk/Manage/Access";
 import DeskUsers from "@/pages/AdminDesk/Manage/Users";
 
+// Relation Desk Components
 import { Relation as Relations } from "@/pages/RelationDesk/Relation";
 import { SearchOrgs as RelationSearchOrgs } from "@/pages/RelationDesk/SearchOrg";
 import { Activeusers as RelationActiveusers } from "@/pages/RelationDesk/ActiveUsers";
@@ -26,6 +29,7 @@ import { Reviews as RelationReviews } from "@/pages/RelationDesk/Reviews";
 import { Followup as RelationFollowup } from "@/pages/RelationDesk/Followups";
 import { Leaderboard as RelationLeaderboard } from "@/pages/RelationDesk/Leaderboard";
 
+// Digital Desk Components
 import { Insights as DigitalInsights } from "@/pages/DigitalDesk/Insights";
 import { VideoLibraries as DigitalVideoLibraries } from "@/pages/DigitalDesk/VideoLibrary";
 import { News as DigitalNews } from "@/pages/DigitalDesk/News";
@@ -35,12 +39,14 @@ import { Help as DigitalHelp } from "@/pages/DigitalDesk/Help";
 import { Faqs as DigitalFaqs } from "@/pages/DigitalDesk/Faqs";
 import { Teams as DigitalTeam } from "@/pages/DigitalDesk/Teams";
 
+// Finance Desk Components
 import { Finance as FinanceDesk } from "@/pages/FinanceDesk/Finance";
 import { Payments as FinancePayments } from "@/pages/FinanceDesk/Payments";
 import { Payout as FinancePayout } from "@/pages/FinanceDesk/Payout";
 import { PL as FinancePL } from "@/pages/FinanceDesk/PL";
 import { Reports as FinanceReports } from "@/pages/FinanceDesk/Reports";
 
+// Approval Desk Components
 import { Approvals as ApprovalDesk } from "@/pages/ApprovalDesk/Approval";
 import { Forms as ApprovalForms } from "@/pages/ApprovalDesk/Forms";
 import { GoogleMap as ApprovalGoogleMaps } from "@/pages/ApprovalDesk/Googlemap";
@@ -51,6 +57,59 @@ export default function AppRoutes() {
   return (
     <Routes>
       {/* Admin Desk Routes */}
+      <Route path="admin/coaches" element={<Coaches />} />
+      <Route path="admin/explorers" element={<Explorers />} />
+      <Route path="admin/organisations" element={<Organisations />} />
+      <Route path="admin/activities" element={<Activities />} />
+      <Route path="admin/assessments" element={<Assessments />} />
+      <Route path="admin/sessions" element={<Sessions />} />
+      <Route path="admin/session-pool" element={<SessionPool />} />
+      <Route path="admin/consultant-premium" element={<ConsultantPremium />} />
+      <Route path="admin/masterclasses" element={<Masterclasses />} />
+      <Route path="admin/courses" element={<Courses />} />
+      <Route path="admin/access-codes" element={<AccessCodes />} />
+      <Route path="admin/users" element={<DeskUsers />} />
+
+      {/* Relation Desk Routes */}
+      <Route path="relation/dashboard" element={<Relations />} />
+      <Route path="relation/followups" element={<RelationFollowup />} />
+      <Route path="relation/user-org-search" element={<RelationSearchOrgs />} />
+      <Route path="relation/active-users" element={<RelationActiveusers />} />
+      <Route path="relation/explorers" element={<RelationExplorer />} />
+      <Route path="relation/coaches" element={<RelationCoach />} />
+      <Route path="relation/partners" element={<RelationPartner />} />
+      <Route path="relation/problems" element={<RelationProblem />} />
+      <Route path="relation/bugs" element={<RelationBug />} />
+      <Route path="relation/abuses" element={<RelationAbuses />} />
+      <Route path="relation/feedback" element={<RelationFeedback />} />
+      <Route path="relation/review" element={<RelationReviews />} />
+      <Route path="relation/leaderboard" element={<RelationLeaderboard />} />
+
+      {/* Digital Desk Routes */}
+      <Route path="digital/insights" element={<DigitalInsights />} />
+      <Route path="digital/video-library" element={<DigitalVideoLibraries />} />
+      <Route path="digital/in-news" element={<DigitalNews />} />
+      <Route path="digital/testimonials" element={<DigitalTestimonials />} />
+      <Route path="digital/library" element={<DigitalLibrary />} />
+      <Route path="digital/help-articles" element={<DigitalHelp />} />
+      <Route path="digital/faqs" element={<DigitalFaqs />} />
+      <Route path="digital/teams" element={<DigitalTeam />} />
+
+      {/* Finance Desk Routes */}
+      <Route path="finance/dashboard" element={<FinanceDesk />} />
+      <Route path="finance/payments" element={<FinancePayments />} />
+      <Route path="finance/payout" element={<FinancePayout />} />
+      <Route path="finance/pl" element={<FinancePL />} />
+      <Route path="finance/reports" element={<FinanceReports />} />
+
+      {/* Approval Desk Routes */}
+      <Route path="approval/dashboard" element={<ApprovalDesk />} />
+      <Route path="approval/forms" element={<ApprovalForms />} />
+      <Route path="approval/google-map" element={<ApprovalGoogleMaps />} />
+      <Route path="approval/profile-coach" element={<ApprovalProfileCoach />} />
+      <Route path="approval/profile-org" element={<ApprovalProfileOrg />} />
+
+      {/* Backward compatibility routes - redirect old paths to new structure */}
       <Route path="coaches" element={<Coaches />} />
       <Route path="explorers" element={<Explorers />} />
       <Route path="organisations" element={<Organisations />} />
@@ -63,14 +122,10 @@ export default function AppRoutes() {
       <Route path="courses" element={<Courses />} />
       <Route path="access-codes" element={<AccessCodes />} />
       <Route path="users" element={<DeskUsers />} />
-
-      {/* Relation Desk Routes */}
       <Route path="relation" element={<Relations />} />
       <Route path="followups" element={<RelationFollowup />} />
       <Route path="user-org-search" element={<RelationSearchOrgs />} />
       <Route path="active-users" element={<RelationActiveusers />} />
-      <Route path="explorers" element={<RelationExplorer />} />
-      <Route path="coaches" element={<RelationCoach />} />
       <Route path="partners" element={<RelationPartner />} />
       <Route path="problems" element={<RelationProblem />} />
       <Route path="bugs" element={<RelationBug />} />
@@ -78,8 +133,6 @@ export default function AppRoutes() {
       <Route path="feedback" element={<RelationFeedback />} />
       <Route path="review" element={<RelationReviews />} />
       <Route path="leaderboard" element={<RelationLeaderboard />} />
-
-      {/* Digital Desk */}
       <Route path="insights" element={<DigitalInsights />} />
       <Route path="video-library" element={<DigitalVideoLibraries />} />
       <Route path="in-news" element={<DigitalNews />} />
@@ -88,21 +141,16 @@ export default function AppRoutes() {
       <Route path="help-articles" element={<DigitalHelp />} />
       <Route path="faqs" element={<DigitalFaqs />} />
       <Route path="teams" element={<DigitalTeam />} />
-
-      {/* Finance Desk */}
       <Route path="finance" element={<FinanceDesk />} />
       <Route path="payments" element={<FinancePayments />} />
       <Route path="payout" element={<FinancePayout />} />
       <Route path="pl" element={<FinancePL />} />
       <Route path="reports" element={<FinanceReports />} />
-
-      {/* Approval Desk */}
       <Route path="approval" element={<ApprovalDesk />} />
       <Route path="forms" element={<ApprovalForms />} />
       <Route path="google-map" element={<ApprovalGoogleMaps />} />
       <Route path="profile-coach" element={<ApprovalProfileCoach />} />
       <Route path="profile-org" element={<ApprovalProfileOrg />} />
-
     </Routes>
   );
 }

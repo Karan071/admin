@@ -26,7 +26,7 @@ export default function Login() {
 
       if (response.data.token) {
         localStorage.setItem("jwt", response.data.token);
-        navigate("/dashboard");
+        navigate("/dashboard/explorers");
       }
     } catch (error) {
       toast("Login Failed");
