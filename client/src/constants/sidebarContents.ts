@@ -27,7 +27,8 @@ import {
   FileBarChart,
   Handshake,
   MapPin,
-  Bug,
+  Monitor,
+  Bug
 } from "lucide-react";
 
 export const SidebarData = {
@@ -129,11 +130,11 @@ export const SidebarData = {
       logo: AudioWaveform,
       plan: "Digital Content",
       navMain: [
-        // {
-        //   title: "Digital Desk",
-        //   url: "#",
-        //   icon: Monitor,
-        // },
+        {
+          title: "Digital Desk",
+          url: "#",
+          icon: Monitor,
+        },
         {
           title: "Contents",
           url: "#",
@@ -162,9 +163,24 @@ export const SidebarData = {
           icon: Handshake,
         },
         {
+          title: "Leaderboard",
+          url: "leaderboard",
+          icon: Search,
+        },
+        {
           title: "User/Org Search",
           url: "user-org-search",
           icon: Search,
+        },
+        {
+          title: "Cases",
+          icon: TrendingUp,
+          url: "#",
+          items: [
+            { title: "Bugs", url: "bugs", icon: Bug },
+            { title: "Abuses", url: "abuses", icon: Shield },
+            { title: "Problems", url: "problems", icon: AlertCircle },
+          ]
         },
         {
           title: "Leads",
@@ -178,14 +194,9 @@ export const SidebarData = {
           ],
         },
         {
-          title: "Supports",
-          url: "#",
-          icon: AlertCircle,
-          items: [
-            { title: "Problems", url: "problems", icon: AlertCircle },
-            { title: "Bugs", url: "bugs", icon: Bug },
-            { title: "Abuses", url: "abuses", icon: Shield },
-          ],
+          title: "Follow Up",
+          url: "followups",
+          icon: MessageSquare,
         },
         {
           title: "Feedback",

@@ -9,8 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Search,
-  MessageCircle,
-  Flag,
   Eye,
   Check,
   Archive,
@@ -219,17 +217,38 @@ function FeedbackTable() {
         <Table className="w-full caption-top border-collapse overflow-y-visible">
           <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
             <TableRow>
-              <TableHead className="text-[var(--text)]">User</TableHead>
-              <TableHead className="text-[var(--text)]">Submitted On</TableHead>
-              <TableHead className="text-[var(--text)]">
+              <TableHead
+                className="text-[var(--text)] cursor-pointer"
+                onClick={() => requestSort("user")}
+              >
+                User
+              </TableHead>
+              <TableHead
+                className="text-[var(--text)] cursor-pointer"
+                onClick={() => requestSort("submittedOn")}
+              >
+                Submitted On
+              </TableHead>
+              <TableHead
+                className="text-[var(--text)] cursor-pointer"
+                onClick={() => requestSort("submittedFor")}
+              >
                 Submitted For
               </TableHead>
               <TableHead className="text-[var(--text)]">Screenshot</TableHead>
               <TableHead className="text-[var(--text)]">Message</TableHead>
-              <TableHead className="text-[var(--text)]">
+              <TableHead
+                className="text-[var(--text)] cursor-pointer"
+                onClick={() => requestSort("canBeContacted")}
+              >
                 Can Be Contacted
               </TableHead>
-              <TableHead className="text-[var(--text)]">Status</TableHead>
+              <TableHead
+                className="text-[var(--text)] cursor-pointer"
+                onClick={() => requestSort("status")}
+              >
+                Status
+              </TableHead>
               <TableHead className="text-[var(--text)]">Actions</TableHead>
             </TableRow>
           </TableHeader>

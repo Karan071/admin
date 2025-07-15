@@ -36,6 +36,7 @@ import {
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
 import { SidebarData } from "@/constants/sidebarContents";
+import { Link } from "react-router-dom";
 
 
 export default function SidebarLayout() {
@@ -182,9 +183,9 @@ function NavMain({
                     {item.items.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title} className="text-[var(--text)]">
                         <SidebarMenuSubButton asChild>
-                          <a href={subItem.url}>
+                          <Link to={subItem.url}>
                             <span className="text-[var(--text)]">{subItem.title}</span>
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}

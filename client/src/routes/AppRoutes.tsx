@@ -23,6 +23,8 @@ import { Bugs as RelationBug } from "@/pages/RelationDesk/Bugs";
 import { Abuses as RelationAbuses } from "@/pages/RelationDesk/Abuses";
 import { Feedback as RelationFeedback } from "@/pages/RelationDesk/Feedback";
 import { Reviews as RelationReviews } from "@/pages/RelationDesk/Reviews";
+import { Followup as RelationFollowup } from "@/pages/RelationDesk/Followups";
+import { Leaderboard as RelationLeaderboard } from "@/pages/RelationDesk/Leaderboard";
 
 import { Insights as DigitalInsights } from "@/pages/DigitalDesk/Insights";
 import { VideoLibraries as DigitalVideoLibraries } from "@/pages/DigitalDesk/VideoLibrary";
@@ -64,6 +66,7 @@ export default function AppRoutes() {
 
       {/* Relation Desk Routes */}
       <Route path="relation" element={<Relations />} />
+      <Route path="followups" element={<RelationFollowup />} />
       <Route path="user-org-search" element={<RelationSearchOrgs />} />
       <Route path="active-users" element={<RelationActiveusers />} />
       <Route path="explorers" element={<RelationExplorer />} />
@@ -74,6 +77,7 @@ export default function AppRoutes() {
       <Route path="abuses" element={<RelationAbuses />} />
       <Route path="feedback" element={<RelationFeedback />} />
       <Route path="review" element={<RelationReviews />} />
+      <Route path="leaderboard" element={<RelationLeaderboard />} />
 
       {/* Digital Desk */}
       <Route path="insights" element={<DigitalInsights />} />
@@ -86,19 +90,19 @@ export default function AppRoutes() {
       <Route path="teams" element={<DigitalTeam />} />
 
       {/* Finance Desk */}
-      <Route path="finance" element={<FinanceDesk/>}/>
-      <Route path="payments" element={<FinancePayments/>}/>
-      <Route path="payout" element={<FinancePayout/>}/>
-      <Route path="pl" element={<FinancePL/>}/>
-      <Route path="reports" element={<FinanceReports/>}/>
+      <Route path="finance" element={<FinanceDesk />} />
+      <Route path="payments" element={<FinancePayments />} />
+      <Route path="payout" element={<FinancePayout />} />
+      <Route path="pl" element={<FinancePL />} />
+      <Route path="reports" element={<FinanceReports />} />
 
       {/* Approval Desk */}
-      <Route path="approval" element={<ApprovalDesk/>}/>
-      <Route path="forms" element={<ApprovalForms/>}/>
-      <Route path="google-map" element={<ApprovalGoogleMaps/>}/>
-      <Route path="profile-coach" element={<ApprovalProfileCoach/>}/>
-      <Route path="profile-org" element={<ApprovalProfileOrg/>}/>
-      
+      <Route path="approval" element={<ApprovalDesk />} />
+      <Route path="forms" element={<ApprovalForms />} />
+      <Route path="google-map" element={<ApprovalGoogleMaps />} />
+      <Route path="profile-coach" element={<ApprovalProfileCoach />} />
+      <Route path="profile-org" element={<ApprovalProfileOrg />} />
+
     </Routes>
   );
 }
