@@ -1,95 +1,312 @@
-import { Building2, UserCheck, Globe, Clock, Link, MessageSquare, CircleArrowUp ,CircleArrowDown, Search, Bell, Check, X } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Building2, UserCheck, Globe, Clock, Link, MessageSquare, CircleArrowUp, CircleArrowDown, Search, Bell, Check, X } from "lucide-react";
+import { Card, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Filter, ChevronRight, ChevronLeft, Eye} from "lucide-react";
+import { ChevronDown, Filter, ChevronRight, ChevronLeft, Eye } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { orgTableData } from "@/data/Data";
 
 import * as React from "react"
-import { CalendarIcon } from "lucide-react"
-import { addDays, format } from "date-fns"
-import type { DateRange } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { useEffect } from "react";
 //import { AnimatePresence, motion } from "framer-motion";
 import photo from "@/assets/asset.jpg"
+import RadioButton from "@/components/ui/Radiobutton";
+import DatePick from "@/components/ui/DatePicker"
+import CitySelection from "@/components/ui/CitySelection";
+
+
 
 
 const color = "text-[var(--text)]";
-const color2 ="text-[var(--text-head)]";
+const color2 = "text-[var(--text-head)]";
 const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 const orgStats = [
-    {
-        title: "Total Organisations",
-        value: "1438",
-        icon: Building2,
-        performance: Up,
-    },
-    {
-        title: "Claimed Profiles",
-        value: "456",
-        icon: UserCheck,
-        performance: Down,
-    },
-    {
-        title: "Public (Unclaimed)",
-        value: "982",
-        icon: Globe,
-        performance: Up,
-    },
-    {
-        title: "Pending Approvals",
-        value: "12",
-        icon: Clock,
-        performance: Up,
-    },
-    {
-        title: "Coaches Linked to Orgs",
-        value: "182",
-        icon: Link,
-        performance: Up,
-    },
-    {
-        title: "Sessions via Orgs",
-        value: "720+",
-        icon: MessageSquare,
-        performance: Up,
-    }
+  {
+    title: "Total Organisations",
+    value: "1438",
+    icon: Building2,
+    performance: Up,
+  },
+  {
+    title: "Claimed Profiles",
+    value: "456",
+    icon: UserCheck,
+    performance: Down,
+  },
+  {
+    title: "Public (Unclaimed)",
+    value: "982",
+    icon: Globe,
+    performance: Up,
+  },
+  {
+    title: "Pending Approvals",
+    value: "12",
+    icon: Clock,
+    performance: Up,
+  },
+  {
+    title: "Coaches Linked to Orgs",
+    value: "182",
+    icon: Link,
+    performance: Up,
+  },
+  {
+    title: "Sessions via Orgs",
+    value: "720+",
+    icon: MessageSquare,
+    performance: Up,
+  }
 ];
 
-export default function Organisation() {
-    const [showFilter, setShowFilter] = useState(false);
 
-    return <div className="flex flex-col gap-4">
-        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-            <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation Dashboard</h1>
-        </div>
-        <div>
-            <div>
-                <OrgCard />
-                {showFilter && <OrgFilter />}
-                <div className="flex justify-end mt-4 p-4 ">
-                    <Button
-                        variant="border"
-                        onClick={() => setShowFilter(!showFilter)}
-                        className="flex items-center gap-2"
-                    >
-                        <Filter className="h-4 w-4" />
-                        {showFilter ? "Hide Filters" : "Show Filters"}
-                    </Button>
-                </div>
-                <OrganisationTable />
-            </div>
-        </div>
+
+export default function Organisation() {
+  const [showFilter, setShowFilter] = useState(false)
+
+  return (
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation Dashboard</h1>
+      <OrgCard />
+
+      <Button
+        variant="border"
+        onClick={() => setShowFilter(true)}
+        className="flex items-center gap-2 self-end"
+      >
+        <Filter className="h-4 w-4" />
+        {showFilter ? "Hide Filters" : "Show Filters"}
+      </Button>
+
+      {showFilter && <OrgFilter onClose={() => setShowFilter(false)} />}
+
+      <OrganisationTable />
     </div>
+  )
+}
+
+interface OrgFilterProps {
+  onClose: () => void;
+}
+
+
+function OrgFilter({ onClose }: OrgFilterProps) {
+  const modalRef = React.useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState("General");
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      // Do nothing if clicking inside modal
+      if (modalRef.current && modalRef.current.contains(e.target as Node)) {
+        return;
+      }
+
+      // Do nothing if clicking inside dropdown (Radix renders it in a portal)
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-radix-popper-content-wrapper]")) {
+        return;
+      }
+
+      onClose(); // Close modal otherwise
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [onClose]);
+
+  const [type, setType] = useState("School");
+  const [claim, setClaim] = useState("Claimed");
+  const [coach, setCoach] = useState("Yes");
+  const [session, setSession] = useState("10+");
+
+  const tabList = [
+    "General",
+    "Type",
+    "Claim Status",
+    "Location",
+    "Affiliated Coaches",
+    "Sessions Conducted",
+    "Last Activity",
+  ];
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
+
+      <div
+        ref={modalRef}
+        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+      >
+        <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
+          <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
+          <Button
+            variant="link"
+            className="text-sm text-[var(--brand-color)] p-0 h-auto block hover:no-underline hover:cursor-pointer"
+          >
+            Clear All
+          </Button>
+        </div>
+        {/* Sidebar */}
+        <div className="flex ">
+          <div className="overflow-y-auto min-w-[180px] border-r-1 h-[360px]">
+
+            <div className="flex flex-col ">
+              {tabList.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
+                      ? "bg-[var(--brand-color3)] text-[var(--brand-color)] border-[var(--brand-color)]"
+                      : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
+                    }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Tab Content */}
+
+          <div className="p-6 overflow-y-auto relative w-full">
+            {activeTab === "General" && (
+              <>
+                <label htmlFor="Gen" className="text-[var(--text)]">Enter Name/Email/Phone :</label>
+                <Input id="Gen" placeholder="Enter .." type="text" className="mt-4 w-full " />
+
+              </>
+            )}
+
+            {activeTab === "Type" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select the type of Organisation you are:
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "School",
+                    "Institute",
+                    "Collage",
+                    "University",
+                    "NGO",
+                    "Corporation",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={type}
+                      onChange={setType}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Claim Status" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Your Current Claim Status:
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Claimed",
+                    "Public (Unclaimed)",
+                    "Pending Approval",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={claim}
+                      onChange={setClaim}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Location" && (
+              <>
+                <CitySelection />
+              </>
+            )}
+
+            {activeTab === "Affiliated Coaches" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Are you Affiliated with Coaches:
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Yes",
+                    "No",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={coach}
+                      onChange={setCoach}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Sessions Conducted" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  How Many Sessions have you Conducted:
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)]  ">
+                  {[
+                    "0",
+                    "1-10",
+                    "10+",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={session}
+                      onChange={setSession}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Last Activity" && (
+              <>
+                <label htmlFor="act" className="text-[var(--text)]">Enter You Last Activity Date:</label>
+                <div className="mt-4 min-w-full">
+                  <DatePick />
+                </div>
+              </>
+            )}
+
+            {/* Footer */}
+          </div>
+        </div>
+        <div className="relative bottom-0 right-0 w-full px-6 py-4 flex border-t-1 justify-end gap-2">
+          <div className="flex gap-4 absolute left-[50%] -translate-x-[50%]">
+            <Button variant="border" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button variant="brand" onClick={onClose}>
+              Apply Filters
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function OrgCard() {
@@ -104,7 +321,7 @@ function OrgCard() {
               >
                 {stat.title}
               </div>
-                {stat.performance}
+              {stat.performance}
             </div>
             <div className="flex  items-center gap-4">
               <div className={`rounded-full `}>
@@ -119,248 +336,10 @@ function OrgCard() {
   );
 }
 
-function OrgFilter() {
-    return (
-        <div className="py-2">
-            <Card className="mt-8 shadow-none bg-[var(--background)]">
-                <CardHeader>
-                    <CardTitle className="text-lg text-[var(--text-head)]">Filters</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 text-[var(--text)]">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">Name / Email / Phone</label>
-                            <Input placeholder="Search by name, email or phone" className="mt-2" />
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">Type</label>
-                            <div className="flex flex-wrap gap-4 mt-2">
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="School" />
-                                    <label htmlFor="School" className="text-sm">
-                                        School
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="Institute" />
-                                    <label htmlFor="Institute" className="text-sm">
-                                        Institute
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="College" />
-                                    <label htmlFor="College" className="text-sm">
-                                        College
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="University" />
-                                    <label htmlFor="University" className="text-sm">
-                                        University
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="NGO" />
-                                    <label htmlFor="NGO" className="text-sm">
-                                        NGO
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="Corporation" />
-                                    <label htmlFor="Corporation" className="text-sm">
-                                        Corporation
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">Claim Status</label>
-                            <div className="flex flex-wrap gap-4 mt-2">
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="claimed" />
-                                    <label htmlFor="claimed" className="text-sm">
-                                        Claimed
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="public" />
-                                    <label htmlFor="public" className="text-sm">
-                                        Public(Unclaimed)
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="pending" />
-                                    <label htmlFor="pending" className="text-sm">
-                                        Pending
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="pendingApproval" />
-                                    <label htmlFor="pendingApproval" className="text-sm">
-                                        Pending Approval
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">State / City</label>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="border" className="w-full justify-between mt-2">
-                                        <span>Select location</span>
-                                        <ChevronDown className="h-4 w-4" />
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-[200px]">
-                                    <DropdownMenuItem>Delhi</DropdownMenuItem>
-                                    <DropdownMenuItem>Mumbai</DropdownMenuItem>
-                                    <DropdownMenuItem>Bangalore</DropdownMenuItem>
-                                    <DropdownMenuItem>Chennai</DropdownMenuItem>
-                                    <DropdownMenuItem>Hyderabad</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">Affiliated Coaches</label>
-                            <div className="flex flex-wrap gap-4 mt-2">
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="yes" />
-                                    <label htmlFor="yes" className="text-sm">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="no" />
-                                    <label htmlFor="no" className="text-sm">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">Session Conducted</label>
-                            <div className="flex flex-wrap gap-4 mt-2">
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="0" />
-                                    <label htmlFor="0" className="text-sm">
-                                        0
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="1-10" />
-                                    <label htmlFor="1-10" className="text-sm">
-                                        1-10
-                                    </label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="10+" />
-                                    <label htmlFor="10+" className="text-sm">
-                                        10+
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">Last Activity</label>
-                            <div className="">
-                                <DatePickerWithRange />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="mt-8 flex justify-end gap-2 ">
-                        <Button variant="border">Reset</Button>
-                        <Button variant="brand">Apply Filters</Button>
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
-    )
-}
-
-
-
-interface DatePickerWithRangeProps {
-  className?: string
-  value?: DateRange
-  onChange?: (date: DateRange | undefined) => void
-}
-
-function DatePickerWithRange({
-  className,
-  value,
-  onChange,
-}: DatePickerWithRangeProps) {
-  const [date, setDate] = React.useState<DateRange | undefined>(
-    value || {
-      from: new Date(),
-      to: addDays(new Date(), 7),
-    }
-  )
-
-  React.useEffect(() => {
-    if (value !== undefined) {
-      setDate(value)
-    }
-  }, [value])
-
-  const handleSelect = (newDate: DateRange | undefined) => {
-    setDate(newDate)
-    onChange?.(newDate)
-  }
-
-  return (
-    <div className={cn("grid gap-2", className)}>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            id="date"
-            variant={"outline"}
-            className={cn(
-              "w-full justify-start text-left font-normal",
-              !date && "text-muted-foreground"
-            )}
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {date?.from ? (
-              date.to ? (
-                <>
-                  {format(date.from, "LLL dd, y")} - {format(date.to, "LLL dd, y")}
-                </>
-              ) : (
-                format(date.from, "LLL dd, y")
-              )
-            ) : (
-              <span>Pick a date range</span>
-            )}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0 bg-background" align="start">
-          <Calendar
-            initialFocus
-            mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={handleSelect}
-            numberOfMonths={1}
-            className="rounded-md border"
-          />
-        </PopoverContent>
-      </Popover>
-    </div>
-  )
-}
-
 
 
 function OrganisationTable() {
-   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(5);
   const [sortConfig, setSortConfig] = useState<{
@@ -370,7 +349,7 @@ function OrganisationTable() {
   const [selectedCoachStack, setSelectedCoachStack] = useState<
     typeof orgTableData
   >(orgTableData[0] ? [orgTableData[0]] : []);
-  const [focusedCoachId, setFocusedCoachId] = useState<number | null>( orgTableData[0]?.id || null);
+  const [focusedCoachId, setFocusedCoachId] = useState<number | null>(orgTableData[0]?.id || null);
 
   // Sorting logic
   const sortedData = [...orgTableData];
@@ -412,11 +391,11 @@ function OrganisationTable() {
     if (selectedUsers.length === currentRecords.length) {
       setSelectedUsers([]);
     } else {
-       setSelectedUsers(
-         currentRecords.map((user) => user.id)
-       );
-     }
-   };
+      setSelectedUsers(
+        currentRecords.map((user) => user.id)
+      );
+    }
+  };
 
   const bringToTop = (userId: number) => {
     const coach = selectedCoachStack.find((c) => c.id === userId);
@@ -429,29 +408,29 @@ function OrganisationTable() {
     }
   };
 
- useEffect(() => {
-  const allRows = document.querySelectorAll("tr[data-id]");
+  useEffect(() => {
+    const allRows = document.querySelectorAll("tr[data-id]");
 
-  allRows.forEach((row) => {
-    const id = Number(row.getAttribute("data-id"));
-    const isInStack = selectedCoachStack.some((coach) => coach.id === id);
-    const isTop = focusedCoachId === id;
+    allRows.forEach((row) => {
+      const id = Number(row.getAttribute("data-id"));
+      const isInStack = selectedCoachStack.some((coach) => coach.id === id);
+      const isTop = focusedCoachId === id;
 
-    // Remove previous styles
-    row.classList.remove(
-      "bg-[var(--brand-color3)]",
-      "border-l-[var(--brand-color)]"
-    );
+      // Remove previous styles
+      row.classList.remove(
+        "bg-[var(--brand-color3)]",
+        "border-l-[var(--brand-color)]"
+      );
 
-    if (isInStack) {
-      row.classList.add("bg-[var(--brand-color3)]");
+      if (isInStack) {
+        row.classList.add("bg-[var(--brand-color3)]");
 
-      if (isTop) {
-        row.classList.add("border-l-[var(--brand-color)]");
+        if (isTop) {
+          row.classList.add("border-l-[var(--brand-color)]");
+        }
       }
-    }
-  });
-}, [selectedCoachStack, focusedCoachId]);
+    });
+  }, [selectedCoachStack, focusedCoachId]);
 
   {/*const removeCoach = (userId: number) => {
     setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
@@ -474,79 +453,53 @@ function OrganisationTable() {
     }
   };
 
-   const toggleSelectUser = (userId: number) => {
-     if (selectedUsers.includes(userId)) {
-       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
-     } else {
-       setSelectedUsers([...selectedUsers, userId]);
-     }
-   };
+  const toggleSelectUser = (userId: number) => {
+    if (selectedUsers.includes(userId)) {
+      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    } else {
+      setSelectedUsers([...selectedUsers, userId]);
+    }
+  };
 
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
         <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
           <div className="flex items-center justify-between pl-0 p-4">
-                <div className="flex items-center gap-2 border-none shadow-none">
-                    <Checkbox
-                        id="select-all"
-                        checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
-                        onCheckedChange={toggleSelectAll}
-                    />
-                    <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
-                        Select All
-                    </label>
-                    {selectedUsers.length > 0 && (
-                        <Badge variant="border" className="ml-2 ">
-                            {selectedUsers.length} selected
-                        </Badge>
-                    )}
-                </div>
+            <div className="flex items-center gap-2 border-none shadow-none">
+              <Checkbox
+                id="select-all"
+                checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
+                onCheckedChange={toggleSelectAll}
+              />
+              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                Select All
+              </label>
+              {selectedUsers.length > 0 && (
+                <Badge variant="border" className="ml-2 ">
+                  {selectedUsers.length} selected
+                </Badge>
+              )}
+            </div>
 
-                {selectedUsers.length > 0 && (
-                    <div className="flex gap-2 ml-2">
-                        <Button variant="border" size="sm">
-                            <Bell className="h-4 w-4" />
-                            Send Reminder
-                        </Button>
-                        <Button variant="border" size="sm">
-                            <Check className=" h-4 w-4" />
-                             Approve All
-                        </Button>
-                        <Button variant="delete" size="sm">
-                            <X className=" h-4 w-4" />
-                            Block / Remove
-                        </Button>
-                    </div>
-                )}
+            {selectedUsers.length > 0 && (
+              <div className="flex gap-2 ml-2">
+                <Button variant="border" size="sm">
+                  <Bell className="h-4 w-4" />
+                  Send Reminder
+                </Button>
+                <Button variant="border" size="sm">
+                  <Check className=" h-4 w-4" />
+                  Approve All
+                </Button>
+                <Button variant="delete" size="sm">
+                  <X className=" h-4 w-4" />
+                  Block / Remove
+                </Button>
+              </div>
+            )}
           </div>
           <div className="flex justify-end items-center gap-4 ">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="border"
-                  size="sm"
-                  className="flex items-center gap-2 text-low text-[var(--text-head)]"
-                >
-                  {recordsPerPage}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
-                  <DropdownMenuItem
-                    key={size}
-                    onClick={() => {
-                      setRecordsPerPage(size);
-                      setCurrentPage(1);
-                    }}
-                    className="text-[var(--text)] focus:bg-[var(--faded)]"
-                  >
-                    {size}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
             <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
@@ -640,31 +593,36 @@ function OrganisationTable() {
             <TableBody className="overflow-visible relative z-0">
               {currentRecords.map((user) => (
                 <TableRow
-                    key={user.id}
-                    data-id={user.id}
-                    className={cn(
+                  key={user.id}
+                  data-id={user.id}
+                  className={cn(
                     "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
                     selectedCoachStack.some((c) => c.id === user.id)
-                    ? "bg-[var(--brand-color3)]"
-                    : ""
-                    )}
-                    onClick={() => handleRowClick(user)}
-                    >
-                  <TableCell className={cn(
-                    "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
-                    selectedCoachStack.some((c) => c.id === user.id)
-                      ? focusedCoachId === user.id
-                        ? "border-[var(--brand-color)]"
+                      ? "bg-[var(--brand-color3)]"
+                      : ""
+                  )}
+                  onClick={() => {
+                    toggleSelectUser(user.id);
+                    handleRowClick(user);
+                  }}
+                >
+                  <TableCell
+                    className={cn(
+                      "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
+                      selectedCoachStack.some((c) => c.id === user.id)
+                        ? focusedCoachId === user.id
+                          ? "border-[var(--brand-color)]"
+                          : "border-transparent"
                         : "border-transparent"
-                      : "border-transparent"
-                  )}>
-                      <Checkbox
-                          checked={selectedUsers.includes(user.id)}
-                          onCheckedChange={() => toggleSelectUser(user.id)}
-                      />
-                  </TableCell>
-                  <TableCell 
+                    )}
                   >
+                    <Checkbox
+                      checked={selectedUsers.includes(user.id)}
+                      onClick={(e) => e.stopPropagation()}
+                      onCheckedChange={() => toggleSelectUser(user.id)}
+                    />
+                  </TableCell>
+                  <TableCell>
                     <div className="flex items-center gap-4">
                       <div className="h-14 w-14 rounded-full overflow-hidden">
                         <img
@@ -687,18 +645,18 @@ function OrganisationTable() {
                     </div>
                   </TableCell>
                   <TableCell>
-                        <div className="text-sm">
-                          <div>{`${user.location}`}</div>
-                        </div>
+                    <div className="text-sm">
+                      <div>{`${user.location}`}</div>
+                    </div>
                   </TableCell>
                   <TableCell>
-                        <Badge variant="standard">{user.type}</Badge>
+                    <Badge variant="standard">{user.type}</Badge>
                   </TableCell>
                   <TableCell>
-                        <div className="text-sm">{user.claimStatus}</div>
+                    <div className="text-sm">{user.claimStatus}</div>
                   </TableCell>
                   <TableCell>
-                        <div className="text-sm">{user.coaches}</div>
+                    <div className="text-sm">{user.coaches}</div>
                   </TableCell>
                   <TableCell>{user.sessions}</TableCell>
                   <TableCell>
@@ -711,22 +669,43 @@ function OrganisationTable() {
                         variant="noborder"
                         size="sm"
                         className="bg-white border-0 shadow-none"
-                        // onClick={() => navigate(`/user-details/${user.id}`)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // navigate(`/user-details/${user.id}`) or your view logic
+                        }}
                       >
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View</span>
                       </Button>
-                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+
+                      <Button
+                        variant="noborder"
+                        size="sm"
+                        className="bg-[var(--background)] border-0 shadow-none"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // approve logic
+                        }}
+                      >
                         <Check className="h-4 w-3" />
                         <span className="sr-only">Approve</span>
                       </Button>
 
-                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                      <Button
+                        variant="noborder"
+                        size="sm"
+                        className="bg-[var(--background)] border-0 shadow-none"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // block logic
+                        }}
+                      >
                         <X className="h-4 w-3" />
                         <span className="sr-only">Block</span>
                       </Button>
                     </div>
                   </TableCell>
+
                 </TableRow>
               ))}
             </TableBody>
@@ -735,6 +714,32 @@ function OrganisationTable() {
 
         <div className="flex items-center justify-between flex-wrap gap-2 p-4">
           <div className="flex items-center gap-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="border"
+                  size="sm"
+                  className="flex items-center gap-2 text-low text-[var(--text-head)]"
+                >
+                  {recordsPerPage}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
+                {[5, 10, 25, 50, 100].map((size) => (
+                  <DropdownMenuItem
+                    key={size}
+                    onClick={() => {
+                      setRecordsPerPage(size);
+                      setCurrentPage(1);
+                    }}
+                    className="text-[var(--text)] focus:bg-[var(--faded)]"
+                  >
+                    {size}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <span className="text-low text-[var(--text)]">
               Showing {indexOfFirstRecord + 1}-
               {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
@@ -777,7 +782,7 @@ function OrganisationTable() {
 
 
 
-    {/*<div className="xl:block hidden">
+      {/*<div className="xl:block hidden">
       <div className="lg:h-[500px] xl:min-w-90 xxl:min-w-100  sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
         <AnimatePresence>
           {selectedCoachStack.map((coach, index) => {
