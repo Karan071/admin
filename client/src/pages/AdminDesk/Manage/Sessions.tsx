@@ -540,7 +540,7 @@ export default function Insights() {
                 {currentRecords.map((item) => (
                   <TableRow 
                     key={item.title}
-                    className="group hover:bg-[var(--brand-color2)]"
+                    className="group hover:bg-[var(--brand-col"
                   >
                     <TableCell>
                       <Checkbox
@@ -548,7 +548,7 @@ export default function Insights() {
                         onCheckedChange={() => toggleSelectItem(item.title)}
                       />
                     </TableCell>
-                    <TableCell className="font-medium text-[var(--text-head)]">{item.title}</TableCell>
+                    <TableCell className="font-medium ">{item.title}</TableCell>
                     <TableCell className="text-[var(--text)]">{item.author}</TableCell>
 
                     {activeTab === "published" && (
