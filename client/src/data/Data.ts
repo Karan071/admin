@@ -5038,3 +5038,486 @@ export const BugsTableData = [
     "actions": ["Assign", "Debug"]
   }
 ]
+export const Upcoming =[
+      {
+        "user": "Aarav Mehta",
+        "coach": "Dr. Seema Rao",
+        "coachType": "Counselor",
+        "dateTime": "2025-05-18T15:00:00",
+        "type": "1:1",
+        "amount": "₹1,000",
+        "statusTimeline": [
+          "Booked (2025-05-16T14:00:00)",
+          "Auto Approved (2025-05-16T14:05:00)",
+          "Confirmed (2025-05-17T09:30:00)"
+        ],
+        "actions": ["View", "Reschedule", "Cancel"]
+      },
+      {
+    "user": "Aarav Mehta",
+    "coach": "Dr. Seema Rao",
+    "coachType": "Counselor",
+    "dateTime": "18 May, 3:00 PM",
+    "type": "1:1",
+    "amount": "₹1,000",
+    "statusTimeline": ["Booked (16 May, 2:00 PM) → Auto Approved (16 May, 2:05 PM) → Confirmed (17 May, 9:30 AM)"],
+    "actions": ["View", "Reschedule", "Cancel"]
+  },
+  {
+    "user": "Isha Verma",
+    "coach": "Ankit Sharma",
+    "coachType": "Mentor",
+    "dateTime": "20 May, 10:00 AM",
+    "type": "1:1",
+    "amount": "₹850",
+    "statusTimeline": ["Booked (18 May, 4:00 PM) → Auto Approved (18 May, 4:15 PM)"],
+    "actions": ["View", "Reschedule", "Cancel"]
+  },
+  {
+    "user": "Yash Mittal",
+    "coach": "Pooja Batra",
+    "coachType": "Coach",
+    "dateTime": "22 May, 11:30 AM",
+    "type": "Ask Q",
+    "amount": "₹500",
+    "statusTimeline": ["Booked (19 May, 2:00 PM) → Manual Approved (20 May, 9:00 AM)"],
+    "actions": ["View", "Cancel"]
+  },
+  {
+    "user": "Tanya Singh",
+    "coach": "Rakesh Yadav",
+    "coachType": "Counselor",
+    "dateTime": "19 May, 4:00 PM",
+    "type": "1:1",
+    "amount": "₹1,200",
+    "statusTimeline": ["Booked (16 May, 1:00 PM) → Auto Approved (16 May, 1:10 PM) → Confirmed (17 May, 10:00 AM)"],
+    "actions": ["View", "Reschedule", "Cancel"]
+  },
+  {
+    "user": "Nikhil Roy",
+    "coach": "Shweta Desai",
+    "coachType": "Mentor",
+    "dateTime": "21 May, 9:00 AM",
+    "type": "Group",
+    "amount": "₹600",
+    "statusTimeline": ["Booked (18 May, 8:30 AM)"],
+    "actions": ["View"]
+  },
+  {
+    "user": "Meera Chopra",
+    "coach": "Dr. Abhay Kaul",
+    "coachType": "Educator",
+    "dateTime": "23 May, 1:00 PM",
+    "type": "1:1",
+    "amount": "₹950",
+    "statusTimeline": ["Booked (19 May, 3:00 PM) → Manual Approved (20 May, 10:00 AM)"],
+    "actions": ["View", "Cancel"]
+  },
+  {
+    "user": "Saurav Jain",
+    "coach": "Neha Kapoor",
+    "coachType": "Coach",
+    "dateTime": "24 May, 12:00 PM",
+    "type": "Ask Q",
+    "amount": "₹700",
+    "statusTimeline": ["Booked (20 May, 4:00 PM) → Auto Approved (20 May, 4:05 PM)"],
+    "actions": ["View", "Reschedule", "Cancel"]
+  },
+  {
+    "user": "Priya Sinha",
+    "coach": "Manoj Sharma",
+    "coachType": "Mentor",
+    "dateTime": "25 May, 2:00 PM",
+    "type": "1:1",
+    "amount": "₹1,100",
+    "statusTimeline": ["Booked (21 May, 9:00 AM) → Auto Approved (21 May, 9:10 AM)"],
+    "actions": ["View", "Cancel"]
+  },
+  {
+    "user": "Rahul Khanna",
+    "coach": "Kritika Das",
+    "coachType": "Educator",
+    "dateTime": "26 May, 10:30 AM",
+    "type": "1:1",
+    "amount": "₹800",
+    "statusTimeline": ["Booked (22 May, 11:00 AM) → Manual Approved (23 May, 8:00 AM)"],
+    "actions": ["View", "Reschedule"]
+  },
+  {
+    "user": "Divya Narayan",
+    "coach": "Ashok Rao",
+    "coachType": "Coach",
+    "dateTime": "27 May, 3:00 PM",
+    "type": "Ask Q",
+    "amount": "₹550",
+    "statusTimeline": ["Booked (23 May, 12:30 PM)"],
+    "actions": ["View", "Cancel"]
+  },
+  {
+    "user": "Kunal Aggarwal",
+    "coach": "Megha Rani",
+    "coachType": "Counselor",
+    "dateTime": "28 May, 4:30 PM",
+    "type": "1:1",
+    "amount": "₹1,300",
+    "statusTimeline": ["Booked (24 May, 1:00 PM) → Auto Approved (24 May, 1:10 PM)"],
+    "actions": ["View", "Reschedule"]
+  },
+  {
+    "user": "Ritika Mehra",
+    "coach": "Dr. Rajeev Sinha",
+    "coachType": "Mentor",
+    "dateTime": "29 May, 11:00 AM",
+    "type": "Group",
+    "amount": "₹750",
+    "statusTimeline": ["Booked (25 May, 9:45 AM)"],
+    "actions": ["View"]
+  },
+  {
+    "user": "Arjun Deshmukh",
+    "coach": "Pallavi Singh",
+    "coachType": "Educator",
+    "dateTime": "30 May, 10:00 AM",
+    "type": "1:1",
+    "amount": "₹950",
+    "statusTimeline": ["Booked (26 May, 10:00 AM) → Manual Approved (26 May, 3:00 PM) → Confirmed (27 May, 9:00 AM)"],
+    "actions": ["View", "Cancel"]
+  },
+  {
+    "user": "Sneha Das",
+    "coach": "Ravi Tripathi",
+    "coachType": "Coach",
+    "dateTime": "31 May, 1:30 PM",
+    "type": "Ask Q",
+    "amount": "₹600",
+    "statusTimeline": ["Booked (27 May, 11:00 AM)"],
+    "actions": ["View", "Cancel"]
+  },
+  {
+    "user": "Amit Bhalla",
+    "coach": "Preeti Nair",
+    "coachType": "Counselor",
+    "dateTime": "1 June, 2:15 PM",
+    "type": "1:1",
+    "amount": "₹1,050",
+    "statusTimeline": ["Booked (28 May, 9:30 AM) → Auto Approved (28 May, 9:35 AM)"],
+    "actions": ["View", "Reschedule"]
+  }
+    ]
+export const Live=  [
+      {
+        "user": "Ravi Kumar",
+        "coach": "Neha Joshi",
+        "coachType": "Mentor",
+        "dateTime": "2025-05-18T14:30:00",
+        "type": "1:1",
+        "amount": "₹950",
+        "statusTimeline": [
+          "Booked",
+          "Auto Approved",
+          "Live (2025-05-18T14:30:00)"
+        ],
+        "actions": ["Join Now", "View"]
+      },
+      {
+        "user": "Aanya Kapoor",
+        "coach": "Manish Rao",
+        "coachType": "Educator",
+        "dateTime": "2025-05-18T14:45:00",
+        "type": "Ask Q",
+        "amount": "₹700",
+        "statusTimeline": [
+          "Booked",
+          "Manual Approved",
+          "Live (2025-05-18T14:45:00)"
+        ],
+        "actions": ["Join Now", "View"]
+      },
+        {
+    "user": "Ravi Kumar",
+    "coach": "Neha Joshi",
+    "coachType": "Mentor",
+    "dateTime": "2025-05-18T14:30:00",
+    "type": "1:1",
+    "amount": "₹950",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T14:30:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Aanya Kapoor",
+    "coach": "Manish Rao",
+    "coachType": "Educator",
+    "dateTime": "2025-05-18T14:45:00",
+    "type": "Ask Q",
+    "amount": "₹700",
+    "statusTimeline": [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T14:45:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Simran Kaur",
+    "coach": "Dr. Mehul Sinha",
+    "coachType": "Counselor",
+    "dateTime": "2025-05-18T15:00:00",
+    "type": "1:1",
+    "amount": "₹1,000",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T15:00:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Karan Patel",
+    "coach": "Anita Joshi",
+    "coachType": "Mentor",
+    "dateTime": "2025-05-18T15:15:00",
+    "type": "Ask Q",
+    "amount": "₹650",
+    "statusTimeline": [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T15:15:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Priya Malhotra",
+    "coach": "Vivek Shah",
+    "coachType": "Coach",
+    "dateTime": "2025-05-18T15:30:00",
+    "type": "Group",
+    "amount": "₹800",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T15:30:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Dev Sharma",
+    "coach": "Rina Das",
+    "coachType": "Educator",
+    "dateTime": "2025-05-18T15:45:00",
+    "type": "1:1",
+    "amount": "₹900",
+    "statusTimeline": [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T15:45:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Anjali Rana",
+    "coach": "Tarun Mehta",
+    "coachType": "Mentor",
+    "dateTime": "2025-05-18T16:00:00",
+    "type": "Ask Q",
+    "amount": "₹750",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T16:00:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Nikhil Joshi",
+    "coach": "Meena Roy",
+    "coachType": "Coach",
+    "dateTime": "2025-05-18T16:15:00",
+    "type": "1:1",
+    "amount": "₹1,200",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T16:15:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Sanya Bhatia",
+    "coach": "Dr. Harsh Vardhan",
+    "coachType": "Counselor",
+    "dateTime": "2025-05-18T16:30:00",
+    "type": "Group",
+    "amount": "₹850",
+    "statusTimeline": [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T16:30:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Arjun Thakur",
+    "coach": "Sneha Iyer",
+    "coachType": "Educator",
+    "dateTime": "2025-05-18T16:45:00",
+    "type": "1:1",
+    "amount": "₹950",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T16:45:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Ritika Sharma",
+    "coach": "Rahul Saxena",
+    "coachType": "Mentor",
+    "dateTime": "2025-05-18T17:00:00",
+    "type": "Ask Q",
+    "amount": "₹700",
+    "statusTimeline": [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T17:00:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Abhay Verma",
+    "coach": "Sonal Jain",
+    "coachType": "Coach",
+    "dateTime": "2025-05-18T17:15:00",
+    "type": "1:1",
+    "amount": "₹1,100",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T17:15:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Neha Goyal",
+    "coach": "Anuj Kapoor",
+    "coachType": "Educator",
+    "dateTime": "2025-05-18T17:30:00",
+    "type": "Group",
+    "amount": "₹600",
+    "statusTimeline": [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T17:30:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Amit Rawat",
+    "coach": "Dr. Kavita Rao",
+    "coachType": "Counselor",
+    "dateTime": "2025-05-18T17:45:00",
+    "type": "1:1",
+    "amount": "₹980",
+    "statusTimeline": [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T17:45:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  },
+  {
+    "user": "Pooja Singh",
+    "coach": "Rohan Arora",
+    "coachType": "Mentor",
+    "dateTime": "2025-05-18T18:00:00",
+    "type": "Ask Q",
+    "amount": "₹720",
+    "statusTimeline": [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T18:00:00)"
+    ],
+    "actions": ["Join Now", "View"]
+  }
+      
+    ]
+export const Completed=[
+      {
+        "user": "Raghav Sharma",
+        "coach": "Anjali Gupta",
+        "coachType": "Mentor",
+        "dateTime": "2025-05-17T11:00:00",
+        "type": "Instant",
+        "amount": "₹1,200",
+        "statusTimeline": [
+          "Booked (2025-05-16T16:10:00)",
+          "Auto Approved (2025-05-16T16:15:00)",
+          "Completed (2025-05-17T11:45:00)"
+        ],
+        "recording": "Available",
+        "actions": ["Watch Recording", "View"]
+      },
+      {
+        "user": "Meera Sharma",
+        "coach": "Ravi Kapoor",
+        "coachType": "Consultant",
+        "dateTime": "2025-05-15T10:00:00",
+        "type": "B2B",
+        "amount": "₹1,500",
+        "statusTimeline": [
+          "Booked (2025-05-13T11:30:00)",
+          "Auto Approved (2025-05-13T11:35:00)",
+          "Passed (2025-05-15T10:45:00)"
+        ],
+        "recording": "Available",
+        "actions": ["Watch Recording", "Receipt"]
+      }
+    ]
+    export const Cancelled =[
+      {
+        "user": "Priya Nair",
+        "coach": "Vinod Malhotra",
+        "coachType": "Educator",
+        "dateTime": "2025-05-16T17:00:00",
+        "type": "Ask Q",
+        "amount": "₹800",
+        "statusTimeline": [
+          "Booked (2025-05-14T12:00:00)",
+          "Manual Approved (2025-05-15T10:00:00)",
+          "Cancelled (2025-05-15T15:00:00)"
+        ],
+        "actions": ["View", "Refund Process"]
+      }
+    ]
+     export const RefundRequested=[
+      {
+        "user": "Priya Nair",
+        "coach": "Vinod Malhotra",
+        "coachType": "Educator",
+        "dateTime": "2025-05-16T17:00:00",
+        "type": "Ask Q",
+        "amount": "₹800",
+        "statusTimeline": ["Booked", "Cancelled"],
+        "refundStatus": "Requested",
+        "actions": ["Approve", "Deny"]
+      },
+      {
+        "user": "Sanya Jain",
+        "coach": "Karan Oberoi",
+        "coachType": "Mentor",
+        "dateTime": "2025-05-14T18:30:00",
+        "type": "In-Person",
+        "amount": "₹1,000",
+        "statusTimeline": [
+          "Booked (2025-05-12T09:45:00)",
+          "Manual Approved (2025-05-13T13:00:00)",
+          "Missed (2025-05-14T19:00:00)"
+        ],
+        "refundStatus": "Requested",
+        "actions": ["Approve Refund"]
+      }
+    ]

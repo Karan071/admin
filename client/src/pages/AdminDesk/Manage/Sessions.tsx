@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown,Flag, MessageCircle,Search, X,Check, Bell,Users, FileCheck2, FileText, CheckCircle2,  FileDown,  BadgeQuestionMark, GraduationCap, Handshake, ClipboardList, Plus, Eye } from "lucide-react";
+import { Clock, CircleArrowUp,MessageCircle,Flag, CircleArrowDown,Search, X,Check, Bell,Users, FileCheck2, FileText, CheckCircle2,  FileDown,  BadgeQuestionMark,  Plus, Eye } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -7,16 +7,18 @@ import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuConten
 import { ChevronDown, Filter, ChevronRight, ChevronLeft } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useState } from "react";
-
+import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
-  instant_sessions,
-  introductory_sessions,
-  b2b_sessions,
-  pending_approvals
+  Upcoming,
+  Live,
+  Cancelled ,
+  Completed,
+  RefundRequested,
+  
 } from "@/data/Data";
 import * as React from "react";
-import { cn } from "@/lib/utils";
+
 import { useEffect } from "react";
 import RadioButton from "@/components/ui/Radiobutton";
 import DatePick from "@/components/ui/DatePicker";
@@ -27,32 +29,50 @@ const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 const Stats = [
   {
-    title: "Total Pooled Sessions",
-    value: "326",
+    title: "Total Sessions Booked",
+    value: "5,248",
     icon: Users,
     performance: Up,
   },
   {
-    title: "Instant Sessions Available",
-    value: "112",
+    title: "Completed Sessions",
+    value: "3,780",
     icon: FileCheck2,
     performance: Down,
   },
   {
-    title: "Introductory Sessions Listed",
-    value: "89",
+    title: "Missed / No-Show",
+    value: "341",
     icon: FileText,
     performance: Up,
   },
   {
-    title: "B2B Sessions Published",
-    value: "125",
+    title: "Upcoming Sessions",
+    value: "446",
     icon: Clock,
     performance: Up,
   },
   {
-    title: "Waiting for Coach to Accept",
-    value: "21",
+    title: "Live Sessions",
+    value: "12",
+    icon: CheckCircle2,
+    performance: Up,
+  },
+   {
+    title: "Session Recordings Available",
+    value: "298",
+    icon: Clock,
+    performance: Up,
+  },
+   {
+    title: "Refund Requests",
+    value: "27",
+    icon: Clock,
+    performance: Up,
+  },
+   {
+    title: "Refunds Processed",
+    value: " ₹42,500",
     icon: CheckCircle2,
     performance: Up,
   },
@@ -68,7 +88,7 @@ export default function Organisation() {
       <Buttonbar />
       
 
-      <SessionsPool />
+      <SessionTabs />
     </div>
   );
 }
@@ -79,20 +99,28 @@ function Buttonbar() {
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
         <Plus className="h-3 w-3" />
-        <span className=""> Add Session to Pool</span>
+        <span className=""> Create Manual Session</span>
       </Button>
       <div className="flex gap-4">
-        <Button variant="standard" size="new">
-          <Eye className="h-3 w-3" />
-          <span className="">Assign Slots</span>
+         <Button variant="standard" size="new">
+          <FileDown className="h-3 w-3" />
+          <span className=""> Find Coach by Expertise / Type</span>
         </Button>
         <Button variant="standard" size="new">
           <FileDown className="h-3 w-3" />
-          <span className="">Export Pool List</span>
+          <span className=""> Export Session Logs</span>
+        </Button>
+        <Button variant="standard" size="new">
+          <Eye className="h-3 w-3" />
+          <span className="">Refund Requests Queue</span>
         </Button>
         <Button variant="standard" size="new">
           <BadgeQuestionMark className="h-3 w-3" />
-          <span className="">Manage Availability</span>
+          <span className="">View Live Sessions</span>
+        </Button>
+        <Button variant="standard" size="new">
+          <Eye className="h-3 w-3" />
+          <span className="">Access Recordings</span>
         </Button>
         <Button
         variant="border"
@@ -108,7 +136,18 @@ function Buttonbar() {
     </div>
   );
 }
-
+interface Session {
+  user: string;
+  coach: string;
+  coachType: string;
+  dateTime: string;
+  type: string;
+  amount: string;
+  statusTimeline: string[];
+  actions: string[];
+  recording?: string;   // Make optional
+  refundStatus?: string; // Make optional
+}
 interface FilterProps {
   onClose: () => void;
 }
@@ -320,8 +359,10 @@ function StatCard() {
   );
 }
 
-function SessionsPool() {
-  const [activeTab, setActiveTab] = useState("instant");
+
+
+function SessionTabs() {
+  const [activeTab, setActiveTab] = useState("upcoming");
   const [selectedSessions, setSelectedSessions] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(5);
@@ -330,30 +371,41 @@ function SessionsPool() {
     direction: "ascending" | "descending";
   } | null>(null);
 
-  const getCurrentData = () => {
+  const getCurrentData = (): Session[] => {
     switch (activeTab) {
-      case "instant": return instant_sessions;
-      case "introductory": return introductory_sessions;
-      case "b2b": return b2b_sessions;
-      case "pending": return pending_approvals;
+      case "upcoming": return Upcoming;
+      case "live": return Live;
+      case "completed": return Completed;
+      case "cancelled": return Cancelled;
+      case "refund": return RefundRequested;
       default: return [];
     }
   };
-const getBadgeStyles = (condition: boolean) => {
-  return condition 
-      ? "bg-[var(--green2)] text-[var(--green)]" 
-    : "bg-[var(--red2)] text-[var(--red)]"
-};
+
+  const getBadgeStyles = (status: string) => {
+    const statusMap: Record<string, string> = {
+      "Confirmed": "bg-[var(--green2)] text-[var(--green)]",
+      "Live": "bg-[var(--green2)] text-[var(--green)]",
+      "Completed": "bg-[var(--green2)] text-[var(--green)]",
+      "Passed": "bg-[var(--green2)] text-[var(--green)]",
+      "Cancelled": "bg-[var(--red2)] text-[var(--red)]",
+      "Missed": "bg-[var(--red2)] text-[var(--red)]",
+      "Requested": "bg-[var(--blue2)] text-[var(--blue)]"
+    };
+    
+    return statusMap[status] || "bg-[var(--faded)] text-[var(--text)]";
+  };
+
   const currentData = getCurrentData();
-  
   
   let sortedData = [...currentData];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
-      const key = sortConfig.key as keyof typeof a;
+      const key = sortConfig.key as keyof Session;
       const aValue = a[key];
       const bValue = b[key];
       
+      if (aValue === undefined || bValue === undefined) return 0;
       if (aValue < bValue) {
         return sortConfig.direction === "ascending" ? -1 : 1;
       }
@@ -381,24 +433,49 @@ const getBadgeStyles = (condition: boolean) => {
     if (selectedSessions.length === currentRecords.length) {
       setSelectedSessions([]);
     } else {
-      setSelectedSessions(currentRecords.map(session => session.coach));
+      setSelectedSessions(currentRecords.map(session => 
+        `${session.user}-${session.coach}-${session.dateTime}`
+      ));
     }
   };
 
-  const toggleSelectSession = (coach: string) => {
+  const toggleSelectSession = (sessionId: string) => {
     setSelectedSessions(
-      selectedSessions.includes(coach)
-        ? selectedSessions.filter(id => id !== coach)
-        : [...selectedSessions, coach]
+      selectedSessions.includes(sessionId)
+        ? selectedSessions.filter(id => id !== sessionId)
+        : [...selectedSessions, sessionId]
     );
   };
 
+  const getCurrentStatus = (statusTimeline: string[]) => {
+    const lastStatus = statusTimeline[statusTimeline.length - 1];
+    return lastStatus.split('(')[0].trim();
+  };
 
+  const formatDateTime = (dateTime: string) => {
+    return new Date(dateTime).toLocaleString('en-IN', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  // Define table headers per tab
   const getTableHeaders = () => {
     switch (activeTab) {
-      case "instant":
+      case "upcoming":
+      case "live":
+      case "cancelled":
         return (
           <>
+            <TableHead
+              onClick={() => requestSort("user")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              User {sortConfig?.key === "user" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
             <TableHead
               onClick={() => requestSort("coach")}
               className="cursor-pointer text-[var(--text)]"
@@ -406,47 +483,47 @@ const getBadgeStyles = (condition: boolean) => {
               Coach {sortConfig?.key === "coach" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("coach_type")}
+              onClick={() => requestSort("coachType")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Coach Type {sortConfig?.key === "coach_type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Coach Type {sortConfig?.key === "coachType" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("segment")}
+              onClick={() => requestSort("dateTime")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Segment {sortConfig?.key === "segment" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Date & Time {sortConfig?.key === "dateTime" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("topic")}
+              onClick={() => requestSort("type")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Topic {sortConfig?.key === "topic" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Type {sortConfig?.key === "type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("price")}
+              onClick={() => requestSort("amount")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Price / Code {sortConfig?.key === "price" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Amount {sortConfig?.key === "amount" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("slots")}
+              onClick={() => requestSort("statusTimeline")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Slots {sortConfig?.key === "slots" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-            </TableHead>
-            <TableHead
-              onClick={() => requestSort("status")}
-              className="cursor-pointer text-[var(--text)]"
-            >
-              Status {sortConfig?.key === "status" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Status {sortConfig?.key === "statusTimeline" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
           </>
         );
         
-      case "introductory":
+      case "completed":
         return (
           <>
+            <TableHead
+              onClick={() => requestSort("user")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              User {sortConfig?.key === "user" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
             <TableHead
               onClick={() => requestSort("coach")}
               className="cursor-pointer text-[var(--text)]"
@@ -454,52 +531,52 @@ const getBadgeStyles = (condition: boolean) => {
               Coach {sortConfig?.key === "coach" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("coach_type")}
+              onClick={() => requestSort("coachType")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Coach Type {sortConfig?.key === "coach_type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Coach Type {sortConfig?.key === "coachType" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("organisation")}
+              onClick={() => requestSort("dateTime")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Organisation {sortConfig?.key === "organisation" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Date & Time {sortConfig?.key === "dateTime" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("topic")}
+              onClick={() => requestSort("type")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Topic {sortConfig?.key === "topic" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Type {sortConfig?.key === "type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("price")}
+              onClick={() => requestSort("amount")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Price / Code {sortConfig?.key === "price" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Amount {sortConfig?.key === "amount" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("slots")}
+              onClick={() => requestSort("statusTimeline")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Slots {sortConfig?.key === "slots" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Status {sortConfig?.key === "statusTimeline" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("status")}
+              onClick={() => requestSort("recording")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Status {sortConfig?.key === "status" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Recording {sortConfig?.key === "recording" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
           </>
         );
         
-      case "b2b":
+      case "refund":
         return (
           <>
             <TableHead
-              onClick={() => requestSort("organisation")}
+              onClick={() => requestSort("user")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Organisation {sortConfig?.key === "organisation" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              User {sortConfig?.key === "user" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
               onClick={() => requestSort("coach")}
@@ -508,76 +585,40 @@ const getBadgeStyles = (condition: boolean) => {
               Coach {sortConfig?.key === "coach" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("coach_type")}
+              onClick={() => requestSort("coachType")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Coach Type {sortConfig?.key === "coach_type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Coach Type {sortConfig?.key === "coachType" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("topic")}
+              onClick={() => requestSort("dateTime")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Topic {sortConfig?.key === "topic" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Date & Time {sortConfig?.key === "dateTime" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("price")}
+              onClick={() => requestSort("type")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Price / Code {sortConfig?.key === "price" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Type {sortConfig?.key === "type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("slots")}
+              onClick={() => requestSort("amount")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Slots {sortConfig?.key === "slots" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Amount {sortConfig?.key === "amount" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("status")}
+              onClick={() => requestSort("statusTimeline")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Status {sortConfig?.key === "status" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-            </TableHead>
-          </>
-        );
-        
-      case "pending":
-        return (
-          <>
-            <TableHead
-              onClick={() => requestSort("coach")}
-              className="cursor-pointer text-[var(--text)]"
-            >
-              Coach {sortConfig?.key === "coach" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Status {sortConfig?.key === "statusTimeline" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
             <TableHead
-              onClick={() => requestSort("session_type")}
+              onClick={() => requestSort("refundStatus")}
               className="cursor-pointer text-[var(--text)]"
             >
-              Session Type {sortConfig?.key === "session_type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-            </TableHead>
-            <TableHead
-              onClick={() => requestSort("topic")}
-              className="cursor-pointer text-[var(--text)]"
-            >
-              Topic {sortConfig?.key === "topic" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-            </TableHead>
-            <TableHead
-              onClick={() => requestSort("price")}
-              className="cursor-pointer text-[var(--text)]"
-            >
-              Price / Code {sortConfig?.key === "price" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-            </TableHead>
-            <TableHead
-              onClick={() => requestSort("submitted_on")}
-              className="cursor-pointer text-[var(--text)]"
-            >
-              Submitted On {sortConfig?.key === "submitted_on" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-            </TableHead>
-            <TableHead
-              onClick={() => requestSort("status")}
-              className="cursor-pointer text-[var(--text)]"
-            >
-              Status {sortConfig?.key === "status" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+              Refund Status {sortConfig?.key === "refundStatus" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
             </TableHead>
           </>
         );
@@ -588,93 +629,68 @@ const getBadgeStyles = (condition: boolean) => {
   };
 
   // Render table cells based on active tab
-  const renderTableCells = (session: any) => {
+  const renderTableCells = (session: Session) => {
+    const currentStatus = getCurrentStatus(session.statusTimeline);
+    
     switch (activeTab) {
-      case "instant":
+      case "upcoming":
+      case "live":
+      case "cancelled":
         return (
           <>
-            <TableCell className="font-medium">{session.coach}</TableCell>
-            <TableCell>{session.coach_type}</TableCell>
-            <TableCell>{session.segment}</TableCell>
-            <TableCell>{session.topic}</TableCell>
-            <TableCell>{session.price} / {session.code}</TableCell>
-            <TableCell>
-           <Badge 
-  className="bg-[var(--faded)] text-[var(--text)]"
->
-  {session.slots}
-</Badge>
-            </TableCell>
-            <TableCell>
-           <Badge className={getBadgeStyles(session.status === "Active")}>
-    {session.status}
-  </Badge>
-            </TableCell>
-          </>
-        );
-        
-      case "introductory":
-        return (
-          <>
-            <TableCell className="font-medium">{session.coach}</TableCell>
-            <TableCell>{session.coach_type}</TableCell>
-            <TableCell>{session.organisation}</TableCell>
-            <TableCell>{session.topic}</TableCell>
-            <TableCell>{session.price} / {session.code}</TableCell>
-            <TableCell>
-    <Badge className="bg-[var(--faded)] text-[var(--text)]">
-  {session.slots}
-</Badge>
-            </TableCell>
-            <TableCell>
-             <Badge
-  className={session.status === "Active" 
-    ? "bg-[var(--green2)] text-[var(--green)]" 
-    : "bg-[var(--red2)] text-[var(--red)]"
-  }
->
-  {session.status}
-</Badge>
-            </TableCell>
-          </>
-        );
-        
-      case "b2b":
-        return (
-          <>
-            <TableCell className="font-medium">{session.organisation}</TableCell>
+            <TableCell className="font-medium">{session.user}</TableCell>
             <TableCell>{session.coach}</TableCell>
-            <TableCell>{session.coach_type}</TableCell>
-            <TableCell>{session.topic}</TableCell>
-            <TableCell>{session.price} / {session.code}</TableCell>
+            <TableCell>{session.coachType}</TableCell>
+            <TableCell>{formatDateTime(session.dateTime)}</TableCell>
+            <TableCell>{session.type}</TableCell>
+            <TableCell>{session.amount}</TableCell>
             <TableCell>
-          <Badge 
-  className="bg-[var(--faded)] text-[var(--text)]"
->
-  {session.slots}
-</Badge>
-            </TableCell>
-            <TableCell>
-            <Badge 
-  className={getBadgeStyles(session.status === "Active")}
->
-  {session.status}
-</Badge>
+              <Badge className={getBadgeStyles(currentStatus)}>
+                {currentStatus}
+              </Badge>
             </TableCell>
           </>
         );
         
-      case "pending":
+      case "completed":
         return (
           <>
-            <TableCell className="font-medium">{session.coach}</TableCell>
-            <TableCell>{session.session_type}</TableCell>
-            <TableCell>{session.topic}</TableCell>
-            <TableCell>{session.price} / {session.code}</TableCell>
-            <TableCell>{session.submitted_on}</TableCell>
+            <TableCell className="font-medium">{session.user}</TableCell>
+            <TableCell>{session.coach}</TableCell>
+            <TableCell>{session.coachType}</TableCell>
+            <TableCell>{formatDateTime(session.dateTime)}</TableCell>
+            <TableCell>{session.type}</TableCell>
+            <TableCell>{session.amount}</TableCell>
             <TableCell>
-              <Badge className="bg-[var(--red2)] text-[var(--red)]">
-                {session.status}
+              <Badge className={getBadgeStyles(currentStatus)}>
+                {currentStatus}
+              </Badge>
+            </TableCell>
+            <TableCell>
+              <Badge className="bg-[var(--green2)] text-[var(--green)]">
+                {session.recording}
+              </Badge>
+            </TableCell>
+          </>
+        );
+        
+      case "refund":
+        return (
+          <>
+            <TableCell className="font-medium">{session.user}</TableCell>
+            <TableCell>{session.coach}</TableCell>
+            <TableCell>{session.coachType}</TableCell>
+            <TableCell>{formatDateTime(session.dateTime)}</TableCell>
+            <TableCell>{session.type}</TableCell>
+            <TableCell>{session.amount}</TableCell>
+            <TableCell>
+              <Badge className={getBadgeStyles(currentStatus)}>
+                {currentStatus}
+              </Badge>
+            </TableCell>
+            <TableCell>
+              <Badge className="bg-[var(--blue2)] text-[var(--blue)]">
+                {session.refundStatus}
               </Badge>
             </TableCell>
           </>
@@ -687,97 +703,92 @@ const getBadgeStyles = (condition: boolean) => {
 
   return (
     <div className="flex flex-col gap-0 w-full">
-      {/* Tab Navigation with Icons */}
+      {/* Tab Navigation */}
       <div className="flex border-b">
         <Button
-          variant={activeTab === "instant" ? "brand" : "border"}
+          variant={activeTab === "upcoming" ? "brand" : "border"}
           className="rounded-b-none rounded-r-lg"
           onClick={() => {
-            setActiveTab("instant");
+            setActiveTab("upcoming");
             setCurrentPage(1);
             setSelectedSessions([]);
           }}
         >
-          Instant Sessions
+          Upcoming
         </Button>
         <Button
-          variant={activeTab === "introductory" ? "brand" : "border"}
+          variant={activeTab === "live" ? "brand" : "border"}
           className="rounded-b-none rounded-r-lg flex items-center gap-2"
           onClick={() => {
-            setActiveTab("introductory");
+            setActiveTab("live");
             setCurrentPage(1);
             setSelectedSessions([]);
           }}
         >
-          <GraduationCap className="h-4 w-4" />
-          <span>Introductory Sessions</span>
+          <span>Live</span>
         </Button>
         <Button
-          variant={activeTab === "b2b" ? "brand" : "border"}
+          variant={activeTab === "completed" ? "brand" : "border"}
           className="rounded-b-none rounded-r-lg flex items-center gap-2"
           onClick={() => {
-            setActiveTab("b2b");
+            setActiveTab("completed");
             setCurrentPage(1);
             setSelectedSessions([]);
           }}
         >
-          <Handshake className="h-4 w-4" />
-          <span>B2B Sessions</span>
+          <span>Completed</span>
         </Button>
         <Button
-          variant={activeTab === "pending" ? "brand" : "border"}
+          variant={activeTab === "cancelled" ? "brand" : "border"}
           className="rounded-b-none rounded-r-lg flex items-center gap-2"
           onClick={() => {
-            setActiveTab("pending");
+            setActiveTab("cancelled");
             setCurrentPage(1);
             setSelectedSessions([]);
           }}
         >
-          <ClipboardList className="h-4 w-4" />
-          <span>Pending Approvals</span>
+          <span>Cancelled</span>
+        </Button>
+        <Button
+          variant={activeTab === "refund" ? "brand" : "border"}
+          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          onClick={() => {
+            setActiveTab("refund");
+            setCurrentPage(1);
+            setSelectedSessions([]);
+          }}
+        >
+          <span>Refund Requested</span>
         </Button>
       </div>
 
-        <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
         <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
           <div className="flex items-center justify-between pl-0 p-4">
-            {/* Updated select all section */}
             <div className="flex items-center gap-2 border-none shadow-none">
-              <Checkbox
-                id="select-all"
-                checked={selectedSessions.length === currentRecords.length && currentRecords.length > 0}
-                onCheckedChange={toggleSelectAll}
-              />
-              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
-                Select All
-              </label>
-              {selectedSessions.length > 0 && (
-                <Badge variant="border" className="ml-2 text-[var(--text)]">
-                  {selectedSessions.length} selected
-                </Badge>
-              )}
+          
             </div>
 
             {selectedSessions.length > 0 && (
               <div className="flex gap-2 ml-2">
-                {/* Updated action buttons */}
                 <Button variant="border" size="sm" className="text-[var(--text)]">
                   <Bell className="h-4 w-4" />
                   Send Reminder
                 </Button>
-                <Button variant="border" size="sm" className="text-[var(--text)]">
-                  <Check className="h-4 w-4" />
-                  Approve All
-                </Button>
+                {activeTab === "refund" && (
+                  <Button variant="border" size="sm" className="text-[var(--text)]">
+                    <Check className="h-4 w-4" />
+                    Approve All
+                  </Button>
+                )}
                 <Button variant="delete" size="sm" className="text-[var(--text)]">
                   <X className="h-4 w-4" />
-                  Block / Remove
+                  Cancel All
                 </Button>
               </div>
             )}
           </div>
           <div className="flex justify-end items-center gap-4">
-            {/* Records per page dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -805,7 +816,6 @@ const getBadgeStyles = (condition: boolean) => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            {/* Search bar */}
             <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
@@ -834,48 +844,51 @@ const getBadgeStyles = (condition: boolean) => {
               </TableRow>
             </TableHeader>
             <TableBody className="overflow-visible relative z-0">
-              {currentRecords.map((session) => (
-                <TableRow
-                  key={session.coach}
-                  className={cn(
-                    "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]"
-                  )}
-                >
-                  <TableCell
+              {currentRecords.map((session) => {
+                const sessionId = `${session.user}-${session.coach}-${session.dateTime}`;
+                
+                return (
+                  <TableRow
+                    key={sessionId}
                     className={cn(
-                      "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)] border-transparent"
+                      "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]"
                     )}
                   >
-                    <Checkbox
-                      checked={selectedSessions.includes(session.coach)}
-                      onClick={(e) => e.stopPropagation()}
-                      onCheckedChange={() => toggleSelectSession(session.coach)}
-                    />
-                  </TableCell>
-                  {renderTableCells(session)}
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      {/* Updated action icons */}
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-white border-0 shadow-none"
-                      >
-                        <Eye className="h-4 w-4" />
-                        <span className="sr-only">View</span>
-                      </Button>
-                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <MessageCircle className="h-4 w-4" />
-                        <span className="sr-only">Chat</span>
-                      </Button>
-                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <Flag className="h-4 w-4" />
-                        <span className="sr-only">Flag</span>
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    <TableCell
+                      className={cn(
+                        "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)] border-transparent"
+                      )}
+                    >
+                      <Checkbox
+                        checked={selectedSessions.includes(sessionId)}
+                        onClick={(e) => e.stopPropagation()}
+                        onCheckedChange={() => toggleSelectSession(sessionId)}
+                      />
+                    </TableCell>
+                    {renderTableCells(session)}
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="noborder"
+                          size="sm"
+                          className="bg-white border-0 shadow-none"
+                        >
+                          <Eye className="h-4 w-4" />
+                          <span className="sr-only">View</span>
+                        </Button>
+                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                          <MessageCircle className="h-4 w-4" />
+                          <span className="sr-only">Chat</span>
+                        </Button>
+                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                          <Flag className="h-4 w-4" />
+                          <span className="sr-only">Flag</span>
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </div>
@@ -889,7 +902,6 @@ const getBadgeStyles = (condition: boolean) => {
             </span>
           </div>
           <div className="flex items-center gap-2 ">
-            {/* Updated pagination */}
             <Button
               variant="border"
               size="icon"
