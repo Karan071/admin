@@ -13,7 +13,7 @@ import { orgTableData } from "@/data/Data";
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useEffect } from "react";
-//import { AnimatePresence, motion } from "framer-motion";
+
 import photo from "@/assets/asset.jpg"
 import RadioButton from "@/components/ui/Radiobutton";
 import DatePick from "@/components/ui/DatePicker"

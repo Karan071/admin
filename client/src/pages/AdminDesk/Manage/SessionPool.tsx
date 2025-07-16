@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown, Search, Check, Users, FileCheck2, FileText, CheckCircle2, Trash, Copy, FileDown,  BadgeQuestionMark, GraduationCap, Handshake, ClipboardList, Plus, Eye } from "lucide-react";
+import { Clock, CircleArrowUp, CircleArrowDown,Flag, MessageCircle,Search, X,Check, Bell,Users, FileCheck2, FileText, CheckCircle2,  FileDown,  BadgeQuestionMark, GraduationCap, Handshake, ClipboardList, Plus, Eye } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -7,13 +7,7 @@ import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuConten
 import { ChevronDown, Filter, ChevronRight, ChevronLeft } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useState } from "react";
-import { 
 
-  Edit, 
-
-  Newspaper,
- 
-} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   instant_sessions,
@@ -347,8 +341,8 @@ function SessionsPool() {
   };
 const getBadgeStyles = (condition: boolean) => {
   return condition 
-    ? "bg-[var(--faded)] text-[var(--text)]" 
-    : "bg-red-100 text-[var(--text)]";
+      ? "bg-[var(--green2)] text-[var(--green)]" 
+    : "bg-[var(--red2)] text-[var(--red)]"
 };
   const currentData = getCurrentData();
   
@@ -606,15 +600,15 @@ const getBadgeStyles = (condition: boolean) => {
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
            <Badge 
-  className={getBadgeStyles(session.slots > 0)}
+  className="bg-[var(--faded)] text-[var(--text)]"
 >
   {session.slots}
 </Badge>
             </TableCell>
             <TableCell>
-              <Badge variant={session.status === "Active" ? "secondary" : "destructive"}>
-                {session.status}
-              </Badge>
+           <Badge className={getBadgeStyles(session.status === "Active")}>
+    {session.status}
+  </Badge>
             </TableCell>
           </>
         );
@@ -628,16 +622,19 @@ const getBadgeStyles = (condition: boolean) => {
             <TableCell>{session.topic}</TableCell>
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
-             <Badge 
-  className={getBadgeStyles(session.slots > 0)}
->
+    <Badge className="bg-[var(--faded)] text-[var(--text)]">
   {session.slots}
 </Badge>
             </TableCell>
             <TableCell>
-              <Badge variant={session.status === "Active" ? "secondary" : "destructive"}>
-                {session.status}
-              </Badge>
+             <Badge
+  className={session.status === "Active" 
+    ? "bg-[var(--green2)] text-[var(--green)]" 
+    : "bg-[var(--red2)] text-[var(--red)]"
+  }
+>
+  {session.status}
+</Badge>
             </TableCell>
           </>
         );
@@ -652,15 +649,17 @@ const getBadgeStyles = (condition: boolean) => {
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
           <Badge 
-  className={getBadgeStyles(session.slots > 0)}
+  className="bg-[var(--faded)] text-[var(--text)]"
 >
   {session.slots}
 </Badge>
             </TableCell>
             <TableCell>
-              <Badge variant={session.status === "Active" ? "secondary" : "destructive"}>
-                {session.status}
-              </Badge>
+            <Badge 
+  className={getBadgeStyles(session.status === "Active")}
+>
+  {session.status}
+</Badge>
             </TableCell>
           </>
         );
@@ -674,7 +673,7 @@ const getBadgeStyles = (condition: boolean) => {
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>{session.submitted_on}</TableCell>
             <TableCell>
-              <Badge variant="destructive">
+              <Badge className="bg-[var(--red2)] text-[var(--red)]">
                 {session.status}
               </Badge>
             </TableCell>
@@ -739,9 +738,10 @@ const getBadgeStyles = (condition: boolean) => {
         </Button>
       </div>
 
-      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+        <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
         <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
           <div className="flex items-center justify-between pl-0 p-4">
+            {/* Updated select all section */}
             <div className="flex items-center gap-2 border-none shadow-none">
               <Checkbox
                 id="select-all"
@@ -752,7 +752,7 @@ const getBadgeStyles = (condition: boolean) => {
                 Select All
               </label>
               {selectedSessions.length > 0 && (
-                <Badge variant="secondary" className="ml-2">
+                <Badge variant="border" className="ml-2 text-[var(--text)]">
                   {selectedSessions.length} selected
                 </Badge>
               )}
@@ -760,26 +760,52 @@ const getBadgeStyles = (condition: boolean) => {
 
             {selectedSessions.length > 0 && (
               <div className="flex gap-2 ml-2">
-                <Button variant="border" size="sm">
+                {/* Updated action buttons */}
+                <Button variant="border" size="sm" className="text-[var(--text)]">
+                  <Bell className="h-4 w-4" />
+                  Send Reminder
+                </Button>
+                <Button variant="border" size="sm" className="text-[var(--text)]">
                   <Check className="h-4 w-4" />
-                  Activate Selected
+                  Approve All
                 </Button>
-                <Button variant="border" size="sm">
-                  <Copy className="h-4 w-4" />
-                  Duplicate
-                </Button>
-                <Button variant="destructive" size="sm">
-                  <Trash className="h-4 w-4" />
-                  Delete
-                </Button>
-                <Button variant="border" size="sm">
-                  <FileDown className="h-4 w-4" />
-                  Export Result Data
+                <Button variant="delete" size="sm" className="text-[var(--text)]">
+                  <X className="h-4 w-4" />
+                  Block / Remove
                 </Button>
               </div>
             )}
           </div>
           <div className="flex justify-end items-center gap-4">
+            {/* Records per page dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="border"
+                  size="sm"
+                  className="flex items-center gap-2 text-low text-[var(--text)]"
+                >
+                  {recordsPerPage}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="text-[var(--text)] dark:bg-[var(--background)]">
+                {[5, 10, 25, 50, 100].map((size) => (
+                  <DropdownMenuItem
+                    key={size}
+                    onClick={() => {
+                      setRecordsPerPage(size);
+                      setCurrentPage(1);
+                    }}
+                    className="text-[var(--text)] focus:bg-[var(--faded)]"
+                  >
+                    {size}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
+            {/* Search bar */}
             <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
@@ -788,7 +814,7 @@ const getBadgeStyles = (condition: boolean) => {
               <Button
                 type="submit"
                 size="icon"
-                variant="default"
+                variant="standard"
                 className="rounded-none rounded-r-md bg-[var(--button)]"
                 aria-label="Search"
               >
@@ -829,37 +855,22 @@ const getBadgeStyles = (condition: boolean) => {
                   {renderTableCells(session)}
                   <TableCell>
                     <div className="flex items-center gap-2">
+                      {/* Updated action icons */}
                       <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-[var(--brand-color2)]"
+                        variant="noborder"
+                        size="sm"
+                        className="bg-white border-0 shadow-none"
                       >
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View</span>
                       </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-[var(--brand-color2)]"
-                      >
-                        <Edit className="h-4 w-4" />
-                        <span className="sr-only">Edit</span>
+                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                        <MessageCircle className="h-4 w-4" />
+                        <span className="sr-only">Chat</span>
                       </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-[var(--brand-color2)]"
-                      >
-                        <BadgeQuestionMark className="h-4 w-4" />
-                        <span className="sr-only">Question</span>
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-[var(--brand-color2)]"
-                      >
-                        <Newspaper className="h-4 w-4" />
-                        <span className="sr-only">Results</span>
+                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                        <Flag className="h-4 w-4" />
+                        <span className="sr-only">Flag</span>
                       </Button>
                     </div>
                   </TableCell>
@@ -871,41 +882,16 @@ const getBadgeStyles = (condition: boolean) => {
 
         <div className="flex items-center justify-between flex-wrap gap-2 p-4">
           <div className="flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center gap-2 text-[var(--text)]"
-                >
-                  {recordsPerPage}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="text-[var(--text)] bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
-                  <DropdownMenuItem
-                    key={size}
-                    onClick={() => {
-                      setRecordsPerPage(size);
-                      setCurrentPage(1);
-                    }}
-                    className="text-[var(--text)] focus:bg-[var(--faded)]"
-                  >
-                    {size}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <span className="text-[var(--text)]">
+            <span className="text-low text-[var(--text)]">
               Showing {indexOfFirstRecord + 1}-
               {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
               {sortedData.length} items
             </span>
           </div>
           <div className="flex items-center gap-2 ">
+            {/* Updated pagination */}
             <Button
-              variant="outline"
+              variant="border"
               size="icon"
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
@@ -915,7 +901,7 @@ const getBadgeStyles = (condition: boolean) => {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <Button
                 key={page}
-                variant={page === currentPage ? "default" : "outline"}
+                variant={page === currentPage ? "brand" : "border"}
                 size="sm"
                 className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"}`}
                 onClick={() => setCurrentPage(page)}
@@ -924,7 +910,7 @@ const getBadgeStyles = (condition: boolean) => {
               </Button>
             ))}
             <Button
-              variant="outline"
+              variant="border"
               size="icon"
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
