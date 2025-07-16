@@ -4061,89 +4061,661 @@ export const FeedbackTableData = [
   }
 ]
 export const instant_sessions = [
-    {
-      "coach": "Anjali Gupta",
-      "coach_type": "Mentor",
-      "segment": "UG",
-      "topic": "Exam Stress Tips",
-      "price": "₹500",
-      "code": "INST500",
-      "slots": 3,
-      "status": "Active",
-      "actions": ["Assign", "Edit", "Remove"]
-    },
-    {
-      "coach": "Rohit Sinha",
-      "coach_type": "Educator",
-      "segment": "Career Changer",
-      "topic": "Resume Walkthrough",
-      "price": "₹300",
-      "code": "RSM300",
-      "slots": 5,
-      "status": "Active",
-      "actions": ["Assign", "Edit", "Remove"]
-    }
-  ]
-export const introductory_sessions =[
-    {
-      "coach": "Seema Rao",
-      "coach_type": "Consultant",
-      "organisation": "Aimshala UG College",
-      "topic": "Career Mapping",
-      "price": "₹700",
-      "code": "CMAP700",
-      "slots": 2,
-      "status": "Active",
-      "actions": ["Assign", "Edit", "Disable"]
-    },
-    {
-      "coach": "Meera Kapoor",
-      "coach_type": "Mentor",
-      "organisation": "Bright Minds School",
-      "topic": "Stream Selection",
-      "price": "₹400",
-      "code": "STREAM400",
-      "slots": 4,
-      "status": "Pending Review",
-      "actions": ["Review", "Approve", "Reject"]
-    }
-  ]
-  export const b2b_sessions=[
-    {
-      "organisation": "SkillEdge Corp",
-      "coach": "Amit Tiwari",
-      "coach_type": "Educator",
-      "topic": "Leadership Essentials",
-      "price": "₹900",
-      "code": "LEAD900",
-      "slots": 6,
-      "status": "Active",
-      "actions": ["Assign", "Edit", "Disable"]
-    },
-    {
-      "organisation": "Startup Network",
-      "coach": "Ritu Jain",
-      "coach_type": "Consultant",
-      "topic": "Startup Mindset",
-      "price": "₹0",
-      "code": "FREEJOIN",
-      "slots": 0,
-      "status": "Full",
-      "actions": ["Edit", "Reschedule"]
-    }
-  ]
-  export const pending_approvals=[
-    {
-      "coach": "Neha Sharma",
-      "session_type": "Instant",
-      "topic": "Time Management Tips",
-      "price": "₹250",
-      "code": "TMT250",
-      "submitted_on": "17 May 2025",
-      "status": "Pending",
-      "actions": ["Review", "Approve", "Reject"]
-    }
-  ]
+  {
+    "coach": "Anjali Gupta",
+    "coach_type": "Mentor",
+    "segment": "UG",
+    "topic": "Exam Stress Tips",
+    "price": "₹500",
+    "code": "INST500",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Rohit Sinha",
+    "coach_type": "Educator",
+    "segment": "Career Changer",
+    "topic": "Resume Walkthrough",
+    "price": "₹300",
+    "code": "RSM300",
+    "slots": 5,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Sonal Verma",
+    "coach_type": "Mentor",
+    "segment": "PG",
+    "topic": "Thesis Planning",
+    "price": "₹450",
+    "code": "THS450",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Manav Singh",
+    "coach_type": "Educator",
+    "segment": "UG",
+    "topic": "Exam Strategies",
+    "price": "₹350",
+    "code": "EXM350",
+    "slots": 3,
+    "status": "Inactive",
+    "actions": ["Edit", "Remove"]
+  },
+  {
+    "coach": "Priya Nair",
+    "coach_type": "Coach",
+    "segment": "School",
+    "topic": "Focus Techniques",
+    "price": "₹200",
+    "code": "FOC200",
+    "slots": 6,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Karan Mehta",
+    "coach_type": "Mentor",
+    "segment": "Career Changer",
+    "topic": "Job Interview Skills",
+    "price": "₹600",
+    "code": "JOB600",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Neelam Yadav",
+    "coach_type": "Consultant",
+    "segment": "UG",
+    "topic": "Study Habits",
+    "price": "₹320",
+    "code": "STY320",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Rajiv Kapoor",
+    "coach_type": "Coach",
+    "segment": "School",
+    "topic": "Daily Planning",
+    "price": "₹180",
+    "code": "DLY180",
+    "slots": 5,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Deepa Joshi",
+    "coach_type": "Mentor",
+    "segment": "PG",
+    "topic": "Career Growth",
+    "price": "₹550",
+    "code": "CRG550",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Aditya Rana",
+    "coach_type": "Educator",
+    "segment": "UG",
+    "topic": "Time Blocking",
+    "price": "₹300",
+    "code": "BLK300",
+    "slots": 1,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Shruti Bansal",
+    "coach_type": "Coach",
+    "segment": "School",
+    "topic": "Memory Boost Tips",
+    "price": "₹250",
+    "code": "MEM250",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Vikas Sharma",
+    "coach_type": "Mentor",
+    "segment": "Career Changer",
+    "topic": "Cover Letter Tips",
+    "price": "₹270",
+    "code": "CLT270",
+    "slots": 2,
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Kavita Reddy",
+    "coach_type": "Educator",
+    "segment": "UG",
+    "topic": "Group Study Tactics",
+    "price": "₹380",
+    "code": "GST380",
+    "slots": 5,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Tarun Arora",
+    "coach_type": "Coach",
+    "segment": "PG",
+    "topic": "Study-Life Balance",
+    "price": "₹500",
+    "code": "SLB500",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  },
+  {
+    "coach": "Nikita Das",
+    "coach_type": "Mentor",
+    "segment": "School",
+    "topic": "Motivation Hacks",
+    "price": "₹220",
+    "code": "MHK220",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Remove"]
+  }
+];
+export const introductory_sessions = [
+  {
+    "coach": "Seema Rao",
+    "coach_type": "Consultant",
+    "organisation": "Aimshala UG College",
+    "topic": "Career Mapping",
+    "price": "₹700",
+    "code": "CMAP700",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Meera Kapoor",
+    "coach_type": "Mentor",
+    "organisation": "Bright Minds School",
+    "topic": "Stream Selection",
+    "price": "₹400",
+    "code": "STREAM400",
+    "slots": 4,
+    "status": "Pending Review",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Anupam Dey",
+    "coach_type": "Educator",
+    "organisation": "NextGen Academy",
+    "topic": "Goal Setting",
+    "price": "₹350",
+    "code": "GOAL350",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Farha Khan",
+    "coach_type": "Coach",
+    "organisation": "Aspire India School",
+    "topic": "Skill Exploration",
+    "price": "₹480",
+    "code": "SKL480",
+    "slots": 5,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Rishi Mehta",
+    "coach_type": "Consultant",
+    "organisation": "TalentBridge",
+    "topic": "Course Alignment",
+    "price": "₹390",
+    "code": "ALGN390",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Geetanjali Roy",
+    "coach_type": "Mentor",
+    "organisation": "SmartFuture UG",
+    "topic": "College Decision Help",
+    "price": "₹420",
+    "code": "CDH420",
+    "slots": 2,
+    "status": "Pending Review",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Ishaan Paul",
+    "coach_type": "Educator",
+    "organisation": "Edureka School",
+    "topic": "Interest Finder",
+    "price": "₹310",
+    "code": "INTF310",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Simran Kaur",
+    "coach_type": "Coach",
+    "organisation": "FutureGen Institute",
+    "topic": "Peer Comparison Insights",
+    "price": "₹250",
+    "code": "PCR250",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Naveen Rao",
+    "coach_type": "Consultant",
+    "organisation": "NewWave Education",
+    "topic": "UG vs Diploma",
+    "price": "₹500",
+    "code": "UGD500",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Sanya Dubey",
+    "coach_type": "Mentor",
+    "organisation": "Leap Scholars",
+    "topic": "Higher Studies Abroad",
+    "price": "₹650",
+    "code": "HSA650",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Arjun Sen",
+    "coach_type": "Coach",
+    "organisation": "BrightStart UG",
+    "topic": "Choosing Commerce/Science",
+    "price": "₹270",
+    "code": "CHCS270",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Pallavi Trivedi",
+    "coach_type": "Educator",
+    "organisation": "Vision School",
+    "topic": "Academic Direction",
+    "price": "₹300",
+    "code": "ACD300",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Jayant Ghosh",
+    "coach_type": "Consultant",
+    "organisation": "MentorCircle",
+    "topic": "Skill vs Degree",
+    "price": "₹390",
+    "code": "SKVD390",
+    "slots": 5,
+    "status": "Pending Review",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Tina Roy",
+    "coach_type": "Mentor",
+    "organisation": "Scholars India",
+    "topic": "Board Exam Strategy",
+    "price": "₹460",
+    "code": "BEX460",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "coach": "Yusuf Khan",
+    "coach_type": "Coach",
+    "organisation": "Excel Pathways",
+    "topic": "Scholarship Guidance",
+    "price": "₹390",
+    "code": "SCHG390",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  }
+];
+
+export const b2b_sessions = [
+  {
+    "organisation": "SkillEdge Corp",
+    "coach": "Amit Tiwari",
+    "coach_type": "Educator",
+    "topic": "Leadership Essentials",
+    "price": "₹900",
+    "code": "LEAD900",
+    "slots": 6,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "Startup Network",
+    "coach": "Ritu Jain",
+    "coach_type": "Consultant",
+    "topic": "Startup Mindset",
+    "price": "₹0",
+    "code": "FREEJOIN",
+    "slots": 0,
+    "status": "Full",
+    "actions": ["Edit", "Reschedule"]
+  },
+  {
+    "organisation": "TechBridge India",
+    "coach": "Nikhil Verma",
+    "coach_type": "Mentor",
+    "topic": "Agile Fundamentals",
+    "price": "₹800",
+    "code": "AGF800",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "FinCorp Solutions",
+    "coach": "Pooja Khanna",
+    "coach_type": "Educator",
+    "topic": "Financial Planning Basics",
+    "price": "₹950",
+    "code": "FPB950",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "HealthFirst Group",
+    "coach": "Dr. Rahul Desai",
+    "coach_type": "Consultant",
+    "topic": "Workplace Wellness",
+    "price": "₹720",
+    "code": "WELL720",
+    "slots": 5,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "RetailMart Inc.",
+    "coach": "Sneha Rao",
+    "coach_type": "Coach",
+    "topic": "Sales Mastery",
+    "price": "₹850",
+    "code": "SALE850",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "EduNova Global",
+    "coach": "Arjun Patel",
+    "coach_type": "Mentor",
+    "topic": "Corporate Training Design",
+    "price": "₹880",
+    "code": "CTD880",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "GreenTech Pvt Ltd",
+    "coach": "Megha Sinha",
+    "coach_type": "Consultant",
+    "topic": "Sustainable Practices",
+    "price": "₹600",
+    "code": "SUS600",
+    "slots": 5,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "BankNet Academy",
+    "coach": "Vivek Menon",
+    "coach_type": "Educator",
+    "topic": "Banking Compliance",
+    "price": "₹1050",
+    "code": "BANK1050",
+    "slots": 6,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "MedicoPro Labs",
+    "coach": "Dr. Shweta Iyer",
+    "coach_type": "Mentor",
+    "topic": "Healthcare Team Management",
+    "price": "₹950",
+    "code": "HTM950",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "CreativeGurus",
+    "coach": "Raj Malhotra",
+    "coach_type": "Coach",
+    "topic": "Creative Leadership",
+    "price": "₹780",
+    "code": "CLDR780",
+    "slots": 2,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "LegalBridge LLP",
+    "coach": "Adv. Smita Rani",
+    "coach_type": "Consultant",
+    "topic": "Corporate Law Essentials",
+    "price": "₹1100",
+    "code": "LAW1100",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "NextGen Logistics",
+    "coach": "Harshita Dubey",
+    "coach_type": "Educator",
+    "topic": "Supply Chain Basics",
+    "price": "₹680",
+    "code": "SCB680",
+    "slots": 4,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "FutureHub Co.",
+    "coach": "Abhishek Jain",
+    "coach_type": "Mentor",
+    "topic": "Innovation in Business",
+    "price": "₹990",
+    "code": "INNOV990",
+    "slots": 5,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  },
+  {
+    "organisation": "Infinity Labs",
+    "coach": "Shraddha Kapoor",
+    "coach_type": "Coach",
+    "topic": "Team Motivation Tactics",
+    "price": "₹760",
+    "code": "TMT760",
+    "slots": 3,
+    "status": "Active",
+    "actions": ["Assign", "Edit", "Disable"]
+  }
+];
+
+export const pending_approvals = [
+  {
+    "coach": "Neha Sharma",
+    "session_type": "Instant",
+    "topic": "Time Management Tips",
+    "price": "₹250",
+    "code": "TMT250",
+    "submitted_on": "17 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Aditya Rao",
+    "session_type": "Introductory",
+    "topic": "Career Pivoting",
+    "price": "₹300",
+    "code": "CPIV300",
+    "submitted_on": "10 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Pallavi Joshi",
+    "session_type": "Instant",
+    "topic": "Interview Hacks",
+    "price": "₹450",
+    "code": "INTVH450",
+    "submitted_on": "12 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Raghav Bansal",
+    "session_type": "B2B",
+    "topic": "Work Culture Fit",
+    "price": "₹600",
+    "code": "WCF600",
+    "submitted_on": "18 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Meena Iyer",
+    "session_type": "Introductory",
+    "topic": "Stream Choice Guidance",
+    "price": "₹350",
+    "code": "SCG350",
+    "submitted_on": "14 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Sourabh Taneja",
+    "session_type": "Instant",
+    "topic": "Goal Clarity",
+    "price": "₹280",
+    "code": "GLCL280",
+    "submitted_on": "16 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Farida Ansari",
+    "session_type": "Introductory",
+    "topic": "Finding Your Passion",
+    "price": "₹400",
+    "code": "FYP400",
+    "submitted_on": "19 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Sanjay Grover",
+    "session_type": "B2B",
+    "topic": "Team Communication",
+    "price": "₹700",
+    "code": "TCOM700",
+    "submitted_on": "13 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Divya Kapoor",
+    "session_type": "Instant",
+    "topic": "Concentration Techniques",
+    "price": "₹200",
+    "code": "CTECH200",
+    "submitted_on": "15 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Nitin Malhotra",
+    "session_type": "Introductory",
+    "topic": "Overcoming Self-Doubt",
+    "price": "₹390",
+    "code": "OSD390",
+    "submitted_on": "20 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Anita Deshmukh",
+    "session_type": "B2B",
+    "topic": "Inclusive Leadership",
+    "price": "₹980",
+    "code": "INCL980",
+    "submitted_on": "22 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Kunal Saxena",
+    "session_type": "Instant",
+    "topic": "Effective Learning Methods",
+    "price": "₹310",
+    "code": "ELM310",
+    "submitted_on": "23 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Priya Kulkarni",
+    "session_type": "Introductory",
+    "topic": "Parent Communication",
+    "price": "₹460",
+    "code": "PRNT460",
+    "submitted_on": "25 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Yash Oberoi",
+    "session_type": "B2B",
+    "topic": "Agile Collaboration",
+    "price": "₹810",
+    "code": "AGCL810",
+    "submitted_on": "26 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  },
+  {
+    "coach": "Tanvi Gupta",
+    "session_type": "Instant",
+    "topic": "Exam Preparation Tips",
+    "price": "₹275",
+    "code": "EXPT275",
+    "submitted_on": "27 May 2025",
+    "status": "Pending",
+    "actions": ["Review", "Approve", "Reject"]
+  }
+];
+
 
 export const ProblemTableData = [
   {

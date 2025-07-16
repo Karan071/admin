@@ -68,7 +68,7 @@ export default function Organisation() {
 
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Sessions Pool </h1>
       <StatCard />
       <Buttonbar />
