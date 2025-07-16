@@ -5291,3 +5291,410 @@ export const FollowupTable = [
     "actions": ["View", "Done", "Note"]
   }
 ]
+
+export const CoachReview = [
+
+  {
+    "id": 1,
+    "name": "Akanksha Verma",
+    "submittedOn": "18 May 2025",
+    "email": "Akanksha@gmail.com",
+    "phone": "+919999999999",
+    "speciality": "Psychology",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 2,
+    "name": "Rohan Mehta",
+    "submittedOn": "20 May 2025",
+    "email": "rohan.mehta@example.com",
+    "phone": "+918888888888",
+    "speciality": "Career Coaching",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 3,
+    "name": "Sneha Kapoor",
+    "submittedOn": "22 May 2025",
+    "email": "sneha.kapoor@example.com",
+    "phone": "+917777777777",
+    "speciality": "Nutrition",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 4,
+    "name": "Arjun Nair",
+    "submittedOn": "25 May 2025",
+    "email": "arjun.nair@example.com",
+    "phone": "+916666666666",
+    "speciality": "Fitness",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 5,
+    "name": "Priya Sharma",
+    "submittedOn": "28 May 2025",
+    "email": "priya.sharma@example.com",
+    "phone": "+915555555555",
+    "speciality": "Mindfulness",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 6,
+    "name": "Vikram Joshi",
+    "submittedOn": "30 May 2025",
+    "email": "vikram.joshi@example.com",
+    "phone": "+914444444444",
+    "speciality": "Motivational Speaking",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 7,
+    "name": "Neha Bhatia",
+    "submittedOn": "01 June 2025",
+    "email": "neha.bhatia@example.com",
+    "phone": "+913333333333",
+    "speciality": "Life Coaching",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 8,
+    "name": "Rahul Das",
+    "submittedOn": "03 June 2025",
+    "email": "rahul.das@example.com",
+    "phone": "+912222222222",
+    "speciality": "Parenting",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 9,
+    "name": "Isha Gupta",
+    "submittedOn": "06 June 2025",
+    "email": "isha.gupta@example.com",
+    "phone": "+911111111111",
+    "speciality": "Emotional Intelligence",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 10,
+    "name": "Karan Singh",
+    "submittedOn": "08 June 2025",
+    "email": "karan.singh@example.com",
+    "phone": "+919898989898",
+    "speciality": "Finance Coaching",
+    "Profile": "View Profile",
+    "actions": ["Approve", "Reject"]
+  }
+]
+
+
+export const OrgReview = [
+  {
+    "id": 1,
+    "organization": "Bright Future School",
+    "submittedOn": "18 May 2025",
+    "location": "Pune",
+    "contact": "+919999999999",
+    "Type": "School",
+    "Docs": "Verify",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 2,
+    "organization": "Mindset Academy",
+    "submittedOn": "20 May 2025",
+    "location": "Mumbai",
+    "contact": "+918888888888",
+    "Type": "Institute",
+    "Docs": "Check Files",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 3,
+    "organization": "Green Valley High",
+    "submittedOn": "22 May 2025",
+    "location": "Delhi",
+    "contact": "+917777777777",
+    "Type": "School",
+    "Docs": "Verify",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 4,
+    "organization": "TechLead Institute",
+    "submittedOn": "25 May 2025",
+    "location": "Bangalore",
+    "contact": "+916666666666",
+    "Type": "College",
+    "Docs": "Check Files",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 5,
+    "organization": "Success Path School",
+    "submittedOn": "28 May 2025",
+    "location": "Hyderabad",
+    "contact": "+915555555555",
+    "Type": "School",
+    "Docs": "Verify",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 6,
+    "organization": "Future Vision Academy",
+    "submittedOn": "30 May 2025",
+    "location": "Ahmedabad",
+    "contact": "+914444444444",
+    "Type": "Institute",
+    "Docs": "Check Files",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 7,
+    "organization": "Inspire Learning Hub",
+    "submittedOn": "01 June 2025",
+    "location": "Chennai",
+    "contact": "+913333333333",
+    "Type": "College",
+    "Docs": "Verify",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 8,
+    "organization": "Dream Scholars Institute",
+    "submittedOn": "03 June 2025",
+    "location": "Kolkata",
+    "contact": "+912222222222",
+    "Type": "Institute",
+    "Docs": "Check Files",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 9,
+    "organization": "Bright Minds School",
+    "submittedOn": "06 June 2025",
+    "location": "Jaipur",
+    "contact": "+911111111111",
+    "Type": "School",
+    "Docs": "Verify",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 10,
+    "organization": "NextGen Learning Center",
+    "submittedOn": "08 June 2025",
+    "location": "Lucknow",
+    "contact": "+919898989898",
+    "Type": "Institute",
+    "Docs": "Check Files",
+    "actions": ["Approve", "Reject"]
+  }
+]
+
+
+export const GoogleMapReview = [
+  {
+    "id": 1,
+    "Listing": "Bright Future School",
+    "submittedOn": "18 May 2025",
+    "Address": "Pune, MH",
+    "LinkedOrg": "Bright Future",
+    "MapPreview": "View Map",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 2,
+    "Listing": "Mindset Academy",
+    "submittedOn": "20 May 2025",
+    "Address": "Mumbai, MH",
+    "LinkedOrg": "Mindset Org",
+    "MapPreview": "Map Link",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 3,
+    "Listing": "Green Valley High",
+    "submittedOn": "22 May 2025",
+    "Address": "Delhi, DL",
+    "LinkedOrg": "Green Valley Foundation",
+    "MapPreview": "View Map",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 4,
+    "Listing": "TechLead College",
+    "submittedOn": "25 May 2025",
+    "Address": "Bangalore, KA",
+    "LinkedOrg": "TechLead Education",
+    "MapPreview": "Map Link",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 5,
+    "Listing": "Success Path School",
+    "submittedOn": "28 May 2025",
+    "Address": "Hyderabad, TS",
+    "LinkedOrg": "Success Path",
+    "MapPreview": "View Map",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 6,
+    "Listing": "Visionary Learning",
+    "submittedOn": "30 May 2025",
+    "Address": "Ahmedabad, GJ",
+    "LinkedOrg": "Visionary Org",
+    "MapPreview": "Map Link",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 7,
+    "Listing": "Inspire Junior College",
+    "submittedOn": "01 June 2025",
+    "Address": "Chennai, TN",
+    "LinkedOrg": "Inspire Foundation",
+    "MapPreview": "View Map",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 8,
+    "Listing": "Dream Scholars Institute",
+    "submittedOn": "03 June 2025",
+    "Address": "Kolkata, WB",
+    "LinkedOrg": "Dream Scholars Org",
+    "MapPreview": "Map Link",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 9,
+    "Listing": "Bright Minds School",
+    "submittedOn": "06 June 2025",
+    "Address": "Jaipur, RJ",
+    "LinkedOrg": "Bright Minds Trust",
+    "MapPreview": "View Map",
+    "actions": ["Approve", "Reject"]
+  },
+  {
+    "id": 10,
+    "Listing": "NextGen Learning Center",
+    "submittedOn": "08 June 2025",
+    "Address": "Lucknow, UP",
+    "LinkedOrg": "NextGen Foundation",
+    "MapPreview": "Map Link",
+    "actions": ["Approve", "Reject"]
+  }
+]
+
+
+export const FormsDataReview = [
+  {
+    "id": 1,
+    "User": "Aarav Mehta",
+    "Type": "Organisation",
+    "submittedOn": "18 May 2025",
+    "Address": "Varanasi",
+    "Name": "Shining Star Academy",
+    "Entry": "View",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 2,
+    "User": "Meera Iyer",
+    "Type": "Individual",
+    "submittedOn": "20 May 2025",
+    "Address": "Bhopal",
+    "Name": "Meera Coaching",
+    "Entry": "Details",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 3,
+    "User": "Rohan Kapoor",
+    "Type": "Organisation",
+    "submittedOn": "22 May 2025",
+    "Address": "Surat",
+    "Name": "Bright Minds Institute",
+    "Entry": "View",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 4,
+    "User": "Simran Kaur",
+    "Type": "Organisation",
+    "submittedOn": "24 May 2025",
+    "Address": "Chandigarh",
+    "Name": "NorthLight Academy",
+    "Entry": "Details",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 5,
+    "User": "Kunal Verma",
+    "Type": "Individual",
+    "submittedOn": "26 May 2025",
+    "Address": "Agra",
+    "Name": "Verma Coaching Classes",
+    "Entry": "View",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 6,
+    "User": "Aisha Khan",
+    "Type": "Organisation",
+    "submittedOn": "28 May 2025",
+    "Address": "Lucknow",
+    "Name": "Rising Edge School",
+    "Entry": "Details",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 7,
+    "User": "Dev Joshi",
+    "Type": "Organisation",
+    "submittedOn": "30 May 2025",
+    "Address": "Indore",
+    "Name": "Excel Point Academy",
+    "Entry": "View",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 8,
+    "User": "Pooja Rao",
+    "Type": "Individual",
+    "submittedOn": "01 June 2025",
+    "Address": "Patna",
+    "Name": "Smart Scholars Coaching",
+    "Entry": "Details",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 9,
+    "User": "Aniket Shah",
+    "Type": "Organisation",
+    "submittedOn": "03 June 2025",
+    "Address": "Nashik",
+    "Name": "Infinity Learning",
+    "Entry": "View",
+    "actions": ["Add to list", "Reject"]
+  },
+  {
+    "id": 10,
+    "User": "Sanya Malhotra",
+    "Type": "Organisation",
+    "submittedOn": "05 June 2025",
+    "Address": "Raipur",
+    "Name": "Future Vision School",
+    "Entry": "Details",
+    "actions": ["Add to list", "Reject"]
+  }
+]
+
