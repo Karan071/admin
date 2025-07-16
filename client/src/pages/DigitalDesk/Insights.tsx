@@ -276,7 +276,7 @@ export function Insights() {
     console.log("Filters reset");
   };
 
-  // Get current data based on active tab
+
   const getCurrentData = (): ContentItem[] => {
     switch (activeTab) {
       case "published":
@@ -401,7 +401,7 @@ export function Insights() {
         )}
 
         {/* Tabs */}
-        <div className="flex justify-between items-center mb-6 mt-6">
+        <div className="flex justify-between items-center mb-0 mt-6">
           <div className="flex">
             {tabs.map((tab) => (
               <Button

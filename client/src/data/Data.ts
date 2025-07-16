@@ -4060,7 +4060,6 @@ export const FeedbackTableData = [
     "actions": ["View", "Archive"]
   }
 ]
-<<<<<<< HEAD
 export const instant_sessions = [
     {
       "coach": "Anjali Gupta",
@@ -4145,7 +4144,6 @@ export const introductory_sessions =[
       "actions": ["Review", "Approve", "Reject"]
     }
   ]
-=======
 
 export const ProblemTableData = [
   {
@@ -4468,4 +4466,3 @@ export const BugsTableData = [
     "actions": ["Assign", "Debug"]
   }
 ]
->>>>>>> c2c12b54becd49440834ef518460584102e10d32
