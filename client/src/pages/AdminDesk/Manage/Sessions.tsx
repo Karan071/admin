@@ -887,11 +887,7 @@ function SessionTabs() {
 
         <div className="flex items-center justify-between flex-wrap gap-2 p-4">
           <div className="flex items-center gap-4">
-            <span className="text-low text-[var(--text)]">
-              Showing {indexOfFirstRecord + 1}-
-              {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
-              {sortedData.length} items
-            </span>
+          
           </div>
           <div className="flex items-center gap-2 ">
             <Button

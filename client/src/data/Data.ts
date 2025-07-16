@@ -6335,3 +6335,88 @@ export const AccountTable = [
     "actions": ["View", "Done", "Note"]
   }
 ]
+export const NewTable=[
+  {
+    "Logo": "![Logo]",
+    "Title": "Aimshala Recognized by Economic Times",
+    "Source": "Economic Times",
+    "Link": "Read More",
+    "Clicks": 1124,
+    "Date": "16 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Logo": "![Logo]",
+    "Title": "Career Innovation Spotlight on NDTV",
+    "Source": "NDTV",
+    "Link": "Read More",
+    "Clicks": 879,
+    "Date": "13 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Logo": "![Logo]",
+    "Title": "How Aimshala is Changing Education",
+    "Source": "Hindustan Times",
+    "Link": "Read More",
+    "Clicks": 704,
+    "Date": "09 May 2025",
+    "Status": "Pending",
+    "Actions": ["Review", "Publish"]
+  }
+]
+
+export const HelpTable=[
+  {
+    "Title": "How to Book a Session",
+    "Category": "Sessions",
+    "Tags": ["Booking", "Call"],
+    "For": "Students",
+    "Author": "Team Aimshala",
+    "Last Updated": "16 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Title": "Accessing Your Assessment Results",
+    "Category": "Assessments",
+    "Tags": ["Results", "Score"],
+    "For": "Students",
+    "Author": "Riya Malhotra",
+    "Last Updated": "15 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Title": "Resetting Your Password",
+    "Category": "Technical Support",
+    "Tags": ["Login", "Account"],
+    "For": "All Users",
+    "Author": "Rahul Sen",
+    "Last Updated": "13 May 2025",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "Title": "Joining a Live Class",
+    "Category": "Sessions",
+    "Tags": ["Live", "Classroom"],
+    "For": "Students",
+    "Author": "Priya Desai",
+    "Last Updated": "11 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Title": "Updating Your Profile Information",
+    "Category": "Technical Support",
+    "Tags": ["Profile", "Account"],
+    "For": "All Users",
+    "Author": "Team Aimshala",
+    "Last Updated": "10 May 2025",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  }
+]
