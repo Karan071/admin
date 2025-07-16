@@ -4382,3 +4382,256 @@ export const BugsTableData = [
     "actions": ["Assign", "Debug"]
   }
 ]
+
+export const FollowupTable = [
+  {
+    "id": 1,
+    "name": "Ritika Sharma",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Onboarding Follow-up",
+    "nextFollowup": "12 July",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 2,
+    "name": "Greenfield High",
+    "type": "Partner",
+    "leadType": "Upsell",
+    "concern": "Demo Scheduling",
+    "nextFollowup": "13 July",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 3,
+    "name": "Vivek Mehta",
+    "type": "Explorer",
+    "leadType": "Upsell",
+    "concern": "Missed Session",
+    "nextFollowup": "11 July",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 4,
+    "name": "Anjali Verma",
+    "type": "Coach",
+    "leadType": "Guide",
+    "concern": "Feedback",
+    "nextFollowup": "15 July",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 5,
+    "name": "Future Learners Org",
+    "type": "Org",
+    "leadType": "Upsell",
+    "concern": "Onboarding",
+    "nextFollowup": "16 July",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 6,
+    "name": "Rajeev Kapoor",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Retention",
+    "nextFollowup": "18 July",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 7,
+    "name": "Athena School",
+    "type": "Partner",
+    "leadType": "Upsell",
+    "concern": "Setup",
+    "nextFollowup": "20 July",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 8,
+    "name": "Simran Kaur",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Assessments",
+    "nextFollowup": "21 July",
+    "stage": "Step 3/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 9,
+    "name": "Bright Minds Org",
+    "type": "Org",
+    "leadType": "Guide",
+    "concern": "Feedback",
+    "nextFollowup": "22 July",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 10,
+    "name": "Aman Tiwari",
+    "type": "Coach",
+    "leadType": "Guide",
+    "concern": "Session",
+    "nextFollowup": "23 July",
+    "stage": "Step 3/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 11,
+    "name": "Inspire Edu",
+    "type": "Partner",
+    "leadType": "Upsell",
+    "concern": "Visitor",
+    "nextFollowup": "25 July",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 12,
+    "name": "Reena Gupta",
+    "type": "Explorer",
+    "leadType": "Upsell",
+    "concern": "Onboarding Follow-up",
+    "nextFollowup": "26 July",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 13,
+    "name": "Harsh Malik",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Abandoned Cart",
+    "nextFollowup": "27 July",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 14,
+    "name": "Eduforce Academy",
+    "type": "Org",
+    "leadType": "Upsell",
+    "concern": "Retention",
+    "nextFollowup": "28 July",
+    "stage": "Step 3/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 15,
+    "name": "Nidhi Chauhan",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Session",
+    "nextFollowup": "29 July",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 16,
+    "name": "School Connect",
+    "type": "Partner",
+    "leadType": "Upsell",
+    "concern": "Demo Scheduling",
+    "nextFollowup": "30 July",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 17,
+    "name": "Ishaan Agarwal",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Stream Change",
+    "nextFollowup": "31 July",
+    "stage": "Step 3/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 18,
+    "name": "Excel Minds",
+    "type": "Org",
+    "leadType": "Guide",
+    "concern": "Onboarding",
+    "nextFollowup": "1 Aug",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 19,
+    "name": "Tanya Sen",
+    "type": "Explorer",
+    "leadType": "Upsell",
+    "concern": "Missed Session",
+    "nextFollowup": "2 Aug",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 20,
+    "name": "Manav Chopra",
+    "type": "Coach",
+    "leadType": "Guide",
+    "concern": "Feedback",
+    "nextFollowup": "3 Aug",
+    "stage": "Step 3/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 21,
+    "name": "Global Achievers",
+    "type": "Org",
+    "leadType": "Upsell",
+    "concern": "Setup",
+    "nextFollowup": "4 Aug",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 22,
+    "name": "Karan Bhatt",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Retention",
+    "nextFollowup": "5 Aug",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 23,
+    "name": "Sparkle Academy",
+    "type": "Partner",
+    "leadType": "Upsell",
+    "concern": "Demo Scheduling",
+    "nextFollowup": "6 Aug",
+    "stage": "Step 1/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 24,
+    "name": "Priya Soni",
+    "type": "Explorer",
+    "leadType": "Guide",
+    "concern": "Onboarding Follow-up",
+    "nextFollowup": "7 Aug",
+    "stage": "Step 2/3",
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 25,
+    "name": "EduGrow Solutions",
+    "type": "Org",
+    "leadType": "Upsell",
+    "concern": "Feedback",
+    "nextFollowup": "8 Aug",
+    "stage": "Step 3/3",
+    "actions": ["View", "Done", "Note"]
+  }
+]

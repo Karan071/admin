@@ -28,6 +28,7 @@ import {
   Handshake,
   MapPin,
   Bug,
+  CircleUser
 } from "lucide-react";
 
 export const SidebarData = {
@@ -157,6 +158,11 @@ export const SidebarData = {
           icon: Handshake,
         },
         {
+          title: "My Account",
+          url: "/dashboard/relation/account",
+          icon: CircleUser,
+        },
+        {
           title: "Leaderboard",
           url: "/dashboard/relation/leaderboard",
           icon: Search,
@@ -180,12 +186,12 @@ export const SidebarData = {
           title: "Leads",
           url: "#",
           icon: TrendingUp,
-          items: [
-            { title: "Active Users", url: "/dashboard/relation/active-users", icon: Users },
-            { title: "Explorers", url: "/dashboard/relation/explorers", icon: Users },
-            { title: "Coaches", url: "/dashboard/relation/coaches", icon: Users },
-            { title: "Partners", url: "/dashboard/relation/partners", icon: Handshake },
-          ],
+          // items: [
+          //   { title: "Active Users", url: "/dashboard/relation/active-users", icon: Users },
+          //   { title: "Explorers", url: "/dashboard/relation/explorers", icon: Users },
+          //   { title: "Coaches", url: "/dashboard/relation/coaches", icon: Users },
+          //   { title: "Partners", url: "/dashboard/relation/partners", icon: Handshake },
+          //],
         },
         {
           title: "Follow Up",

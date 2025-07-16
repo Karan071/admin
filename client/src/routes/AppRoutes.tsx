@@ -14,8 +14,9 @@ import Courses from "@/pages/AdminDesk/Manage/Courses";
 import AccessCodes from "@/pages/AdminDesk/Manage/Access";
 import DeskUsers from "@/pages/AdminDesk/Manage/Users";
 
-// Relation Desk Components
+// Relation Desk
 import { Relation as Relations } from "@/pages/RelationDesk/Relation";
+import { MyAccounts as RelationAccount } from "@/pages/RelationDesk/MyAccount";
 import { SearchOrgs as RelationSearchOrgs } from "@/pages/RelationDesk/SearchOrg";
 import { Activeusers as RelationActiveusers } from "@/pages/RelationDesk/ActiveUsers";
 import { Explorers as RelationExplorer } from "@/pages/RelationDesk/Explorers";
@@ -29,7 +30,7 @@ import { Reviews as RelationReviews } from "@/pages/RelationDesk/Reviews";
 import { Followup as RelationFollowup } from "@/pages/RelationDesk/Followups";
 import { Leaderboard as RelationLeaderboard } from "@/pages/RelationDesk/Leaderboard";
 
-// Digital Desk Components
+// Digital Desk \
 import { Insights as DigitalInsights } from "@/pages/DigitalDesk/Insights";
 import { VideoLibraries as DigitalVideoLibraries } from "@/pages/DigitalDesk/VideoLibrary";
 import { News as DigitalNews } from "@/pages/DigitalDesk/News";
@@ -39,14 +40,14 @@ import { Help as DigitalHelp } from "@/pages/DigitalDesk/Help";
 import { Faqs as DigitalFaqs } from "@/pages/DigitalDesk/Faqs";
 import { Teams as DigitalTeam } from "@/pages/DigitalDesk/Teams";
 
-// Finance Desk Components
+// Finance Desk 
 import { Finance as FinanceDesk } from "@/pages/FinanceDesk/Finance";
 import { Payments as FinancePayments } from "@/pages/FinanceDesk/Payments";
 import { Payout as FinancePayout } from "@/pages/FinanceDesk/Payout";
 import { PL as FinancePL } from "@/pages/FinanceDesk/PL";
 import { Reports as FinanceReports } from "@/pages/FinanceDesk/Reports";
 
-// Approval Desk Components
+// Approval Desk 
 import { Approvals as ApprovalDesk } from "@/pages/ApprovalDesk/Approval";
 import { Forms as ApprovalForms } from "@/pages/ApprovalDesk/Forms";
 import { GoogleMap as ApprovalGoogleMaps } from "@/pages/ApprovalDesk/Googlemap";
@@ -73,11 +74,12 @@ export default function AppRoutes() {
       {/* Relation Desk Routes */}
       <Route path="relation/dashboard" element={<Relations />} />
       <Route path="relation/followups" element={<RelationFollowup />} />
-      <Route path="relation/user-org-search" element={<RelationSearchOrgs />} />
-      <Route path="relation/active-users" element={<RelationActiveusers />} />
-      <Route path="relation/explorers" element={<RelationExplorer />} />
-      <Route path="relation/coaches" element={<RelationCoach />} />
-      <Route path="relation/partners" element={<RelationPartner />} />
+      <Route path="relation/account" element={<RelationAccount />} />
+      {/* <Route path="relation/user-org-search" element={<RelationSearchOrgs />} /> */}
+      {/* <Route path="relation/active-users" element={<RelationActiveusers />} /> */}
+      {/* <Route path="relation/explorers" element={<RelationExplorer />} /> */}
+      {/* <Route path="relation/coaches" element={<RelationCoach />} /> */}
+      {/* <Route path="relation/partners" element={<RelationPartner />} /> */}
       <Route path="relation/problems" element={<RelationProblem />} />
       <Route path="relation/bugs" element={<RelationBug />} />
       <Route path="relation/abuses" element={<RelationAbuses />} />
@@ -110,7 +112,7 @@ export default function AppRoutes() {
       <Route path="approval/profile-org" element={<ApprovalProfileOrg />} />
 
       {/* Backward compatibility routes - redirect old paths to new structure */}
-      <Route path="coaches" element={<Coaches />} />
+      {/* <Route path="coaches" element={<Coaches />} />
       <Route path="explorers" element={<Explorers />} />
       <Route path="organisations" element={<Organisations />} />
       <Route path="activities" element={<Activities />} />
@@ -124,9 +126,6 @@ export default function AppRoutes() {
       <Route path="users" element={<DeskUsers />} />
       <Route path="relation" element={<Relations />} />
       <Route path="followups" element={<RelationFollowup />} />
-      <Route path="user-org-search" element={<RelationSearchOrgs />} />
-      <Route path="active-users" element={<RelationActiveusers />} />
-      <Route path="partners" element={<RelationPartner />} />
       <Route path="problems" element={<RelationProblem />} />
       <Route path="bugs" element={<RelationBug />} />
       <Route path="abuses" element={<RelationAbuses />} />
@@ -150,7 +149,10 @@ export default function AppRoutes() {
       <Route path="forms" element={<ApprovalForms />} />
       <Route path="google-map" element={<ApprovalGoogleMaps />} />
       <Route path="profile-coach" element={<ApprovalProfileCoach />} />
-      <Route path="profile-org" element={<ApprovalProfileOrg />} />
+      <Route path="profile-org" element={<ApprovalProfileOrg />} /> */}
+      {/* <Route path="user-org-search" element={<RelationSearchOrgs />} /> */}
+      {/* <Route path="active-users" element={<RelationActiveusers />} /> */}
+      {/* <Route path="partners" element={<RelationPartner />} /> */}
     </Routes>
   );
 }
