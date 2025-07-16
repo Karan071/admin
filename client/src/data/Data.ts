@@ -5038,7 +5038,6 @@ export const BugsTableData = [
     "actions": ["Assign", "Debug"]
   }
 ]
-<<<<<<< HEAD
 export const Upcoming =[
       {
         "user": "Aarav Mehta",
@@ -5522,7 +5521,6 @@ export const Completed=[
         "actions": ["Approve Refund"]
       }
     ]
-=======
 
 export const FollowupTable = [
   {
@@ -6337,4 +6335,3 @@ export const AccountTable = [
     "actions": ["View", "Done", "Note"]
   }
 ]
->>>>>>> cf01712a1e2269c3e3491f2ed6105038f419292b

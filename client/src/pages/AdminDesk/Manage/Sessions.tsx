@@ -429,15 +429,7 @@ function SessionTabs() {
     setSortConfig({ key, direction });
   };
 
-  const toggleSelectAll = () => {
-    if (selectedSessions.length === currentRecords.length) {
-      setSelectedSessions([]);
-    } else {
-      setSelectedSessions(currentRecords.map(session => 
-        `${session.user}-${session.coach}-${session.dateTime}`
-      ));
-    }
-  };
+ 
 
   const toggleSelectSession = (sessionId: string) => {
     setSelectedSessions(
@@ -667,9 +659,9 @@ function SessionTabs() {
               </Badge>
             </TableCell>
             <TableCell>
-              <Badge className="bg-[var(--green2)] text-[var(--green)]">
+             
                 {session.recording}
-              </Badge>
+             
             </TableCell>
           </>
         );
