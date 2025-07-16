@@ -68,13 +68,13 @@ export default function LocationDropdown() {
       </Button>
 
       {open && (
-        <div className="absolute z-50 mt-2 w-full bg-white border rounded-md shadow-md text-[var(--text)]">
+        <div className="absolute z-50 mt-2 w-full bg-[var(--background)] border rounded-md text-[var(--text)]">
           <div className="p-2">
             <input
               placeholder="Search city/state"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full px-3 py-2 rounded border text-[var(--text)]"
+              className="w-full px-3 py-2 rounded border border-[var(--text)] text-[var(--text)]"
             />
           </div>
           <div className="max-h-60 overflow-auto">
@@ -87,7 +87,7 @@ export default function LocationDropdown() {
                     setOpen(false);
                     setQuery("");
                   }}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-[var(--text)]"
+                  className="px-4 py-2 hover:bg-[var(--faded)] cursor-pointer text-sm text-[var(--text)]"
                 >
                   {loc}
                 </div>
