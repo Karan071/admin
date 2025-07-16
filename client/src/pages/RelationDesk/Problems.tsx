@@ -168,6 +168,7 @@ function ProblemTable() {
 
   return (
     <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto mt-6">
+              <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full"></div>
       {/* Table controls and header */}
       <div className="flex items-center justify-between border-b p-4">
         <div className="flex justify-end items-center gap-4">

@@ -13,7 +13,7 @@ import { orgTableData } from "@/data/Data";
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useEffect } from "react";
-//import { AnimatePresence, motion } from "framer-motion";
+
 import photo from "@/assets/asset.jpg"
 import RadioButton from "@/components/ui/Radiobutton";
 import DatePick from "@/components/ui/DatePicker"
@@ -161,7 +161,7 @@ function OrgFilter({ onClose }: OrgFilterProps) {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
-                      ? "bg-[var(--brand-color3)] text-[var(--brand-color)] border-[var(--brand-color)]"
+                      ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
                       : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
                     }`}
                 >
