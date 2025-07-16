@@ -4060,6 +4060,7 @@ export const FeedbackTableData = [
     "actions": ["View", "Archive"]
   }
 ]
+<<<<<<< HEAD
 export const instant_sessions = [
     {
       "coach": "Anjali Gupta",
@@ -4144,3 +4145,327 @@ export const introductory_sessions =[
       "actions": ["Review", "Approve", "Reject"]
     }
   ]
+=======
+
+export const ProblemTableData = [
+  {
+    "id": 1,
+    "user": "Kavya Sharma",
+    "submittedOn": "18 May 2025",
+    "issueType": "Profile",
+    "description": "Unable to update mobile number",
+    "screenshot": "View",
+    "status": "Under Review",
+    "actions": ["Assign", "Resolve"]
+  },
+  {
+    "id": 2,
+    "user": "Mohit Sinha",
+    "submittedOn": "17 May 2025",
+    "issueType": "Booking",
+    "description": "Session got cancelled but still charged",
+    "screenshot": "View",
+    "status": "New",
+    "actions": ["Review", "Refund"]
+  },
+  {
+    "id": 3,
+    "user": "Priya Tiwari",
+    "submittedOn": "16 May 2025",
+    "issueType": "Assessment",
+    "description": "Test screen froze midway",
+    "screenshot": "No",
+    "status": "Resolved",
+    "actions": ["Confirm", "Archive"]
+  },
+  {
+    "id": 4,
+    "user": "Akhil Ranjan",
+    "submittedOn": "15 May 2025",
+    "issueType": "Access",
+    "description": "Unable to login after OTP",
+    "screenshot": "No",
+    "status": "Archived",
+    "actions": ["Restore"]
+  },
+  {
+    "id": 5,
+    "user": "Sneha Kapoor",
+    "submittedOn": "14 May 2025",
+    "issueType": "Payment",
+    "description": "Transaction failed but amount deducted",
+    "screenshot": "View",
+    "status": "New",
+    "actions": ["Investigate", "Refund"]
+  },
+  {
+    "id": 6,
+    "user": "Rajat Mehta",
+    "submittedOn": "13 May 2025",
+    "issueType": "Profile",
+    "description": "Name not updating after edit",
+    "screenshot": "No",
+    "status": "Under Review",
+    "actions": ["Assign", "Resolve"]
+  },
+  {
+    "id": 7,
+    "user": "Pooja Arora",
+    "submittedOn": "12 May 2025",
+    "issueType": "Booking",
+    "description": "Double booking confirmed",
+    "screenshot": "View",
+    "status": "Resolved",
+    "actions": ["Confirm", "Archive"]
+  },
+  {
+    "id": 8,
+    "user": "Ankit Verma",
+    "submittedOn": "11 May 2025",
+    "issueType": "Access",
+    "description": "OTP not received",
+    "screenshot": "No",
+    "status": "New",
+    "actions": ["Send OTP", "Contact"]
+  },
+  {
+    "id": 9,
+    "user": "Divya Nair",
+    "submittedOn": "10 May 2025",
+    "issueType": "Assessment",
+    "description": "Result not displayed",
+    "screenshot": "View",
+    "status": "Under Review",
+    "actions": ["Assign", "Resolve"]
+  },
+  {
+    "id": 10,
+    "user": "Rohan Bhatia",
+    "submittedOn": "09 May 2025",
+    "issueType": "Payment",
+    "description": "Charged twice for the same session",
+    "screenshot": "View",
+    "status": "Resolved",
+    "actions": ["Confirm", "Refund"]
+  },
+  {
+    "id": 11,
+    "user": "Tanvi Saxena",
+    "submittedOn": "08 May 2025",
+    "issueType": "Booking",
+    "description": "Booking confirmation not received",
+    "screenshot": "No",
+    "status": "New",
+    "actions": ["Resend Confirmation"]
+  },
+  {
+    "id": 12,
+    "user": "Yash Rajput",
+    "submittedOn": "07 May 2025",
+    "issueType": "Access",
+    "description": "Email login failed repeatedly",
+    "screenshot": "No",
+    "status": "Under Review",
+    "actions": ["Assign", "Debug"]
+  },
+  {
+    "id": 13,
+    "user": "Nisha Jain",
+    "submittedOn": "06 May 2025",
+    "issueType": "Assessment",
+    "description": "MCQs not loading in test",
+    "screenshot": "View",
+    "status": "Resolved",
+    "actions": ["Confirm", "Archive"]
+  },
+  {
+    "id": 14,
+    "user": "Gaurav Singh",
+    "submittedOn": "05 May 2025",
+    "issueType": "Profile",
+    "description": "Photo upload fails",
+    "screenshot": "View",
+    "status": "New",
+    "actions": ["Assign", "Resolve"]
+  },
+  {
+    "id": 15,
+    "user": "Ayesha Khan",
+    "submittedOn": "04 May 2025",
+    "issueType": "Payment",
+    "description": "No invoice generated",
+    "screenshot": "No",
+    "status": "Archived",
+    "actions": ["Restore", "Notify"]
+  }
+];
+
+
+export const BugsTableData = [
+  {
+    "id": 1,
+    "user": "Akanksha Verma",
+    "submittedOn": "18 May 2025",
+    "module": "Notifications",
+    "priority": "High",
+    "description": "Push alerts not showing in mobile",
+    "screenshot": "View",
+    "status": "In Progress",
+    "actions": ["Fix", "Verify", "Comment"]
+  },
+  {
+    "id": 2,
+    "user": "Devansh Patel",
+    "submittedOn": "17 May 2025",
+    "module": "Assessments",
+    "priority": "Critical",
+    "description": "Timer resets during ACE test",
+    "screenshot": "View",
+    "status": "New",
+    "actions": ["Assign", "Debug"]
+  },
+  {
+    "id": 3,
+    "user": "Sneha Chatterji",
+    "submittedOn": "16 May 2025",
+    "module": "Platform",
+    "priority": "Medium",
+    "description": "Dashboard layout breaks in Safari",
+    "screenshot": "No",
+    "status": "Fixed",
+    "actions": ["Confirm", "Archive"]
+  },
+  {
+    "id": 4,
+    "user": "Harshit Meena",
+    "submittedOn": "15 May 2025",
+    "module": "Sessions",
+    "priority": "Low",
+    "description": "Coach details don't update instantly",
+    "screenshot": "No",
+    "status": "Verified",
+    "actions": ["Close", "Archive"]
+  },
+  {
+    "id": 5,
+    "user": "Megha Yadav",
+    "submittedOn": "14 May 2025",
+    "module": "Payments",
+    "priority": "Critical",
+    "description": "Invoice generation fails on bulk export",
+    "screenshot": "View",
+    "status": "New",
+    "actions": ["Assign", "Fix"]
+  },
+  {
+    "id": 6,
+    "user": "Aditya Rawal",
+    "submittedOn": "13 May 2025",
+    "module": "Login",
+    "priority": "High",
+    "description": "OTP screen not responsive on iOS",
+    "screenshot": "View",
+    "status": "In Progress",
+    "actions": ["Fix", "Verify"]
+  },
+  {
+    "id": 7,
+    "user": "Tanya Malhotra",
+    "submittedOn": "12 May 2025",
+    "module": "Assessments",
+    "priority": "Medium",
+    "description": "MCQ options not selectable on Firefox",
+    "screenshot": "No",
+    "status": "Fixed",
+    "actions": ["Confirm", "Comment"]
+  },
+  {
+    "id": 8,
+    "user": "Rohit Singh",
+    "submittedOn": "11 May 2025",
+    "module": "Platform",
+    "priority": "Low",
+    "description": "Dropdown menu overlaps on zoom",
+    "screenshot": "No",
+    "status": "Verified",
+    "actions": ["Close"]
+  },
+  {
+    "id": 9,
+    "user": "Neha Dubey",
+    "submittedOn": "10 May 2025",
+    "module": "Notifications",
+    "priority": "High",
+    "description": "Email alerts delayed by hours",
+    "screenshot": "View",
+    "status": "In Progress",
+    "actions": ["Fix", "Comment"]
+  },
+  {
+    "id": 10,
+    "user": "Arjun Vyas",
+    "submittedOn": "09 May 2025",
+    "module": "Sessions",
+    "priority": "Medium",
+    "description": "Session summary not saving edits",
+    "screenshot": "No",
+    "status": "New",
+    "actions": ["Assign", "Debug"]
+  },
+  {
+    "id": 11,
+    "user": "Sanya Bedi",
+    "submittedOn": "08 May 2025",
+    "module": "Login",
+    "priority": "Critical",
+    "description": "Password reset fails for new users",
+    "screenshot": "View",
+    "status": "New",
+    "actions": ["Assign", "Fix"]
+  },
+  {
+    "id": 12,
+    "user": "Vivek Chauhan",
+    "submittedOn": "07 May 2025",
+    "module": "Payments",
+    "priority": "Low",
+    "description": "Currency mismatch on international cards",
+    "screenshot": "No",
+    "status": "Verified",
+    "actions": ["Close", "Archive"]
+  },
+  {
+    "id": 13,
+    "user": "Ritika Joshi",
+    "submittedOn": "06 May 2025",
+    "module": "Platform",
+    "priority": "Medium",
+    "description": "White screen on logout",
+    "screenshot": "View",
+    "status": "Fixed",
+    "actions": ["Confirm", "Archive"]
+  },
+  {
+    "id": 14,
+    "user": "Ishaan Desai",
+    "submittedOn": "05 May 2025",
+    "module": "Notifications",
+    "priority": "High",
+    "description": "Repeated push notifications",
+    "screenshot": "No",
+    "status": "In Progress",
+    "actions": ["Fix", "Comment"]
+  },
+  {
+    "id": 15,
+    "user": "Palak Mahajan",
+    "submittedOn": "04 May 2025",
+    "module": "Assessments",
+    "priority": "Low",
+    "description": "Hints not loading in test view",
+    "screenshot": "View",
+    "status": "New",
+    "actions": ["Assign", "Debug"]
+  }
+]
+>>>>>>> c2c12b54becd49440834ef518460584102e10d32
