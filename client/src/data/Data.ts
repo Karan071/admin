@@ -4060,3 +4060,87 @@ export const FeedbackTableData = [
     "actions": ["View", "Archive"]
   }
 ]
+export const instant_sessions = [
+    {
+      "coach": "Anjali Gupta",
+      "coach_type": "Mentor",
+      "segment": "UG",
+      "topic": "Exam Stress Tips",
+      "price": "₹500",
+      "code": "INST500",
+      "slots": 3,
+      "status": "Active",
+      "actions": ["Assign", "Edit", "Remove"]
+    },
+    {
+      "coach": "Rohit Sinha",
+      "coach_type": "Educator",
+      "segment": "Career Changer",
+      "topic": "Resume Walkthrough",
+      "price": "₹300",
+      "code": "RSM300",
+      "slots": 5,
+      "status": "Active",
+      "actions": ["Assign", "Edit", "Remove"]
+    }
+  ]
+export const introductory_sessions =[
+    {
+      "coach": "Seema Rao",
+      "coach_type": "Consultant",
+      "organisation": "Aimshala UG College",
+      "topic": "Career Mapping",
+      "price": "₹700",
+      "code": "CMAP700",
+      "slots": 2,
+      "status": "Active",
+      "actions": ["Assign", "Edit", "Disable"]
+    },
+    {
+      "coach": "Meera Kapoor",
+      "coach_type": "Mentor",
+      "organisation": "Bright Minds School",
+      "topic": "Stream Selection",
+      "price": "₹400",
+      "code": "STREAM400",
+      "slots": 4,
+      "status": "Pending Review",
+      "actions": ["Review", "Approve", "Reject"]
+    }
+  ]
+  export const b2b_sessions=[
+    {
+      "organisation": "SkillEdge Corp",
+      "coach": "Amit Tiwari",
+      "coach_type": "Educator",
+      "topic": "Leadership Essentials",
+      "price": "₹900",
+      "code": "LEAD900",
+      "slots": 6,
+      "status": "Active",
+      "actions": ["Assign", "Edit", "Disable"]
+    },
+    {
+      "organisation": "Startup Network",
+      "coach": "Ritu Jain",
+      "coach_type": "Consultant",
+      "topic": "Startup Mindset",
+      "price": "₹0",
+      "code": "FREEJOIN",
+      "slots": 0,
+      "status": "Full",
+      "actions": ["Edit", "Reschedule"]
+    }
+  ]
+  export const pending_approvals=[
+    {
+      "coach": "Neha Sharma",
+      "session_type": "Instant",
+      "topic": "Time Management Tips",
+      "price": "₹250",
+      "code": "TMT250",
+      "submitted_on": "17 May 2025",
+      "status": "Pending",
+      "actions": ["Review", "Approve", "Reject"]
+    }
+  ]
