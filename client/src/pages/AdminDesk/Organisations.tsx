@@ -1,4 +1,4 @@
-import { Building2, UserCheck, Globe, Clock, Link, MessageSquare, CircleArrowUp, CircleArrowDown, Search, Bell, Check, X } from "lucide-react";
+import { Building2, UserCheck, Globe, Clock, Link, MessageSquare, CircleArrowUp, CircleArrowDown, Search, Bell, Check, X, Flag } from "lucide-react";
 import { Card, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,7 +13,7 @@ import { orgTableData } from "@/data/Data";
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useEffect } from "react";
-
+//import { AnimatePresence, motion } from "framer-motion";
 import photo from "@/assets/asset.jpg"
 import RadioButton from "@/components/ui/Radiobutton";
 import DatePick from "@/components/ui/DatePicker"
@@ -161,8 +161,8 @@ function OrgFilter({ onClose }: OrgFilterProps) {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
-                      ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
-                      : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
+                    ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
+                    : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
                     }`}
                 >
                   {tab}
@@ -489,11 +489,11 @@ function OrganisationTable() {
                   Send Reminder
                 </Button>
                 <Button variant="border" size="sm">
-                  <Check className=" h-4 w-4" />
+                  <Check className=" h-4 w-4 text-[var(--green)]" />
                   Approve All
                 </Button>
                 <Button variant="delete" size="sm">
-                  <X className=" h-4 w-4" />
+                  <X className=" h-4 w-4 text-[var(--red)]" />
                   Block / Remove
                 </Button>
               </div>
@@ -687,7 +687,7 @@ function OrganisationTable() {
                           // approve logic
                         }}
                       >
-                        <Check className="h-4 w-3" />
+                        <Check className="h-4 w-3 text-[var(--green)]" />
                         <span className="sr-only">Approve</span>
                       </Button>
 
@@ -700,8 +700,8 @@ function OrganisationTable() {
                           // block logic
                         }}
                       >
-                        <X className="h-4 w-3" />
-                        <span className="sr-only">Block</span>
+                        <Flag className="h-4 w-3" />
+                        <span className="sr-only">Flagk</span>
                       </Button>
                     </div>
                   </TableCell>

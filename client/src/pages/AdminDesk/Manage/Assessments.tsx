@@ -1,4 +1,4 @@
-import { Clock,  CircleArrowUp, CircleArrowDown, Search,  Check, Users, FileCheck2, FileText, CheckCircle2, Trash, Copy, FileDown, Edit, BadgeQuestionMark, Newspaper, Plus } from "lucide-react";
+import { Clock, CircleArrowUp, CircleArrowDown, Search, Check, Users, FileCheck2, FileText, CheckCircle2, Trash, Copy, FileDown, Edit, BadgeQuestionMark, Newspaper, Plus } from "lucide-react";
 import { Card, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -8,7 +8,7 @@ import { ChevronDown, Filter, ChevronRight, ChevronLeft, Eye } from "lucide-reac
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { assessmentsTable} from "@/data/Data";
+import { assessmentsTable } from "@/data/Data";
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
@@ -24,36 +24,36 @@ const color2 = "text-[var(--text-head)]";
 const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 const Stats = [
-    {
-        title: "Total Assessments",
-        value: "128",
-        icon: Users,
-        performance: Up,
-    },
-    {
-       title: "Active Assessments",
-        value: "87",
-        icon: FileCheck2,
-        performance: Down,
-    },
-    {
-        title: "Assessments Taken",
-        value: "8,947",
-        icon: FileText,
-        performance: Up,
-    },
-    {
-        title: "In Progress",
-        value: "563",
-        icon: Clock,
-        performance: Up,
-    },
-    {
-         title: "Completed Reports Generated",
-        value: "6,482",
-        icon: CheckCircle2,
-        performance: Up,
-    },
+  {
+    title: "Total Assessments",
+    value: "128",
+    icon: Users,
+    performance: Up,
+  },
+  {
+    title: "Active Assessments",
+    value: "87",
+    icon: FileCheck2,
+    performance: Down,
+  },
+  {
+    title: "Assessments Taken",
+    value: "8,947",
+    icon: FileText,
+    performance: Up,
+  },
+  {
+    title: "In Progress",
+    value: "563",
+    icon: Clock,
+    performance: Up,
+  },
+  {
+    title: "Completed Reports Generated",
+    value: "6,482",
+    icon: CheckCircle2,
+    performance: Up,
+  },
 ];
 
 
@@ -65,7 +65,7 @@ export default function Organisation() {
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation Dashboard</h1>
       <StatCard />
-      <Buttonbar/>
+      <Buttonbar />
       <Button
         variant="border"
         onClick={() => setShowFilter(true)}
@@ -175,8 +175,8 @@ function AssessFilter({ onClose }: FilterProps) {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
-                      ? "bg-[var(--brand-color3)] text-[var(--brand-color)] border-[var(--brand-color)]"
-                      : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
+                    ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
+                    : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
                     }`}
                 >
                   {tab}
