@@ -75,11 +75,11 @@ export default function AppRoutes() {
       <Route path="relation/dashboard" element={<Relations />} />
       <Route path="relation/followups" element={<RelationFollowup />} />
       <Route path="relation/account" element={<RelationAccount />} />
-      {/* <Route path="relation/user-org-search" element={<RelationSearchOrgs />} /> */}
-      {/* <Route path="relation/active-users" element={<RelationActiveusers />} /> */}
-      {/* <Route path="relation/explorers" element={<RelationExplorer />} /> */}
-      {/* <Route path="relation/coaches" element={<RelationCoach />} /> */}
-      {/* <Route path="relation/partners" element={<RelationPartner />} /> */}
+      <Route path="relation/user-org-search" element={<RelationSearchOrgs />} />
+      <Route path="relation/active-users" element={<RelationActiveusers />} />
+      <Route path="relation/explorers" element={<RelationExplorer />} />
+      <Route path="relation/coaches" element={<RelationCoach />} />
+      <Route path="relation/partners" element={<RelationPartner />} />
       <Route path="relation/problems" element={<RelationProblem />} />
       <Route path="relation/bugs" element={<RelationBug />} />
       <Route path="relation/abuses" element={<RelationAbuses />} />
