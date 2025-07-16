@@ -345,10 +345,14 @@ function SessionsPool() {
       default: return [];
     }
   };
-
+const getBadgeStyles = (condition: boolean) => {
+  return condition 
+    ? "bg-[var(--faded)] text-[var(--text)]" 
+    : "bg-red-100 text-[var(--text)]";
+};
   const currentData = getCurrentData();
   
-  // Sorting logic
+  
   let sortedData = [...currentData];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
@@ -395,7 +399,7 @@ function SessionsPool() {
     );
   };
 
-  // Define table columns based on active tab
+
   const getTableHeaders = () => {
     switch (activeTab) {
       case "instant":
@@ -601,9 +605,11 @@ function SessionsPool() {
             <TableCell>{session.topic}</TableCell>
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
-              <Badge variant={session.slots > 0 ? "default" : "destructive"}>
-                {session.slots}
-              </Badge>
+           <Badge 
+  className={getBadgeStyles(session.slots > 0)}
+>
+  {session.slots}
+</Badge>
             </TableCell>
             <TableCell>
               <Badge variant={session.status === "Active" ? "secondary" : "destructive"}>
@@ -622,9 +628,11 @@ function SessionsPool() {
             <TableCell>{session.topic}</TableCell>
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
-              <Badge variant={session.slots > 0 ? "default" : "destructive"}>
-                {session.slots}
-              </Badge>
+             <Badge 
+  className={getBadgeStyles(session.slots > 0)}
+>
+  {session.slots}
+</Badge>
             </TableCell>
             <TableCell>
               <Badge variant={session.status === "Active" ? "secondary" : "destructive"}>
@@ -643,9 +651,11 @@ function SessionsPool() {
             <TableCell>{session.topic}</TableCell>
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
-              <Badge variant={session.slots > 0 ? "default" : "destructive"}>
-                {session.slots}
-              </Badge>
+          <Badge 
+  className={getBadgeStyles(session.slots > 0)}
+>
+  {session.slots}
+</Badge>
             </TableCell>
             <TableCell>
               <Badge variant={session.status === "Active" ? "secondary" : "destructive"}>
