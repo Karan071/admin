@@ -5291,3 +5291,157 @@ export const FollowupTable = [
     "actions": ["View", "Done", "Note"]
   }
 ]
+
+
+export const AccountTable = [
+  {
+    "id": 1,
+    "name": "Ritika Sharma",
+    "type": "Explorer",
+    "lastActivity": "10 Jul",
+    "nextFollowUp": "12 Jul",
+    "stage": "Step 2/3",
+    "daysLeft": 173,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 2,
+    "name": "EduCorp Pvt Ltd",
+    "type": "Org",
+    "lastActivity": "8 Jul",
+    "nextFollowUp": "13 Jul",
+    "stage": "Step 1/3",
+    "daysLeft": 175,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 3,
+    "name": "Aarti Verma",
+    "type": "Coach",
+    "lastActivity": "9 Jul",
+    "nextFollowUp": "11 Jul",
+    "stage": "Step 2/3",
+    "daysLeft": 174,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 4,
+    "name": "Manoj Singh",
+    "type": "Explorer",
+    "lastActivity": "7 Jul",
+    "nextFollowUp": "15 Jul",
+    "stage": "Step 1/3",
+    "daysLeft": 172,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 5,
+    "name": "Bright Future School",
+    "type": "Org",
+    "lastActivity": "6 Jul",
+    "nextFollowUp": "14 Jul",
+    "stage": "Step 3/3",
+    "daysLeft": 176,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 6,
+    "name": "Priya Anand",
+    "type": "Coach",
+    "lastActivity": "9 Jul",
+    "nextFollowUp": "13 Jul",
+    "stage": "Step 2/3",
+    "daysLeft": 174,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 7,
+    "name": "TechEd Academy",
+    "type": "Org",
+    "lastActivity": "5 Jul",
+    "nextFollowUp": "16 Jul",
+    "stage": "Step 1/3",
+    "daysLeft": 177,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 8,
+    "name": "Ravi Bhushan",
+    "type": "Explorer",
+    "lastActivity": "8 Jul",
+    "nextFollowUp": "12 Jul",
+    "stage": "Step 2/3",
+    "daysLeft": 175,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 9,
+    "name": "Aman Gupta",
+    "type": "Coach",
+    "lastActivity": "10 Jul",
+    "nextFollowUp": "17 Jul",
+    "stage": "Step 1/3",
+    "daysLeft": 171,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 10,
+    "name": "NextGen Institute",
+    "type": "Org",
+    "lastActivity": "6 Jul",
+    "nextFollowUp": "11 Jul",
+    "stage": "Step 3/3",
+    "daysLeft": 172,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 11,
+    "name": "Kritika Mehra",
+    "type": "Explorer",
+    "lastActivity": "7 Jul",
+    "nextFollowUp": "13 Jul",
+    "stage": "Step 2/3",
+    "daysLeft": 174,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 12,
+    "name": "SkillBridge",
+    "type": "Org",
+    "lastActivity": "9 Jul",
+    "nextFollowUp": "14 Jul",
+    "stage": "Step 1/3",
+    "daysLeft": 170,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 13,
+    "name": "Neha Arora",
+    "type": "Coach",
+    "lastActivity": "8 Jul",
+    "nextFollowUp": "15 Jul",
+    "stage": "Step 3/3",
+    "daysLeft": 169,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 14,
+    "name": "Aryan Taneja",
+    "type": "Explorer",
+    "lastActivity": "10 Jul",
+    "nextFollowUp": "16 Jul",
+    "stage": "Step 2/3",
+    "daysLeft": 168,
+    "actions": ["View", "Done", "Note"]
+  },
+  {
+    "id": 15,
+    "name": "EduSpark Pvt Ltd",
+    "type": "Org",
+    "lastActivity": "6 Jul",
+    "nextFollowUp": "12 Jul",
+    "stage": "Step 1/3",
+    "daysLeft": 176,
+    "actions": ["View", "Done", "Note"]
+  }
+]
