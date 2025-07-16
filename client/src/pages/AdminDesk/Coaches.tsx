@@ -8,7 +8,7 @@ import {
   X,
   Bell,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Users,
   UserCheck,
@@ -40,7 +40,10 @@ import { coachTableData } from "@/data/Data";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DatePickerWithRange } from "@/components/application-component/date-range-picker";
+import DatePicker from '@/components/ui/DatePicker';
+import React from "react";
+import RadioButton from "@/components/ui/Radiobutton";
+import CitySelection from "@/components/ui/CitySelection";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -94,23 +97,242 @@ export default function Coaches() {
         <h1 className="text-2xl font-bold text-[var(--text-head)]">Coaches</h1>
         <StatsCards />
         {/*<Buttonbar />*/}
-        {showFilter && <AdvancedFilters />}
-        <div className="flex justify-end mt-4 p-4 ">
-          <Button
-            variant="border"
-            onClick={() => setShowFilter(!showFilter)}
-            className="flex items-center gap-2"
-          >
-            <Filter className="h-4 w-4" />
-            {showFilter ? "Hide Filters" : "Show Filters"}
-          </Button>
-        </div>
+        <Button
+          variant="border"
+          onClick={() => setShowFilter(true)}
+          className="flex items-center gap-2 self-end"
+        >
+          <Filter className="h-4 w-4" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
+
 
         <CoachTableSection />
       </div>
     </div>
   );
 }
+
+interface FilterProps {
+  onClose: () => void;
+}
+
+
+function AdvancedFilters({ onClose }: FilterProps) {
+  const modalRef = React.useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState("General");
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      // Do nothing if clicking inside modal
+      if (modalRef.current && modalRef.current.contains(e.target as Node)) {
+        return;
+      }
+
+      // Do nothing if clicking inside dropdown (Radix renders it in a portal)
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-radix-popper-content-wrapper]")) {
+        return;
+      }
+
+      onClose(); // Close modal otherwise
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [onClose]);
+
+  const [status, setStatus] = useState("Approved");
+  const [specialisation, setSpecialisation] = useState("Career");
+  const [org, setOrg] = useState("Yes");
+  const [session, setSession] = useState("1:1");
+
+  const tabList = [
+    "General",
+    "Status",
+    "Specialisation",
+    "Session Type",
+    "Organisation Linked",
+    "Location",
+    "Last Activity",
+  ];
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
+
+      <div
+        ref={modalRef}
+        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+      >
+        <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
+          <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
+          <Button
+            variant="link"
+            className="text-sm text-[var(--brand-color)] p-0 h-auto block hover:no-underline hover:cursor-pointer"
+          >
+            Clear All
+          </Button>
+        </div>
+        {/* Sidebar */}
+        <div className="flex ">
+          <div className="overflow-y-auto min-w-[180px] border-r-1 h-[360px]">
+
+            <div className="flex flex-col ">
+              {tabList.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
+                    ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
+                    : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
+                    }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Tab Content */}
+
+          <div className="p-6 overflow-y-auto relative w-full">
+            {activeTab === "General" && (
+              <>
+                <label htmlFor="Gen" className="text-[var(--text)]">Enter Name/Email/Phone :</label>
+                <Input id="Gen" placeholder="Enter .." type="text" className="mt-4 w-full " />
+
+              </>
+            )}
+
+            {activeTab === "Status" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select your current Status:
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Approved",
+                    "Pending",
+                    "Blocked",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={status}
+                      onChange={setStatus}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Specialisation" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Your Specialisation :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Career",
+                    "Psychology",
+                    "STEM",
+                    "Law",
+                    "Design",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={specialisation}
+                      onChange={setSpecialisation}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Location" && (
+              <>
+                <CitySelection />
+              </>
+            )}
+
+            {activeTab === "Organisation Linked" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Are you Linkrd with any Organisation :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Yes",
+                    "No",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={org}
+                      onChange={setOrg}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Session Type" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Session type :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)]  ">
+                  {[
+                    "1:1",
+                    "Group",
+                    "Instant",
+                    "B2B",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={session}
+                      onChange={setSession}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Last Activity" && (
+              <>
+                <label htmlFor="act" className="text-[var(--text)]">Enter You Last Activity Date:</label>
+                <div className="mt-4 min-w-full">
+                  <DatePicker />
+                </div>
+              </>
+            )}
+
+            {/* Footer */}
+          </div>
+        </div>
+        <div className="relative bottom-0 right-0 w-full px-6 py-4 flex border-t-1 justify-end gap-2">
+          <div className="flex gap-4 absolute left-[50%] -translate-x-[50%]">
+            <Button variant="border" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button variant="brand" onClick={onClose}>
+              Apply Filters
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 function StatsCards() {
   return (
@@ -137,168 +359,6 @@ function StatsCards() {
       ))}
     </div>
   );
-}
-
-
-
-function AdvancedFilters() {
-  return (
-    <div className="py-2">
-      <Card className="mt-8 shadow-none bg-[var(--background)]">
-        <CardHeader>
-          <CardTitle className="text-lg text-[var(--text-head)]">Filters</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 text-[var(--text)]">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Name / Email / Phone</label>
-              <Input placeholder="Search by name, email or phone" className="mt-2" />
-            </div>
-
-            <div className="space-y-5">
-              <label className="text-sm font-medium">Status</label>
-              <div className="flex flex-wrap gap-4 mt-2">
-                <div className="flex items-center space-x-2 ">
-                  <Checkbox id="Approved" className="h-4 w-4" />
-                  <label htmlFor="Approved" className="text-sm">
-                    Approved
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Pending" />
-                  <label htmlFor="Pending" className="text-sm">
-                    Pending
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Blocked" />
-                  <label htmlFor="Blocked" className="text-sm">
-                    Blocked
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Specialisation</label>
-              <div className="flex flex-wrap gap-4 mt-2">
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Career" />
-                  <label htmlFor="Career" className="text-sm">
-                    Career
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Psychology" />
-                  <label htmlFor="Psychology" className="text-sm">
-                    Psychology
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="STEM" />
-                  <label htmlFor="STEM" className="text-sm">
-                    STEM
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Design" />
-                  <label htmlFor="Design" className="text-sm">
-                    Design
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Law" />
-                  <label htmlFor="Law" className="text-sm">
-                    Law
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Session Type</label>
-              <div className="flex flex-wrap gap-4 mt-2">
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="1:1" />
-                  <label htmlFor="1:1" className="text-sm">
-                    1:1
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Group" />
-                  <label htmlFor="Group" className="text-sm">
-                    Group
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="Instant" />
-                  <label htmlFor="Instant" className="text-sm">
-                    Instant
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="B2B" />
-                  <label htmlFor="B2B" className="text-sm">
-                    B2B
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Organisation Linked</label>
-              <div className="flex flex-wrap gap-4 mt-2">
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="yes" />
-                  <label htmlFor="yes" className="text-sm">
-                    Yes
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="no" />
-                  <label htmlFor="no" className="text-sm">
-                    No
-                  </label>
-                </div>
-              </div>
-            </div>
-
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">State / City</label>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="border" className="w-full justify-between mt-2">
-                    <span>Select location</span>
-                    <ChevronDown className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-[200px] text-[var(--text)]">
-                  <DropdownMenuItem>Delhi</DropdownMenuItem>
-                  <DropdownMenuItem>Mumbai</DropdownMenuItem>
-                  <DropdownMenuItem>Bangalore</DropdownMenuItem>
-                  <DropdownMenuItem>Chennai</DropdownMenuItem>
-                  <DropdownMenuItem>Hyderabad</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Last Active</label>
-              <div className="">
-                <DatePickerWithRange />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 flex justify-end gap-2 ">
-            <Button variant="border">Reset</Button>
-            <Button variant="brand">Apply Filters</Button>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  )
 }
 
 
@@ -380,15 +440,16 @@ function CoachTableSection() {
     }
     setSortConfig({ key, direction });
   };
-  
- const toggleSelectAll = () => {   if (selectedUsers.length === currentRecords.length) {
-    setSelectedUsers([]);   
+
+  const toggleSelectAll = () => {
+    if (selectedUsers.length === currentRecords.length) {
+      setSelectedUsers([]);
     } else {
-    setSelectedUsers(
-      currentRecords.map((user): number => user.id)
-     );
-  } 
-};
+      setSelectedUsers(
+        currentRecords.map((user): number => user.id)
+      );
+    }
+  };
 
   const bringToTop = (userId: number) => {
     const coach = selectedCoachStack.find((c) => c.id === userId);
@@ -447,78 +508,53 @@ function CoachTableSection() {
   };
 
   const toggleSelectUser = (userId: number) => {
-     if (selectedUsers.includes(userId)) {
-       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
-     } else {
-       setSelectedUsers([...selectedUsers, userId]);
-     }
-   };
+    if (selectedUsers.includes(userId)) {
+      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    } else {
+      setSelectedUsers([...selectedUsers, userId]);
+    }
+  };
 
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        <div className="flex items-center justify-between border-b p-4 mt-auto h-20">
-          <div className="flex items-center justify-between pl-0 p-4">
-                <div className="flex items-center gap-2 border-none shadow-none">
-                    <Checkbox
-                        id="select-all"
-                        checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
-                        onCheckedChange={toggleSelectAll}
-                    />
-                    <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
-                        Select All
-                    </label>
-                    {selectedUsers.length > 0 && (
-                        <Badge variant="border" className="ml-2 ">
-                            {selectedUsers.length} selected
-                        </Badge>
-                    )}
-                </div>
+        <div className="flex items-center justify-between border-b p-4 mt-auto min-h-20 flex-wrap">
+          <div className="flex items-center justify-between pl-0 p-4 gap-4 flex-wrap">        {/*wrap */}
+            <div className="flex items-center gap-2 border-none shadow-none">            {/*wrap */}
+              <Checkbox
+                id="select-all"
+                checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
+                onCheckedChange={toggleSelectAll}
+              />
+              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                Select All
+              </label>
+              {selectedUsers.length > 0 && (
+                <Badge variant="border" className="ml-2 ">
+                  {selectedUsers.length} selected
+                </Badge>
+              )}
+            </div>
 
-                {selectedUsers.length > 0 && (
-                    <div className="flex gap-2 ml-2">
-                        <Button variant="border" size="sm">
-                            <Bell className="h-4 w-4" />
-                            Send Reminder
-                        </Button>
-                        <Button variant="border" size="sm">
-                            <Check className=" h-4 w-4" />
-                             Approve All
-                        </Button>
-                        <Button variant="delete" size="sm">
-                            <X className=" h-4 w-4" />
-                            Block / Remove
-                        </Button>
-                    </div>
-                )}
+            {selectedUsers.length > 0 && (
+              <div className="flex gap-2 flex-wrap">        {/*wrap */}
+                <Button variant="border" size="sm">
+                  <Bell className="h-4 w-4" />
+                  Send Reminder
+                </Button>
+                <Button variant="border" size="sm">
+                  <Check className=" h-4 w-4 text-[var(--green)]" />
+                  Approve All
+                </Button>
+                <Button variant="delete" size="sm">
+                  <X className=" h-4 w-4 text-[var(--red)]" />
+                  Block / Remove
+                </Button>
+              </div>
+            )}
           </div>
           <div className="flex justify-end items-center gap-4 ">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="border"
-                  size="sm"
-                  className="flex items-center gap-2 text-low text-[var(--text-head)]"
-                >
-                  {recordsPerPage}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
-                  <DropdownMenuItem
-                    key={size}
-                    onClick={() => {
-                      setRecordsPerPage(size);
-                      setCurrentPage(1);
-                    }}
-                    className="text-[var(--text)] focus:bg-[var(--faded)]"
-                  >
-                    {size}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+
             <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
@@ -534,7 +570,7 @@ function CoachTableSection() {
                 <Search className="h-5 w-5 text-[var(--text)]" />
               </Button>
             </div>
-            
+
           </div>
         </div>
 
@@ -621,22 +657,28 @@ function CoachTableSection() {
                       ? "bg-[var(--brand-color3)]"
                       : ""
                   )}
-                  onClick={() => handleRowClick(user)}
+                  onClick={() => {
+                    toggleSelectUser(user.id);
+                    handleRowClick(user);
+                  }}
                 >
-                  <TableCell className={cn(
-                    "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
-                    selectedCoachStack.some((c) => c.id === user.id)
-                      ? focusedCoachId === user.id
-                        ? "border-[var(--brand-color)]"
+                  <TableCell
+                    className={cn(
+                      "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
+                      selectedCoachStack.some((c) => c.id === user.id)
+                        ? focusedCoachId === user.id
+                          ? "border-[var(--brand-color)]"
+                          : "border-transparent"
                         : "border-transparent"
-                      : "border-transparent"
-                  )}>
-                      <Checkbox
-                          checked={selectedUsers.includes(user.id)}
-                          onCheckedChange={() => toggleSelectUser(user.id)}
-                      />
+                    )}
+                  >
+                    <Checkbox
+                      checked={selectedUsers.includes(user.id)}
+                      onClick={(e) => e.stopPropagation()}
+                      onCheckedChange={() => toggleSelectUser(user.id)}
+                    />
                   </TableCell>
-                  <TableCell 
+                  <TableCell
                   >
                     <div className="flex items-center gap-4">
                       <div className="h-14 w-14 rounded-full overflow-hidden">
@@ -697,12 +739,12 @@ function CoachTableSection() {
                         <span className="sr-only">View</span>
                       </Button>
                       <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <Check className="h-4 w-3" />
+                        <Check className="h-4 w-3 text-[var(--green)]" />
                         <span className="sr-only">Approve</span>
                       </Button>
 
                       <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <X className="h-4 w-3" />
+                        <X className="h-4 w-3 text-[var(--red)]" />
                         <span className="sr-only">Block</span>
                       </Button>
                     </div>
@@ -715,6 +757,32 @@ function CoachTableSection() {
 
         <div className="flex items-center justify-between flex-wrap gap-2 p-4">
           <div className="flex items-center gap-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="border"
+                  size="sm"
+                  className="flex items-center gap-2 text-low text-[var(--text-head)]"
+                >
+                  {recordsPerPage}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
+                {[5, 10, 25, 50, 100].map((size) => (
+                  <DropdownMenuItem
+                    key={size}
+                    onClick={() => {
+                      setRecordsPerPage(size);
+                      setCurrentPage(1);
+                    }}
+                    className="text-[var(--text)] focus:bg-[var(--faded)]"
+                  >
+                    {size}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <span className="text-low text-[var(--text)]">
               Showing {indexOfFirstRecord + 1}-
               {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
@@ -757,7 +825,7 @@ function CoachTableSection() {
 
 
 
-    {/*<div className="xl:block hidden">
+      {/*<div className="xl:block hidden">
     <div className="lg:h-[500px] xl:min-w-90 xxl:min-w-100 sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
     <AnimatePresence>
       {selectedCoachStack.map((coach, index) => {
@@ -897,6 +965,6 @@ function CoachTableSection() {
     </AnimatePresence>
   </div>
 </div>*/}
-   </div>
+    </div>
   );
 }

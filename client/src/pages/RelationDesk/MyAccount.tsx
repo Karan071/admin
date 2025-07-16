@@ -1,57 +1,69 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { AccountTable } from "@/data/Data";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { FollowupTable } from "@/data/Data";
 import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
 import { ChevronDown, ChevronRight, ChevronLeft, Eye, Search, X, Bell, Check, Phone, Mail, MessageCircle, Notebook } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { AnimatePresence, motion } from "framer-motion";
 
-export function Followup() {
+export function MyAccounts() {
     return (
-        <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4 text-[var(--text-head)]">Followup</h1>
-            <Topbar />
-            <FollowupComponent />
+        <div>
+            <h1>My Account</h1>
+            <TopBar />
+            <AccountTableComponent />
         </div>
     )
 }
 
-function Topbar() {
+function TopBar() {
     return (
-        <div className="flex justify-between items-center mb-4 p-4 bg-[var(--background)] rounded-lg">
-            <div className="flex items-center gap-4">
-                <Button variant="border" size="sm">
-                    Back to Relation Desk
+        <div className="mt-2 flex justify-between items-center mb-4 p-4 bg-[var(--background)] rounded-lg">
+            {/* Left Section */}
+            <div className="flex items-center gap-5">
+                <Button variant="border" size="sm" className="text-sm px-3 py-1.5">
+                    🔙 Back to Relations Desk
                 </Button>
-                <div className="font-medium text-[var(--text)]">Aisha (Account Manager)</div>
+                <div className="text-sm font-semibold text-[var(--text)]">
+                    📛 Aisha Khan <span className="text-[var(--text-low)] font-normal">(Account Manager)</span>
+                </div>
             </div>
+
+            {/* Right Section */}
             <div className="flex items-center gap-4">
-                <div className="text-sm text-[var(--text-low)]">Managing until (180 days)</div>
-                <Button variant="border" size="sm">Transfer Account</Button>
-                <Button variant="brand" size="sm">OrderDue Followups</Button>
+                <div className="text-xs text-[var(--text-low)]">
+                    📅 Managing Until: <span className="text-[var(--text)] font-medium">Jan 6, 2026</span>{" "}
+                    <span className="text-[var(--text-low)]">(180 Days)</span>
+                </div>
+                <Button variant="border" size="sm" className="text-sm px-3 py-1.5">
+                    🔁 Transfer Account
+                </Button>
+                <Button variant="brand" size="sm" className="text-sm px-3 py-1.5">
+                    ⏰ Overdue Followups
+                </Button>
             </div>
         </div>
-    )
+    );
 }
 
-function FollowupComponent() {
-    const [selectedFollowups, setSelectedFollowups] = useState<number[]>([]);
+function AccountTableComponent() {
+    const [selectedAccounts, setSelectedAccounts] = useState<number[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage, setRecordsPerPage] = useState(5);
     const [sortConfig, setSortConfig] = useState<{ key: string; direction: "ascending" | "descending" } | null>(null);
-    const [selectedFollowupStack, setSelectedFollowupStack] = useState<typeof FollowupTable>(FollowupTable[0] ? [FollowupTable[0]] : []);
-    const [focusedFollowupId, setFocusedFollowupId] = useState<number | null>(FollowupTable[0]?.id || null);
+    const [selectedAccountStack, setSelectedAccountStack] = useState<typeof AccountTable>(AccountTable[0] ? [AccountTable[0]] : []);
+    const [focusedAccountId, setFocusedAccountId] = useState<number | null>(AccountTable[0]?.id || null);
     const [searchTerm, setSearchTerm] = useState("");
 
     // Filter data based on search term
-    const filteredData = FollowupTable.filter(followup => 
-        followup.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        followup.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        followup.concern.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredData = AccountTable.filter(account =>
+        account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        account.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        account.lastActivity.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Sorting logic
@@ -84,74 +96,74 @@ function FollowupComponent() {
     };
 
     const toggleSelectAll = () => {
-        if (selectedFollowups.length === currentRecords.length) {
-            setSelectedFollowups([]);
+        if (selectedAccounts.length === currentRecords.length) {
+            setSelectedAccounts([]);
         } else {
-            setSelectedFollowups(currentRecords.map(followup => followup.id));
+            setSelectedAccounts(currentRecords.map(account => account.id));
         }
     };
 
-    const bringToTop = (followupId: number) => {
-        const followup = selectedFollowupStack.find(f => f.id === followupId);
-        if (followup) {
-            setSelectedFollowupStack(prev => [
-                followup,
-                ...prev.filter(f => f.id !== followupId),
+    const bringToTop = (accountId: number) => {
+        const account = selectedAccountStack.find(a => a.id === accountId);
+        if (account) {
+            setSelectedAccountStack(prev => [
+                account,
+                ...prev.filter(a => a.id !== accountId),
             ]);
-            setFocusedFollowupId(followupId);
+            setFocusedAccountId(accountId);
         }
     };
 
-    const removeFollowup = (followupId: number) => {
-        setSelectedFollowupStack(prev => prev.filter(f => f.id !== followupId));
-        if (focusedFollowupId === followupId) {
-            setFocusedFollowupId(null);
+    const removeAccount = (accountId: number) => {
+        setSelectedAccountStack(prev => prev.filter(a => a.id !== accountId));
+        if (focusedAccountId === accountId) {
+            setFocusedAccountId(null);
         }
     };
 
-    const handleRowClick = (followup: typeof FollowupTable[0]) => {
-        const exists = selectedFollowupStack.find(f => f.id === followup.id);
+    const handleRowClick = (account: typeof AccountTable[0]) => {
+        const exists = selectedAccountStack.find(a => a.id === account.id);
         if (!exists) {
-            setSelectedFollowupStack(prev => {
-                const updated = [followup, ...prev];
+            setSelectedAccountStack(prev => {
+                const updated = [account, ...prev];
                 return updated.slice(0, 5); // limit to 5
             });
-            setFocusedFollowupId(followup.id);
+            setFocusedAccountId(account.id);
         } else {
-            bringToTop(followup.id);
+            bringToTop(account.id);
         }
     };
 
-    const toggleSelectFollowup = (followupId: number) => {
-        if (selectedFollowups.includes(followupId)) {
-            setSelectedFollowups(selectedFollowups.filter(id => id !== followupId));
+    const toggleSelectAccount = (accountId: number) => {
+        if (selectedAccounts.includes(accountId)) {
+            setSelectedAccounts(selectedAccounts.filter(id => id !== accountId));
         } else {
-            setSelectedFollowups([...selectedFollowups, followupId]);
+            setSelectedAccounts([...selectedAccounts, accountId]);
         }
     };
 
     return (
-        <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
+        <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap ">
             <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
                 <div className="flex items-center justify-between border-b h-20 p-4">
                     <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
                             <Checkbox
                                 id="select-all"
-                                checked={selectedFollowups.length === currentRecords.length && currentRecords.length > 0}
+                                checked={selectedAccounts.length === currentRecords.length && currentRecords.length > 0}
                                 onCheckedChange={toggleSelectAll}
                             />
                             <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
                                 Select All
                             </label>
-                            {selectedFollowups.length > 0 && (
+                            {selectedAccounts.length > 0 && (
                                 <Badge variant="secondary" className="bg-[var(--faded)] text-[var(--text)]">
-                                    {selectedFollowups.length} selected
+                                    {selectedAccounts.length} selected
                                 </Badge>
                             )}
                         </div>
 
-                        {selectedFollowups.length > 0 && (
+                        {selectedAccounts.length > 0 && (
                             <div className="flex gap-2">
                                 <Button variant="border" size="sm">
                                     <Bell className="h-4 w-4 mr-2" />
@@ -171,7 +183,7 @@ function FollowupComponent() {
                     <div className="flex items-center gap-4">
                         <div className="relative bg-[var(--faded)] rounded-md overflow-hidden">
                             <Input
-                                placeholder="Search followups..."
+                                placeholder="Search accounts..."
                                 className="pl-8 pr-4 py-2 w-48 sm:w-64 bg-transparent border-none focus:ring-0"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -186,37 +198,31 @@ function FollowupComponent() {
                         <TableHeader className="bg-[var(--faded)]">
                             <TableRow>
                                 <TableHead className="w-10"></TableHead>
-                                <TableHead 
+                                <TableHead
                                     onClick={() => requestSort("name")}
                                     className="cursor-pointer text-[var(--text)]"
                                 >
                                     Name {sortConfig?.key === "name" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                                 </TableHead>
-                                <TableHead 
+                                <TableHead
                                     onClick={() => requestSort("type")}
                                     className="cursor-pointer text-[var(--text)]"
                                 >
                                     Type {sortConfig?.key === "type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                                 </TableHead>
-                                <TableHead 
-                                    onClick={() => requestSort("leadType")}
+                                <TableHead
+                                    onClick={() => requestSort("lastActivity")}
                                     className="cursor-pointer text-[var(--text)]"
                                 >
-                                    Lead Type {sortConfig?.key === "leadType" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                                    Last Activity {sortConfig?.key === "lastActivity" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                                 </TableHead>
-                                <TableHead 
-                                    onClick={() => requestSort("concern")}
+                                <TableHead
+                                    onClick={() => requestSort("nextFollowUp")}
                                     className="cursor-pointer text-[var(--text)]"
                                 >
-                                    Concern {sortConfig?.key === "concern" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                                    Next Followup {sortConfig?.key === "nextFollowUp" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                                 </TableHead>
-                                <TableHead 
-                                    onClick={() => requestSort("nextFollowup")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Next Followup {sortConfig?.key === "nextFollowup" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead 
+                                <TableHead
                                     onClick={() => requestSort("stage")}
                                     className="cursor-pointer text-[var(--text)]"
                                 >
@@ -226,38 +232,37 @@ function FollowupComponent() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {currentRecords.map((followup) => (
+                            {currentRecords.map((account) => (
                                 <TableRow
-                                    key={followup.id}
-                                    data-id={followup.id}
+                                    key={account.id}
+                                    data-id={account.id}
                                     className={cn(
                                         "cursor-pointer group hover:bg-[var(--brand-color2)]",
-                                        selectedFollowupStack.some(f => f.id === followup.id) ? "bg-[var(--brand-color3)]" : ""
+                                        selectedAccountStack.some(a => a.id === account.id) ? "bg-[var(--brand-color3)]" : ""
                                     )}
                                     onClick={() => {
-                                        toggleSelectFollowup(followup.id);
-                                        handleRowClick(followup);
+                                        toggleSelectAccount(account.id);
+                                        handleRowClick(account);
                                     }}
                                 >
                                     <TableCell className="w-10">
                                         <Checkbox
-                                            checked={selectedFollowups.includes(followup.id)}
+                                            checked={selectedAccounts.includes(account.id)}
                                             onClick={(e) => e.stopPropagation()}
-                                            onCheckedChange={() => toggleSelectFollowup(followup.id)}
+                                            onCheckedChange={() => toggleSelectAccount(account.id)}
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <div className="font-medium text-[var(--text)]">{followup.name}</div>
+                                        <div className="font-medium text-[var(--text)]">{account.name}</div>
                                     </TableCell>
                                     <TableCell>
-                                        <Badge variant="standard">{followup.type}</Badge>
+                                        <Badge variant="standard">{account.type}</Badge>
                                     </TableCell>
-                                    <TableCell className="text-[var(--text)]">{followup.leadType}</TableCell>
-                                    <TableCell className="text-[var(--text)]">{followup.concern}</TableCell>
+                                    <TableCell className="text-[var(--text)]">{account.lastActivity}</TableCell>
                                     <TableCell>
-                                        <Badge className="bg-[var(--faded)] text-[var(--text)]">{followup.nextFollowup}</Badge>
+                                        <Badge className="bg-[var(--faded)] text-[var(--text)]">{account.nextFollowUp}</Badge>
                                     </TableCell>
-                                    <TableCell className="text-[var(--text)]">{followup.stage}</TableCell>
+                                    <TableCell className="text-[var(--text)]">{account.stage}</TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-2">
                                             <Button
@@ -291,7 +296,7 @@ function FollowupComponent() {
                                                     // note logic
                                                 }}
                                             >
-                                                <span className="text-sm"><Notebook/></span>
+                                                <span className="text-sm"><Notebook /></span>
                                             </Button>
                                         </div>
                                     </TableCell>
@@ -326,7 +331,7 @@ function FollowupComponent() {
                             </DropdownMenuContent>
                         </DropdownMenu>
                         <span className="text-sm text-[var(--text-low)]">
-                            Showing {indexOfFirstRecord + 1}-{Math.min(indexOfLastRecord, sortedData.length)} of {sortedData.length} followups
+                            Showing {indexOfFirstRecord + 1}-{Math.min(indexOfLastRecord, sortedData.length)} of {sortedData.length} accounts
                         </span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -364,19 +369,19 @@ function FollowupComponent() {
             <div className="xl:block hidden w-[var(--sidebar-width)]">
                 <div className="h-[500px] sticky top-4">
                     <AnimatePresence>
-                        {selectedFollowupStack.map((followup, index) => {
-                            const isTopCard = followup.id === focusedFollowupId || (focusedFollowupId === null && index === 0);
-                            const cardIndex = selectedFollowupStack.length - 1 - index;
+                        {selectedAccountStack.map((account, index) => {
+                            const isTopCard = account.id === focusedAccountId || (focusedAccountId === null && index === 0);
+                            const cardIndex = selectedAccountStack.length - 1 - index;
 
                             return (
                                 <motion.div
-                                    key={followup.id}
+                                    key={account.id}
                                     className="absolute left-0 right-0 mx-auto w-full cursor-pointer"
                                     style={{
                                         top: `${cardIndex * 20}px`,
                                         zIndex: isTopCard ? 100 : 10 + cardIndex,
                                     }}
-                                    onClick={() => bringToTop(followup.id)}
+                                    onClick={() => bringToTop(account.id)}
                                     layout
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{
@@ -399,16 +404,16 @@ function FollowupComponent() {
                                                 transition={{ delay: 0.1 }}
                                             >
                                                 <div className="text-sm font-medium text-[var(--text)] truncate">
-                                                    {followup.name}
+                                                    {account.name}
                                                 </div>
                                                 <button
                                                     onClick={(e) => {
                                                         e.stopPropagation();
-                                                        removeFollowup(followup.id);
+                                                        removeAccount(account.id);
                                                     }}
                                                     className="text-[var(--red)] hover:text-[var(--red-dark)] text-lg"
                                                 >
-                                                    <X/>
+                                                    <X />
                                                 </button>
                                             </motion.div>
                                         )}
@@ -421,10 +426,10 @@ function FollowupComponent() {
                                                 transition={{ delay: 0.2 }}
                                             >
                                                 <div className="flex-col">
-                                                    <h1 className="text-xl font-semibold text-[var(--text-head)]">{followup.name}</h1>
+                                                    <h1 className="text-xl font-semibold text-[var(--text-head)]">{account.name}</h1>
                                                     <div className="flex items-center gap-2 mt-1">
-                                                        <Badge variant="standard">{followup.type}</Badge>
-                                                        <Badge variant="standard">{followup.leadType}</Badge>
+                                                        <Badge variant="standard">{account.type}</Badge>
+                                                        <Badge variant="standard">{account.lastActivity}</Badge>
                                                     </div>
 
                                                     <div className="flex justify-center gap-3 mt-4">
@@ -456,17 +461,17 @@ function FollowupComponent() {
                                                 </div>
                                                 <div className="mt-6 space-y-4">
                                                     <div>
-                                                        <h3 className="font-medium text-[var(--text-low)]">CONCERN</h3>
-                                                        <p className="mt-1 text-[var(--text)]">{followup.concern}</p>
+                                                        <h3 className="font-medium text-[var(--text-low)]">LAST ACTIVITY</h3>
+                                                        <p className="mt-1 text-[var(--text)]">{account.lastActivity}</p>
                                                     </div>
                                                     <div>
                                                         <h3 className="font-medium text-[var(--text-low)]">NEXT FOLLOWUP</h3>
-                                                        <p className="mt-1 font-medium text-[var(--text)]">{followup.nextFollowup}</p>
+                                                        <p className="mt-1 font-medium text-[var(--text)]">{account.nextFollowUp}</p>
                                                     </div>
                                                     <div>
                                                         <h3 className="font-medium text-[var(--text-low)]">STAGE</h3>
                                                         <div className="mt-1">
-                                                            <Badge variant="standard">{followup.stage}</Badge>
+                                                            <Badge variant="standard">{account.stage}</Badge>
                                                         </div>
                                                     </div>
                                                     <div className="flex gap-2 mt-4">
@@ -475,7 +480,7 @@ function FollowupComponent() {
                                                             Mark Done
                                                         </Button>
                                                         <Button variant="border" size="sm" className="flex-1">
-                                                            <Notebook/>
+                                                            <Notebook />
                                                             <span>Note</span>
                                                         </Button>
                                                     </div>
