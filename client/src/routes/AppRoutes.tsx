@@ -17,7 +17,7 @@ import DeskUsers from "@/pages/AdminDesk/Manage/Users";
 // Relation Desk
 import { Relation as Relations } from "@/pages/RelationDesk/Relation";
 import { MyAccounts as RelationAccount } from "@/pages/RelationDesk/MyAccount";
-import { SearchOrgs as RelationSearchOrgs } from "@/pages/RelationDesk/SearchOrg";
+
 import { Activeusers as RelationActiveusers } from "@/pages/RelationDesk/ActiveUsers";
 import { Explorers as RelationExplorer } from "@/pages/RelationDesk/Explorers";
 import { Coaches as RelationCoach } from "@/pages/RelationDesk/Coaches";
