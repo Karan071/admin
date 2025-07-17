@@ -6525,3 +6525,66 @@ export const TestmonialsData=[
   }
 ]
 
+
+export const AccessCode = [
+  {
+    "id": 1,
+    "CodeName": "AIM25",
+    "Type": "Group",
+    "Discount": "25%",
+    "Product": "Masterclass: ACT",
+    "PartnerType": "Channel Partner",
+    "PartnerName": "ViCareer Connectew",
+    "Uses": "20/50",
+    "Validity": "1-31 Jul",
+    "Status": "Active"
+  },
+  {
+    "id": 2,
+    "CodeName": "VC50",
+    "Type": "Single",
+    "Discount": "50%",
+    "Product": "Pool Session: Resume Review",
+    "PartnerType": "Organisation",
+    "PartnerName": "FutureEdge Org",
+    "Uses": "10/30",
+    "Validity": "5-25 Jul",
+    "Status": "Active"
+  },
+  {
+    "id": 3,
+    "CodeName": "SKL10",
+    "Type": "Group",
+    "Discount": "10%",
+    "Product": "Assessment: SkillFit",
+    "PartnerType": "Channel Partner",
+    "PartnerName": "BrightSteps Ltd.",
+    "Uses": "5/20",
+    "Validity": "10-31 Jul",
+    "Status": "Inactive"
+  },
+  {
+    "id": 4,
+    "CodeName": "ORG30",
+    "Type": "Single",
+    "Discount": "30%",
+    "Product": "Masterclass: Strategic Thinking",
+    "PartnerType": "Organisation",
+    "PartnerName": "ThinkAhead",
+    "Uses": "15/40",
+    "Validity": "1-15 Jul",
+    "Status": "Active"
+  },
+  {
+    "id": 5,
+    "CodeName": "CNX00",
+    "Type": "Group",
+    "Discount": "0%",
+    "Product": "Assessment: Leadership Profile",
+    "PartnerType": "Channel Partner",
+    "PartnerName": "CareerNxt",
+    "Uses": "0/25",
+    "Validity": "15-31 Jul",
+    "Status": "Inactive"
+  }
+]

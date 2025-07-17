@@ -1,5 +1,9 @@
-export default function  Activities(){
+export default function Activities() {
     return (
-        <div>Activities</div>
+        <div>
+            Activities
+            <p>No Data is available</p>
+        </div>
+
     )
 }

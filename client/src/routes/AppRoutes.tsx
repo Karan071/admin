@@ -75,7 +75,6 @@ export default function AppRoutes() {
       <Route path="relation/dashboard" element={<Relations />} />
       <Route path="relation/followups" element={<RelationFollowup />} />
       <Route path="relation/account" element={<RelationAccount />} />
-      <Route path="relation/user-org-search" element={<RelationSearchOrgs />} />
       <Route path="relation/active-users" element={<RelationActiveusers />} />
       <Route path="relation/explorers" element={<RelationExplorer />} />
       <Route path="relation/coaches" element={<RelationCoach />} />
@@ -112,6 +111,7 @@ export default function AppRoutes() {
       <Route path="approval/profile-org" element={<ApprovalProfileOrg />} />
 
       {/* Backward compatibility routes - redirect old paths to new structure */}
+      
       {/* <Route path="coaches" element={<Coaches />} />
       <Route path="explorers" element={<Explorers />} />
       <Route path="organisations" element={<Organisations />} />
@@ -150,6 +150,7 @@ export default function AppRoutes() {
       <Route path="google-map" element={<ApprovalGoogleMaps />} />
       <Route path="profile-coach" element={<ApprovalProfileCoach />} />
       <Route path="profile-org" element={<ApprovalProfileOrg />} /> */}
+
       {/* <Route path="user-org-search" element={<RelationSearchOrgs />} /> */}
       {/* <Route path="active-users" element={<RelationActiveusers />} /> */}
       {/* <Route path="partners" element={<RelationPartner />} /> */}

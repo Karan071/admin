@@ -1,3 +1,6 @@
 export default function ConsultantPremium() {
-  return <div>ConsultantPremium</div>;
+  return <div>
+    <p>ConsultantPremium</p>
+    <p>NO data available</p>
+  </div>;
 }
