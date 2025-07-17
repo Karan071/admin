@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown,Flag, MessageCircle,Search, X,Check, Bell,Users, FileCheck2, FileText, CheckCircle2,  FileDown,  BadgeQuestionMark, GraduationCap, Handshake, ClipboardList, Plus, Eye } from "lucide-react";
+import { Clock, CircleArrowUp, CircleArrowDown, Flag, MessageCircle, Search, X, Check, Bell, Users, FileCheck2, FileText, CheckCircle2, FileDown, BadgeQuestionMark, GraduationCap, Handshake, ClipboardList, Plus, Eye } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -66,15 +66,13 @@ export default function Organisation() {
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Sessions Pool </h1>
       <StatCard />
       <Buttonbar />
-      
-
       <SessionsPool />
     </div>
   );
 }
 
 function Buttonbar() {
-    const [showFilter, setShowFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
@@ -95,15 +93,15 @@ function Buttonbar() {
           <span className="">Manage Availability</span>
         </Button>
         <Button
-        variant="border"
-        onClick={() => setShowFilter(true)}
-        className="flex items-center gap-2 self-end"
-      >
-        <Filter className="h-4 w-4" />
-        {showFilter ? "Hide Filters" : "Show Filters"}
-      </Button>
+          variant="border"
+          onClick={() => setShowFilter(true)}
+          className="flex items-center gap-2 self-end"
+        >
+          <Filter className="h-4 w-4" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
 
-      {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
+        {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
       </div>
     </div>
   );
@@ -339,21 +337,21 @@ function SessionsPool() {
       default: return [];
     }
   };
-const getBadgeStyles = (condition: boolean) => {
-  return condition 
-      ? "bg-[var(--green2)] text-[var(--green)]" 
-    : "bg-[var(--red2)] text-[var(--red)]"
-};
+  const getBadgeStyles = (condition: boolean) => {
+    return condition
+      ? "bg-[var(--green2)] text-[var(--green)]"
+      : "bg-[var(--red2)] text-[var(--red)]"
+  };
   const currentData = getCurrentData();
-  
-  
+
+
   let sortedData = [...currentData];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
       const key = sortConfig.key as keyof typeof a;
       const aValue = a[key];
       const bValue = b[key];
-      
+
       if (aValue < bValue) {
         return sortConfig.direction === "ascending" ? -1 : 1;
       }
@@ -443,7 +441,7 @@ const getBadgeStyles = (condition: boolean) => {
             </TableHead>
           </>
         );
-        
+
       case "introductory":
         return (
           <>
@@ -491,7 +489,7 @@ const getBadgeStyles = (condition: boolean) => {
             </TableHead>
           </>
         );
-        
+
       case "b2b":
         return (
           <>
@@ -539,7 +537,7 @@ const getBadgeStyles = (condition: boolean) => {
             </TableHead>
           </>
         );
-        
+
       case "pending":
         return (
           <>
@@ -581,7 +579,7 @@ const getBadgeStyles = (condition: boolean) => {
             </TableHead>
           </>
         );
-        
+
       default:
         return null;
     }
@@ -599,20 +597,20 @@ const getBadgeStyles = (condition: boolean) => {
             <TableCell>{session.topic}</TableCell>
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
-           <Badge 
-  className="bg-[var(--faded)] text-[var(--text)]"
->
-  {session.slots}
-</Badge>
+              <Badge
+                className="bg-[var(--faded)] text-[var(--text)]"
+              >
+                {session.slots}
+              </Badge>
             </TableCell>
             <TableCell>
-           <Badge className={getBadgeStyles(session.status === "Active")}>
-    {session.status}
-  </Badge>
+              <Badge className={getBadgeStyles(session.status === "Active")}>
+                {session.status}
+              </Badge>
             </TableCell>
           </>
         );
-        
+
       case "introductory":
         return (
           <>
@@ -622,23 +620,23 @@ const getBadgeStyles = (condition: boolean) => {
             <TableCell>{session.topic}</TableCell>
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
-    <Badge className="bg-[var(--faded)] text-[var(--text)]">
-  {session.slots}
-</Badge>
+              <Badge className="bg-[var(--faded)] text-[var(--text)]">
+                {session.slots}
+              </Badge>
             </TableCell>
             <TableCell>
-             <Badge
-  className={session.status === "Active" 
-    ? "bg-[var(--green2)] text-[var(--green)]" 
-    : "bg-[var(--red2)] text-[var(--red)]"
-  }
->
-  {session.status}
-</Badge>
+              <Badge
+                className={session.status === "Active"
+                  ? "bg-[var(--green2)] text-[var(--green)]"
+                  : "bg-[var(--red2)] text-[var(--red)]"
+                }
+              >
+                {session.status}
+              </Badge>
             </TableCell>
           </>
         );
-        
+
       case "b2b":
         return (
           <>
@@ -648,22 +646,22 @@ const getBadgeStyles = (condition: boolean) => {
             <TableCell>{session.topic}</TableCell>
             <TableCell>{session.price} / {session.code}</TableCell>
             <TableCell>
-          <Badge 
-  className="bg-[var(--faded)] text-[var(--text)]"
->
-  {session.slots}
-</Badge>
+              <Badge
+                className="bg-[var(--faded)] text-[var(--text)]"
+              >
+                {session.slots}
+              </Badge>
             </TableCell>
             <TableCell>
-            <Badge 
-  className={getBadgeStyles(session.status === "Active")}
->
-  {session.status}
-</Badge>
+              <Badge
+                className={getBadgeStyles(session.status === "Active")}
+              >
+                {session.status}
+              </Badge>
             </TableCell>
           </>
         );
-        
+
       case "pending":
         return (
           <>
@@ -679,7 +677,7 @@ const getBadgeStyles = (condition: boolean) => {
             </TableCell>
           </>
         );
-        
+
       default:
         return null;
     }
@@ -738,7 +736,7 @@ const getBadgeStyles = (condition: boolean) => {
         </Button>
       </div>
 
-        <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
         <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
           <div className="flex items-center justify-between pl-0 p-4">
             {/* Updated select all section */}
@@ -804,7 +802,7 @@ const getBadgeStyles = (condition: boolean) => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            
+
             {/* Search bar */}
             <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input

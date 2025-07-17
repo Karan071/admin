@@ -1,3 +1,6 @@
 export default function Courses() {
-  return <div>Courses</div>;
+  return <div>
+    <p>Courses</p>
+    <p>No data is available</p>
+  </div>;
 }

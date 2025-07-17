@@ -168,11 +168,6 @@ export const SidebarData = {
           icon: Search,
         },
         {
-          title: "User/Org Search",
-          url: "/dashboard/relation/user-org-search",
-          icon: Search,
-        },
-        {
           title: "Cases",
           icon: TrendingUp,
           url: "#",
