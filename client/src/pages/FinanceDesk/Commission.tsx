@@ -3,17 +3,14 @@ import {
   Search,
   Eye,
   Filter,
-  Check,
-  X,
   BadgeDollarSign,
   Package,
   Notebook,
-  FileDown,
   Newspaper,
   Pen,
-  Download,
 } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -49,7 +46,7 @@ const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 
 const stats = [
   {
-    title: "Total Payouts Issued",
+    title: "Total Commissions Paid",
     value: "₹2,73,500",
     icon: Notebook,
     performance: Up,
@@ -74,46 +71,14 @@ const stats = [
   },
 ];
 
-export function Payout() {
+export function Commission() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-[var(--text-head)]">Payout</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-head)]">Commission (Content Not added)</h1>
         <StatsCards />
-        <Buttonbar/>
         <Topbar />
         <TableSection/>
-      </div>
-    </div>
-  );
-}
-
-function Buttonbar() {
-  return (
-    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
-        <div className="flex gap-4">
-      <Button variant="brand" size="new">
-        <Check className="h-3 w-3" />
-        <span className="">Approve Payout</span>
-      </Button>
-      <Button variant="delete" size="new">
-          <X className="h-3 w-3" />
-          <span className="">Hold</span>
-        </Button>
-        </div>
-      <div className="flex gap-4">
-        <Button variant="standard" size="new">
-          <FileDown className="h-3 w-3" />
-          <span className="">Download Invoice</span>
-        </Button>
-        <Button variant="standard" size="new">
-          <Newspaper className="h-3 w-3" />
-          <span className="">View Related Transaction</span>
-        </Button>
-        <Button variant="standard" size="new">
-          <Download className="h-3 w-3" />
-          <span className="">Export</span>
-        </Button>
       </div>
     </div>
   );

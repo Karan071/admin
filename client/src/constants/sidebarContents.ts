@@ -28,7 +28,8 @@ import {
   Handshake,
   MapPin,
   Bug,
-  CircleUser
+  CircleUser,
+  BadgeDollarSign
 } from "lucide-react";
 
 export const SidebarData = {
@@ -234,6 +235,16 @@ export const SidebarData = {
           title: "Reports",
           url: "/dashboard/finance/reports",
           icon: FileBarChart,
+        },
+        {
+          title: "Commission",
+          url: "/dashboard/finance/commission",
+          icon: FileBarChart,
+        },
+        {
+          title: "Earning",
+          url: "/dashboard/finance/earning",
+          icon: BadgeDollarSign,
         },
       ],
     },

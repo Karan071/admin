@@ -1,19 +1,15 @@
 import { Button } from "@/components/ui/button";
 import {
-  Search,
   Eye,
   Filter,
-  Check,
-  X,
   BadgeDollarSign,
   Package,
   Notebook,
   FileDown,
   Newspaper,
-  Pen,
   Download,
 } from "lucide-react";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader,  } from "@/components/ui/card";
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -23,7 +19,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -33,14 +28,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import {  PayoutTable } from "@/data/Data";
+import {  EarningTable } from "@/data/Data";
 //import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
-import DatePicker from '@/components/ui/DatePicker';
-import React from "react";
-import RadioButton from "@/components/ui/Radiobutton";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -49,39 +41,38 @@ const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 
 const stats = [
   {
-    title: "Total Payouts Issued",
-    value: "₹2,73,500",
+    title: "Total Revenue",
+    value: "₹4,52,000",
     icon: Notebook,
     performance: Up,
   },
   {
-    title: "Payouts Pending",
-    value: "₹38,000",
+    title: "Platform Earnings",
+    value: "₹1,78,500",
     icon: BadgeDollarSign,
     performance: Up,
   },
   {
-    title: "Settled via Escrow",
-    value: "₹1,92,000",
+    title: "Total Payouts",
+    value: "₹2,78,000",
     icon: Package,
     performance: Down,
   },
   {
-    title: "GST on Platform Fee",
+    title: "GST Collected",
     value: "₹32,130",
-    icon: BadgeDollarSign,
+    icon: Newspaper,
     performance: Up,
   },
 ];
 
-export function Payout() {
+export function Earning() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-[var(--text-head)]">Payout</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-head)]">Earning</h1>
         <StatsCards />
         <Buttonbar/>
-        <Topbar />
         <TableSection/>
       </div>
     </div>
@@ -92,235 +83,33 @@ function Buttonbar() {
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
         <div className="flex gap-4">
-      <Button variant="brand" size="new">
-        <Check className="h-3 w-3" />
-        <span className="">Approve Payout</span>
+      <Button variant="standard" size="new">
+        <FileDown className="h-3 w-3" />
+        <span className="">Export</span>
       </Button>
-      <Button variant="delete" size="new">
-          <X className="h-3 w-3" />
-          <span className="">Hold</span>
+      <Button variant="brand" size="new">
+          <Download className="h-3 w-3" />
+          <span className="">Download</span>
         </Button>
         </div>
       <div className="flex gap-4">
         <Button variant="standard" size="new">
-          <FileDown className="h-3 w-3" />
-          <span className="">Download Invoice</span>
+          <Filter className="h-3 w-3" />
+          <span className="">Filter</span>
+        </Button>
+        <Button variant="standard" size="new">
+          <Eye className="h-3 w-3" />
+          <span className="">View Breakdown</span>
         </Button>
         <Button variant="standard" size="new">
           <Newspaper className="h-3 w-3" />
-          <span className="">View Related Transaction</span>
-        </Button>
-        <Button variant="standard" size="new">
-          <Download className="h-3 w-3" />
-          <span className="">Export</span>
+          <span className="">Reconcile payout vs earnings</span>
         </Button>
       </div>
     </div>
   );
 }
 
-
-function Topbar() {
-  const [showFilter, setShowFilter] = useState(false);
-  const [GST, setGST] = useState("Escrow Only");
-  return (
-    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
-        <div>
-      <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-                    <Input
-                      placeholder="Search"
-                      className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-                    />
-                    <Button
-                      type="submit"
-                      size="icon"
-                      variant="standard"
-                      className="rounded-none rounded-r-md bg-[var(--button)]"
-                      aria-label="Search"
-                    >
-                      <Search className="h-5 w-5 text-[var(--text)]" />
-                    </Button>
-                  </div>
-         </div>
-      <div className="flex gap-4 align-middle">
-         <Button
-          variant="standard"
-          onClick={() => setShowFilter(true)}
-          className="flex items-center gap-2 self-end min-h-[40px]"
-        >
-          <Filter className="h-4 w-4" />
-          {showFilter ? "Hide Filters" : "Show Filters"}
-        </Button>
-
-        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
-        
-       <Button
-  variant="standard"
-  size="new"
-  onClick={() => setGST(GST === "Escrow Only" ? "All" : "Escrow Only")}
->
-  <span>{GST}</span>
-</Button>
-      </div>
-    </div>
-  );
-}
-
-
-interface FilterProps {
-  onClose: () => void;
-}
-
-
-function AdvancedFilters({ onClose }: FilterProps) {
-  const modalRef = React.useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState("Date Range");
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      // Do nothing if clicking inside modal
-      if (modalRef.current && modalRef.current.contains(e.target as Node)) {
-        return;
-      }
-
-      // Do nothing if clicking inside dropdown (Radix renders it in a portal)
-      const target = e.target as HTMLElement;
-      if (target.closest("[data-radix-popper-content-wrapper]")) {
-        return;
-      }
-
-      onClose(); // Close modal otherwise
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [onClose]);
-
-  const [type, setType] = useState("Coach");
-  const [status, setStatus] = useState("Pending");
-
-  const tabList = [
-    "Date Range",
-    "Payee Type",
-    "Status",
-  ];
-
-  return (
-    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
-
-      <div
-        ref={modalRef}
-        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
-      >
-        <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
-          <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
-          <Button
-            variant="link"
-            className="text-sm text-[var(--brand-color)] p-0 h-auto block hover:no-underline hover:cursor-pointer"
-          >
-            Clear All
-          </Button>
-        </div>
-        {/* Sidebar */}
-        <div className="flex ">
-          <div className="overflow-y-auto min-w-[180px] border-r-1 h-[360px]">
-
-            <div className="flex flex-col ">
-              {tabList.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
-                    ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
-                    : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
-                    }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Tab Content */}
-
-          <div className="p-6 overflow-y-auto relative w-full">
-            
-            {activeTab === "Status" && (
-              <>
-                <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Status:
-                </p>
-                <div className="flex flex-col gap-4 text-[var(--text)] ">
-                  {[
-                    "Pending",
-                    "Approved",
-                    "Paid",
-                    "Hold",
-                  ].map((option) => (
-                    <RadioButton
-                      key={option}
-                      label={option}
-                      value={option}
-                      selected={status}
-                      onChange={setStatus}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            {activeTab === "Payee Type" && (
-              <>
-                <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Payment type :
-                </p>
-                <div className="flex flex-col gap-4 text-[var(--text)] ">
-                  {[
-                    "Coach",
-                    "Educator",
-                    "Institute",
-                    "Partner",
-                  ].map((option) => (
-                    <RadioButton
-                      key={option}
-                      label={option}
-                      value={option}
-                      selected={type}
-                      onChange={setType}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            
-
-            {activeTab === "Date Range" && (
-              <>
-                <label htmlFor="act" className="text-[var(--text)]">Enter the Date range :</label>
-                <div className="mt-4 min-w-full">
-                  <DatePicker />
-                </div>
-              </>
-            )}
-
-            {/* Footer */}
-          </div>
-        </div>
-        <div className="relative bottom-0 right-0 w-full px-6 py-4 flex border-t-1 justify-end gap-2">
-          <div className="flex gap-4 absolute left-[50%] -translate-x-[50%]">
-            <Button variant="border" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button variant="brand" onClick={onClose}>
-              Apply Filters
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 
 function StatsCards() {
@@ -362,12 +151,12 @@ function TableSection() {
     direction: "ascending" | "descending";
   } | null>(null);
   const [selectedStack, setSelectedStack] = useState<
-    typeof PayoutTable
-  >(PayoutTable[0] ? [PayoutTable[0]] : []);
-  const [focusedId, setFocusedId] = useState<number | null>(PayoutTable[0]?.id || null);
+    typeof EarningTable
+  >(EarningTable[0] ? [EarningTable[0]] : []);
+  const [focusedId, setFocusedId] = useState<number | null>(EarningTable[0]?.id || null);
 
   // Sorting logic
-  const sortedData = [...PayoutTable];
+  const sortedData = [...EarningTable];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
       const aValue = a[sortConfig.key as keyof typeof a];
@@ -455,7 +244,7 @@ function TableSection() {
     }
   };*/}
 
-  const handleRowClick = (user: (typeof PayoutTable)[0]) => {
+  const handleRowClick = (user: (typeof EarningTable)[0]) => {
     // Double-click detected
     const exists = selectedStack.find((c) => c.id === user.id);
     if (!exists) {
@@ -488,59 +277,43 @@ function TableSection() {
               <TableRow>
                 <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
-                  onClick={() => requestSort("PayoutID")}
+                  onClick={() => requestSort("ProductOrChannel")}
                   className="cursor-pointer text-[var(--text)] text-low"
                 >
-                  Payout ID{" "}
-                  {sortConfig?.key === "PayoutID" &&
+                  Product / Channel{" "}
+                  {sortConfig?.key === "ProductOrChannel" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("RecipientName")}
+                  onClick={() => requestSort("TotalRevenue")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Recipient Name{" "}
-                  {sortConfig?.key === "RecipientName" &&
+                  Total Revenue ₹{" "}
+                  {sortConfig?.key === "TotalRevenue" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("Type")}
+                  onClick={() => requestSort("PlatformShare")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Type{" "}
-                  {sortConfig?.key === "Type" &&
+                  Platform Share ₹{" "}
+                  {sortConfig?.key === "PlatformShare" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("ProductService")}
+                  onClick={() => requestSort("PartnerShare")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Product / Service{" "}
-                  {sortConfig?.key === "ProductService" &&
+                  Partner Share ₹{" "}
+                  {sortConfig?.key === "PartnerShare" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("Gross")}
+                  onClick={() => requestSort("GSTOnFee")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Gross ₹{" "}
-                  {sortConfig?.key === "Gross" &&
-                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead
-                  onClick={() => requestSort("PlatformFee")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  Platform Fee ₹{" "}
-                  {sortConfig?.key === "PlatformFee" &&
-                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead
-                  onClick={() => requestSort("GST")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  GST ₹{" "}
-                  {sortConfig?.key === "GST" &&
+                  GST on Fee ₹{" "}
+                  {sortConfig?.key === "GSTOnFee" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
@@ -559,15 +332,6 @@ function TableSection() {
                   {sortConfig?.key === "Status" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
-                <TableHead
-                  onClick={() => requestSort("PayoutDate")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  Payout Date{" "}
-                  {sortConfig?.key === "PayoutDate" &&
-                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead className="text-[var(--text)]">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="overflow-visible relative z-0">
@@ -607,69 +371,30 @@ function TableSection() {
                     <div className="flex items-center gap-4">
                       <div>
                         <div className="flex justify-start items-center">
-                          <div className="font-medium">{user.PayoutID}</div>
+                          <div className="font-medium">{user.ProductOrChannel}</div>
                         </div>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.RecipientName}</div>
+                    <div className="text-low">{user.TotalRevenue}</div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.Type}</div>
+                    <div className="text-low">{user.PlatformShare}</div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.ProductService}</div>
+                    <div className="text-low">{user.PartnerShare}</div>
                   </TableCell>
                   <TableCell>
                     <div className="text-low">
-                      <div>{`${user.Gross}`}</div>
+                      <div>{`${user.GSTOnFee}`}</div>
                     </div>
                   </TableCell>
-                  <TableCell>
-                    <div className="text-low">{user.PlatformFee}</div>
-                  </TableCell>
-                  <TableCell>{user.GST}</TableCell>
                   <TableCell>
                     <div className="text-low">{user.NetPayout}</div>
                   </TableCell>
                   <TableCell>
                     <Badge variant="standard">{user.Status}</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-low">{user.PayoutDate}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
-                      >
-                        <Eye className="h-4 w-3" />
-                        <span className="sr-only">View</span>
-                      </Button>
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
-                      >
-                        <Newspaper className="h-4 w-3" />
-                        <span className="sr-only">Receipt</span>
-                      </Button>
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
-                      >
-                        <Pen className="h-4 w-3" />
-                        <span className="sr-only">Edit</span>
-                      </Button>
-                    </div>
                   </TableCell>
                 </TableRow>
               ))}

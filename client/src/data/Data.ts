@@ -6588,3 +6588,509 @@ export const AccessCode = [
     "Status": "Inactive"
   }
 ]
+
+
+
+export const paymentsTable = [
+  {
+    "id": 1,
+    "PaymentID": "TXN-003489",
+    "Date": "11 Jul '25",
+    "User": "Aarti Verma",
+    "Product": "Masterclass: ACT",
+    "Type": "Masterclass",
+    "ProductTitle": "“Design Careers 101”",
+    "Gross": "₹500",
+    "PlatformFee": "₹100",
+    "GST": "₹18",
+    "GSTStatus": "Success"
+  },
+  {
+    "id": 2,
+    "PaymentID": "TXN-003490",
+    "Date": "12 Jul '25",
+    "User": "Rohan Mehta",
+    "Product": "Assessment: SkillFit",
+    "Type": "Assessment",
+    "ProductTitle": "“Logical Aptitude Test”",
+    "Gross": "₹300",
+    "PlatformFee": "₹60",
+    "GST": "₹10.8",
+    "GSTStatus": "Failed"
+  },
+  {
+    "id": 3,
+    "PaymentID": "TXN-003491",
+    "Date": "12 Jul '25",
+    "User": "Sneha Kapoor",
+    "Product": "1:1 Session: UX Review",
+    "Type": "1:1 Session",
+    "ProductTitle": "“Portfolio Feedback Call”",
+    "Gross": "₹800",
+    "PlatformFee": "₹160",
+    "GST": "₹28.8",
+    "GSTStatus": "Pending"
+  },
+  {
+    "id": 4,
+    "PaymentID": "TXN-003492",
+    "Date": "13 Jul '25",
+    "User": "Aman Singh",
+    "Product": "Learning Path: Product Design",
+    "Type": "Learning",
+    "ProductTitle": "“Design Thinking Track”",
+    "Gross": "₹1000",
+    "PlatformFee": "₹200",
+    "GST": "₹36",
+    "GSTStatus": "Refunded"
+  },
+  {
+    "id": 5,
+    "PaymentID": "TXN-003493",
+    "Date": "13 Jul '25",
+    "User": "Pooja Rathi",
+    "Product": "Masterclass: Career Jumpstart",
+    "Type": "Masterclass",
+    "ProductTitle": "“Level-Up Your Resume”",
+    "Gross": "₹600",
+    "PlatformFee": "₹120",
+    "GST": "₹21.6",
+    "GSTStatus": "Success"
+  },
+  {
+    "id": 6,
+    "PaymentID": "TXN-003494",
+    "Date": "14 Jul '25",
+    "User": "Mehul Desai",
+    "Product": "Assessment: Career Fit",
+    "Type": "Assessment",
+    "ProductTitle": "“Find Your Strengths”",
+    "Gross": "₹450",
+    "PlatformFee": "₹90",
+    "GST": "₹16.2",
+    "GSTStatus": "Success"
+  },
+  {
+    "id": 7,
+    "PaymentID": "TXN-003495",
+    "Date": "14 Jul '25",
+    "User": "Ishita Rawal",
+    "Product": "1:1 Session: Interview Prep",
+    "Type": "1:1 Session",
+    "ProductTitle": "“Mock Interview Call”",
+    "Gross": "₹750",
+    "PlatformFee": "₹150",
+    "GST": "₹27",
+    "GSTStatus": "Failed"
+  },
+  {
+    "id": 8,
+    "PaymentID": "TXN-003496",
+    "Date": "15 Jul '25",
+    "User": "Nikhil Anand",
+    "Product": "Learning: UX Essentials",
+    "Type": "Learning",
+    "ProductTitle": "“Basics of UX Design”",
+    "Gross": "₹400",
+    "PlatformFee": "₹80",
+    "GST": "₹14.4",
+    "GSTStatus": "Pending"
+  },
+  {
+    "id": 9,
+    "PaymentID": "TXN-003497",
+    "Date": "15 Jul '25",
+    "User": "Kritika Bansal",
+    "Product": "Masterclass: Personal Branding",
+    "Type": "Masterclass",
+    "ProductTitle": "“Build Your LinkedIn”",
+    "Gross": "₹550",
+    "PlatformFee": "₹110",
+    "GST": "₹19.8",
+    "GSTStatus": "Success"
+  },
+  {
+    "id": 10,
+    "PaymentID": "TXN-003498",
+    "Date": "16 Jul '25",
+    "User": "Rajeev Iyer",
+    "Product": "Assessment: Personality Check",
+    "Type": "Assessment",
+    "ProductTitle": "“MBTI Deep Dive”",
+    "Gross": "₹350",
+    "PlatformFee": "₹70",
+    "GST": "₹12.6",
+    "GSTStatus": "Refunded"
+  }
+]
+
+
+export const PayoutTable = [
+  {
+    "id": 1,
+    "PayoutID": "PAY10231",
+    "RecipientName": "Aarti Verma",
+    "Type": "Coach",
+    "ProductService": "1:1 Stream Guidance",
+    "Gross": "₹999",
+    "PlatformFee": "₹199",
+    "GST": "₹35.82",
+    "NetPayout": "₹800",
+    "Status": "Paid",
+    "PayoutDate": "09 Jul 2025",
+    "Action": "View · Receipt"
+  },
+  {
+    "id": 2,
+    "PayoutID": "PAY10232",
+    "RecipientName": "EduPro Institute",
+    "Type": "Organisation",
+    "ProductService": "Masterclass: Skill Ready",
+    "Gross": "₹1,500",
+    "PlatformFee": "₹450",
+    "GST": "₹81",
+    "NetPayout": "₹1,050",
+    "Status": "Pending",
+    "PayoutDate": "—",
+    "Action": "Approve"
+  },
+  {
+    "id": 3,
+    "PayoutID": "PAY10233",
+    "RecipientName": "Riya Sharma",
+    "Type": "Educator",
+    "ProductService": "Assessment: Core Skills",
+    "Gross": "₹700",
+    "PlatformFee": "₹140",
+    "GST": "₹25.2",
+    "NetPayout": "₹534.8",
+    "Status": "Hold",
+    "PayoutDate": "—",
+    "Action": "Review"
+  },
+  {
+    "id": 4,
+    "PayoutID": "PAY10234",
+    "RecipientName": "DesignThink Lab",
+    "Type": "Partner",
+    "ProductService": "Learning: UI Basics",
+    "Gross": "₹2,000",
+    "PlatformFee": "₹600",
+    "GST": "₹72",
+    "NetPayout": "₹1,328",
+    "Status": "Paid",
+    "PayoutDate": "08 Jul 2025",
+    "Action": "View · Receipt"
+  },
+  {
+    "id": 5,
+    "PayoutID": "PAY10235",
+    "RecipientName": "Karan Mehta",
+    "Type": "Coach",
+    "ProductService": "1:1 Session: Career Roadmap",
+    "Gross": "₹850",
+    "PlatformFee": "₹170",
+    "GST": "₹30.6",
+    "NetPayout": "₹649.4",
+    "Status": "Approved",
+    "PayoutDate": "10 Jul 2025",
+    "Action": "Receipt"
+  },
+  {
+    "id": 6,
+    "PayoutID": "PAY10236",
+    "RecipientName": "SkillBuilders Org",
+    "Type": "Organisation",
+    "ProductService": "Masterclass: Future Skills",
+    "Gross": "₹1,800",
+    "PlatformFee": "₹540",
+    "GST": "₹97.2",
+    "NetPayout": "₹1,262.8",
+    "Status": "Pending",
+    "PayoutDate": "—",
+    "Action": "Approve"
+  },
+  {
+    "id": 7,
+    "PayoutID": "PAY10237",
+    "RecipientName": "Neha Kapoor",
+    "Type": "Educator",
+    "ProductService": "Assessment: Aptitude Check",
+    "Gross": "₹650",
+    "PlatformFee": "₹130",
+    "GST": "₹23.4",
+    "NetPayout": "₹496.6",
+    "Status": "Hold",
+    "PayoutDate": "—",
+    "Action": "Review"
+  },
+  {
+    "id": 8,
+    "PayoutID": "PAY10238",
+    "RecipientName": "VLearn Partner Group",
+    "Type": "Partner",
+    "ProductService": "Learning: Design Bootcamp",
+    "Gross": "₹2,200",
+    "PlatformFee": "₹660",
+    "GST": "₹79.2",
+    "NetPayout": "₹1,460.8",
+    "Status": "Paid",
+    "PayoutDate": "09 Jul 2025",
+    "Action": "View · Receipt"
+  },
+  {
+    "id": 9,
+    "PayoutID": "PAY10239",
+    "RecipientName": "Anjali Rao",
+    "Type": "Coach",
+    "ProductService": "1:1 Review: Portfolio",
+    "Gross": "₹950",
+    "PlatformFee": "₹190",
+    "GST": "₹34.2",
+    "NetPayout": "₹725.8",
+    "Status": "Approved",
+    "PayoutDate": "11 Jul 2025",
+    "Action": "Receipt"
+  },
+  {
+    "id": 10,
+    "PayoutID": "PAY10240",
+    "RecipientName": "Bright Minds Academy",
+    "Type": "Organisation",
+    "ProductService": "Masterclass: Communication",
+    "Gross": "₹1,600",
+    "PlatformFee": "₹480",
+    "GST": "₹86.4",
+    "NetPayout": "₹1,033.6",
+    "Status": "Pending",
+    "PayoutDate": "—",
+    "Action": "Approve"
+  }
+]
+
+export const ReportTable =[
+  {
+    "id": 1,
+    "Date": "10 Jul",
+    "ReportName": "Coach Commissions",
+    "Category": "Commissions",
+    "Revenue": "₹52,000",
+    "PlatformFee": "₹13,000",
+    "GST": "₹2,340",
+    "Payout": "₹39,000",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 2,
+    "Date": "09 Jul",
+    "ReportName": "Masterclass Payouts",
+    "Category": "Payouts",
+    "Revenue": "₹40,000",
+    "PlatformFee": "₹10,000",
+    "GST": "₹1,800",
+    "Payout": "₹28,200",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 3,
+    "Date": "08 Jul",
+    "ReportName": "Assessment Earnings",
+    "Category": "Earnings",
+    "Revenue": "₹33,500",
+    "PlatformFee": "₹6,500",
+    "GST": "₹1,170",
+    "Payout": "₹25,830",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 4,
+    "Date": "07 Jul",
+    "ReportName": "Partner Settlements",
+    "Category": "Commissions",
+    "Revenue": "₹28,000",
+    "PlatformFee": "₹7,000",
+    "GST": "₹1,260",
+    "Payout": "₹19,740",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 5,
+    "Date": "06 Jul",
+    "ReportName": "Weekly Roundup",
+    "Category": "Summary",
+    "Revenue": "₹60,000",
+    "PlatformFee": "₹15,000",
+    "GST": "₹2,700",
+    "Payout": "₹42,300",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 6,
+    "Date": "05 Jul",
+    "ReportName": "Educator Payouts",
+    "Category": "Payouts",
+    "Revenue": "₹37,200",
+    "PlatformFee": "₹9,300",
+    "GST": "₹1,674",
+    "Payout": "₹26,226",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 7,
+    "Date": "04 Jul",
+    "ReportName": "UX Bootcamp Summary",
+    "Category": "Summary",
+    "Revenue": "₹48,000",
+    "PlatformFee": "₹12,000",
+    "GST": "₹2,160",
+    "Payout": "₹33,840",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 8,
+    "Date": "03 Jul",
+    "ReportName": "Learning Series Payout",
+    "Category": "Payouts",
+    "Revenue": "₹22,500",
+    "PlatformFee": "₹5,000",
+    "GST": "₹900",
+    "Payout": "₹16,600",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 9,
+    "Date": "02 Jul",
+    "ReportName": "Monthly Summary",
+    "Category": "Summary",
+    "Revenue": "₹75,000",
+    "PlatformFee": "₹18,000",
+    "GST": "₹3,240",
+    "Payout": "₹53,760",
+    "Status": "Ready",
+    "Action": "Download · View"
+  },
+  {
+    "id": 10,
+    "Date": "01 Jul",
+    "ReportName": "July Kickoff Report",
+    "Category": "Earnings",
+    "Revenue": "₹31,000",
+    "PlatformFee": "₹6,000",
+    "GST": "₹1,080",
+    "Payout": "₹23,920",
+    "Status": "Ready",
+    "Action": "Download · View"
+  }
+]
+
+
+export const EarningTable = [
+  {
+    "id": 1,
+    "ProductOrChannel": "Masterclass: ACT",
+    "TotalRevenue": "₹12,000",
+    "PlatformShare": "₹3,000",
+    "PartnerShare": "₹8,000",
+    "GSTOnFee": "₹540",
+    "NetPayout": "₹8,000",
+    "Status": "Paid"
+  },
+  {
+    "id": 2,
+    "ProductOrChannel": "Assessment: SkillFit",
+    "TotalRevenue": "₹9,500",
+    "PlatformShare": "₹2,000",
+    "PartnerShare": "₹7,000",
+    "GSTOnFee": "₹360",
+    "NetPayout": "₹7,000",
+    "Status": "Pending"
+  },
+  {
+    "id": 3,
+    "ProductOrChannel": "Learning Series: UI/UX",
+    "TotalRevenue": "₹15,000",
+    "PlatformShare": "₹4,000",
+    "PartnerShare": "₹10,000",
+    "GSTOnFee": "₹720",
+    "NetPayout": "₹10,000",
+    "Status": "Paid"
+  },
+  {
+    "id": 4,
+    "ProductOrChannel": "Pool Session: Career Fit",
+    "TotalRevenue": "₹8,000",
+    "PlatformShare": "₹2,500",
+    "PartnerShare": "₹5,000",
+    "GSTOnFee": "₹225",
+    "NetPayout": "₹5,000",
+    "Status": "Hold"
+  },
+  {
+    "id": 5,
+    "ProductOrChannel": "Channel: ViCareer Connect",
+    "TotalRevenue": "₹18,000",
+    "PlatformShare": "₹5,000",
+    "PartnerShare": "₹12,000",
+    "GSTOnFee": "₹900",
+    "NetPayout": "₹12,000",
+    "Status": "Paid"
+  },
+  {
+    "id": 6,
+    "ProductOrChannel": "Partner Referral: EduPath",
+    "TotalRevenue": "₹11,500",
+    "PlatformShare": "₹3,500",
+    "PartnerShare": "₹7,000",
+    "GSTOnFee": "₹315",
+    "NetPayout": "₹7,000",
+    "Status": "Pending"
+  },
+  {
+    "id": 7,
+    "ProductOrChannel": "Assessment: LogicBoost",
+    "TotalRevenue": "₹10,000",
+    "PlatformShare": "₹2,000",
+    "PartnerShare": "₹7,500",
+    "GSTOnFee": "₹270",
+    "NetPayout": "₹7,500",
+    "Status": "Paid"
+  },
+  {
+    "id": 8,
+    "ProductOrChannel": "Masterclass: Resume Pro",
+    "TotalRevenue": "₹13,000",
+    "PlatformShare": "₹3,000",
+    "PartnerShare": "₹9,000",
+    "GSTOnFee": "₹405",
+    "NetPayout": "₹9,000",
+    "Status": "Paid"
+  },
+  {
+    "id": 9,
+    "ProductOrChannel": "Channel: YouthSpring",
+    "TotalRevenue": "₹7,000",
+    "PlatformShare": "₹1,800",
+    "PartnerShare": "₹4,800",
+    "GSTOnFee": "₹162",
+    "NetPayout": "₹4,800",
+    "Status": "Hold"
+  },
+  {
+    "id": 10,
+    "ProductOrChannel": "Learning Track: Future Skills",
+    "TotalRevenue": "₹16,000",
+    "PlatformShare": "₹4,500",
+    "PartnerShare": "₹11,000",
+    "GSTOnFee": "₹810",
+    "NetPayout": "₹11,000",
+    "Status": "Paid"
+  }
+]

@@ -46,6 +46,8 @@ import { Payments as FinancePayments } from "@/pages/FinanceDesk/Payments";
 import { Payout as FinancePayout } from "@/pages/FinanceDesk/Payout";
 import { PL as FinancePL } from "@/pages/FinanceDesk/PL";
 import { Reports as FinanceReports } from "@/pages/FinanceDesk/Reports";
+import { Commission as FinanceCommission } from "@/pages/FinanceDesk/Commission";
+import { Earning as FinanceEarning } from "@/pages/FinanceDesk/Earning";
 
 // Approval Desk 
 import { Approvals as ApprovalDesk } from "@/pages/ApprovalDesk/Approval";
@@ -102,6 +104,8 @@ export default function AppRoutes() {
       <Route path="finance/payout" element={<FinancePayout />} />
       <Route path="finance/pl" element={<FinancePL />} />
       <Route path="finance/reports" element={<FinanceReports />} />
+      <Route path="finance/commission" element={<FinanceCommission />} />
+      <Route path="finance/earning" element={<FinanceEarning />} />
 
       {/* Approval Desk Routes */}
       <Route path="approval/dashboard" element={<ApprovalDesk />} />
