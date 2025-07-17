@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown, Search, Users, FileCheck2, FileText, CheckCircle2,  FileDown,  BadgeQuestionMark,  Plus } from "lucide-react";
+import { Clock, CircleArrowUp, CircleArrowDown, Search, Users, FileCheck2,   FileDown,  BadgeQuestionMark,  Plus } from "lucide-react";
 import { Card, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -25,35 +25,25 @@ const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 const Stats = [
   {
-    title: "Total Assessments",
-    value: "128",
+    title: "Total Articles Published",
+    value: "126",
     icon: Users,
     performance: Up,
   },
   {
-    title: "Active Assessments",
-    value: "87",
+    title: "Pending Review",
+    value: "8",
     icon: FileCheck2,
     performance: Down,
   },
+ 
   {
-    title: "Assessments Taken",
-    value: "8,947",
-    icon: FileText,
-    performance: Up,
-  },
-  {
-    title: "In Progress",
-    value: "563",
+    title: "Last Updated",
+    value: "18 May 2025",
     icon: Clock,
     performance: Up,
   },
-  {
-    title: "Completed Reports Generated",
-    value: "6,482",
-    icon: CheckCircle2,
-    performance: Up,
-  },
+ 
 ];
 
 
@@ -63,7 +53,7 @@ export  function Help() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation Dashboard</h1>
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Help Articles </h1>
       <StatCard />
       <Buttonbar />
       <Button
@@ -87,20 +77,20 @@ function Buttonbar() {
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
         <Plus className="h-3 w-3" />
-        <span className="">Create New Assessment</span>
+        <span className="">Add Help Article</span>
       </Button>
       <div className="flex gap-4">
         <Button variant="standard" size="new">
           <BadgeQuestionMark className="h-3 w-3" />
-          <span className="">Manage Questions</span>
+          <span className=""> Organize by Category</span>
         </Button>
         <Button variant="standard" size="new">
           <Eye className="h-3 w-3" />
-          <span className="">View Results</span>
+          <span className="">Import Articles (Bulk)</span>
         </Button>
         <Button variant="standard" size="new">
           <FileDown className="h-3 w-3" />
-          <span className="">Export Reports</span>
+          <span className="">Export Help Content</span>
         </Button>
       </div>
     </div>
@@ -416,15 +406,15 @@ function HelpTabledata() {
           <Table className="w-full caption-top border-collapse overflow-y-visible">
             <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
               <TableRow>
-                <TableHead className="min-w-[40px]"></TableHead>
-                <TableHead>Title</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Tags</TableHead>
-                <TableHead>For</TableHead>
-                <TableHead>Author</TableHead>
-                <TableHead>Last Updated</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Actions</TableHead>
+                <TableHead className="min-w-[40px] text-[var(--text)]"></TableHead>
+                <TableHead className="text-[var(--text)]">Title</TableHead>
+                <TableHead className="text-[var(--text)]" >Category</TableHead>
+                <TableHead className="text-[var(--text)]">Tags</TableHead>
+                <TableHead className="text-[var(--text)]">For</TableHead>
+                <TableHead className="text-[var(--text)]">Author</TableHead>
+                <TableHead className="text-[var(--text)]">Last Updated</TableHead>
+                <TableHead className="text-[var(--text)]">Status</TableHead>
+                <TableHead className="text-[var(--text)]">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="overflow-visible relative z-0">

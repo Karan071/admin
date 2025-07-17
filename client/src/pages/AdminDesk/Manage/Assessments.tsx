@@ -330,9 +330,6 @@ function StatCard() {
     </div>
   );
 }
-
-
-
 function AssessmentTable() {
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -373,6 +370,9 @@ function AssessmentTable() {
   const requestSort = (key: string) => {
     let direction: "ascending" | "descending" = "ascending";
     if (
+
+
+
       sortConfig &&
       sortConfig.key === key &&
       sortConfig.direction === "ascending"

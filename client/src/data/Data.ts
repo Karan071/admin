@@ -6420,3 +6420,108 @@ export const HelpTable=[
     "Actions": ["Edit", "Publish"]
   }
 ]
+export const FaqsTableData=[
+  {
+    "Page Title": "Student Onboarding",
+    "For": "Students",
+    "Questions": 15,
+    "Last Updated": "18 May 2025",
+    "Status": "Active",
+    "Actions": "[View FAQs →]"
+  },
+  {
+    "Page Title": "Coach FAQs",
+    "For": "Coaches",
+    "Questions": 11,
+    "Last Updated": "17 May 2025",
+    "Status": "Active",
+    "Actions": "[View FAQs →]"
+  },
+  {
+    "Page Title": "Parent Support & Guidance",
+    "For": "Parents",
+    "Questions": 9,
+    "Last Updated": "16 May 2025",
+    "Status": "Draft",
+    "Actions": "[View FAQs →]"
+  },
+  {
+    "Page Title": "Session & Booking Help",
+    "For": "All Users",
+    "Questions": 14,
+    "Last Updated": "15 May 2025",
+    "Status": "Active",
+    "Actions": "[View FAQs →]"
+  },
+  {
+    "Page Title": "Technical Troubleshooting",
+    "For": "All Users",
+    "Questions": 12,
+    "Last Updated": "13 May 2025",
+    "Status": "Draft",
+    "Actions": "[View FAQs →]"
+  }
+]
+export const TestmonialsData=[
+  {
+    "Picture": "[placeholde]",
+    "Name": "Aanya Kapoor",
+    "Role": "Student, Class 12",
+    "Category": "Student",
+    "For": "11–12, UG",
+    "Type": "Text",
+    "Content Preview": "The guidance helped me select my stream",
+    "Date": "18 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Picture": "![Photo]",
+    "Name": "Rahul Mehta",
+    "Role": "Coach - Career Guidance",
+    "Category": "Coach",
+    "For": "All Students",
+    "Type": "Video",
+    "Content Preview": "Watch how I help students plan their careers effectively.",
+    "Date": "17 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Picture": "![Photo]",
+    "Name": "Sneha Verma",
+    "Role": "Parent",
+    "Category": "Parent",
+    "For": "School Students",
+    "Type": "Text",
+    "Content Preview": "As a parent, I felt confident with the support system in place.",
+    "Date": "16 May 2025",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "Picture": "![Photo]",
+    "Name": "Aarav Joshi",
+    "Role": "Student, Class 10",
+    "Category": "Student",
+    "For": "9–10",
+    "Type": "Image",
+    "Content Preview": "A photo from the career awareness workshop.",
+    "Date": "15 May 2025",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "Picture": "![Photo]",
+    "Name": "Divya Nair",
+    "Role": "Academic Mentor",
+    "Category": "Coach",
+    "For": "UG Students",
+    "Type": "Text",
+    "Content Preview": "Here’s how we mentor students to stay focused and confident.",
+    "Date": "14 May 2025",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  }
+]
+

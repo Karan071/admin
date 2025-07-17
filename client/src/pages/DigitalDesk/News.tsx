@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown, Search, Check, Users, FileCheck2, FileText, CheckCircle2, Trash, FileDown, Edit, BadgeQuestionMark, Plus } from "lucide-react";
+import {  CircleArrowUp, CircleArrowDown, Search, Check, Users, FileCheck2, FileText,  Trash, FileDown, Edit, BadgeQuestionMark, Plus } from "lucide-react";
 import { Card, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -25,35 +25,24 @@ const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 const Stats = [
   {
-    title: "Total Assessments",
-    value: "128",
+    title: "Total News Entries",
+    value: "93",
     icon: Users,
     performance: Up,
   },
   {
-    title: "Active Assessments",
-    value: "87",
+    title: "Featured News Items",
+    value: "19",
     icon: FileCheck2,
     performance: Down,
   },
   {
-    title: "Assessments Taken",
-    value: "8,947",
+    title: "News Sources",
+    value: "Hindustan Times, NDTV, Economic Times",
     icon: FileText,
     performance: Up,
   },
-  {
-    title: "In Progress",
-    value: "563",
-    icon: Clock,
-    performance: Up,
-  },
-  {
-    title: "Completed Reports Generated",
-    value: "6,482",
-    icon: CheckCircle2,
-    performance: Up,
-  },
+ 
 ];
 
 
@@ -87,20 +76,20 @@ function Buttonbar() {
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
         <Plus className="h-3 w-3" />
-        <span className="">Create New Assessment</span>
+        <span className="">Add News Item</span>
       </Button>
       <div className="flex gap-4">
         <Button variant="standard" size="new">
           <BadgeQuestionMark className="h-3 w-3" />
-          <span className="">Manage Questions</span>
+          <span className="">Upload News Logo</span>
         </Button>
         <Button variant="standard" size="new">
           <Eye className="h-3 w-3" />
-          <span className="">View Results</span>
+          <span className="">Add External Link</span>
         </Button>
         <Button variant="standard" size="new">
           <FileDown className="h-3 w-3" />
-          <span className="">Export Reports</span>
+          <span className="">Export News Mentions</span>
         </Button>
       </div>
     </div>
@@ -348,18 +337,19 @@ function NewsData() {
     sortedData.sort((a, b) => {
       const aValue = a[sortConfig.key as keyof typeof a];
       const bValue = b[sortConfig.key as keyof typeof b];
-      // Handle numeric comparison for Clicks
+      
       if (sortConfig.key === "Clicks") {
         return sortConfig.direction === "ascending"
           ? Number(aValue) - Number(bValue)
           : Number(bValue) - Number(aValue);
       }
-      // Handle string comparison for other fields
+      
       if (typeof aValue === 'string' && typeof bValue === 'string') {
         return sortConfig.direction === "ascending"
           ? aValue.localeCompare(bValue)
           : bValue.localeCompare(aValue);
       }
+      
       return 0;
     });
   }
@@ -388,20 +378,17 @@ function NewsData() {
   };
 
   const bringToTop = (newsIdx: number) => {
-    const newsItem = selectedNewsStack.find((_: typeof NewTable[0], idx: number) => idx === newsIdx);
+    const newsItem = selectedNewsStack.find((_, idx) => idx === newsIdx);
     if (newsItem) {
-      setSelectedNewsStack((prev: typeof NewTable) => [
-        newsItem,
-        ...prev.filter((_: typeof NewTable[0], idx: number) => idx !== newsIdx),
-      ]);
+      setSelectedNewsStack(prev => [newsItem, ...prev.filter((_, idx) => idx !== newsIdx)]);
       setFocusedNewsId(newsIdx);
     }
   };
 
   const handleRowClick = (newsItem: typeof NewTable[0], idx: number) => {
-    const exists = selectedNewsStack.find((item: typeof NewTable[0]) => item.Title === newsItem.Title);
+    const exists = selectedNewsStack.find(item => item.Title === newsItem.Title);
     if (!exists) {
-      setSelectedNewsStack((prev: typeof NewTable) => [newsItem, ...prev].slice(0, 5));
+      setSelectedNewsStack(prev => [newsItem, ...prev].slice(0, 5));
       setFocusedNewsId(idx);
     } else {
       bringToTop(idx);
@@ -410,11 +397,9 @@ function NewsData() {
 
   const toggleSelectNews = (newsIdx: number) => {
     if (selectedNews.includes(newsIdx)) {
-      setSelectedNews(selectedNews.filter((id: number) => id !== newsIdx));
-      setSelectedNewsStack((prev: typeof NewTable) => prev.filter((_: typeof NewTable[0], idx: number) => idx !== newsIdx));
-      if (focusedNewsId === newsIdx) {
-        setFocusedNewsId(null);
-      }
+      setSelectedNews(selectedNews.filter(id => id !== newsIdx));
+      setSelectedNewsStack(prev => prev.filter((_, idx) => idx !== newsIdx));
+      if (focusedNewsId === newsIdx) setFocusedNewsId(null);
     } else {
       setSelectedNews([...selectedNews, newsIdx]);
     }
@@ -422,19 +407,18 @@ function NewsData() {
 
   useEffect(() => {
     const allRows = document.querySelectorAll("tr[data-id]");
-    allRows.forEach((row: Element) => {
+    allRows.forEach(row => {
       const id = Number(row.getAttribute("data-id"));
-const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Title === NewTable.find((_, nidx) => nidx === id)?.Title);
-
+      const isInStack = selectedNewsStack.some(item => 
+        item.Title === NewTable.find((_, nidx) => nidx === id)?.Title
+      );
       const isTop = focusedNewsId === id;
 
       row.classList.remove("bg-[var(--brand-color3)]", "border-l-[var(--brand-color)]");
 
       if (isInStack) {
         row.classList.add("bg-[var(--brand-color3)]");
-        if (isTop) {
-          row.classList.add("border-l-[var(--brand-color)]");
-        }
+        if (isTop) row.classList.add("border-l-[var(--brand-color)]");
       }
     });
   }, [selectedNewsStack, focusedNewsId]);
@@ -450,25 +434,28 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
   };
 
   return (
-    <div className="flex flex-row gap-4 w-full h-max">
-      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
-        <div className="flex items-center justify-between border-b h-20 p-4">
-          <div className="flex items-center gap-2">
-            <Checkbox
-              id="select-all"
-              checked={selectedNews.length === currentRecords.length && currentRecords.length > 0}
-              onCheckedChange={toggleSelectAll}
-            />
-            <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
-              Select All
-            </label>
+    <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
+      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
+        <div className="flex items-center justify-between border-b p-4 mt-auto min-h-20 flex-wrap">
+          <div className="flex items-center justify-between pl-0 p-4 gap-4 flex-wrap">
+            <div className="flex items-center gap-2 border-none shadow-none">
+              <Checkbox
+                id="select-all"
+                checked={selectedNews.length === currentRecords.length && currentRecords.length > 0}
+                onCheckedChange={toggleSelectAll}
+              />
+              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                Select All
+              </label>
+              {selectedNews.length > 0 && (
+                <Badge variant="border" className="ml-2">
+                  {selectedNews.length} selected
+                </Badge>
+              )}
+            </div>
+
             {selectedNews.length > 0 && (
-              <Badge variant="border" className="ml-2">
-                {selectedNews.length} selected
-              </Badge>
-            )}
-            {selectedNews.length > 0 && (
-              <div className="flex gap-2 ml-4">
+              <div className="flex gap-2 flex-wrap">
                 <Button variant="border" size="sm">
                   <Check className="h-4 w-4 mr-2" />
                   Publish Selected
@@ -480,8 +467,8 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
               </div>
             )}
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center border rounded-md overflow-hidden bg-[var(--faded)]">
+          <div className="flex justify-end items-center gap-4">
+            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search news..."
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -498,14 +485,15 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
             </div>
           </div>
         </div>
-        <div className="overflow-x-auto w-full">
-          <Table>
-            <TableHeader className="bg-[var(--faded)]">
+
+        <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
+          <Table className="w-full caption-top border-collapse overflow-y-visible">
+            <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
               <TableRow>
                 <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
                   onClick={() => requestSort("Logo")}
-                  className="cursor-pointer text-[var(--text)]"
+                  className="cursor-pointer text-[var(--text)] text-low"
                 >
                   Logo
                 </TableHead>
@@ -513,13 +501,13 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
                   onClick={() => requestSort("Title")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Title
+                  Title {sortConfig?.key === "Title" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("Source")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Source
+                  Source {sortConfig?.key === "Source" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("Link")}
@@ -537,18 +525,18 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
                   onClick={() => requestSort("Date")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Date
+                  Date {sortConfig?.key === "Date" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("Status")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Status
+                  Status {sortConfig?.key === "Status" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead className="text-[var(--text)]">Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="overflow-visible relative z-0">
               {currentRecords.map((news, idx) => (
                 <TableRow
                   key={idx}
@@ -603,17 +591,20 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
                     {news.Date}
                   </TableCell>
                   <TableCell>
-                    <Badge className={news.Status === "Published" 
-                      ? "bg-[var(--green2)] text-[var(--green)]" 
-                      : "bg-[var(--yellow2)] text-[var(--yellow)]"}>
+                    <Badge className={cn(
+                      "bg-opacity-10",
+                      news.Status === "Published" 
+                        ? "bg-[var(--green2)] text-[var(--green)]" 
+                        : "bg-[var(--yellow2)] text-[var(--yellow)]"
+                    )}>
                       {news.Status}
                     </Badge>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      {news.Actions.map((action: string, index: number) => (
+                      {news.Actions.map((action, actionIdx) => (
                         <Button
-                          key={index}
+                          key={actionIdx}
                           variant="noborder"
                           size="icon"
                           className="bg-[var(--background)] border-0 shadow-none"
@@ -629,16 +620,21 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
             </TableBody>
           </Table>
         </div>
-        <div className="flex items-center justify-between p-4">
+
+        <div className="flex items-center justify-between flex-wrap gap-2 p-4">
           <div className="flex items-center gap-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="border" size="sm" className="flex items-center gap-2">
+                <Button
+                  variant="border"
+                  size="sm"
+                  className="flex items-center gap-2 text-low text-[var(--text-head)]"
+                >
                   {recordsPerPage}
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="text-[var(--text)] dark:bg-[var(--background)]">
                 {[5, 10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
@@ -646,13 +642,14 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
                       setRecordsPerPage(size);
                       setCurrentPage(1);
                     }}
+                    className="text-[var(--text)] focus:bg-[var(--faded)]"
                   >
                     {size}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <span className="text-[var(--text)]">
+            <span className="text-low text-[var(--text)]">
               Showing {indexOfFirstRecord + 1}-
               {Math.min(indexOfLastRecord, NewTable.length)} of{" "}
               {NewTable.length} items
@@ -662,12 +659,12 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
             <Button
               variant="border"
               size="icon"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
               <Button
                 key={page}
                 variant={page === currentPage ? "brand" : "border"}
@@ -681,7 +678,7 @@ const isInStack = selectedNewsStack.some((item: typeof NewTable[0]) => item.Titl
             <Button
               variant="border"
               size="icon"
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
             >
               <ChevronRight className="h-4 w-4" />
