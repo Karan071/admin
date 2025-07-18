@@ -49,7 +49,7 @@ export const SidebarData = {
   },
   sections: [
     {
-      title: "Admin Desk",
+      title: "Admin",
       isHeading: true,
       items: [
         {
@@ -116,6 +116,11 @@ export const SidebarData = {
           icon: ClipboardList,
         },
         {
+          title: "Desk IAM",
+          url: "/desk/admin/desk-iam",
+          icon: Settings,
+        },
+        {
           title: "Products",
           icon: TrendingUp,
           url: "#",
@@ -142,11 +147,6 @@ export const SidebarData = {
               icon: GraduationCap,
             },
             {
-              title: "Courses",
-              url: "/desk/admin/courses",
-              icon: BookOpen,
-            },
-            {
               title: "Access Codes",
               url: "/desk/admin/access-codes",
               icon: Key,
@@ -156,22 +156,17 @@ export const SidebarData = {
               url: "/desk/admin/consultant-premium",
               icon: Crown,
             },
-            {
-              title: "Desk IAM",
-              url: "/desk/admin/desk-iam",
-              icon: Settings,
-            },
           ],
         },
       ],
     },
     {
-      title: "Approval Desk",
+      title: "Review",
       isHeading: true,
       items: [
         {
           title: "Coach Profiles",
-          url: "/desk/approval/coach-profiles",
+          url: "/desk/review/coach-profiles",
           icon: UserCheck,
         },
         {
@@ -182,32 +177,32 @@ export const SidebarData = {
           items: [
             { 
               title: "Companies", 
-              url: "/desk/approval/companies", 
+              url: "/desk/review/companies", 
               icon: Briefcase 
             },
             {
               title: "Schools",
-              url: "/desk/approval/schools",
+              url: "/desk/review/schools",
               icon: School,
             },
             {
               title: "Institutes",
-              url: "/desk/approval/institutes",
+              url: "/desk/review/institutes",
               icon: GraduationCap,
             },
             {
               title: "Colleges",
-              url: "/desk/approval/colleges",
+              url: "/desk/review/colleges",
               icon: BookOpen,
             },
             {
               title: "Universities",
-              url: "/desk/approval/universities",
+              url: "/desk/review/universities",
               icon: GraduationCap,
             },
             {
               title: "NGO's",
-              url: "/desk/approval/ngos",
+              url: "/desk/review/ngos",
               icon: Heart,
             },
           ],
@@ -220,37 +215,47 @@ export const SidebarData = {
           items: [
             { 
               title: "Exams", 
-              url: "/desk/approval/exams", 
+              url: "/desk/review/exams", 
               icon: FileText 
             },
             {
+              title: "Courses",
+              url: "/desk/review/courses",
+              icon: BookOpen,
+            },
+            {
               title: "Careers",
-              url: "/desk/approval/careers",
+              url: "/desk/review/careers",
               icon: Briefcase,
             },
             {
               title: "Scholarships",
-              url: "/desk/approval/scholarships",
+              url: "/desk/review/scholarships",
               icon: Award,
             },
           ],
         },
         {
           title: "Map Listing",
-          url: "/desk/approval/map-listing",
+          url: "/desk/review/map-listing",
           icon: MapPin,
         },
         {
           title: "Forms",
-          url: "/desk/approval/forms",
+          url: "/desk/review/forms",
           icon: FileText,
         },
       ],
     },
     {
-      title: "Contents Desk",
+      title: "Digital",
       isHeading: true,
       items: [
+        { 
+          title: "Campaigns", 
+          url: "/desk/contents/careers", 
+          icon: Briefcase 
+        },
         {
           title: "Insights",
           url: "/desk/contents/insights",
@@ -315,6 +320,11 @@ export const SidebarData = {
           ],
         },
         {
+          title: "Comments",
+          url: "/desk/contents/scholarships",
+          icon: Award,
+        },
+        {
           title: "Help Articles",
           url: "/desk/contents/help-articles",
           icon: HelpCircle,
@@ -325,6 +335,17 @@ export const SidebarData = {
           icon: MessageCircle,
         },
         {
+          title: "Templates",
+          url: "/desk/contents/faqs",
+          icon: MessageCircle,
+        },
+        {
+          title: "Survey",
+          url: "/desk/contents/faqs",
+          icon: MessageCircle,
+        },
+
+        {
           title: "Teams",
           url: "/desk/contents/teams",
           icon: Users2,
@@ -332,7 +353,7 @@ export const SidebarData = {
       ],
     },
     {
-      title: "Relation Desk",
+      title: "Relation ",
       isHeading: true,
       items: [
         {
@@ -368,7 +389,7 @@ export const SidebarData = {
       ],
     },
     {
-      title: "Finance Desk",
+      title: "Finance",
       isHeading: true,
       items: [
         {

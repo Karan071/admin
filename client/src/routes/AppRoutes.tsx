@@ -48,12 +48,12 @@ import { Reports as FinanceReports } from "@/pages/FinanceDesk/Reports";
 import { Commission as FinanceCommission } from "@/pages/FinanceDesk/Commission";
 import { Earning as FinanceEarning } from "@/pages/FinanceDesk/Earning";
 
-// Approval Desk
-import { Approvals as ApprovalDesk } from "@/pages/ApprovalDesk/Approval";
-import { Forms as ApprovalForms } from "@/pages/ApprovalDesk/Forms";
-import { GoogleMap as ApprovalGoogleMaps } from "@/pages/ApprovalDesk/Googlemap";
-import { ProfileCoach as ApprovalProfileCoach } from "@/pages/ApprovalDesk/ProfileCoach";
-import { ProfileOrg as ApprovalProfileOrg } from "@/pages/ApprovalDesk/ProfileOrg";
+// Review Desk
+import { Approvals as ReviewDesk } from "@/pages/ApprovalDesk/Approval";
+import { Forms as ReviewForms } from "@/pages/ApprovalDesk/Forms";
+import { GoogleMap as ReviewGoogleMaps } from "@/pages/ApprovalDesk/Googlemap";
+import { ProfileCoach as ReviewProfileCoach } from "@/pages/ApprovalDesk/ProfileCoach";
+import { ProfileOrg as ReviewProfileOrg } from "@/pages/ApprovalDesk/ProfileOrg";
 
 export default function AppRoutes() {
   return (
@@ -74,24 +74,24 @@ export default function AppRoutes() {
       <Route path="admin/sessions" element={<Sessions />} />
       <Route path="admin/session-pool" element={<SessionPool />} />
       <Route path="admin/masterclasses" element={<Masterclasses />} />
-      <Route path="admin/courses" element={<Courses />} />
       <Route path="admin/access-codes" element={<AccessCodes />} />
       <Route path="admin/consultant-premium" element={<ConsultantPremium />} />
       <Route path="admin/desk-iam" element={<DeskUsers />} />
 
       {/* Approval Desk Routes */}
-      <Route path="approval/coach-profiles" element={<ApprovalProfileCoach />} />
-      <Route path="approval/companies" element={<div>Approval Companies Page</div>} />
-      <Route path="approval/schools" element={<div>Approval Schools Page</div>} />
-      <Route path="approval/institutes" element={<div>Approval Institutes Page</div>} />
-      <Route path="approval/colleges" element={<div>Approval Colleges Page</div>} />
-      <Route path="approval/universities" element={<div>Approval Universities Page</div>} />
-      <Route path="approval/ngos" element={<div>Approval NGOs Page</div>} />
-      <Route path="approval/exams" element={<div>Approval Exams Page</div>} />
-      <Route path="approval/careers" element={<div>Approval Careers Page</div>} />
-      <Route path="approval/scholarships" element={<div>Approval Scholarships Page</div>} />
-      <Route path="approval/map-listing" element={<ApprovalGoogleMaps />} />
-      <Route path="approval/forms" element={<ApprovalForms />} />
+      <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
+      <Route path="review/companies" element={<div>Approval Companies Page</div>} />
+      <Route path="review/courses" element={<Courses />} />
+      <Route path="review/schools" element={<div>Approval Schools Page</div>} />
+      <Route path="review/institutes" element={<div>Approval Institutes Page</div>} />
+      <Route path="review/colleges" element={<div>Approval Colleges Page</div>} />
+      <Route path="review/universities" element={<div>Approval Universities Page</div>} />
+      <Route path="review/ngos" element={<div>Approval NGOs Page</div>} />
+      <Route path="review/exams" element={<div>Approval Exams Page</div>} />
+      <Route path="review/careers" element={<div>Approval Careers Page</div>} />
+      <Route path="review/scholarships" element={<div>Approval Scholarships Page</div>} />
+      <Route path="review/map-listing" element={<ReviewGoogleMaps />} />
+      <Route path="review/forms" element={<ReviewForms />} />
 
       {/* Contents Desk Routes */}
       <Route path="contents/insights" element={<DigitalInsights />} />
@@ -150,10 +150,10 @@ export default function AppRoutes() {
       <Route path="finance/payout" element={<FinancePayout />} />
       <Route path="finance/commission" element={<FinanceCommission />} />
       <Route path="finance/earning" element={<FinanceEarning />} />
-      <Route path="approval/dashboard" element={<ApprovalDesk />} />
-      <Route path="approval/google-map" element={<ApprovalGoogleMaps />} />
-      <Route path="approval/profile-coach" element={<ApprovalProfileCoach />} />
-      <Route path="approval/profile-org" element={<ApprovalProfileOrg />} />
+      <Route path="approval/dashboard" element={<ReviewDesk />} />
+      <Route path="approval/google-map" element={<ReviewGoogleMaps />} />
+      <Route path="approval/profile-coach" element={<ReviewProfileCoach />} />
+      <Route path="approval/profile-org" element={<ReviewProfileOrg />} />
     </Routes>
   );
 }
