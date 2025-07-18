@@ -518,9 +518,9 @@ function CoachTableSection() {
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        <div className="flex items-center justify-between border-b p-4 mt-auto min-h-20 flex-wrap">
-          <div className="flex items-center justify-between pl-0 p-4 gap-4 flex-wrap">        {/*wrap */}
-            <div className="flex items-center gap-2 border-none shadow-none">            {/*wrap */}
+        <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
+          <div className="flex items-center justify-between pl-0 p-4">
+            <div className="flex items-center gap-2 border-none shadow-none">
               <Checkbox
                 id="select-all"
                 checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
