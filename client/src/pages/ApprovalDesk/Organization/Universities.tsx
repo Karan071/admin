@@ -31,10 +31,10 @@ import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 
 
-export function Companies() {
+export function Universities() {
     return (
         <div className="flex gap-4 flex-col">
-            <h1 className="text-2xl font-bold text-[var(--text-head)]">Companies</h1>
+            <h1 className="text-2xl font-bold text-[var(--text-head)]">Universities</h1>
             <OrgTable />
         </div>
     )
@@ -230,7 +230,7 @@ function OrgTable() {
                             <TableRow>
                                 <TableHead className="min-w-[40px]"></TableHead>
                                 <TableHead onClick={() => requestSort("organisation")} className="cursor-pointer text-[var(--text)]">
-                                    Companies {sortConfig?.key === "organisation" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                                    Universities {sortConfig?.key === "organisation" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                                 </TableHead>
                                 <TableHead onClick={() => requestSort("location")} className="cursor-pointer text-[var(--text)]">
                                     Location {sortConfig?.key === "location" && (sortConfig.direction === "ascending" ? "↑" : "↓")}

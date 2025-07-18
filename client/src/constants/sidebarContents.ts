@@ -482,7 +482,7 @@ export const SidebarData = {
         },
         {
           title: "Commission",
-          url: "/desk/finance/commisssion",
+          url: "/desk/finance/commission",
           icon: CreditCard,
         },
         {
@@ -492,7 +492,7 @@ export const SidebarData = {
         },
         {
           title: "Platform",
-          url: "/desk/finance/payouts",
+          url: "/desk/finance/platform",
           icon: DollarSign,
         },
         {

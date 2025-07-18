@@ -47,13 +47,19 @@ import { PL as FinancePL } from "@/pages/FinanceDesk/PL";
 import { Reports as FinanceReports } from "@/pages/FinanceDesk/Reports";
 import { Commission as FinanceCommission } from "@/pages/FinanceDesk/Commission";
 import { Earning as FinanceEarning } from "@/pages/FinanceDesk/Earning";
+import { Platform as FinancePlatform } from "@/pages/FinanceDesk/platform";
 
 // Review Desk
 import { Approvals as ReviewDesk } from "@/pages/ApprovalDesk/Approval";
 import { Forms as ReviewForms } from "@/pages/ApprovalDesk/Forms";
 import { GoogleMap as ReviewGoogleMaps } from "@/pages/ApprovalDesk/Googlemap";
 import { ProfileCoach as ReviewProfileCoach } from "@/pages/ApprovalDesk/ProfileCoach";
-import { ProfileOrg as ReviewProfileOrg } from "@/pages/ApprovalDesk/ProfileOrg";
+import { Companies as ReviewCompanies } from "@/pages/ApprovalDesk/Organization/Companies";
+import { Schools as ReviewSchools } from "@/pages/ApprovalDesk/Organization/Schools";
+import { Institutes as ReviewInstitutes } from "@/pages/ApprovalDesk/Organization/Institutes";
+import { Colleges as ReviewColleges } from "@/pages/ApprovalDesk/Organization/Colleges";
+import { Universities as ReviewUniversities } from "@/pages/ApprovalDesk/Organization/Universities";
+import { Ngos as ReviewNgos } from "@/pages/ApprovalDesk/Organization/Ngos";
 
 export default function AppRoutes() {
   return (
@@ -80,13 +86,13 @@ export default function AppRoutes() {
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
-      <Route path="review/companies" element={<div>Approval Companies Page</div>} />
+      <Route path="review/companies" element={<ReviewCompanies/>} />
       <Route path="review/courses" element={<Courses />} />
-      <Route path="review/schools" element={<div>Approval Schools Page</div>} />
-      <Route path="review/institutes" element={<div>Approval Institutes Page</div>} />
-      <Route path="review/colleges" element={<div>Approval Colleges Page</div>} />
-      <Route path="review/universities" element={<div>Approval Universities Page</div>} />
-      <Route path="review/ngos" element={<div>Approval NGOs Page</div>} />
+      <Route path="review/schools" element={<ReviewSchools/>} />
+      <Route path="review/institutes" element={<ReviewInstitutes/>} />
+      <Route path="review/colleges" element={<ReviewColleges/>} />
+      <Route path="review/universities" element={<ReviewUniversities/>} />
+      <Route path="review/ngos" element={<ReviewNgos/>} />
       <Route path="review/exams" element={<div>Approval Exams Page</div>} />
       <Route path="review/careers" element={<div>Approval Careers Page</div>} />
       <Route path="review/scholarships" element={<div>Approval Scholarships Page</div>} />
@@ -123,6 +129,8 @@ export default function AppRoutes() {
       <Route path="finance/earnings" element={<FinanceEarning />} />
       <Route path="finance/pl" element={<FinancePL />} />
       <Route path="finance/reports" element={<FinanceReports />} />
+      <Route path="finance/platform" element={<FinancePlatform />} />
+      <Route path="finance/commission" element={<FinanceCommission />} />
 
       {/* Legacy Routes for backward compatibility */}
       <Route path="admin/users" element={<DeskUsers />} />
@@ -153,7 +161,6 @@ export default function AppRoutes() {
       <Route path="approval/dashboard" element={<ReviewDesk />} />
       <Route path="approval/google-map" element={<ReviewGoogleMaps />} />
       <Route path="approval/profile-coach" element={<ReviewProfileCoach />} />
-      <Route path="approval/profile-org" element={<ReviewProfileOrg />} />
     </Routes>
   );
 }

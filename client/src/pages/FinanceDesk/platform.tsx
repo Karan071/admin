@@ -6,16 +6,17 @@ import {
   BadgeDollarSign,
   Package,
   Notebook,
-  Newspaper,
-  Pen,
-  GitGraph,
-  Plus,
   FileDown,
-  X,
-  Check,
+  RotateCcw,
+  Tickets,
+  DollarSign,
+  User,
+  NotebookPenIcon,
+  Download,
+  Flag,
+  Pen,
 } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -35,7 +36,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import {  CommissionTable } from "@/data/Data";
+import { platformTable } from "@/data/Data";
 //import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -51,41 +52,96 @@ const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 
 const stats = [
   {
-    title: "Total Commissions Paid",
-    value: "₹1,12,900",
+    title: "Total Platform Fee Earned",
+    value: "₹42,000",
     icon: Notebook,
     performance: Up,
   },
   {
-    title: "Pending Commissions",
-    value: " ₹8,750",
+    title: "GST Payable on Fees (18%)",
+    value: "₹7,560",
     icon: BadgeDollarSign,
     performance: Up,
   },
   {
-    title: "Contributors",
-    value: "Coaches, BAs, Consultants, Partners",
-    icon: Package,
+    title: "Average Fee %",
+    value: "22.5%",
+    icon: DollarSign,
     performance: Down,
   },
   {
-    title: "Last Updated",
-    value: "18 May 2025",
+    title: "Most Profitable Product",
+    value: "Masterclass",
     icon: BadgeDollarSign,
     performance: Up,
   },
 ];
 
-export function Commission() {
-  const [showFilter, setShowFilter] = useState(false);
+export function Platform() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-[var(--text-head)]">Commission</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-head)]">Platform</h1>
         <StatsCards />
+        <Buttonbar/>
         <Topbar />
-        <Button
-          variant="border"
+        <TableSection/>
+      </div>
+    </div>
+  );
+}
+
+function Buttonbar() {
+  return (
+    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
+        <div className="flex gap-4">
+      <Button variant="brand" size="new">
+        <NotebookPenIcon className="h-3 w-3" />
+        <span className="">Adjust Fee</span>
+      </Button>
+      <Button variant="standard" size="new">
+          <Download className="h-3 w-3" />
+          <span className="">Download fee + GST report</span>
+        </Button>
+        </div>
+      <div className="flex gap-4">
+        <Button variant="standard" size="new">
+          <Eye className="h-3 w-3" />
+          <span className="">View linked payment/payout record</span>
+        </Button>
+        <Button variant="standard" size="new">
+          <Flag className="h-3 w-3" />
+          <span className="">Flag inconsistent or unrecorded fees</span>
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function Topbar() {
+  const [showFilter, setShowFilter] = useState(false);
+  return (
+    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
+        <div>
+      <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
+                    <Input
+                      placeholder="Search"
+                      className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
+                    />
+                    <Button
+                      type="submit"
+                      size="icon"
+                      variant="standard"
+                      className="rounded-none rounded-r-md bg-[var(--button)]"
+                      aria-label="Search"
+                    >
+                      <Search className="h-5 w-5 text-[var(--text)]" />
+                    </Button>
+                  </div>
+         </div>
+      <div className="flex gap-4 align-middle">
+         <Button
+          variant="standard"
           onClick={() => setShowFilter(true)}
           className="flex items-center gap-2 self-end min-h-[40px]"
         >
@@ -94,41 +150,9 @@ export function Commission() {
         </Button>
 
         {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
-        
-        <TableSection/>
-      </div>
-    </div>
-  );
-}
-
-
-function Topbar() {
-  return (
-    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
-        <div>
-      <Button
-          variant="brand"
-          size="new"
-        >
-          <Plus className="h-3 w-3" />
-          <span>Log New Commission</span>
-        </Button>
-         </div>
-      <div className="flex gap-4 align-middle">
-         
-        <Button
-          variant="standard"
-          size="new"
-        >
-          <GitGraph className="h-3 w-3" />
-          <span>Track by Source</span>
-        </Button>
-        <Button
-          variant="standard"
-          size="new"
-        >
+        <Button variant="standard" size="new">
           <FileDown className="h-3 w-3" />
-          <span>Export Commission Report</span>
+          <span className="">Export</span>
         </Button>
       </div>
     </div>
@@ -143,7 +167,7 @@ interface FilterProps {
 
 function AdvancedFilters({ onClose }: FilterProps) {
   const modalRef = React.useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState("General");
+  const [activeTab, setActiveTab] = useState("Date Range");
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -165,14 +189,12 @@ function AdvancedFilters({ onClose }: FilterProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  const [status, setStatus] = useState("Paid");
-  const [type, setType] = useState("Session");
+  const [fee, setFee] = useState("10%");
+  const [customFee, setCustomFee] = useState("");
 
   const tabList = [
-    "General",
-    "Commission Type",
-    "Status",
     "Date Range",
+    "Fee",
   ];
 
   return (
@@ -214,64 +236,39 @@ function AdvancedFilters({ onClose }: FilterProps) {
           {/* Tab Content */}
 
           <div className="p-6 overflow-y-auto relative w-full">
-            {activeTab === "General" && (
-              <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter Name/Email/Phone :</label>
-                <Input id="Gen" placeholder="Enter .." type="text" className="mt-4 w-full " />
+            
+            {activeTab === "Fee" && (
+  <>
+    <p className="text-sm text-[var(--text-head)] mb-4">
+      Select the Fee:
+    </p>
+    <div className="flex flex-col gap-4 text-[var(--text)]">
+      {["10%", "20%", "30%", "Custom"].map((option) => (
+        <RadioButton
+          key={option}
+          label={option}
+          value={option}
+          selected={fee}
+          onChange={setFee}
+        />
+      ))}
 
-              </>
-            )}
-
-            {activeTab === "Status" && (
-              <>
-                <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Statue:
-                </p>
-                <div className="flex flex-col gap-4 text-[var(--text)] ">
-                  {[
-                    "Paid",
-                    "Pending",
-                    "Cancelled",
-                  ].map((option) => (
-                    <RadioButton
-                      key={option}
-                      label={option}
-                      value={option}
-                      selected={status}
-                      onChange={setStatus}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            {activeTab === "Commission Type" && (
-              <>
-                <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Commission Type:
-                </p>
-                <div className="flex flex-col gap-4 text-[var(--text)] ">
-                  {[
-                    "Session",
-                    "Referral",
-                    "Campaign",
-                  ].map((option) => (
-                    <RadioButton
-                      key={option}
-                      label={option}
-                      value={option}
-                      selected={type}
-                      onChange={setType}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
+      {fee === "Custom" && (
+        <input
+          type="text"
+          placeholder="Enter custom fee"
+          className="mt-2 p-2 border border-gray-300 rounded"
+          value={customFee}
+          onChange={(e) => setCustomFee(e.target.value)}
+        />
+      )}
+    </div>
+  </>
+)}
 
             {activeTab === "Date Range" && (
               <>
-                <label htmlFor="act" className="text-[var(--text)]">Enter You Last Activity Date:</label>
+                <label htmlFor="act" className="text-[var(--text)]">Enter the Date range :</label>
                 <div className="mt-4 min-w-full">
                   <DatePicker />
                 </div>
@@ -336,12 +333,12 @@ function TableSection() {
     direction: "ascending" | "descending";
   } | null>(null);
   const [selectedStack, setSelectedStack] = useState<
-    typeof CommissionTable
-  >(CommissionTable[0] ? [CommissionTable[0]] : []);
-  const [focusedId, setFocusedId] = useState<number | null>(CommissionTable[0]?.id || null);
+    typeof platformTable
+  >(platformTable[0] ? [platformTable[0]] : []);
+  const [focusedId, setFocusedId] = useState<number | null>(platformTable[0]?.id || null);
 
   // Sorting logic
-  const sortedData = [...CommissionTable];
+  const sortedData = [...platformTable];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
       const aValue = a[sortConfig.key as keyof typeof a];
@@ -429,7 +426,7 @@ function TableSection() {
     }
   };*/}
 
-  const handleRowClick = (user: (typeof CommissionTable)[0]) => {
+  const handleRowClick = (user: (typeof platformTable)[0]) => {
     // Double-click detected
     const exists = selectedStack.find((c) => c.id === user.id);
     if (!exists) {
@@ -462,51 +459,75 @@ function TableSection() {
               <TableRow>
                 <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
-                  onClick={() => requestSort("name")}
+                  onClick={() => requestSort("date")}
                   className="cursor-pointer text-[var(--text)] text-low"
                 >
-                  Name{" "}
-                  {sortConfig?.key === "name" &&
+                  Date{" "}
+                  {sortConfig?.key === "date" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("role")}
+                  onClick={() => requestSort("product")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Role{" "}
-                  {sortConfig?.key === "role" &&
+                  Product{" "}
+                  {sortConfig?.key === "product" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("commissionType")}
+                  onClick={() => requestSort("payeeName")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Commission Type{" "}
-                  {sortConfig?.key === "commissionType" &&
+                  Payee Name{" "}
+                  {sortConfig?.key === "payeeName" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("linkedSessionOrOrder")}
+                  onClick={() => requestSort("type")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Linked Session/Order{" "}
-                  {sortConfig?.key === "linkedSessionOrOrder" &&
+                  Type{" "}
+                  {sortConfig?.key === "type" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("amount")}
+                  onClick={() => requestSort("gross")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Amount{" "}
-                  {sortConfig?.key === "amount" &&
+                  Gross ₹{" "}
+                  {sortConfig?.key === "gross" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("dateEarned")}
+                  onClick={() => requestSort("platformFeePercent")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Date Earned{" "}
-                  {sortConfig?.key === "dateEarned" &&
+                  Platform Fee %{" "}
+                  {sortConfig?.key === "platformFeePercent" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("platformFee")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Fee ₹{" "}
+                  {sortConfig?.key === "platformFee" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("gst")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  GST ₹ (18%){" "}
+                  {sortConfig?.key === "gst" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("netPayout")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Net Payout ₹{" "}
+                  {sortConfig?.key === "netPayout" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
@@ -557,27 +578,34 @@ function TableSection() {
                     <div className="flex items-center gap-4">
                       <div>
                         <div className="flex justify-start items-center">
-                          <div className="font-medium">{user.name}</div>
+                          <div className="font-medium">{user.date}</div>
                         </div>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.role}</div>
+                    <div className="text-low">{user.product}</div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.commissionType}</div>
+                    <div className="text-low">{user.payeeName}</div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.linkedSessionOrOrder}</div>
+                    <div className="text-low">{user.type}</div>
                   </TableCell>
                   <TableCell>
                     <div className="text-low">
-                      <div>{`${user.amount}`}</div>
+                      <div>{`${user.gross}`}</div>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.dateEarned}</div>
+                    <div className="text-low">{user.platformFeePercent}</div>
+                  </TableCell>
+                  <TableCell>{user.platformFee}</TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.gst}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.netPayout}</div>
                   </TableCell>
                   <TableCell>
                     <Badge variant="standard">{user.status}</Badge>
@@ -600,26 +628,8 @@ function TableSection() {
                         className="bg-white border-0 shadow-none"
                       // onClick={() => navigate(`/user-details/${user.id}`)}
                       >
-                        <Newspaper className="h-4 w-3" />
-                        <span className="sr-only">Invoice</span>
-                      </Button>
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
-                      >
-                        <Check className="h-4 w-3" />
-                        <span className="sr-only">Approve</span>
-                      </Button>
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
-                      >
-                        <X className="h-4 w-3" />
-                        <span className="sr-only">Cancle</span>
+                        <Pen className="h-4 w-3" />
+                        <span className="sr-only">Edit</span>
                       </Button>
                     </div>
                   </TableCell>

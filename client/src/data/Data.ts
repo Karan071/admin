@@ -2,6 +2,7 @@ import picture1 from "@/assets/asset.jpg"
 import picture2 from "@/assets/asset.jpg"
 import picture3 from "@/assets/asset.jpg"
 import picture4 from "@/assets/asset.jpg"
+import { Commission } from "@/pages/FinanceDesk/Commission"
 
 export const mockUsers = [
   {
@@ -7193,5 +7194,260 @@ export const EarningTable = [
     "GSTOnFee": "₹810",
     "NetPayout": "₹11,000",
     "Status": "Paid"
+  }
+]
+export const platformTable=[
+  {
+    "id": 1,
+    "date": "11 Jul",
+    "product": "UPSC Masterclass",
+    "payeeName": "Aarti Verma",
+    "type": "Coach",
+    "gross": "₹500",
+    "platformFeePercent": "20%",
+    "platformFee": "₹100",
+    "gst": "₹18.00",
+    "netPayout": "₹400",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 2,
+    "date": "11 Jul",
+    "product": "Resume Review",
+    "payeeName": "Rohan Singh",
+    "type": "Mentor",
+    "gross": "₹600",
+    "platformFeePercent": "15%",
+    "platformFee": "₹90",
+    "gst": "₹16.20",
+    "netPayout": "₹494",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 3,
+    "date": "11 Jul",
+    "product": "Interview Skills",
+    "payeeName": "Sneha Kapoor",
+    "type": "Coach",
+    "gross": "₹700",
+    "platformFeePercent": "10%",
+    "platformFee": "₹70",
+    "gst": "₹12.60",
+    "netPayout": "₹617.40",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 4,
+    "date": "11 Jul",
+    "product": "Career Guidance",
+    "payeeName": "Aman Joshi",
+    "type": "Educator",
+    "gross": "₹800",
+    "platformFeePercent": "25%",
+    "platformFee": "₹200",
+    "gst": "₹36.00",
+    "netPayout": "₹564",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 5,
+    "date": "11 Jul",
+    "product": "SkillFit Assessment",
+    "payeeName": "Pooja Rathi",
+    "type": "Partner",
+    "gross": "₹900",
+    "platformFeePercent": "20%",
+    "platformFee": "₹180",
+    "gst": "₹32.40",
+    "netPayout": "₹687.60",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 6,
+    "date": "11 Jul",
+    "product": "Group Coaching",
+    "payeeName": "Rahul Mehra",
+    "type": "Coach",
+    "gross": "₹1000",
+    "platformFeePercent": "15%",
+    "platformFee": "₹150",
+    "gst": "₹27.00",
+    "netPayout": "₹823",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 7,
+    "date": "11 Jul",
+    "product": "LinkedIn Optimization",
+    "payeeName": "Neha Verma",
+    "type": "Mentor",
+    "gross": "₹550",
+    "platformFeePercent": "10%",
+    "platformFee": "₹55",
+    "gst": "₹9.90",
+    "netPayout": "₹485.10",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 8,
+    "date": "11 Jul",
+    "product": "Design Career Webinar",
+    "payeeName": "Karan Yadav",
+    "type": "Educator",
+    "gross": "₹750",
+    "platformFeePercent": "20%",
+    "platformFee": "₹150",
+    "gst": "₹27.00",
+    "netPayout": "₹573",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 9,
+    "date": "11 Jul",
+    "product": "Product Thinking 101",
+    "payeeName": "Divya Arora",
+    "type": "Coach",
+    "gross": "₹850",
+    "platformFeePercent": "18%",
+    "platformFee": "₹153",
+    "gst": "₹27.54",
+    "netPayout": "₹669.46",
+    "status": "Settled",
+    "action": "View"
+  },
+  {
+    "id": 10,
+    "date": "11 Jul",
+    "product": "SAT Strategy Class",
+    "payeeName": "Manoj Kumar",
+    "type": "Partner",
+    "gross": "₹650",
+    "platformFeePercent": "12%",
+    "platformFee": "₹78",
+    "gst": "₹14.04",
+    "netPayout": "₹557.96",
+    "status": "Settled",
+    "action": "View"
+  }
+]
+
+export const CommissionTable=[
+  {
+    "id": 1,
+    "name": "Neeraj Sharma",
+    "role": "Coach",
+    "commissionType": "Session",
+    "linkedSessionOrOrder": "ORD230518121",
+    "amount": "₹660",
+    "dateEarned": "18 May 2025",
+    "status": "Paid",
+    "actions": ["View", "Invoice"]
+  },
+  {
+    "id": 2,
+    "name": "Riya Kapoor",
+    "role": "Mentor",
+    "commissionType": "Order",
+    "linkedSessionOrOrder": "ORD230518122",
+    "amount": "₹850",
+    "dateEarned": "18 May 2025",
+    "status": "Pending",
+    "actions": ["View"]
+  },
+  {
+    "id": 3,
+    "name": "Amit Bhatt",
+    "role": "Coach",
+    "commissionType": "Session",
+    "linkedSessionOrOrder": "ORD230518123",
+    "amount": "₹720",
+    "dateEarned": "19 May 2025",
+    "status": "Paid",
+    "actions": ["View", "Invoice"]
+  },
+  {
+    "id": 4,
+    "name": "Sneha Rathi",
+    "role": "Educator",
+    "commissionType": "Order",
+    "linkedSessionOrOrder": "ORD230518124",
+    "amount": "₹640",
+    "dateEarned": "19 May 2025",
+    "status": "Pending",
+    "actions": ["View"]
+  },
+  {
+    "id": 5,
+    "name": "Varun Mehta",
+    "role": "Coach",
+    "commissionType": "Session",
+    "linkedSessionOrOrder": "ORD230518125",
+    "amount": "₹580",
+    "dateEarned": "20 May 2025",
+    "status": "Paid",
+    "actions": ["View", "Invoice"]
+  },
+  {
+    "id": 6,
+    "name": "Meera Iyer",
+    "role": "Mentor",
+    "commissionType": "Order",
+    "linkedSessionOrOrder": "ORD230518126",
+    "amount": "₹990",
+    "dateEarned": "20 May 2025",
+    "status": "Pending",
+    "actions": ["View"]
+  },
+  {
+    "id": 7,
+    "name": "Raghav Sinha",
+    "role": "Coach",
+    "commissionType": "Session",
+    "linkedSessionOrOrder": "ORD230518127",
+    "amount": "₹770",
+    "dateEarned": "21 May 2025",
+    "status": "Paid",
+    "actions": ["View", "Invoice"]
+  },
+  {
+    "id": 8,
+    "name": "Tanya Verma",
+    "role": "Educator",
+    "commissionType": "Order",
+    "linkedSessionOrOrder": "ORD230518128",
+    "amount": "₹810",
+    "dateEarned": "21 May 2025",
+    "status": "Pending",
+    "actions": ["View"]
+  },
+  {
+    "id": 9,
+    "name": "Kunal Singh",
+    "role": "Coach",
+    "commissionType": "Session",
+    "linkedSessionOrOrder": "ORD230518129",
+    "amount": "₹920",
+    "dateEarned": "22 May 2025",
+    "status": "Paid",
+    "actions": ["View", "Invoice"]
+  },
+  {
+    "id": 10,
+    "name": "Divya Nair",
+    "role": "Mentor",
+    "commissionType": "Order",
+    "linkedSessionOrOrder": "ORD230518130",
+    "amount": "₹600",
+    "dateEarned": "22 May 2025",
+    "status": "Pending",
+    "actions": ["View"]
   }
 ]
