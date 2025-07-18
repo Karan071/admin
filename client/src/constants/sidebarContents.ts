@@ -1,7 +1,5 @@
 import {
-  AudioWaveform,
   BookOpen,
-  GalleryVerticalEnd,
   Users,
   Building2,
   Activity,
@@ -12,24 +10,35 @@ import {
   MessageSquare,
   HelpCircle,
   Library,
-  Search,
   TrendingUp,
-  Wallet,
   Star,
   ClipboardList,
   Shield,
   AlertCircle,
-  ThumbsUp,
   Award,
   CreditCard,
   DollarSign,
-  PieChart,
   FileBarChart,
-  Handshake,
   MapPin,
   Bug,
   CircleUser,
-  BadgeDollarSign
+  BadgeDollarSign,
+  School,
+  Briefcase,
+  GraduationCap,
+  Heart,
+  UserCheck,
+  Crown,
+  Key,
+  MessageCircle,
+  Target,
+  Calculator,
+  PhoneCall,
+  UserPlus,
+  Trophy,
+  Folder,
+  Quote,
+  Users2,
 } from "lucide-react";
 
 export const SidebarData = {
@@ -38,213 +47,354 @@ export const SidebarData = {
     email: "Karan@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
+  sections: [
     {
-      name: "Admin Desk",
-      logo: GalleryVerticalEnd,
-      plan: "Administration",
-      navMain: [
+      title: "Admin Desk",
+      isHeading: true,
+      items: [
+        {
+          title: "Recent Activities",
+          url: "/desk/admin/activities",
+          icon: Activity,
+        },
+        {
+          title: "Leads",
+          url: "/desk/admin/leads",
+          icon: UserPlus,
+        },
+        {
+          title: "Cases",
+          icon: Folder,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            { 
+              title: "Bugs", 
+              url: "/desk/admin/bugs", 
+              icon: Bug 
+            },
+            {
+              title: "Abuses",
+              url: "/desk/admin/abuses",
+              icon: Shield,
+            },
+            {
+              title: "Problems",
+              url: "/desk/admin/problems",
+              icon: AlertCircle,
+            },
+            {
+              title: "Feedback",
+              url: "/desk/admin/feedback",
+              icon: MessageSquare,
+            },
+          ],
+        },
+        {
+          title: "Review",
+          url: "/desk/admin/review",
+          icon: Star,
+        },
         {
           title: "Explorers",
-          url: "/dashboard/admin/explorers",
+          url: "/desk/admin/explorers",
           icon: Users,
-          isActive: true,
         },
         {
           title: "Coaches",
-          url: "/dashboard/admin/coaches",
-          icon: Users,
-          isActive: true,
+          url: "/desk/admin/coaches",
+          icon: UserCheck,
         },
         {
           title: "Organisations",
-          url: "/dashboard/admin/organisations",
+          url: "/desk/admin/organisations",
           icon: Building2,
-          isActive: true,
         },
         {
-          title: "Recent Activities",
-          url: "/dashboard/admin/activities",
-          icon: Activity,
-          isActive: true,
+          title: "Plans",
+          url: "/desk/admin/plans",
+          icon: ClipboardList,
         },
         {
-          title: "Manage",
+          title: "Products",
+          icon: TrendingUp,
           url: "#",
-          icon: Settings,
-          isActive: true,
+          isCollapsible: true,
           items: [
-            { title: "Assessments", url: "/dashboard/admin/assessments", icon: FileText },
-            { title: "Sessions", url: "/dashboard/admin/sessions", icon: Video },
-            { title: "Session Pool", url: "/dashboard/admin/session-pool", icon: Library },
+            { 
+              title: "Assessments", 
+              url: "/desk/admin/assessments", 
+              icon: FileText 
+            },
             {
-              title: "Consultant Premium",
-              url: "/dashboard/admin/consultant-premium",
-              icon: Award,
+              title: "Sessions",
+              url: "/desk/admin/sessions",
+              icon: Video,
+            },
+            {
+              title: "Session Pool",
+              url: "/desk/admin/session-pool",
+              icon: Library,
             },
             {
               title: "Masterclasses",
-              url: "/dashboard/admin/masterclasses",
-              icon: ClipboardList,
+              url: "/desk/admin/masterclasses",
+              icon: GraduationCap,
             },
-            { title: "Courses", url: "/dashboard/admin/courses", icon: BookOpen },
-            { title: "Access Codes", url: "/dashboard/admin/access-codes", icon: Shield },
-            { title: "Desk Users", url: "/dashboard/admin/users", icon: Users },
+            {
+              title: "Courses",
+              url: "/desk/admin/courses",
+              icon: BookOpen,
+            },
+            {
+              title: "Access Codes",
+              url: "/desk/admin/access-codes",
+              icon: Key,
+            },
+            {
+              title: "Consultant Premium",
+              url: "/desk/admin/consultant-premium",
+              icon: Crown,
+            },
+            {
+              title: "Desk IAM",
+              url: "/desk/admin/desk-iam",
+              icon: Settings,
+            },
           ],
         },
       ],
     },
     {
-      name: "Approval Desk",
-      logo: AudioWaveform,
-      plan: "Approvals",
-      navMain: [
+      title: "Approval Desk",
+      isHeading: true,
+      items: [
         {
-          title: "Approval Dashboard",
-          url: "/dashboard/approval/dashboard",
-          icon: ThumbsUp,
+          title: "Coach Profiles",
+          url: "/desk/approval/coach-profiles",
+          icon: UserCheck,
         },
         {
-          title: "Coaches Profiles",
-          url: "/dashboard/approval/profile-coach",
-          icon: Users,
-        },
-        {
-          title: "Organisations Profiles",
-          url: "/dashboard/approval/profile-org",
+          title: "Organisations",
           icon: Building2,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            { 
+              title: "Companies", 
+              url: "/desk/approval/companies", 
+              icon: Briefcase 
+            },
+            {
+              title: "Schools",
+              url: "/desk/approval/schools",
+              icon: School,
+            },
+            {
+              title: "Institutes",
+              url: "/desk/approval/institutes",
+              icon: GraduationCap,
+            },
+            {
+              title: "Colleges",
+              url: "/desk/approval/colleges",
+              icon: BookOpen,
+            },
+            {
+              title: "Universities",
+              url: "/desk/approval/universities",
+              icon: GraduationCap,
+            },
+            {
+              title: "NGO's",
+              url: "/desk/approval/ngos",
+              icon: Heart,
+            },
+          ],
         },
         {
-          title: "Google Map Listing",
-          url: "/dashboard/approval/google-map",
+          title: "Libraries",
+          icon: Library,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            { 
+              title: "Exams", 
+              url: "/desk/approval/exams", 
+              icon: FileText 
+            },
+            {
+              title: "Careers",
+              url: "/desk/approval/careers",
+              icon: Briefcase,
+            },
+            {
+              title: "Scholarships",
+              url: "/desk/approval/scholarships",
+              icon: Award,
+            },
+          ],
+        },
+        {
+          title: "Map Listing",
+          url: "/desk/approval/map-listing",
           icon: MapPin,
         },
         {
           title: "Forms",
-          url: "/dashboard/approval/forms",
+          url: "/desk/approval/forms",
           icon: FileText,
         },
       ],
     },
     {
-      name: "Digital Desk",
-      logo: AudioWaveform,
-      plan: "Digital Content",
-      navMain: [
+      title: "Contents Desk",
+      isHeading: true,
+      items: [
         {
-          title: "Contents",
+          title: "Insights",
+          url: "/desk/contents/insights",
+          icon: TrendingUp,
+        },
+        {
+          title: "Video Library",
+          url: "/desk/contents/video-library",
+          icon: Video,
+        },
+        {
+          title: "In the News",
+          url: "/desk/contents/in-the-news",
+          icon: Newspaper,
+        },
+        {
+          title: "Testimonials",
+          url: "/desk/contents/testimonials",
+          icon: Quote,
+        },
+        {
+          title: "Libraries",
+          icon: Library,
           url: "#",
-          icon: FileText,
+          isCollapsible: true,
           items: [
-            { title: "Insights", url: "/dashboard/digital/insights", icon: TrendingUp },
-            { title: "Video Library", url: "/dashboard/digital/video-library", icon: Video },
-            { title: "In the News", url: "/dashboard/digital/in-news", icon: Newspaper },
-            { title: "Testimonials", url: "/dashboard/digital/testimonials", icon: MessageSquare },
-            { title: "Libraries", url: "/dashboard/digital/library", icon: Library },
-            { title: "Help Articles", url: "/dashboard/digital/help-articles", icon: HelpCircle },
-            { title: "FAQs", url: "/dashboard/digital/faqs", icon: HelpCircle },
-            { title: "Team Profiles", url: "/dashboard/digital/teams", icon: Users },
+            { 
+              title: "Careers", 
+              url: "/desk/contents/careers", 
+              icon: Briefcase 
+            },
+            {
+              title: "Courses",
+              url: "/desk/contents/courses",
+              icon: BookOpen,
+            },
+            {
+              title: "Exams",
+              url: "/desk/contents/exams",
+              icon: FileText,
+            },
+            {
+              title: "Colleges",
+              url: "/desk/contents/colleges",
+              icon: School,
+            },
+            {
+              title: "Skills",
+              url: "/desk/contents/skills",
+              icon: Target,
+            },
+            {
+              title: "Scholarships",
+              url: "/desk/contents/scholarships",
+              icon: Award,
+            },
+            {
+              title: "Companies",
+              url: "/desk/contents/companies",
+              icon: Briefcase,
+            },
           ],
         },
+        {
+          title: "Help Articles",
+          url: "/desk/contents/help-articles",
+          icon: HelpCircle,
+        },
+        {
+          title: "FAQs",
+          url: "/desk/contents/faqs",
+          icon: MessageCircle,
+        },
+        {
+          title: "Teams",
+          url: "/desk/contents/teams",
+          icon: Users2,
+        },
       ],
     },
     {
-      name: "Relations Desk",
-      logo: AudioWaveform,
-      plan: "Relations",
-      navMain: [
+      title: "Relation Desk",
+      isHeading: true,
+      items: [
         {
-          title: "Relation Dashboard",
-          url: "/dashboard/relation/dashboard",
-          icon: Handshake,
-        },
-        {
-          title: "My Account",
-          url: "/dashboard/relation/account",
-          icon: CircleUser,
-        },
-        {
-          title: "Leaderboard",
-          url: "/dashboard/relation/leaderboard",
-          icon: Search,
-        },
-        {
-          title: "Cases",
-          icon: TrendingUp,
-          url: "#",
-          items: [
-            { title: "Bugs", url: "/dashboard/relation/bugs", icon: Bug },
-            { title: "Abuses", url: "/dashboard/relation/abuses", icon: Shield },
-            { title: "Problems", url: "/dashboard/relation/problems", icon: AlertCircle },
-          ]
+          title: "Follow Ups",
+          url: "/desk/relation/follow-ups",
+          icon: PhoneCall,
         },
         {
           title: "Leads",
-          url: "#",
-          icon: TrendingUp,
-          // items: [
-          //   { title: "Active Users", url: "/dashboard/relation/active-users", icon: Users },
-          //   { title: "Explorers", url: "/dashboard/relation/explorers", icon: Users },
-          //   { title: "Coaches", url: "/dashboard/relation/coaches", icon: Users },
-          //   { title: "Partners", url: "/dashboard/relation/partners", icon: Handshake },
-          //],
+          url: "/desk/relation/leads",
+          icon: UserPlus,
         },
         {
-          title: "Follow Up",
-          url: "/dashboard/relation/followups",
-          icon: MessageSquare,
+          title: "Cases",
+          url: "/desk/relation/cases",
+          icon: Folder,
         },
         {
-          title: "Feedback",
-          url: "/dashboard/relation/feedback",
-          icon: MessageSquare,
+          title: "My Accounts",
+          url: "/desk/relation/my-accounts",
+          icon: CircleUser,
         },
         {
-          title: "Review",
-          url: "/dashboard/relation/review",
-          icon: Star,
+          title: "My Teams",
+          url: "/desk/relation/my-teams",
+          icon: Users2,
+        },
+        {
+          title: "Leaderboard",
+          url: "/desk/relation/leaderboard",
+          icon: Trophy,
         },
       ],
     },
     {
-      name: "Finance Desk",
-      logo: AudioWaveform,
-      plan: "Finance",
-      navMain: [
-        {
-          title: "Finance Dashboard",
-          url: "/dashboard/finance/dashboard",
-          icon: Wallet,
-        },
+      title: "Finance Desk",
+      isHeading: true,
+      items: [
         {
           title: "Payments",
-          url: "/dashboard/finance/payments",
+          url: "/desk/finance/payments",
           icon: CreditCard,
         },
         {
           title: "Payouts",
-          url: "/dashboard/finance/payout",
+          url: "/desk/finance/payouts",
           icon: DollarSign,
         },
         {
+          title: "Earnings",
+          url: "/desk/finance/earnings",
+          icon: BadgeDollarSign,
+        },
+        {
           title: "P&L",
-          url: "/dashboard/finance/pl",
-          icon: PieChart,
+          url: "/desk/finance/pl",
+          icon: Calculator,
         },
         {
           title: "Reports",
-          url: "/dashboard/finance/reports",
+          url: "/desk/finance/reports",
           icon: FileBarChart,
-        },
-        {
-          title: "Commission",
-          url: "/dashboard/finance/commission",
-          icon: FileBarChart,
-        },
-        {
-          title: "Earning",
-          url: "/dashboard/finance/earning",
-          icon: BadgeDollarSign,
         },
       ],
     },
