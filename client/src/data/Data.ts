@@ -2,7 +2,6 @@ import picture1 from "@/assets/asset.jpg"
 import picture2 from "@/assets/asset.jpg"
 import picture3 from "@/assets/asset.jpg"
 import picture4 from "@/assets/asset.jpg"
-import { Commission } from "@/pages/FinanceDesk/Commission"
 
 export const mockUsers = [
   {
