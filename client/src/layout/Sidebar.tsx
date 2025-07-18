@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-  ChevronRight,
-  type LucideIcon,
-} from "lucide-react";
+import { ChevronRight, type LucideIcon } from "lucide-react";
 
 import {
   Sidebar as SidebarRoot,
@@ -49,7 +46,11 @@ export default function SidebarLayout() {
 
 function AppSidebar(props: React.ComponentProps<typeof SidebarRoot>) {
   return (
-    <SidebarRoot collapsible="icon" {...props} className="fixed top-15 h-[calc(100vh-60px)]">
+    <SidebarRoot
+      collapsible="icon"
+      {...props}
+      className="fixed top-15 h-[calc(100vh-60px)]"
+    >
       <SidebarContent className="bg-[var(--background)]">
         {SidebarData.sections.map((section) => (
           <NavSection key={section.title} section={section} />
@@ -81,58 +82,82 @@ function NavSection({
   };
 }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel className="text-[var(--text)] font-semibold text-sm uppercase tracking-wide mb-2">
-        {section.title}
-      </SidebarGroupLabel>
-      <SidebarMenu>
-        {section.items.map((item) =>
-          item.isCollapsible && item.items ? (
-            // Render collapsible menu if the item has sub-items
-            <Collapsible
-              key={item.title}
-              asChild
-              defaultOpen={item.isActive}
-              className="group/collapsible text-[var(--text)]"
-            >
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title} className="text-[var(--text)]">
-                    {item.icon && <item.icon className="size-4 text-[var(--text)]" />}
-                    <span className="text-[var(--text)]">{item.title}</span>
-                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 text-[var(--text)]" />
+    <Collapsible defaultOpen>
+      <SidebarGroup>
+        <CollapsibleTrigger asChild>
+          <SidebarGroupLabel className="text-[var(--text)] font-semibold text-sm uppercase tracking-wide cursor-pointer">
+            {section.title}
+            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 text-[var(--text)]" />
+          </SidebarGroupLabel>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <SidebarMenu>
+            {section.items.map((item) =>
+              item.isCollapsible && item.items ? (
+                // Render collapsible menu if the item has sub-items
+                <Collapsible
+                  key={item.title}
+                  asChild
+                  defaultOpen={item.isActive}
+                  className="group/collapsible text-[var(--text)]"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        tooltip={item.title}
+                        className="text-[var(--text)]"
+                      >
+                        {item.icon && (
+                          <item.icon className="size-4 text-[var(--text)]" />
+                        )}
+                        <span className="text-[var(--text)]">{item.title}</span>
+                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 text-[var(--text)]" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {item.items.map((subItem) => (
+                          <SidebarMenuSubItem
+                            key={subItem.title}
+                            className="text-[var(--text)]"
+                          >
+                            <SidebarMenuSubButton asChild>
+                              <Link to={subItem.url}>
+                                {subItem.icon && (
+                                  <subItem.icon className="size-4 text-[var(--text)]" />
+                                )}
+                                <span className="text-[var(--text)]">
+                                  {subItem.title}
+                                </span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              ) : (
+                // Render simple link if the item has no sub-items
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    asChild
+                    className="text-[var(--text)]"
+                  >
+                    <Link to={item.url}>
+                      {item.icon && (
+                        <item.icon className="size-4 text-[var(--text)]" />
+                      )}
+                      <span className="text-[var(--text)]">{item.title}</span>
+                    </Link>
                   </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    {item.items.map((subItem) => (
-                      <SidebarMenuSubItem key={subItem.title} className="text-[var(--text)]">
-                        <SidebarMenuSubButton asChild>
-                          <Link to={subItem.url}>
-                            {subItem.icon && <subItem.icon className="size-4 text-[var(--text)]" />}
-                            <span className="text-[var(--text)]">{subItem.title}</span>
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
-          ) : (
-            // Render simple link if the item has no sub-items
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title} asChild className="text-[var(--text)]">
-                <Link to={item.url}>
-                  {item.icon && <item.icon className="size-4 text-[var(--text)]" />}
-                  <span className="text-[var(--text)]">{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          )
-        )}
-      </SidebarMenu>
-    </SidebarGroup>
+                </SidebarMenuItem>
+              )
+            )}
+          </SidebarMenu>
+        </CollapsibleContent>
+      </SidebarGroup>
+    </Collapsible>
   );
 }
-

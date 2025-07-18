@@ -39,6 +39,7 @@ import {
   Folder,
   Quote,
   Users2,
+  Building,
 } from "lucide-react";
 
 export const SidebarData = {
@@ -53,14 +54,37 @@ export const SidebarData = {
       isHeading: true,
       items: [
         {
+          title: "Admin Desk",
+          url: "/desk/admin/desk",
+          icon: Activity,
+        },
+        {
           title: "Recent Activities",
           url: "/desk/admin/activities",
           icon: Activity,
         },
         {
           title: "Leads",
-          url: "/desk/admin/leads",
           icon: UserPlus,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            {
+              title: "Explorers",
+              url: "/desk/admin/explorers",
+              icon: Users,
+            },
+            {
+              title: "Organisations",
+              url: "/desk/admin/organisations",
+              icon: Building2,
+            },
+            {
+              title: "Channel Partner",
+              url: "/desk/admin/channels",
+              icon: Building2,
+            },
+          ],
         },
         {
           title: "Cases",
@@ -68,6 +92,11 @@ export const SidebarData = {
           url: "#",
           isCollapsible: true,
           items: [
+            {
+              title: "Problems",
+              url: "/desk/admin/problems",
+              icon: AlertCircle,
+            },
             { 
               title: "Bugs", 
               url: "/desk/admin/bugs", 
@@ -78,17 +107,12 @@ export const SidebarData = {
               url: "/desk/admin/abuses",
               icon: Shield,
             },
-            {
-              title: "Problems",
-              url: "/desk/admin/problems",
-              icon: AlertCircle,
-            },
-            {
-              title: "Feedback",
-              url: "/desk/admin/feedback",
-              icon: MessageSquare,
-            },
           ],
+        },
+        {
+          title: "Feedback",
+          url: "/desk/admin/feedback",
+          icon: MessageSquare,
         },
         {
           title: "Review",
@@ -108,17 +132,12 @@ export const SidebarData = {
         {
           title: "Organisations",
           url: "/desk/admin/organisations",
-          icon: Building2,
+          icon: Building,
         },
         {
           title: "Plans",
           url: "/desk/admin/plans",
           icon: ClipboardList,
-        },
-        {
-          title: "Desk IAM",
-          url: "/desk/admin/desk-iam",
-          icon: Settings,
         },
         {
           title: "Products",
@@ -158,12 +177,22 @@ export const SidebarData = {
             },
           ],
         },
+        {
+          title: "Desk IAM",
+          url: "/desk/admin/desk-iam",
+          icon: Settings,
+        },
       ],
     },
     {
       title: "Review",
       isHeading: true,
       items: [
+        {
+          title: "Review Desk",
+          url: "/desk/review/coach-profiles",
+          icon: UserCheck,
+        },
         {
           title: "Coach Profiles",
           url: "/desk/review/coach-profiles",
@@ -175,20 +204,15 @@ export const SidebarData = {
           url: "#",
           isCollapsible: true,
           items: [
-            { 
-              title: "Companies", 
-              url: "/desk/review/companies", 
-              icon: Briefcase 
+            {
+              title: "Institutes",
+              url: "/desk/review/institutes",
+              icon: GraduationCap,
             },
             {
               title: "Schools",
               url: "/desk/review/schools",
               icon: School,
-            },
-            {
-              title: "Institutes",
-              url: "/desk/review/institutes",
-              icon: GraduationCap,
             },
             {
               title: "Colleges",
@@ -199,6 +223,11 @@ export const SidebarData = {
               title: "Universities",
               url: "/desk/review/universities",
               icon: GraduationCap,
+            },
+            { 
+              title: "Companies", 
+              url: "/desk/review/companies", 
+              icon: Briefcase 
             },
             {
               title: "NGO's",
@@ -213,6 +242,11 @@ export const SidebarData = {
           url: "#",
           isCollapsible: true,
           items: [
+            {
+              title: "Careers",
+              url: "/desk/review/careers",
+              icon: Briefcase,
+            },
             { 
               title: "Exams", 
               url: "/desk/review/exams", 
@@ -224,13 +258,13 @@ export const SidebarData = {
               icon: BookOpen,
             },
             {
-              title: "Careers",
-              url: "/desk/review/careers",
-              icon: Briefcase,
-            },
-            {
               title: "Scholarships",
               url: "/desk/review/scholarships",
+              icon: Award,
+            },
+            {
+              title: "Skills",
+              url: "/desk/review/skills",
               icon: Award,
             },
           ],
@@ -252,29 +286,87 @@ export const SidebarData = {
       isHeading: true,
       items: [
         { 
+          title: "Digital Desk", 
+          url: "/desk/digital/desk", 
+          icon: Briefcase 
+        },
+        { 
           title: "Campaigns", 
-          url: "/desk/contents/careers", 
+          url: "/desk/digital/careers", 
+          icon: Briefcase 
+        },
+        {
+          title: "Comments",
+          url: "/desk/digital/scholarships",
+          icon: Award,
+        },
+        { 
+          title: "Helpful", 
+          url: "/desk/digital/helpful", 
           icon: Briefcase 
         },
         {
           title: "Insights",
-          url: "/desk/contents/insights",
+          url: "/desk/digital/insights",
           icon: TrendingUp,
         },
         {
-          title: "Video Library",
-          url: "/desk/contents/video-library",
+          title: "Video",
+          url: "/desk/digital/video",
           icon: Video,
         },
         {
           title: "In the News",
-          url: "/desk/contents/in-the-news",
+          url: "/desk/digital/in-the-news",
           icon: Newspaper,
         },
         {
           title: "Testimonials",
-          url: "/desk/contents/testimonials",
+          url: "/desk/digital/testimonials",
           icon: Quote,
+        },
+        {
+          title: "Surveys",
+          url: "/desk/digital/faqs",
+          icon: MessageCircle,
+        },
+        {
+          title: "Organisations",
+          icon: Library,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            { 
+              title: "Institutes", 
+              url: "/desk/digital/careers", 
+              icon: Briefcase 
+            },
+            {
+              title: "Schools",
+              url: "/desk/digital/courses",
+              icon: BookOpen,
+            },
+            {
+              title: "Colleges",
+              url: "/desk/digital/exams",
+              icon: FileText,
+            },
+            {
+              title: "Companies",
+              url: "/desk/digital/colleges",
+              icon: School,
+            },
+            {
+              title: "University",
+              url: "/desk/digital/skills",
+              icon: Target,
+            },
+            {
+              title: "NGO's",
+              url: "/desk/digital/scholarships",
+              icon: Award,
+            },
+          ],
         },
         {
           title: "Libraries",
@@ -282,71 +374,52 @@ export const SidebarData = {
           url: "#",
           isCollapsible: true,
           items: [
+            {
+              title: "Exams",
+              url: "/desk/digital/exams",
+              icon: FileText,
+            },
             { 
               title: "Careers", 
-              url: "/desk/contents/careers", 
+              url: "/desk/digital/careers", 
               icon: Briefcase 
             },
             {
               title: "Courses",
-              url: "/desk/contents/courses",
+              url: "/desk/digital/courses",
               icon: BookOpen,
             },
             {
-              title: "Exams",
-              url: "/desk/contents/exams",
-              icon: FileText,
-            },
-            {
-              title: "Colleges",
-              url: "/desk/contents/colleges",
+              title: "Scholarships",
+              url: "/desk/digital/scholarships",
               icon: School,
             },
             {
               title: "Skills",
-              url: "/desk/contents/skills",
+              url: "/desk/digital/skills",
               icon: Target,
-            },
-            {
-              title: "Scholarships",
-              url: "/desk/contents/scholarships",
-              icon: Award,
-            },
-            {
-              title: "Companies",
-              url: "/desk/contents/companies",
-              icon: Briefcase,
             },
           ],
         },
         {
-          title: "Comments",
-          url: "/desk/contents/scholarships",
-          icon: Award,
-        },
-        {
           title: "Help Articles",
-          url: "/desk/contents/help-articles",
+          url: "/desk/digital/help-articles",
           icon: HelpCircle,
         },
         {
           title: "FAQs",
-          url: "/desk/contents/faqs",
+          url: "/desk/digital/faqs",
           icon: MessageCircle,
         },
         {
           title: "Templates",
-          url: "/desk/contents/faqs",
+          url: "/desk/digital/faqs",
           icon: MessageCircle,
         },
-        {
-          title: "Survey",
-          url: "/desk/contents/faqs",
-          icon: MessageCircle,
-        },
+        
 
         {
-          title: "Teams",
+          title: "Teams Directory",
           url: "/desk/contents/teams",
           icon: Users2,
         },
@@ -357,19 +430,24 @@ export const SidebarData = {
       isHeading: true,
       items: [
         {
+          title: "Relations Desk",
+          url: "/desk/relation/desk",
+          icon: PhoneCall,
+        },
+        {
+          title: "Search",
+          url: "/desk/relation/search",
+          icon: PhoneCall,
+        },
+        {
           title: "Follow Ups",
           url: "/desk/relation/follow-ups",
           icon: PhoneCall,
         },
         {
-          title: "Leads",
-          url: "/desk/relation/leads",
-          icon: UserPlus,
-        },
-        {
-          title: "Cases",
-          url: "/desk/relation/cases",
-          icon: Folder,
+          title: "Pool",
+          url: "/desk/relation/follow-ups",
+          icon: PhoneCall,
         },
         {
           title: "My Accounts",
@@ -393,12 +471,27 @@ export const SidebarData = {
       isHeading: true,
       items: [
         {
+          title: "Finance Desk",
+          url: "/desk/finance/desk",
+          icon: CreditCard,
+        },
+        {
           title: "Payments",
           url: "/desk/finance/payments",
           icon: CreditCard,
         },
         {
+          title: "Commission",
+          url: "/desk/finance/commisssion",
+          icon: CreditCard,
+        },
+        {
           title: "Payouts",
+          url: "/desk/finance/payouts",
+          icon: DollarSign,
+        },
+        {
+          title: "Platform",
           url: "/desk/finance/payouts",
           icon: DollarSign,
         },
