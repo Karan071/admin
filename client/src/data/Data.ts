@@ -4062,657 +4062,718 @@ export const FeedbackTableData = [
 ]
 export const instant_sessions = [
   {
-    "coach": "Anjali Gupta",
-    "coach_type": "Mentor",
-    "segment": "UG",
-    "topic": "Exam Stress Tips",
-    "price": "₹500",
-    "code": "INST500",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 1,
+    coach: "Anjali Gupta",
+    coach_type: "Mentor",
+    segment: "UG",
+    topic: "Exam Stress Tips",
+    price: "₹500",
+    code: "INST500",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Rohit Sinha",
-    "coach_type": "Educator",
-    "segment": "Career Changer",
-    "topic": "Resume Walkthrough",
-    "price": "₹300",
-    "code": "RSM300",
-    "slots": 5,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 2,
+    coach: "Rohit Sinha",
+    coach_type: "Educator",
+    segment: "Career Changer",
+    topic: "Resume Walkthrough",
+    price: "₹300",
+    code: "RSM300",
+    slots: 5,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Sonal Verma",
-    "coach_type": "Mentor",
-    "segment": "PG",
-    "topic": "Thesis Planning",
-    "price": "₹450",
-    "code": "THS450",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 3,
+    coach: "Sonal Verma",
+    coach_type: "Mentor",
+    segment: "PG",
+    topic: "Thesis Planning",
+    price: "₹450",
+    code: "THS450",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Manav Singh",
-    "coach_type": "Educator",
-    "segment": "UG",
-    "topic": "Exam Strategies",
-    "price": "₹350",
-    "code": "EXM350",
-    "slots": 3,
-    "status": "Inactive",
-    "actions": ["Edit", "Remove"]
+    id: 4,
+    coach: "Manav Singh",
+    coach_type: "Educator",
+    segment: "UG",
+    topic: "Exam Strategies",
+    price: "₹350",
+    code: "EXM350",
+    slots: 3,
+    status: "Inactive",
+    actions: ["Edit", "Remove"]
   },
   {
-    "coach": "Priya Nair",
-    "coach_type": "Coach",
-    "segment": "School",
-    "topic": "Focus Techniques",
-    "price": "₹200",
-    "code": "FOC200",
-    "slots": 6,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 5,
+    coach: "Priya Nair",
+    coach_type: "Coach",
+    segment: "School",
+    topic: "Focus Techniques",
+    price: "₹200",
+    code: "FOC200",
+    slots: 6,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Karan Mehta",
-    "coach_type": "Mentor",
-    "segment": "Career Changer",
-    "topic": "Job Interview Skills",
-    "price": "₹600",
-    "code": "JOB600",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 6,
+    coach: "Karan Mehta",
+    coach_type: "Mentor",
+    segment: "Career Changer",
+    topic: "Job Interview Skills",
+    price: "₹600",
+    code: "JOB600",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Neelam Yadav",
-    "coach_type": "Consultant",
-    "segment": "UG",
-    "topic": "Study Habits",
-    "price": "₹320",
-    "code": "STY320",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 7,
+    coach: "Neelam Yadav",
+    coach_type: "Consultant",
+    segment: "UG",
+    topic: "Study Habits",
+    price: "₹320",
+    code: "STY320",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Rajiv Kapoor",
-    "coach_type": "Coach",
-    "segment": "School",
-    "topic": "Daily Planning",
-    "price": "₹180",
-    "code": "DLY180",
-    "slots": 5,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 8,
+    coach: "Rajiv Kapoor",
+    coach_type: "Coach",
+    segment: "School",
+    topic: "Daily Planning",
+    price: "₹180",
+    code: "DLY180",
+    slots: 5,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Deepa Joshi",
-    "coach_type": "Mentor",
-    "segment": "PG",
-    "topic": "Career Growth",
-    "price": "₹550",
-    "code": "CRG550",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 9,
+    coach: "Deepa Joshi",
+    coach_type: "Mentor",
+    segment: "PG",
+    topic: "Career Growth",
+    price: "₹550",
+    code: "CRG550",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Aditya Rana",
-    "coach_type": "Educator",
-    "segment": "UG",
-    "topic": "Time Blocking",
-    "price": "₹300",
-    "code": "BLK300",
-    "slots": 1,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 10,
+    coach: "Aditya Rana",
+    coach_type: "Educator",
+    segment: "UG",
+    topic: "Time Blocking",
+    price: "₹300",
+    code: "BLK300",
+    slots: 1,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Shruti Bansal",
-    "coach_type": "Coach",
-    "segment": "School",
-    "topic": "Memory Boost Tips",
-    "price": "₹250",
-    "code": "MEM250",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 11,
+    coach: "Shruti Bansal",
+    coach_type: "Coach",
+    segment: "School",
+    topic: "Memory Boost Tips",
+    price: "₹250",
+    code: "MEM250",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Vikas Sharma",
-    "coach_type": "Mentor",
-    "segment": "Career Changer",
-    "topic": "Cover Letter Tips",
-    "price": "₹270",
-    "code": "CLT270",
-    "slots": 2,
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 12,
+    coach: "Vikas Sharma",
+    coach_type: "Mentor",
+    segment: "Career Changer",
+    topic: "Cover Letter Tips",
+    price: "₹270",
+    code: "CLT270",
+    slots: 2,
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Kavita Reddy",
-    "coach_type": "Educator",
-    "segment": "UG",
-    "topic": "Group Study Tactics",
-    "price": "₹380",
-    "code": "GST380",
-    "slots": 5,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 13,
+    coach: "Kavita Reddy",
+    coach_type: "Educator",
+    segment: "UG",
+    topic: "Group Study Tactics",
+    price: "₹380",
+    code: "GST380",
+    slots: 5,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Tarun Arora",
-    "coach_type": "Coach",
-    "segment": "PG",
-    "topic": "Study-Life Balance",
-    "price": "₹500",
-    "code": "SLB500",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 14,
+    coach: "Tarun Arora",
+    coach_type: "Coach",
+    segment: "PG",
+    topic: "Study-Life Balance",
+    price: "₹500",
+    code: "SLB500",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   },
   {
-    "coach": "Nikita Das",
-    "coach_type": "Mentor",
-    "segment": "School",
-    "topic": "Motivation Hacks",
-    "price": "₹220",
-    "code": "MHK220",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Remove"]
+    id: 15,
+    coach: "Nikita Das",
+    coach_type: "Mentor",
+    segment: "School",
+    topic: "Motivation Hacks",
+    price: "₹220",
+    code: "MHK220",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Remove"]
   }
 ];
+
 export const introductory_sessions = [
   {
-    "coach": "Seema Rao",
-    "coach_type": "Consultant",
-    "organisation": "Aimshala UG College",
-    "topic": "Career Mapping",
-    "price": "₹700",
-    "code": "CMAP700",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 1,
+    coach: "Seema Rao",
+    coach_type: "Consultant",
+    organisation: "Aimshala UG College",
+    topic: "Career Mapping",
+    price: "₹700",
+    code: "CMAP700",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Meera Kapoor",
-    "coach_type": "Mentor",
-    "organisation": "Bright Minds School",
-    "topic": "Stream Selection",
-    "price": "₹400",
-    "code": "STREAM400",
-    "slots": 4,
-    "status": "Pending Review",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 2,
+    coach: "Meera Kapoor",
+    coach_type: "Mentor",
+    organisation: "Bright Minds School",
+    topic: "Stream Selection",
+    price: "₹400",
+    code: "STREAM400",
+    slots: 4,
+    status: "Pending Review",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Anupam Dey",
-    "coach_type": "Educator",
-    "organisation": "NextGen Academy",
-    "topic": "Goal Setting",
-    "price": "₹350",
-    "code": "GOAL350",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 3,
+    coach: "Anupam Dey",
+    coach_type: "Educator",
+    organisation: "NextGen Academy",
+    topic: "Goal Setting",
+    price: "₹350",
+    code: "GOAL350",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Farha Khan",
-    "coach_type": "Coach",
-    "organisation": "Aspire India School",
-    "topic": "Skill Exploration",
-    "price": "₹480",
-    "code": "SKL480",
-    "slots": 5,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 4,
+    coach: "Farha Khan",
+    coach_type: "Coach",
+    organisation: "Aspire India School",
+    topic: "Skill Exploration",
+    price: "₹480",
+    code: "SKL480",
+    slots: 5,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Rishi Mehta",
-    "coach_type": "Consultant",
-    "organisation": "TalentBridge",
-    "topic": "Course Alignment",
-    "price": "₹390",
-    "code": "ALGN390",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 5,
+    coach: "Rishi Mehta",
+    coach_type: "Consultant",
+    organisation: "TalentBridge",
+    topic: "Course Alignment",
+    price: "₹390",
+    code: "ALGN390",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Geetanjali Roy",
-    "coach_type": "Mentor",
-    "organisation": "SmartFuture UG",
-    "topic": "College Decision Help",
-    "price": "₹420",
-    "code": "CDH420",
-    "slots": 2,
-    "status": "Pending Review",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 6,
+    coach: "Geetanjali Roy",
+    coach_type: "Mentor",
+    organisation: "SmartFuture UG",
+    topic: "College Decision Help",
+    price: "₹420",
+    code: "CDH420",
+    slots: 2,
+    status: "Pending Review",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Ishaan Paul",
-    "coach_type": "Educator",
-    "organisation": "Edureka School",
-    "topic": "Interest Finder",
-    "price": "₹310",
-    "code": "INTF310",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 7,
+    coach: "Ishaan Paul",
+    coach_type: "Educator",
+    organisation: "Edureka School",
+    topic: "Interest Finder",
+    price: "₹310",
+    code: "INTF310",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Simran Kaur",
-    "coach_type": "Coach",
-    "organisation": "FutureGen Institute",
-    "topic": "Peer Comparison Insights",
-    "price": "₹250",
-    "code": "PCR250",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 8,
+    coach: "Simran Kaur",
+    coach_type: "Coach",
+    organisation: "FutureGen Institute",
+    topic: "Peer Comparison Insights",
+    price: "₹250",
+    code: "PCR250",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Naveen Rao",
-    "coach_type": "Consultant",
-    "organisation": "NewWave Education",
-    "topic": "UG vs Diploma",
-    "price": "₹500",
-    "code": "UGD500",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 9,
+    coach: "Naveen Rao",
+    coach_type: "Consultant",
+    organisation: "NewWave Education",
+    topic: "UG vs Diploma",
+    price: "₹500",
+    code: "UGD500",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Sanya Dubey",
-    "coach_type": "Mentor",
-    "organisation": "Leap Scholars",
-    "topic": "Higher Studies Abroad",
-    "price": "₹650",
-    "code": "HSA650",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 10,
+    coach: "Sanya Dubey",
+    coach_type: "Mentor",
+    organisation: "Leap Scholars",
+    topic: "Higher Studies Abroad",
+    price: "₹650",
+    code: "HSA650",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Arjun Sen",
-    "coach_type": "Coach",
-    "organisation": "BrightStart UG",
-    "topic": "Choosing Commerce/Science",
-    "price": "₹270",
-    "code": "CHCS270",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 11,
+    coach: "Arjun Sen",
+    coach_type: "Coach",
+    organisation: "BrightStart UG",
+    topic: "Choosing Commerce/Science",
+    price: "₹270",
+    code: "CHCS270",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Pallavi Trivedi",
-    "coach_type": "Educator",
-    "organisation": "Vision School",
-    "topic": "Academic Direction",
-    "price": "₹300",
-    "code": "ACD300",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 12,
+    coach: "Pallavi Trivedi",
+    coach_type: "Educator",
+    organisation: "Vision School",
+    topic: "Academic Direction",
+    price: "₹300",
+    code: "ACD300",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Jayant Ghosh",
-    "coach_type": "Consultant",
-    "organisation": "MentorCircle",
-    "topic": "Skill vs Degree",
-    "price": "₹390",
-    "code": "SKVD390",
-    "slots": 5,
-    "status": "Pending Review",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 13,
+    coach: "Jayant Ghosh",
+    coach_type: "Consultant",
+    organisation: "MentorCircle",
+    topic: "Skill vs Degree",
+    price: "₹390",
+    code: "SKVD390",
+    slots: 5,
+    status: "Pending Review",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Tina Roy",
-    "coach_type": "Mentor",
-    "organisation": "Scholars India",
-    "topic": "Board Exam Strategy",
-    "price": "₹460",
-    "code": "BEX460",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 14,
+    coach: "Tina Roy",
+    coach_type: "Mentor",
+    organisation: "Scholars India",
+    topic: "Board Exam Strategy",
+    price: "₹460",
+    code: "BEX460",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "coach": "Yusuf Khan",
-    "coach_type": "Coach",
-    "organisation": "Excel Pathways",
-    "topic": "Scholarship Guidance",
-    "price": "₹390",
-    "code": "SCHG390",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 15,
+    coach: "Yusuf Khan",
+    coach_type: "Coach",
+    organisation: "Excel Pathways",
+    topic: "Scholarship Guidance",
+    price: "₹390",
+    code: "SCHG390",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   }
 ];
 
 export const b2b_sessions = [
   {
-    "organisation": "SkillEdge Corp",
-    "coach": "Amit Tiwari",
-    "coach_type": "Educator",
-    "topic": "Leadership Essentials",
-    "price": "₹900",
-    "code": "LEAD900",
-    "slots": 6,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 1,
+    organisation: "SkillEdge Corp",
+    coach: "Amit Tiwari",
+    coach_type: "Educator",
+    topic: "Leadership Essentials",
+    price: "₹900",
+    code: "LEAD900",
+    slots: 6,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "Startup Network",
-    "coach": "Ritu Jain",
-    "coach_type": "Consultant",
-    "topic": "Startup Mindset",
-    "price": "₹0",
-    "code": "FREEJOIN",
-    "slots": 0,
-    "status": "Full",
-    "actions": ["Edit", "Reschedule"]
+    id: 2,
+    organisation: "Startup Network",
+    coach: "Ritu Jain",
+    coach_type: "Consultant",
+    topic: "Startup Mindset",
+    price: "₹0",
+    code: "FREEJOIN",
+    slots: 0,
+    status: "Full",
+    actions: ["Edit", "Reschedule"]
   },
   {
-    "organisation": "TechBridge India",
-    "coach": "Nikhil Verma",
-    "coach_type": "Mentor",
-    "topic": "Agile Fundamentals",
-    "price": "₹800",
-    "code": "AGF800",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 3,
+    organisation: "TechBridge India",
+    coach: "Nikhil Verma",
+    coach_type: "Mentor",
+    topic: "Agile Fundamentals",
+    price: "₹800",
+    code: "AGF800",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "FinCorp Solutions",
-    "coach": "Pooja Khanna",
-    "coach_type": "Educator",
-    "topic": "Financial Planning Basics",
-    "price": "₹950",
-    "code": "FPB950",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 4,
+    organisation: "FinCorp Solutions",
+    coach: "Pooja Khanna",
+    coach_type: "Educator",
+    topic: "Financial Planning Basics",
+    price: "₹950",
+    code: "FPB950",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "HealthFirst Group",
-    "coach": "Dr. Rahul Desai",
-    "coach_type": "Consultant",
-    "topic": "Workplace Wellness",
-    "price": "₹720",
-    "code": "WELL720",
-    "slots": 5,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 5,
+    organisation: "HealthFirst Group",
+    coach: "Dr. Rahul Desai",
+    coach_type: "Consultant",
+    topic: "Workplace Wellness",
+    price: "₹720",
+    code: "WELL720",
+    slots: 5,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "RetailMart Inc.",
-    "coach": "Sneha Rao",
-    "coach_type": "Coach",
-    "topic": "Sales Mastery",
-    "price": "₹850",
-    "code": "SALE850",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 6,
+    organisation: "RetailMart Inc.",
+    coach: "Sneha Rao",
+    coach_type: "Coach",
+    topic: "Sales Mastery",
+    price: "₹850",
+    code: "SALE850",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "EduNova Global",
-    "coach": "Arjun Patel",
-    "coach_type": "Mentor",
-    "topic": "Corporate Training Design",
-    "price": "₹880",
-    "code": "CTD880",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 7,
+    organisation: "EduNova Global",
+    coach: "Arjun Patel",
+    coach_type: "Mentor",
+    topic: "Corporate Training Design",
+    price: "₹880",
+    code: "CTD880",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "GreenTech Pvt Ltd",
-    "coach": "Megha Sinha",
-    "coach_type": "Consultant",
-    "topic": "Sustainable Practices",
-    "price": "₹600",
-    "code": "SUS600",
-    "slots": 5,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 8,
+    organisation: "GreenTech Pvt Ltd",
+    coach: "Megha Sinha",
+    coach_type: "Consultant",
+    topic: "Sustainable Practices",
+    price: "₹600",
+    code: "SUS600",
+    slots: 5,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "BankNet Academy",
-    "coach": "Vivek Menon",
-    "coach_type": "Educator",
-    "topic": "Banking Compliance",
-    "price": "₹1050",
-    "code": "BANK1050",
-    "slots": 6,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 9,
+    organisation: "BankNet Academy",
+    coach: "Vivek Menon",
+    coach_type: "Educator",
+    topic: "Banking Compliance",
+    price: "₹1050",
+    code: "BANK1050",
+    slots: 6,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "MedicoPro Labs",
-    "coach": "Dr. Shweta Iyer",
-    "coach_type": "Mentor",
-    "topic": "Healthcare Team Management",
-    "price": "₹950",
-    "code": "HTM950",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 10,
+    organisation: "MedicoPro Labs",
+    coach: "Dr. Shweta Iyer",
+    coach_type: "Mentor",
+    topic: "Healthcare Team Management",
+    price: "₹950",
+    code: "HTM950",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "CreativeGurus",
-    "coach": "Raj Malhotra",
-    "coach_type": "Coach",
-    "topic": "Creative Leadership",
-    "price": "₹780",
-    "code": "CLDR780",
-    "slots": 2,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 11,
+    organisation: "CreativeGurus",
+    coach: "Raj Malhotra",
+    coach_type: "Coach",
+    topic: "Creative Leadership",
+    price: "₹780",
+    code: "CLDR780",
+    slots: 2,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "LegalBridge LLP",
-    "coach": "Adv. Smita Rani",
-    "coach_type": "Consultant",
-    "topic": "Corporate Law Essentials",
-    "price": "₹1100",
-    "code": "LAW1100",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 12,
+    organisation: "LegalBridge LLP",
+    coach: "Adv. Smita Rani",
+    coach_type: "Consultant",
+    topic: "Corporate Law Essentials",
+    price: "₹1100",
+    code: "LAW1100",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "NextGen Logistics",
-    "coach": "Harshita Dubey",
-    "coach_type": "Educator",
-    "topic": "Supply Chain Basics",
-    "price": "₹680",
-    "code": "SCB680",
-    "slots": 4,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 13,
+    organisation: "NextGen Logistics",
+    coach: "Harshita Dubey",
+    coach_type: "Educator",
+    topic: "Supply Chain Basics",
+    price: "₹680",
+    code: "SCB680",
+    slots: 4,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "FutureHub Co.",
-    "coach": "Abhishek Jain",
-    "coach_type": "Mentor",
-    "topic": "Innovation in Business",
-    "price": "₹990",
-    "code": "INNOV990",
-    "slots": 5,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 14,
+    organisation: "FutureHub Co.",
+    coach: "Abhishek Jain",
+    coach_type: "Mentor",
+    topic: "Innovation in Business",
+    price: "₹990",
+    code: "INNOV990",
+    slots: 5,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   },
   {
-    "organisation": "Infinity Labs",
-    "coach": "Shraddha Kapoor",
-    "coach_type": "Coach",
-    "topic": "Team Motivation Tactics",
-    "price": "₹760",
-    "code": "TMT760",
-    "slots": 3,
-    "status": "Active",
-    "actions": ["Assign", "Edit", "Disable"]
+    id: 15,
+    organisation: "Infinity Labs",
+    coach: "Shraddha Kapoor",
+    coach_type: "Coach",
+    topic: "Team Motivation Tactics",
+    price: "₹760",
+    code: "TMT760",
+    slots: 3,
+    status: "Active",
+    actions: ["Assign", "Edit", "Disable"]
   }
 ];
 
 export const pending_approvals = [
   {
-    "coach": "Neha Sharma",
-    "session_type": "Instant",
-    "topic": "Time Management Tips",
-    "price": "₹250",
-    "code": "TMT250",
-    "submitted_on": "17 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 1,
+    coach: "Neha Sharma",
+    session_type: "Instant",
+    topic: "Time Management Tips",
+    price: "₹250",
+    code: "TMT250",
+    submitted_on: "17 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Aditya Rao",
-    "session_type": "Introductory",
-    "topic": "Career Pivoting",
-    "price": "₹300",
-    "code": "CPIV300",
-    "submitted_on": "10 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 2,
+    coach: "Aditya Rao",
+    session_type: "Introductory",
+    topic: "Career Pivoting",
+    price: "₹300",
+    code: "CPIV300",
+    submitted_on: "10 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Pallavi Joshi",
-    "session_type": "Instant",
-    "topic": "Interview Hacks",
-    "price": "₹450",
-    "code": "INTVH450",
-    "submitted_on": "12 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 3,
+    coach: "Pallavi Joshi",
+    session_type: "Instant",
+    topic: "Interview Hacks",
+    price: "₹450",
+    code: "INTVH450",
+    submitted_on: "12 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Raghav Bansal",
-    "session_type": "B2B",
-    "topic": "Work Culture Fit",
-    "price": "₹600",
-    "code": "WCF600",
-    "submitted_on": "18 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 4,
+    coach: "Raghav Bansal",
+    session_type: "B2B",
+    topic: "Work Culture Fit",
+    price: "₹600",
+    code: "WCF600",
+    submitted_on: "18 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Meena Iyer",
-    "session_type": "Introductory",
-    "topic": "Stream Choice Guidance",
-    "price": "₹350",
-    "code": "SCG350",
-    "submitted_on": "14 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 5,
+    coach: "Meena Iyer",
+    session_type: "Introductory",
+    topic: "Stream Choice Guidance",
+    price: "₹350",
+    code: "SCG350",
+    submitted_on: "14 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Sourabh Taneja",
-    "session_type": "Instant",
-    "topic": "Goal Clarity",
-    "price": "₹280",
-    "code": "GLCL280",
-    "submitted_on": "16 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 6,
+    coach: "Sourabh Taneja",
+    session_type: "Instant",
+    topic: "Goal Clarity",
+    price: "₹280",
+    code: "GLCL280",
+    submitted_on: "16 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Farida Ansari",
-    "session_type": "Introductory",
-    "topic": "Finding Your Passion",
-    "price": "₹400",
-    "code": "FYP400",
-    "submitted_on": "19 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 7,
+    coach: "Farida Ansari",
+    session_type: "Introductory",
+    topic: "Finding Your Passion",
+    price: "₹400",
+    code: "FYP400",
+    submitted_on: "19 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Sanjay Grover",
-    "session_type": "B2B",
-    "topic": "Team Communication",
-    "price": "₹700",
-    "code": "TCOM700",
-    "submitted_on": "13 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 8,
+    coach: "Sanjay Grover",
+    session_type: "B2B",
+    topic: "Team Communication",
+    price: "₹700",
+    code: "TCOM700",
+    submitted_on: "13 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Divya Kapoor",
-    "session_type": "Instant",
-    "topic": "Concentration Techniques",
-    "price": "₹200",
-    "code": "CTECH200",
-    "submitted_on": "15 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 9,
+    coach: "Divya Kapoor",
+    session_type: "Instant",
+    topic: "Concentration Techniques",
+    price: "₹200",
+    code: "CTECH200",
+    submitted_on: "15 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Nitin Malhotra",
-    "session_type": "Introductory",
-    "topic": "Overcoming Self-Doubt",
-    "price": "₹390",
-    "code": "OSD390",
-    "submitted_on": "20 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 10,
+    coach: "Nitin Malhotra",
+    session_type: "Introductory",
+    topic: "Overcoming Self-Doubt",
+    price: "₹390",
+    code: "OSD390",
+    submitted_on: "20 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Anita Deshmukh",
-    "session_type": "B2B",
-    "topic": "Inclusive Leadership",
-    "price": "₹980",
-    "code": "INCL980",
-    "submitted_on": "22 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 11,
+    coach: "Anita Deshmukh",
+    session_type: "B2B",
+    topic: "Inclusive Leadership",
+    price: "₹980",
+    code: "INCL980",
+    submitted_on: "22 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Kunal Saxena",
-    "session_type": "Instant",
-    "topic": "Effective Learning Methods",
-    "price": "₹310",
-    "code": "ELM310",
-    "submitted_on": "23 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 12,
+    coach: "Kunal Saxena",
+    session_type: "Instant",
+    topic: "Effective Learning Methods",
+    price: "₹310",
+    code: "ELM310",
+    submitted_on: "23 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Priya Kulkarni",
-    "session_type": "Introductory",
-    "topic": "Parent Communication",
-    "price": "₹460",
-    "code": "PRNT460",
-    "submitted_on": "25 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 13,
+    coach: "Priya Kulkarni",
+    session_type: "Introductory",
+    topic: "Parent Communication",
+    price: "₹460",
+    code: "PRNT460",
+    submitted_on: "25 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Yash Oberoi",
-    "session_type": "B2B",
-    "topic": "Agile Collaboration",
-    "price": "₹810",
-    "code": "AGCL810",
-    "submitted_on": "26 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 14,
+    coach: "Yash Oberoi",
+    session_type: "B2B",
+    topic: "Agile Collaboration",
+    price: "₹810",
+    code: "AGCL810",
+    submitted_on: "26 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   },
   {
-    "coach": "Tanvi Gupta",
-    "session_type": "Instant",
-    "topic": "Exam Preparation Tips",
-    "price": "₹275",
-    "code": "EXPT275",
-    "submitted_on": "27 May 2025",
-    "status": "Pending",
-    "actions": ["Review", "Approve", "Reject"]
+    id: 15,
+    coach: "Tanvi Gupta",
+    session_type: "Instant",
+    topic: "Exam Preparation Tips",
+    price: "₹275",
+    code: "EXPT275",
+    submitted_on: "27 May 2025",
+    status: "Pending",
+    actions: ["Review", "Approve", "Reject"]
   }
 ];
 
@@ -5038,489 +5099,529 @@ export const BugsTableData = [
     "actions": ["Assign", "Debug"]
   }
 ]
-export const Upcoming =[
-      {
-        "user": "Aarav Mehta",
-        "coach": "Dr. Seema Rao",
-        "coachType": "Counselor",
-        "dateTime": "2025-05-18T15:00:00",
-        "type": "1:1",
-        "amount": "₹1,000",
-        "statusTimeline": [
-          "Booked (2025-05-16T14:00:00)",
-          "Auto Approved (2025-05-16T14:05:00)",
-          "Confirmed (2025-05-17T09:30:00)"
-        ],
-        "actions": ["View", "Reschedule", "Cancel"]
-      },
-      {
-    "user": "Aarav Mehta",
-    "coach": "Dr. Seema Rao",
-    "coachType": "Counselor",
-    "dateTime": "18 May, 3:00 PM",
-    "type": "1:1",
-    "amount": "₹1,000",
-    "statusTimeline": ["Booked (16 May, 2:00 PM) → Auto Approved (16 May, 2:05 PM) → Confirmed (17 May, 9:30 AM)"],
-    "actions": ["View", "Reschedule", "Cancel"]
+export const Upcoming = [
+  {
+    id: 1,
+    user: "Aarav Mehta",
+    coach: "Dr. Seema Rao",
+    coachType: "Counselor",
+    dateTime: "2025-05-18T15:00:00",
+    type: "1:1",
+    amount: "₹1,000",
+    statusTimeline: [
+      "Booked (2025-05-16T14:00:00)",
+      "Auto Approved (2025-05-16T14:05:00)",
+      "Confirmed (2025-05-17T09:30:00)"
+    ],
+    actions: ["View", "Reschedule", "Cancel"]
   },
   {
-    "user": "Isha Verma",
-    "coach": "Ankit Sharma",
-    "coachType": "Mentor",
-    "dateTime": "20 May, 10:00 AM",
-    "type": "1:1",
-    "amount": "₹850",
-    "statusTimeline": ["Booked (18 May, 4:00 PM) → Auto Approved (18 May, 4:15 PM)"],
-    "actions": ["View", "Reschedule", "Cancel"]
+    id: 2,
+    user: "Aarav Mehta",
+    coach: "Dr. Seema Rao",
+    coachType: "Counselor",
+    dateTime: "18 May, 3:00 PM",
+    type: "1:1",
+    amount: "₹1,000",
+    statusTimeline: ["Booked (16 May, 2:00 PM) → Auto Approved (16 May, 2:05 PM) → Confirmed (17 May, 9:30 AM)"],
+    actions: ["View", "Reschedule", "Cancel"]
   },
   {
-    "user": "Yash Mittal",
-    "coach": "Pooja Batra",
-    "coachType": "Coach",
-    "dateTime": "22 May, 11:30 AM",
-    "type": "Ask Q",
-    "amount": "₹500",
-    "statusTimeline": ["Booked (19 May, 2:00 PM) → Manual Approved (20 May, 9:00 AM)"],
-    "actions": ["View", "Cancel"]
+    id: 3,
+    user: "Isha Verma",
+    coach: "Ankit Sharma",
+    coachType: "Mentor",
+    dateTime: "20 May, 10:00 AM",
+    type: "1:1",
+    amount: "₹850",
+    statusTimeline: ["Booked (18 May, 4:00 PM) → Auto Approved (18 May, 4:15 PM)"],
+    actions: ["View", "Reschedule", "Cancel"]
   },
   {
-    "user": "Tanya Singh",
-    "coach": "Rakesh Yadav",
-    "coachType": "Counselor",
-    "dateTime": "19 May, 4:00 PM",
-    "type": "1:1",
-    "amount": "₹1,200",
-    "statusTimeline": ["Booked (16 May, 1:00 PM) → Auto Approved (16 May, 1:10 PM) → Confirmed (17 May, 10:00 AM)"],
-    "actions": ["View", "Reschedule", "Cancel"]
+    id: 4,
+    user: "Yash Mittal",
+    coach: "Pooja Batra",
+    coachType: "Coach",
+    dateTime: "22 May, 11:30 AM",
+    type: "Ask Q",
+    amount: "₹500",
+    statusTimeline: ["Booked (19 May, 2:00 PM) → Manual Approved (20 May, 9:00 AM)"],
+    actions: ["View", "Cancel"]
   },
   {
-    "user": "Nikhil Roy",
-    "coach": "Shweta Desai",
-    "coachType": "Mentor",
-    "dateTime": "21 May, 9:00 AM",
-    "type": "Group",
-    "amount": "₹600",
-    "statusTimeline": ["Booked (18 May, 8:30 AM)"],
-    "actions": ["View"]
+    id: 5,
+    user: "Tanya Singh",
+    coach: "Rakesh Yadav",
+    coachType: "Counselor",
+    dateTime: "19 May, 4:00 PM",
+    type: "1:1",
+    amount: "₹1,200",
+    statusTimeline: ["Booked (16 May, 1:00 PM) → Auto Approved (16 May, 1:10 PM) → Confirmed (17 May, 10:00 AM)"],
+    actions: ["View", "Reschedule", "Cancel"]
   },
   {
-    "user": "Meera Chopra",
-    "coach": "Dr. Abhay Kaul",
-    "coachType": "Educator",
-    "dateTime": "23 May, 1:00 PM",
-    "type": "1:1",
-    "amount": "₹950",
-    "statusTimeline": ["Booked (19 May, 3:00 PM) → Manual Approved (20 May, 10:00 AM)"],
-    "actions": ["View", "Cancel"]
+    id: 6,
+    user: "Nikhil Roy",
+    coach: "Shweta Desai",
+    coachType: "Mentor",
+    dateTime: "21 May, 9:00 AM",
+    type: "Group",
+    amount: "₹600",
+    statusTimeline: ["Booked (18 May, 8:30 AM)"],
+    actions: ["View"]
   },
   {
-    "user": "Saurav Jain",
-    "coach": "Neha Kapoor",
-    "coachType": "Coach",
-    "dateTime": "24 May, 12:00 PM",
-    "type": "Ask Q",
-    "amount": "₹700",
-    "statusTimeline": ["Booked (20 May, 4:00 PM) → Auto Approved (20 May, 4:05 PM)"],
-    "actions": ["View", "Reschedule", "Cancel"]
+    id: 7,
+    user: "Meera Chopra",
+    coach: "Dr. Abhay Kaul",
+    coachType: "Educator",
+    dateTime: "23 May, 1:00 PM",
+    type: "1:1",
+    amount: "₹950",
+    statusTimeline: ["Booked (19 May, 3:00 PM) → Manual Approved (20 May, 10:00 AM)"],
+    actions: ["View", "Cancel"]
   },
   {
-    "user": "Priya Sinha",
-    "coach": "Manoj Sharma",
-    "coachType": "Mentor",
-    "dateTime": "25 May, 2:00 PM",
-    "type": "1:1",
-    "amount": "₹1,100",
-    "statusTimeline": ["Booked (21 May, 9:00 AM) → Auto Approved (21 May, 9:10 AM)"],
-    "actions": ["View", "Cancel"]
+    id: 8,
+    user: "Saurav Jain",
+    coach: "Neha Kapoor",
+    coachType: "Coach",
+    dateTime: "24 May, 12:00 PM",
+    type: "Ask Q",
+    amount: "₹700",
+    statusTimeline: ["Booked (20 May, 4:00 PM) → Auto Approved (20 May, 4:05 PM)"],
+    actions: ["View", "Reschedule", "Cancel"]
   },
   {
-    "user": "Rahul Khanna",
-    "coach": "Kritika Das",
-    "coachType": "Educator",
-    "dateTime": "26 May, 10:30 AM",
-    "type": "1:1",
-    "amount": "₹800",
-    "statusTimeline": ["Booked (22 May, 11:00 AM) → Manual Approved (23 May, 8:00 AM)"],
-    "actions": ["View", "Reschedule"]
+    id: 9,
+    user: "Priya Sinha",
+    coach: "Manoj Sharma",
+    coachType: "Mentor",
+    dateTime: "25 May, 2:00 PM",
+    type: "1:1",
+    amount: "₹1,100",
+    statusTimeline: ["Booked (21 May, 9:00 AM) → Auto Approved (21 May, 9:10 AM)"],
+    actions: ["View", "Cancel"]
   },
   {
-    "user": "Divya Narayan",
-    "coach": "Ashok Rao",
-    "coachType": "Coach",
-    "dateTime": "27 May, 3:00 PM",
-    "type": "Ask Q",
-    "amount": "₹550",
-    "statusTimeline": ["Booked (23 May, 12:30 PM)"],
-    "actions": ["View", "Cancel"]
+    id: 10,
+    user: "Rahul Khanna",
+    coach: "Kritika Das",
+    coachType: "Educator",
+    dateTime: "26 May, 10:30 AM",
+    type: "1:1",
+    amount: "₹800",
+    statusTimeline: ["Booked (22 May, 11:00 AM) → Manual Approved (23 May, 8:00 AM)"],
+    actions: ["View", "Reschedule"]
   },
   {
-    "user": "Kunal Aggarwal",
-    "coach": "Megha Rani",
-    "coachType": "Counselor",
-    "dateTime": "28 May, 4:30 PM",
-    "type": "1:1",
-    "amount": "₹1,300",
-    "statusTimeline": ["Booked (24 May, 1:00 PM) → Auto Approved (24 May, 1:10 PM)"],
-    "actions": ["View", "Reschedule"]
+    id: 11,
+    user: "Divya Narayan",
+    coach: "Ashok Rao",
+    coachType: "Coach",
+    dateTime: "27 May, 3:00 PM",
+    type: "Ask Q",
+    amount: "₹550",
+    statusTimeline: ["Booked (23 May, 12:30 PM)"],
+    actions: ["View", "Cancel"]
   },
   {
-    "user": "Ritika Mehra",
-    "coach": "Dr. Rajeev Sinha",
-    "coachType": "Mentor",
-    "dateTime": "29 May, 11:00 AM",
-    "type": "Group",
-    "amount": "₹750",
-    "statusTimeline": ["Booked (25 May, 9:45 AM)"],
-    "actions": ["View"]
+    id: 12,
+    user: "Kunal Aggarwal",
+    coach: "Megha Rani",
+    coachType: "Counselor",
+    dateTime: "28 May, 4:30 PM",
+    type: "1:1",
+    amount: "₹1,300",
+    statusTimeline: ["Booked (24 May, 1:00 PM) → Auto Approved (24 May, 1:10 PM)"],
+    actions: ["View", "Reschedule"]
   },
   {
-    "user": "Arjun Deshmukh",
-    "coach": "Pallavi Singh",
-    "coachType": "Educator",
-    "dateTime": "30 May, 10:00 AM",
-    "type": "1:1",
-    "amount": "₹950",
-    "statusTimeline": ["Booked (26 May, 10:00 AM) → Manual Approved (26 May, 3:00 PM) → Confirmed (27 May, 9:00 AM)"],
-    "actions": ["View", "Cancel"]
+    id: 13,
+    user: "Ritika Mehra",
+    coach: "Dr. Rajeev Sinha",
+    coachType: "Mentor",
+    dateTime: "29 May, 11:00 AM",
+    type: "Group",
+    amount: "₹750",
+    statusTimeline: ["Booked (25 May, 9:45 AM)"],
+    actions: ["View"]
   },
   {
-    "user": "Sneha Das",
-    "coach": "Ravi Tripathi",
-    "coachType": "Coach",
-    "dateTime": "31 May, 1:30 PM",
-    "type": "Ask Q",
-    "amount": "₹600",
-    "statusTimeline": ["Booked (27 May, 11:00 AM)"],
-    "actions": ["View", "Cancel"]
+    id: 14,
+    user: "Arjun Deshmukh",
+    coach: "Pallavi Singh",
+    coachType: "Educator",
+    dateTime: "30 May, 10:00 AM",
+    type: "1:1",
+    amount: "₹950",
+    statusTimeline: ["Booked (26 May, 10:00 AM) → Manual Approved (26 May, 3:00 PM) → Confirmed (27 May, 9:00 AM)"],
+    actions: ["View", "Cancel"]
   },
   {
-    "user": "Amit Bhalla",
-    "coach": "Preeti Nair",
-    "coachType": "Counselor",
-    "dateTime": "1 June, 2:15 PM",
-    "type": "1:1",
-    "amount": "₹1,050",
-    "statusTimeline": ["Booked (28 May, 9:30 AM) → Auto Approved (28 May, 9:35 AM)"],
-    "actions": ["View", "Reschedule"]
+    id: 15,
+    user: "Sneha Das",
+    coach: "Ravi Tripathi",
+    coachType: "Coach",
+    dateTime: "31 May, 1:30 PM",
+    type: "Ask Q",
+    amount: "₹600",
+    statusTimeline: ["Booked (27 May, 11:00 AM)"],
+    actions: ["View", "Cancel"]
+  },
+  {
+    id: 16,
+    user: "Amit Bhalla",
+    coach: "Preeti Nair",
+    coachType: "Counselor",
+    dateTime: "1 June, 2:15 PM",
+    type: "1:1",
+    amount: "₹1,050",
+    statusTimeline: ["Booked (28 May, 9:30 AM) → Auto Approved (28 May, 9:35 AM)"],
+    actions: ["View", "Reschedule"]
   }
-    ]
-export const Live=  [
-      {
-        "user": "Ravi Kumar",
-        "coach": "Neha Joshi",
-        "coachType": "Mentor",
-        "dateTime": "2025-05-18T14:30:00",
-        "type": "1:1",
-        "amount": "₹950",
-        "statusTimeline": [
-          "Booked",
-          "Auto Approved",
-          "Live (2025-05-18T14:30:00)"
-        ],
-        "actions": ["Join Now", "View"]
-      },
-      {
-        "user": "Aanya Kapoor",
-        "coach": "Manish Rao",
-        "coachType": "Educator",
-        "dateTime": "2025-05-18T14:45:00",
-        "type": "Ask Q",
-        "amount": "₹700",
-        "statusTimeline": [
-          "Booked",
-          "Manual Approved",
-          "Live (2025-05-18T14:45:00)"
-        ],
-        "actions": ["Join Now", "View"]
-      },
-        {
-    "user": "Ravi Kumar",
-    "coach": "Neha Joshi",
-    "coachType": "Mentor",
-    "dateTime": "2025-05-18T14:30:00",
-    "type": "1:1",
-    "amount": "₹950",
-    "statusTimeline": [
+];
+export const Live = [
+  {
+    id: 1,
+    user: "Ravi Kumar",
+    coach: "Neha Joshi",
+    coachType: "Mentor",
+    dateTime: "2025-05-18T14:30:00",
+    type: "1:1",
+    amount: "₹950",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T14:30:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Aanya Kapoor",
-    "coach": "Manish Rao",
-    "coachType": "Educator",
-    "dateTime": "2025-05-18T14:45:00",
-    "type": "Ask Q",
-    "amount": "₹700",
-    "statusTimeline": [
+    id: 2,
+    user: "Aanya Kapoor",
+    coach: "Manish Rao",
+    coachType: "Educator",
+    dateTime: "2025-05-18T14:45:00",
+    type: "Ask Q",
+    amount: "₹700",
+    statusTimeline: [
       "Booked",
       "Manual Approved",
       "Live (2025-05-18T14:45:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Simran Kaur",
-    "coach": "Dr. Mehul Sinha",
-    "coachType": "Counselor",
-    "dateTime": "2025-05-18T15:00:00",
-    "type": "1:1",
-    "amount": "₹1,000",
-    "statusTimeline": [
+    id: 3,
+    user: "Ravi Kumar",
+    coach: "Neha Joshi",
+    coachType: "Mentor",
+    dateTime: "2025-05-18T14:30:00",
+    type: "1:1",
+    amount: "₹950",
+    statusTimeline: [
+      "Booked",
+      "Auto Approved",
+      "Live (2025-05-18T14:30:00)"
+    ],
+    actions: ["Join Now", "View"]
+  },
+  {
+    id: 4,
+    user: "Aanya Kapoor",
+    coach: "Manish Rao",
+    coachType: "Educator",
+    dateTime: "2025-05-18T14:45:00",
+    type: "Ask Q",
+    amount: "₹700",
+    statusTimeline: [
+      "Booked",
+      "Manual Approved",
+      "Live (2025-05-18T14:45:00)"
+    ],
+    actions: ["Join Now", "View"]
+  },
+  {
+    id: 5,
+    user: "Simran Kaur",
+    coach: "Dr. Mehul Sinha",
+    coachType: "Counselor",
+    dateTime: "2025-05-18T15:00:00",
+    type: "1:1",
+    amount: "₹1,000",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T15:00:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Karan Patel",
-    "coach": "Anita Joshi",
-    "coachType": "Mentor",
-    "dateTime": "2025-05-18T15:15:00",
-    "type": "Ask Q",
-    "amount": "₹650",
-    "statusTimeline": [
+    id: 6,
+    user: "Karan Patel",
+    coach: "Anita Joshi",
+    coachType: "Mentor",
+    dateTime: "2025-05-18T15:15:00",
+    type: "Ask Q",
+    amount: "₹650",
+    statusTimeline: [
       "Booked",
       "Manual Approved",
       "Live (2025-05-18T15:15:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Priya Malhotra",
-    "coach": "Vivek Shah",
-    "coachType": "Coach",
-    "dateTime": "2025-05-18T15:30:00",
-    "type": "Group",
-    "amount": "₹800",
-    "statusTimeline": [
+    id: 7,
+    user: "Priya Malhotra",
+    coach: "Vivek Shah",
+    coachType: "Coach",
+    dateTime: "2025-05-18T15:30:00",
+    type: "Group",
+    amount: "₹800",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T15:30:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Dev Sharma",
-    "coach": "Rina Das",
-    "coachType": "Educator",
-    "dateTime": "2025-05-18T15:45:00",
-    "type": "1:1",
-    "amount": "₹900",
-    "statusTimeline": [
+    id: 8,
+    user: "Dev Sharma",
+    coach: "Rina Das",
+    coachType: "Educator",
+    dateTime: "2025-05-18T15:45:00",
+    type: "1:1",
+    amount: "₹900",
+    statusTimeline: [
       "Booked",
       "Manual Approved",
       "Live (2025-05-18T15:45:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Anjali Rana",
-    "coach": "Tarun Mehta",
-    "coachType": "Mentor",
-    "dateTime": "2025-05-18T16:00:00",
-    "type": "Ask Q",
-    "amount": "₹750",
-    "statusTimeline": [
+    id: 9,
+    user: "Anjali Rana",
+    coach: "Tarun Mehta",
+    coachType: "Mentor",
+    dateTime: "2025-05-18T16:00:00",
+    type: "Ask Q",
+    amount: "₹750",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T16:00:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Nikhil Joshi",
-    "coach": "Meena Roy",
-    "coachType": "Coach",
-    "dateTime": "2025-05-18T16:15:00",
-    "type": "1:1",
-    "amount": "₹1,200",
-    "statusTimeline": [
+    id: 10,
+    user: "Nikhil Joshi",
+    coach: "Meena Roy",
+    coachType: "Coach",
+    dateTime: "2025-05-18T16:15:00",
+    type: "1:1",
+    amount: "₹1,200",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T16:15:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Sanya Bhatia",
-    "coach": "Dr. Harsh Vardhan",
-    "coachType": "Counselor",
-    "dateTime": "2025-05-18T16:30:00",
-    "type": "Group",
-    "amount": "₹850",
-    "statusTimeline": [
+    id: 11,
+    user: "Sanya Bhatia",
+    coach: "Dr. Harsh Vardhan",
+    coachType: "Counselor",
+    dateTime: "2025-05-18T16:30:00",
+    type: "Group",
+    amount: "₹850",
+    statusTimeline: [
       "Booked",
       "Manual Approved",
       "Live (2025-05-18T16:30:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Arjun Thakur",
-    "coach": "Sneha Iyer",
-    "coachType": "Educator",
-    "dateTime": "2025-05-18T16:45:00",
-    "type": "1:1",
-    "amount": "₹950",
-    "statusTimeline": [
+    id: 12,
+    user: "Arjun Thakur",
+    coach: "Sneha Iyer",
+    coachType: "Educator",
+    dateTime: "2025-05-18T16:45:00",
+    type: "1:1",
+    amount: "₹950",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T16:45:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Ritika Sharma",
-    "coach": "Rahul Saxena",
-    "coachType": "Mentor",
-    "dateTime": "2025-05-18T17:00:00",
-    "type": "Ask Q",
-    "amount": "₹700",
-    "statusTimeline": [
+    id: 13,
+    user: "Ritika Sharma",
+    coach: "Rahul Saxena",
+    coachType: "Mentor",
+    dateTime: "2025-05-18T17:00:00",
+    type: "Ask Q",
+    amount: "₹700",
+    statusTimeline: [
       "Booked",
       "Manual Approved",
       "Live (2025-05-18T17:00:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Abhay Verma",
-    "coach": "Sonal Jain",
-    "coachType": "Coach",
-    "dateTime": "2025-05-18T17:15:00",
-    "type": "1:1",
-    "amount": "₹1,100",
-    "statusTimeline": [
+    id: 14,
+    user: "Abhay Verma",
+    coach: "Sonal Jain",
+    coachType: "Coach",
+    dateTime: "2025-05-18T17:15:00",
+    type: "1:1",
+    amount: "₹1,100",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T17:15:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Neha Goyal",
-    "coach": "Anuj Kapoor",
-    "coachType": "Educator",
-    "dateTime": "2025-05-18T17:30:00",
-    "type": "Group",
-    "amount": "₹600",
-    "statusTimeline": [
+    id: 15,
+    user: "Neha Goyal",
+    coach: "Anuj Kapoor",
+    coachType: "Educator",
+    dateTime: "2025-05-18T17:30:00",
+    type: "Group",
+    amount: "₹600",
+    statusTimeline: [
       "Booked",
       "Manual Approved",
       "Live (2025-05-18T17:30:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Amit Rawat",
-    "coach": "Dr. Kavita Rao",
-    "coachType": "Counselor",
-    "dateTime": "2025-05-18T17:45:00",
-    "type": "1:1",
-    "amount": "₹980",
-    "statusTimeline": [
+    id: 16,
+    user: "Amit Rawat",
+    coach: "Dr. Kavita Rao",
+    coachType: "Counselor",
+    dateTime: "2025-05-18T17:45:00",
+    type: "1:1",
+    amount: "₹980",
+    statusTimeline: [
       "Booked",
       "Auto Approved",
       "Live (2025-05-18T17:45:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   },
   {
-    "user": "Pooja Singh",
-    "coach": "Rohan Arora",
-    "coachType": "Mentor",
-    "dateTime": "2025-05-18T18:00:00",
-    "type": "Ask Q",
-    "amount": "₹720",
-    "statusTimeline": [
+    id: 17,
+    user: "Pooja Singh",
+    coach: "Rohan Arora",
+    coachType: "Mentor",
+    dateTime: "2025-05-18T18:00:00",
+    type: "Ask Q",
+    amount: "₹720",
+    statusTimeline: [
       "Booked",
       "Manual Approved",
       "Live (2025-05-18T18:00:00)"
     ],
-    "actions": ["Join Now", "View"]
+    actions: ["Join Now", "View"]
   }
-      
-    ]
-export const Completed=[
-      {
-        "user": "Raghav Sharma",
-        "coach": "Anjali Gupta",
-        "coachType": "Mentor",
-        "dateTime": "2025-05-17T11:00:00",
-        "type": "Instant",
-        "amount": "₹1,200",
-        "statusTimeline": [
-          "Booked (2025-05-16T16:10:00)",
-          "Auto Approved (2025-05-16T16:15:00)",
-          "Completed (2025-05-17T11:45:00)"
-        ],
-        "recording": "Available",
-        "actions": ["Watch Recording", "View"]
-      },
-      {
-        "user": "Meera Sharma",
-        "coach": "Ravi Kapoor",
-        "coachType": "Consultant",
-        "dateTime": "2025-05-15T10:00:00",
-        "type": "B2B",
-        "amount": "₹1,500",
-        "statusTimeline": [
-          "Booked (2025-05-13T11:30:00)",
-          "Auto Approved (2025-05-13T11:35:00)",
-          "Passed (2025-05-15T10:45:00)"
-        ],
-        "recording": "Available",
-        "actions": ["Watch Recording", "Receipt"]
-      }
-    ]
-    export const Cancelled =[
-      {
-        "user": "Priya Nair",
-        "coach": "Vinod Malhotra",
-        "coachType": "Educator",
-        "dateTime": "2025-05-16T17:00:00",
-        "type": "Ask Q",
-        "amount": "₹800",
-        "statusTimeline": [
-          "Booked (2025-05-14T12:00:00)",
-          "Manual Approved (2025-05-15T10:00:00)",
-          "Cancelled (2025-05-15T15:00:00)"
-        ],
-        "actions": ["View", "Refund Process"]
-      }
-    ]
-     export const RefundRequested=[
-      {
-        "user": "Priya Nair",
-        "coach": "Vinod Malhotra",
-        "coachType": "Educator",
-        "dateTime": "2025-05-16T17:00:00",
-        "type": "Ask Q",
-        "amount": "₹800",
-        "statusTimeline": ["Booked", "Cancelled"],
-        "refundStatus": "Requested",
-        "actions": ["Approve", "Deny"]
-      },
-      {
-        "user": "Sanya Jain",
-        "coach": "Karan Oberoi",
-        "coachType": "Mentor",
-        "dateTime": "2025-05-14T18:30:00",
-        "type": "In-Person",
-        "amount": "₹1,000",
-        "statusTimeline": [
-          "Booked (2025-05-12T09:45:00)",
-          "Manual Approved (2025-05-13T13:00:00)",
-          "Missed (2025-05-14T19:00:00)"
-        ],
-        "refundStatus": "Requested",
-        "actions": ["Approve Refund"]
-      }
-    ]
+];
+
+export const Completed = [
+  {
+    id: 1,
+    user: "Raghav Sharma",
+    coach: "Anjali Gupta",
+    coachType: "Mentor",
+    dateTime: "2025-05-17T11:00:00",
+    type: "Instant",
+    amount: "₹1,200",
+    statusTimeline: [
+      "Booked (2025-05-16T16:10:00)",
+      "Auto Approved (2025-05-16T16:15:00)",
+      "Completed (2025-05-17T11:45:00)"
+    ],
+    recording: "Available",
+    actions: ["Watch Recording", "View"]
+  },
+  {
+    id: 2,
+    user: "Meera Sharma",
+    coach: "Ravi Kapoor",
+    coachType: "Consultant",
+    dateTime: "2025-05-15T10:00:00",
+    type: "B2B",
+    amount: "₹1,500",
+    statusTimeline: [
+      "Booked (2025-05-13T11:30:00)",
+      "Auto Approved (2025-05-13T11:35:00)",
+      "Passed (2025-05-15T10:45:00)"
+    ],
+    recording: "Available",
+    actions: ["Watch Recording", "Receipt"]
+  }
+];
+
+export const Cancelled = [
+  {
+    id: 1,
+    user: "Priya Nair",
+    coach: "Vinod Malhotra",
+    coachType: "Educator",
+    dateTime: "2025-05-16T17:00:00",
+    type: "Ask Q",
+    amount: "₹800",
+    statusTimeline: [
+      "Booked (2025-05-14T12:00:00)",
+      "Manual Approved (2025-05-15T10:00:00)",
+      "Cancelled (2025-05-15T15:00:00)"
+    ],
+    actions: ["View", "Refund Process"]
+  }
+];
+
+  export const RefundRequested = [
+  {
+    id: 1,
+    user: "Priya Nair",
+    coach: "Vinod Malhotra",
+    coachType: "Educator",
+    dateTime: "2025-05-16T17:00:00",
+    type: "Ask Q",
+    amount: "₹800",
+    statusTimeline: ["Booked", "Cancelled"],
+    refundStatus: "Requested",
+    actions: ["Approve", "Deny"]
+  },
+  {
+    id: 2,
+    user: "Sanya Jain",
+    coach: "Karan Oberoi",
+    coachType: "Mentor",
+    dateTime: "2025-05-14T18:30:00",
+    type: "In-Person",
+    amount: "₹1,000",
+    statusTimeline: [
+      "Booked (2025-05-12T09:45:00)",
+      "Manual Approved (2025-05-13T13:00:00)",
+      "Missed (2025-05-14T19:00:00)"
+    ],
+    refundStatus: "Requested",
+    actions: ["Approve Refund"]
+  }
+];
 
 export const FollowupTable = [
   {

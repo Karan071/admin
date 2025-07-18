@@ -13,7 +13,7 @@ export default function MainLayout({
         <Navbar />
         <div className="flex flex-1 overflow-hidden bg-[var(--layout)]">
           <aside className="flex-none">
-            <SidebarLayout />
+            <SidebarLayout/>
           </aside>
           <main className="flex-1 overflow-auto p-4">{children}</main>
         </div>

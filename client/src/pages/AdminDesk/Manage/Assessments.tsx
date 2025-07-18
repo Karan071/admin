@@ -89,7 +89,7 @@ function Buttonbar() {
         <Plus className="h-3 w-3" />
         <span className="">Create New Assessment</span>
       </Button>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap">
         <Button variant="standard" size="new">
           <BadgeQuestionMark className="h-3 w-3" />
           <span className="">Manage Questions</span>
@@ -306,7 +306,7 @@ function AssessFilter({ onClose }: FilterProps) {
 
 function StatCard() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5">
       {Stats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">

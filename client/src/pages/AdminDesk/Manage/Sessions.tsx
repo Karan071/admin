@@ -83,7 +83,7 @@ export default function Organisation() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold text-[var(--text-head)]">Sessions Pool </h1>
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Sessions</h1>
       <StatCard />
       <Buttonbar />
       
@@ -101,7 +101,7 @@ function Buttonbar() {
         <Plus className="h-3 w-3" />
         <span className=""> Create Manual Session</span>
       </Button>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap">
          <Button variant="standard" size="new">
           <FileDown className="h-3 w-3" />
           <span className=""> Find Coach by Expertise / Type</span>
@@ -123,11 +123,11 @@ function Buttonbar() {
           <span className="">Access Recordings</span>
         </Button>
         <Button
-        variant="border"
+        variant="standard"
+        size="new"
         onClick={() => setShowFilter(true)}
-        className="flex items-center gap-2 self-end"
       >
-        <Filter className="h-4 w-4" />
+        <Filter className="h-3 w-3" />
         {showFilter ? "Hide Filters" : "Show Filters"}
       </Button>
 
@@ -172,17 +172,20 @@ function AssessFilter({ onClose }: FilterProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  const [group, setGroup] = useState("6-8");
-  const [category, setCategory] = useState("Career");
-  const [status, setStatus] = useState("Active");
+  const [coach, setCoach] = useState("Consultant");
+  const [session, setSession] = useState("1:1");
+  const [booking, setBooking] = useState("Booked");
+  const [refund, setRefund] = useState("Not Requested");
+  const [mode, setMode] = useState("Manual");
 
   const tabList = [
     "General",
-    "Target Group",
-    "Category",
-    "Status",
-    "Created By",
+    "Coach Type",
+    "Session Type",
+    "Booking Status",
+    "Refund Status",
     "Date Range",
+    "Acceptance Mode"
   ];
 
   return (
@@ -207,8 +210,8 @@ function AssessFilter({ onClose }: FilterProps) {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
-                    ? "bg-[var(--brand-color3)] text-[var(--brand-color)] border-[var(--brand-color)]"
+                 className={`text-left text-sm px-3 py-3 border-l-3  ${activeTab === tab
+                    ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
                     : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
                     }`}
                 >
@@ -221,88 +224,127 @@ function AssessFilter({ onClose }: FilterProps) {
           <div className="p-6 overflow-y-auto relative w-full">
             {activeTab === "General" && (
               <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter Assessment Name :</label>
+                <label htmlFor="Gen" className="text-[var(--text)]">Search by Name :</label>
                 <Input id="Gen" placeholder="Enter .." type="text" className="mt-4 w-full " />
               </>
             )}
 
-            {activeTab === "Target Group" && (
+            {activeTab === "Coach Type" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Target Group:
+                  Select the Coach Type:
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
-                    "6-8",
-                    "9-10",
-                    "11-12",
-                    "UG",
-                    "PG",
-                    "Professionals",
+                    "Consultant",
+                    "Mentor",
+                    "Educator",
+                    "Counselor",
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={group}
-                      onChange={setGroup}
+                      selected={coach}
+                      onChange={setCoach}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Category" && (
+            {activeTab === "Session Type" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Category :
+                  Select the Session Type :
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
-                    "Career",
-                    "Aptitude",
-                    "Personality",
-                    "Skills",
+                    "1:1",
+                    "In-Person",
+                    "Ask Question",
+                    "Instant",
+                    "B2B",
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={category}
-                      onChange={setCategory}
+                      selected={session}
+                      onChange={setSession}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Status" && (
+            {activeTab === "Booking Status" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Choose Status :
+                  Select Booking Status :
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
-                    "Active",
-                    "Inactive",
-                    "Draft",
+                    "Booked",
+                    "Completed",
+                    "Missed",
+                    "Cancelled",
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={status}
-                      onChange={setStatus}
+                      selected={booking}
+                      onChange={setBooking}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Created By" && (
+            {activeTab === "Refund Status" && (
               <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter The Creator/Coach / Admin Name :</label>
-                <Input id="Gen" placeholder="Enter.." type="text" className="mt-4 w-full " />
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Refund Status :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Not Requested",
+                    "Requested",
+                    "Approved",
+                    "Denied",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={refund}
+                      onChange={setRefund}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Acceptance Mode" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Acceptance Mode :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Manual",
+                    "Auto",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={mode}
+                      onChange={setMode}
+                    />
+                  ))}
+                </div>
               </>
             )}
 
@@ -362,16 +404,23 @@ function StatCard() {
 
 
 function SessionTabs() {
-  const [activeTab, setActiveTab] = useState("upcoming");
-  const [selectedSessions, setSelectedSessions] = useState<string[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "ascending" | "descending";
-  } | null>(null);
+    const [activeTab, setActiveTab] = useState("upcoming");
+    const [selectedSessions, setSelectedSessions] = useState<number[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage, setRecordsPerPage] = useState(5);
+    const [sortConfig, setSortConfig] = useState({
+        key: "id",
+        direction: "ascending"
+    });
 
-  const getCurrentData = (): Session[] => {
+    interface ItemWithId {
+        id: number;
+        [key: string]: any;
+    }
+    const [selectedStack, setSelectedStack] = useState<ItemWithId[]>([]);
+    const [focusedId, setFocusedId] = useState<number | null>(null);;
+
+    const getCurrentData = (): Session[] => {
     switch (activeTab) {
       case "upcoming": return Upcoming;
       case "live": return Live;
@@ -396,55 +445,115 @@ function SessionTabs() {
     return statusMap[status] || "bg-[var(--faded)] text-[var(--text)]";
   };
 
-  const currentData = getCurrentData();
-  
-  let sortedData = [...currentData];
-  if (sortConfig !== null) {
-    sortedData.sort((a, b) => {
-      const key = sortConfig.key as keyof Session;
-      const aValue = a[key];
-      const bValue = b[key];
-      
-      if (aValue === undefined || bValue === undefined) return 0;
-      if (aValue < bValue) {
-        return sortConfig.direction === "ascending" ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortConfig.direction === "ascending" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
+    const currentData = getCurrentData();
+    let sortedData = [...currentData] as Record<string, any>[];
+    if (
+        sortConfig &&
+        typeof sortConfig.key === "string" &&
+        typeof sortConfig.direction === "string"
+    ) {
+        sortedData = sortedData.filter(item => item && typeof item === "object");
 
-  const totalPages = Math.ceil(sortedData.length / recordsPerPage);
-  const indexOfLastRecord = currentPage * recordsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = sortedData.slice(indexOfFirstRecord, indexOfLastRecord);
+        sortedData.sort((a, b) => {
+            const aValue = a[sortConfig.key];
+            const bValue = b[sortConfig.key];
 
-  const requestSort = (key: string) => {
-    let direction: "ascending" | "descending" = "ascending";
-    if (sortConfig?.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
+            if (aValue === undefined || bValue === undefined) return 0;
+
+            if (typeof aValue === "string" && typeof bValue === "string") {
+                return sortConfig.direction === "ascending"
+                    ? aValue.localeCompare(bValue)
+                    : bValue.localeCompare(aValue);
+            }
+
+            if (typeof aValue === "number" && typeof bValue === "number") {
+                return sortConfig.direction === "ascending"
+                    ? aValue - bValue
+                    : bValue - aValue;
+            }
+
+            return 0;
+        });
     }
-    setSortConfig({ key, direction });
-  };
 
- 
 
-  const toggleSelectSession = (sessionId: string) => {
-    setSelectedSessions(
-      selectedSessions.includes(sessionId)
-        ? selectedSessions.filter(id => id !== sessionId)
-        : [...selectedSessions, sessionId]
-    );
-  };
 
-  const getCurrentStatus = (statusTimeline: string[]) => {
+
+    const totalPages = Math.ceil(sortedData.length / recordsPerPage);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = sortedData.slice(indexOfFirstRecord, indexOfLastRecord);
+
+    const requestSort = (key: any) => {
+        let direction = "ascending";
+
+        if (sortConfig?.key === key && sortConfig.direction === "ascending") {
+            direction = "descending";
+        }
+
+        setSortConfig({ key, direction });
+    };
+    const toggleSelectAll = () => {
+  if (selectedSessions.length === currentRecords.length) {
+    setSelectedSessions([]);
+  } else {
+    setSelectedSessions(currentRecords.map((item) => item.id));
+  }
+};
+
+    const bringToTop = (userId: number) => {
+        const coach = selectedStack.find((c) => c.id === userId);
+        if (coach) {
+            setSelectedStack((prev) => [
+                coach,
+                ...prev.filter((c) => c.id !== userId),
+            ]);
+            setFocusedId(userId);
+        }
+    };
+
+    const handleRowClick = (user: ItemWithId) => {
+        const exists = selectedStack.find((c) => c.id === user.id);
+        if (!exists) {
+            setSelectedStack((prev) => [user, ...prev].slice(0, 5));
+            setFocusedId(user.id);
+        } else {
+            bringToTop(user.id);
+        }
+    };
+
+    const toggleSelectUser = (userId: number) => {
+        if (selectedSessions.includes(userId)) {
+            setSelectedSessions(selectedSessions.filter((id) => id !== userId));
+        } else {
+            setSelectedSessions([...selectedSessions, userId]);
+        }
+    };
+
+
+    useEffect(() => {
+        const allRows = document.querySelectorAll("tr[data-id]");
+        allRows.forEach((row) => {
+            const id = Number(row.getAttribute("data-id"));
+            const isInStack = (selectedStack as ItemWithId[]).some((coach) => coach.id === id);
+            const isTop = focusedId === id;
+            row.classList.remove("bg-[var(--brand-color3)]", "border-l-[var(--brand-color)]");
+            if (isInStack) {
+                row.classList.add("bg-[var(--brand-color3)]");
+                if (isTop) {
+                    row.classList.add("border-l-[var(--brand-color)]");
+                }
+            }
+        });
+    }, [selectedStack, focusedId]);
+
+
+    const getCurrentStatus = (statusTimeline: string[]) => {
     const lastStatus = statusTimeline[statusTimeline.length - 1];
     return lastStatus.split('(')[0].trim();
   };
 
-  const formatDateTime = (dateTime: string) => {
+    const formatDateTime = (dateTime: string) => {
     return new Date(dateTime).toLocaleString('en-IN', {
       day: '2-digit',
       month: 'short',
@@ -454,8 +563,8 @@ function SessionTabs() {
     });
   };
 
-  // Define table headers per tab
-  const getTableHeaders = () => {
+    // getTableHeaders and renderTableCells must be moved **outside** the return
+    const getTableHeaders = () => {
     switch (activeTab) {
       case "upcoming":
       case "live":
@@ -620,8 +729,7 @@ function SessionTabs() {
     }
   };
 
-  // Render table cells based on active tab
-  const renderTableCells = (session: Session) => {
+    const renderTableCells = (session: Record<string, any>) => {
     const currentStatus = getCurrentStatus(session.statusTimeline);
     
     switch (activeTab) {
@@ -693,10 +801,10 @@ function SessionTabs() {
     }
   };
 
-  return (
-    <div className="flex flex-col gap-0 w-full">
-      {/* Tab Navigation */}
-      <div className="flex border-b">
+    return (
+        <div className="flex flex-col gap-0 w-full">
+            {/* Tab Navigation */}
+            <div className="flex border-b">
         <Button
           variant={activeTab === "upcoming" ? "brand" : "border"}
           className="rounded-b-none rounded-r-lg"
@@ -754,14 +862,24 @@ function SessionTabs() {
         </Button>
       </div>
 
-      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
-        <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
-          <div className="flex items-center justify-between pl-0 p-4">
-            <div className="flex items-center gap-2 border-none shadow-none">
-          
-            </div>
-
-            {selectedSessions.length > 0 && (
+            {/* Table Controls */}
+            <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+                <div className="flex items-center justify-between border-b h-20 p-4">
+                    <div className="flex items-center gap-2">
+                        <Checkbox
+                            id="select-all"
+                            checked={selectedSessions.length === currentRecords.length && currentRecords.length > 0}
+                            onCheckedChange={toggleSelectAll}
+                        />
+                        <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                            Select All
+                        </label>
+                        {selectedSessions.length > 0 && (
+                            <Badge variant="border" className="ml-2">
+                                {selectedSessions.length} selected
+                            </Badge>
+                        )}
+                        {selectedSessions.length > 0 && (
               <div className="flex gap-2 ml-2">
                 <Button variant="border" size="sm" className="text-[var(--text)]">
                   <Bell className="h-4 w-4" />
@@ -779,86 +897,66 @@ function SessionTabs() {
                 </Button>
               </div>
             )}
-          </div>
-          <div className="flex justify-end items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="border"
-                  size="sm"
-                  className="flex items-center gap-2 text-low text-[var(--text)]"
-                >
-                  {recordsPerPage}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="text-[var(--text)] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
-                  <DropdownMenuItem
-                    key={size}
-                    onClick={() => {
-                      setRecordsPerPage(size);
-                      setCurrentPage(1);
-                    }}
-                    className="text-[var(--text)] focus:bg-[var(--faded)]"
-                  >
-                    {size}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-              <Input
-                placeholder="Search"
-                className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-              />
-              <Button
-                type="submit"
-                size="icon"
-                variant="standard"
-                className="rounded-none rounded-r-md bg-[var(--button)]"
-                aria-label="Search"
-              >
-                <Search className="h-5 w-5 text-[var(--text)]" />
-              </Button>
-            </div>
-          </div>
-        </div>
+                    </div>
 
-        <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
-          <Table className="w-full caption-top border-collapse overflow-y-visible">
-            <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
-              <TableRow>
-                <TableHead className="min-w-[40px]"></TableHead>
-                {getTableHeaders()}
-                <TableHead className="text-[var(--text)]">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody className="overflow-visible relative z-0">
-              {currentRecords.map((session) => {
-                const sessionId = `${session.user}-${session.coach}-${session.dateTime}`;
-                
-                return (
-                  <TableRow
-                    key={sessionId}
-                    className={cn(
-                      "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]"
-                    )}
-                  >
-                    <TableCell
-                      className={cn(
-                        "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)] border-transparent"
-                      )}
-                    >
-                      <Checkbox
-                        checked={selectedSessions.includes(sessionId)}
-                        onClick={(e) => e.stopPropagation()}
-                        onCheckedChange={() => toggleSelectSession(sessionId)}
-                      />
-                    </TableCell>
-                    {renderTableCells(session)}
-                    <TableCell>
+                    {/* Search Bar */}
+                    <div className="flex items-center gap-2">
+                        <div className="flex items-center border rounded-md overflow-hidden bg-[var(--faded)]">
+                            <Input
+                                placeholder="Search"
+                                className="border-none focus:ring-0 focus:outline-none px-2 py-1 w-40"
+                            />
+                            <Button type="submit" size="icon" variant="default" className="bg-[var(--button)] rounded-none rounded-r-md">
+                                <Search className="h-5 w-5 text-[var(--text)]" />
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Table */}
+                <div className="overflow-x-auto text-[var(--text)] w-full">
+                    <Table className="w-full border-collapse">
+                        <TableHeader className="bg-[var(--faded)]">
+                            <TableRow>
+                                <TableHead className="min-w-[40px]"></TableHead>
+                                {getTableHeaders()}
+                                <TableHead className="text-[var(--text)]">Actions</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {currentRecords.map((session) => (
+                                <TableRow
+                                    key={session.id}
+                                    data-id={session.id}
+                                    className={cn(
+                                        "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
+                                        selectedStack.some((c) => c.id === session.id)
+                                            ? "bg-[var(--brand-color3)]"
+                                            : ""
+                                    )}
+                                    onClick={() => {
+                                        toggleSelectUser(session.id);
+                                        handleRowClick(session as ItemWithId);
+                                    }}
+                                >
+                                    <TableCell
+                                        className={cn(
+                                            "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
+                                            selectedStack.some((c) => c.id === session.id)
+                                                ? focusedId === session.id
+                                                    ? "border-[var(--brand-color)]"
+                                                    : "border-transparent"
+                                                : "border-transparent"
+                                        )}
+                                    >
+                                        <Checkbox
+                                            checked={selectedSessions.includes(session.id)}
+                                            onClick={(e) => e.stopPropagation()}
+                                            onCheckedChange={() => toggleSelectUser(session.id)}
+                                        />
+                                    </TableCell>
+                                    {renderTableCells(session)}
+                                    <TableCell>
                       <div className="flex items-center gap-2">
                         <Button
                           variant="noborder"
@@ -879,49 +977,73 @@ function SessionTabs() {
                       </div>
                     </TableCell>
                   </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </div>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
 
-        <div className="flex items-center justify-between flex-wrap gap-2 p-4">
-          <div className="flex items-center gap-4">
-          
-          </div>
-          <div className="flex items-center gap-2 ">
-            <Button
-              variant="border"
-              size="icon"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <Button
-                key={page}
-                variant={page === currentPage ? "brand" : "border"}
-                size="sm"
-                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"}`}
-                onClick={() => setCurrentPage(page)}
-              >
-                {page}
-              </Button>
-            ))}
-            <Button
-              variant="border"
-              size="icon"
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              disabled={currentPage === totalPages}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
+                {/* Pagination */}
+                <div className="flex items-center justify-between p-4">
+                    <div className="flex items-center gap-4">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" size="sm" className="flex items-center gap-2">
+                                    {recordsPerPage}
+                                    <ChevronDown className="h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="bg-[var(--background)] text-[var(--text)]">
+                                {[5, 10, 25, 50, 100].map((size) => (
+                                    <DropdownMenuItem
+                                        key={size}
+                                        onClick={() => {
+                                            setRecordsPerPage(size);
+                                            setCurrentPage(1);
+                                        }}
+                                    >
+                                        {size}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                        <span className="text-[var(--text)]">
+                            Showing {indexOfFirstRecord + 1}–
+                            {Math.min(indexOfLastRecord, sortedData.length)} of {sortedData.length}
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Button
+                            variant="border"
+                            size="icon"
+                            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                        >
+                            <ChevronLeft className="h-4 w-4" />
+                        </Button>
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <Button
+                                key={page}
+                                variant={page === currentPage ? "brand" : "border"}
+                                size="sm"
+                                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"}`}
+                                onClick={() => setCurrentPage(page)}
+                            >
+                                {page}
+                            </Button>
+                        ))}
+                        <Button
+                            variant="border"
+                            size="icon"
+                            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                        >
+                            <ChevronRight className="h-4 w-4" />
+                        </Button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
+
 }

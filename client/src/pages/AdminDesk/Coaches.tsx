@@ -336,7 +336,7 @@ function AdvancedFilters({ onClose }: FilterProps) {
 
 function StatsCards() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-6">
       {stats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">

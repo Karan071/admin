@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown, Flag, MessageCircle, Search, X, Check, Bell, Users, FileCheck2, FileText, CheckCircle2, FileDown, BadgeQuestionMark, GraduationCap, Handshake, ClipboardList, Plus, Eye } from "lucide-react";
+import { Clock, CircleArrowUp, CircleArrowDown, Flag, MessageCircle, Search, X, Check, Bell, Users, FileCheck2, FileText, CheckCircle2, FileDown, BadgeQuestionMark, Plus, Eye } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -19,7 +19,6 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";
 import RadioButton from "@/components/ui/Radiobutton";
-import DatePick from "@/components/ui/DatePicker";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -59,27 +58,36 @@ const Stats = [
 ];
 
 export default function Organisation() {
-
+  const [showFilter, setShowFilter] = useState(false);
 
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Sessions Pool </h1>
       <StatCard />
       <Buttonbar />
+      <Button
+          variant="border"
+          onClick={() => setShowFilter(true)}
+          className="flex items-center gap-2 self-end"
+        >
+          <Filter className="h-4 w-4" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
       <SessionsPool />
     </div>
   );
 }
 
 function Buttonbar() {
-  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
         <Plus className="h-3 w-3" />
         <span className=""> Add Session to Pool</span>
       </Button>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap">
         <Button variant="standard" size="new">
           <Eye className="h-3 w-3" />
           <span className="">Assign Slots</span>
@@ -92,16 +100,6 @@ function Buttonbar() {
           <BadgeQuestionMark className="h-3 w-3" />
           <span className="">Manage Availability</span>
         </Button>
-        <Button
-          variant="border"
-          onClick={() => setShowFilter(true)}
-          className="flex items-center gap-2 self-end"
-        >
-          <Filter className="h-4 w-4" />
-          {showFilter ? "Hide Filters" : "Show Filters"}
-        </Button>
-
-        {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
       </div>
     </div>
   );
@@ -113,7 +111,7 @@ interface FilterProps {
 
 function AssessFilter({ onClose }: FilterProps) {
   const modalRef = React.useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState("General");
+  const [activeTab, setActiveTab] = useState("Session Type");
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -131,17 +129,18 @@ function AssessFilter({ onClose }: FilterProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  const [group, setGroup] = useState("6-8");
-  const [category, setCategory] = useState("Career");
+  const [session, setSession] = useState("Instant");
+  const [coach, setCoach] = useState("Consultant");
   const [status, setStatus] = useState("Active");
+  const [availability, setAvailabilitys] = useState("Available Now");
+  const [segment, setSegment] = useState("UG");
 
   const tabList = [
-    "General",
-    "Target Group",
-    "Category",
+    "Session Type",
+    "Coach Type",
+    "Availability",
     "Status",
-    "Created By",
-    "Date Range",
+    "Segment",
   ];
 
   return (
@@ -178,57 +177,48 @@ function AssessFilter({ onClose }: FilterProps) {
           </div>
 
           <div className="p-6 overflow-y-auto relative w-full">
-            {activeTab === "General" && (
-              <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter Assessment Name :</label>
-                <Input id="Gen" placeholder="Enter .." type="text" className="mt-4 w-full " />
-              </>
-            )}
+            
 
-            {activeTab === "Target Group" && (
+            {activeTab === "Session Type" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Target Group:
+                  Select the Session Type:
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
-                    "6-8",
-                    "9-10",
-                    "11-12",
-                    "UG",
-                    "PG",
-                    "Professionals",
+                    "Instant",
+                    "Introductory",
+                    "B2B",
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={group}
-                      onChange={setGroup}
+                      selected={session}
+                      onChange={setSession}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Category" && (
+            {activeTab === "Coach Type" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Category :
+                  Select the Coach Type :
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
-                    "Career",
-                    "Aptitude",
-                    "Personality",
-                    "Skills",
+                    "Consultant",
+                    "Mentor",
+                    "Educator",
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={category}
-                      onChange={setCategory}
+                      selected={coach}
+                      onChange={setCoach}
                     />
                   ))}
                 </div>
@@ -244,7 +234,7 @@ function AssessFilter({ onClose }: FilterProps) {
                   {[
                     "Active",
                     "Inactive",
-                    "Draft",
+                    "Pending",
                   ].map((option) => (
                     <RadioButton
                       key={option}
@@ -258,21 +248,54 @@ function AssessFilter({ onClose }: FilterProps) {
               </>
             )}
 
-            {activeTab === "Created By" && (
-              <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter The Creator/Coach / Admin Name :</label>
-                <Input id="Gen" placeholder="Enter.." type="text" className="mt-4 w-full " />
-              </>
-            )}
 
-            {activeTab === "Date Range" && (
+            {activeTab === "Availability" && (
               <>
-                <label htmlFor="act" className="text-[var(--text)]">Enter the Last Assessment Date :</label>
-                <div className="mt-4 min-w-full">
-                  <DatePick />
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  select Availability :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "Available Now",
+                    "Scheduled",
+                    "Full",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={availability}
+                      onChange={setAvailabilitys}
+                    />
+                  ))}
                 </div>
               </>
             )}
+
+            {activeTab === "Segment" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  select the Segment :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {[
+                    "UG",
+                    "PG",
+                    "Career Changer",
+                    "Professional",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={segment}
+                      onChange={setSegment}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
 
           </div>
         </div>
@@ -293,7 +316,7 @@ function AssessFilter({ onClose }: FilterProps) {
 
 function StatCard() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5">
       {Stats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -319,16 +342,23 @@ function StatCard() {
 }
 
 function SessionsPool() {
-  const [activeTab, setActiveTab] = useState("instant");
-  const [selectedSessions, setSelectedSessions] = useState<string[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "ascending" | "descending";
-  } | null>(null);
+    const [activeTab, setActiveTab] = useState("instant");
+    const [selectedSessions, setSelectedSessions] = useState<number[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage, setRecordsPerPage] = useState(5);
+    const [sortConfig, setSortConfig] = useState({
+        key: "id",
+        direction: "ascending"
+    });
 
-  const getCurrentData = () => {
+    interface ItemWithId {
+        id: number;
+        [key: string]: any;
+    }
+    const [selectedStack, setSelectedStack] = useState<ItemWithId[]>([]);
+    const [focusedId, setFocusedId] = useState<number | null>(null);;
+
+    const getCurrentData = () => {
     switch (activeTab) {
       case "instant": return instant_sessions;
       case "introductory": return introductory_sessions;
@@ -337,62 +367,118 @@ function SessionsPool() {
       default: return [];
     }
   };
+
   const getBadgeStyles = (condition: boolean) => {
     return condition
       ? "bg-[var(--green2)] text-[var(--green)]"
       : "bg-[var(--red2)] text-[var(--red)]"
   };
-  const currentData = getCurrentData();
+
+    const currentData = getCurrentData();
+    let sortedData = [...currentData] as Record<string, any>[];
+    if (
+        sortConfig &&
+        typeof sortConfig.key === "string" &&
+        typeof sortConfig.direction === "string"
+    ) {
+        sortedData = sortedData.filter(item => item && typeof item === "object");
+
+        sortedData.sort((a, b) => {
+            const aValue = a[sortConfig.key];
+            const bValue = b[sortConfig.key];
+
+            if (aValue === undefined || bValue === undefined) return 0;
+
+            if (typeof aValue === "string" && typeof bValue === "string") {
+                return sortConfig.direction === "ascending"
+                    ? aValue.localeCompare(bValue)
+                    : bValue.localeCompare(aValue);
+            }
+
+            if (typeof aValue === "number" && typeof bValue === "number") {
+                return sortConfig.direction === "ascending"
+                    ? aValue - bValue
+                    : bValue - aValue;
+            }
+
+            return 0;
+        });
+    }
 
 
-  let sortedData = [...currentData];
-  if (sortConfig !== null) {
-    sortedData.sort((a, b) => {
-      const key = sortConfig.key as keyof typeof a;
-      const aValue = a[key];
-      const bValue = b[key];
 
-      if (aValue < bValue) {
-        return sortConfig.direction === "ascending" ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortConfig.direction === "ascending" ? 1 : -1;
-      }
-      return 0;
-    });
+
+    const totalPages = Math.ceil(sortedData.length / recordsPerPage);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = sortedData.slice(indexOfFirstRecord, indexOfLastRecord);
+
+    const requestSort = (key: any) => {
+        let direction = "ascending";
+
+        if (sortConfig?.key === key && sortConfig.direction === "ascending") {
+            direction = "descending";
+        }
+
+        setSortConfig({ key, direction });
+    };
+    const toggleSelectAll = () => {
+  if (selectedSessions.length === currentRecords.length) {
+    setSelectedSessions([]);
+  } else {
+    setSelectedSessions(currentRecords.map((item) => item.id));
   }
+};
 
-  const totalPages = Math.ceil(sortedData.length / recordsPerPage);
-  const indexOfLastRecord = currentPage * recordsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = sortedData.slice(indexOfFirstRecord, indexOfLastRecord);
+    const bringToTop = (userId: number) => {
+        const coach = selectedStack.find((c) => c.id === userId);
+        if (coach) {
+            setSelectedStack((prev) => [
+                coach,
+                ...prev.filter((c) => c.id !== userId),
+            ]);
+            setFocusedId(userId);
+        }
+    };
 
-  const requestSort = (key: string) => {
-    let direction: "ascending" | "descending" = "ascending";
-    if (sortConfig?.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
-    }
-    setSortConfig({ key, direction });
-  };
+    const handleRowClick = (user: ItemWithId) => {
+        const exists = selectedStack.find((c) => c.id === user.id);
+        if (!exists) {
+            setSelectedStack((prev) => [user, ...prev].slice(0, 5));
+            setFocusedId(user.id);
+        } else {
+            bringToTop(user.id);
+        }
+    };
 
-  const toggleSelectAll = () => {
-    if (selectedSessions.length === currentRecords.length) {
-      setSelectedSessions([]);
-    } else {
-      setSelectedSessions(currentRecords.map(session => session.coach));
-    }
-  };
-
-  const toggleSelectSession = (coach: string) => {
-    setSelectedSessions(
-      selectedSessions.includes(coach)
-        ? selectedSessions.filter(id => id !== coach)
-        : [...selectedSessions, coach]
-    );
-  };
+    const toggleSelectUser = (userId: number) => {
+        if (selectedSessions.includes(userId)) {
+            setSelectedSessions(selectedSessions.filter((id) => id !== userId));
+        } else {
+            setSelectedSessions([...selectedSessions, userId]);
+        }
+    };
 
 
-  const getTableHeaders = () => {
+    useEffect(() => {
+        const allRows = document.querySelectorAll("tr[data-id]");
+        allRows.forEach((row) => {
+            const id = Number(row.getAttribute("data-id"));
+            const isInStack = (selectedStack as ItemWithId[]).some((coach) => coach.id === id);
+            const isTop = focusedId === id;
+            row.classList.remove("bg-[var(--brand-color3)]", "border-l-[var(--brand-color)]");
+            if (isInStack) {
+                row.classList.add("bg-[var(--brand-color3)]");
+                if (isTop) {
+                    row.classList.add("border-l-[var(--brand-color)]");
+                }
+            }
+        });
+    }, [selectedStack, focusedId]);
+
+
+    // getTableHeaders and renderTableCells must be moved **outside** the return
+     const getTableHeaders = () => {
     switch (activeTab) {
       case "instant":
         return (
@@ -585,8 +671,7 @@ function SessionsPool() {
     }
   };
 
-  // Render table cells based on active tab
-  const renderTableCells = (session: any) => {
+    const renderTableCells = (session: any) => {
     switch (activeTab) {
       case "instant":
         return (
@@ -683,10 +768,10 @@ function SessionsPool() {
     }
   };
 
-  return (
-    <div className="flex flex-col gap-0 w-full">
-      {/* Tab Navigation with Icons */}
-      <div className="flex border-b">
+    return (
+        <div className="flex flex-col gap-0 w-full">
+            {/* Tab Navigation */}
+            <div className="flex border-b">
         <Button
           variant={activeTab === "instant" ? "brand" : "border"}
           className="rounded-b-none rounded-r-lg"
@@ -707,7 +792,6 @@ function SessionsPool() {
             setSelectedSessions([]);
           }}
         >
-          <GraduationCap className="h-4 w-4" />
           <span>Introductory Sessions</span>
         </Button>
         <Button
@@ -719,7 +803,6 @@ function SessionsPool() {
             setSelectedSessions([]);
           }}
         >
-          <Handshake className="h-4 w-4" />
           <span>B2B Sessions</span>
         </Button>
         <Button
@@ -731,195 +814,192 @@ function SessionsPool() {
             setSelectedSessions([]);
           }}
         >
-          <ClipboardList className="h-4 w-4" />
           <span>Pending Approvals</span>
         </Button>
       </div>
 
-      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
-        <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
-          <div className="flex items-center justify-between pl-0 p-4">
-            {/* Updated select all section */}
-            <div className="flex items-center gap-2 border-none shadow-none">
-              <Checkbox
-                id="select-all"
-                checked={selectedSessions.length === currentRecords.length && currentRecords.length > 0}
-                onCheckedChange={toggleSelectAll}
-              />
-              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
-                Select All
-              </label>
-              {selectedSessions.length > 0 && (
-                <Badge variant="border" className="ml-2 text-[var(--text)]">
-                  {selectedSessions.length} selected
-                </Badge>
-              )}
-            </div>
-
-            {selectedSessions.length > 0 && (
+            {/* Table Controls */}
+            <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+                <div className="flex items-center justify-between border-b h-20 p-4">
+                    <div className="flex items-center gap-2">
+                        <Checkbox
+                            id="select-all"
+                            checked={selectedSessions.length === currentRecords.length && currentRecords.length > 0}
+                            onCheckedChange={toggleSelectAll}
+                        />
+                        <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                            Select All
+                        </label>
+                        {selectedSessions.length > 0 && (
+                            <Badge variant="border" className="ml-2">
+                                {selectedSessions.length} selected
+                            </Badge>
+                        )}
+                        {selectedSessions.length > 0 && (
               <div className="flex gap-2 ml-2">
-                {/* Updated action buttons */}
                 <Button variant="border" size="sm" className="text-[var(--text)]">
                   <Bell className="h-4 w-4" />
                   Send Reminder
                 </Button>
-                <Button variant="border" size="sm" className="text-[var(--text)]">
-                  <Check className="h-4 w-4" />
-                  Approve All
-                </Button>
+                {activeTab === "refund" && (
+                  <Button variant="border" size="sm" className="text-[var(--text)]">
+                    <Check className="h-4 w-4" />
+                    Approve All
+                  </Button>
+                )}
                 <Button variant="delete" size="sm" className="text-[var(--text)]">
                   <X className="h-4 w-4" />
                   Block / Remove
                 </Button>
               </div>
             )}
-          </div>
-          <div className="flex justify-end items-center gap-4">
-            {/* Records per page dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="border"
-                  size="sm"
-                  className="flex items-center gap-2 text-low text-[var(--text)]"
-                >
-                  {recordsPerPage}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="text-[var(--text)] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
-                  <DropdownMenuItem
-                    key={size}
-                    onClick={() => {
-                      setRecordsPerPage(size);
-                      setCurrentPage(1);
-                    }}
-                    className="text-[var(--text)] focus:bg-[var(--faded)]"
-                  >
-                    {size}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Search bar */}
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-              <Input
-                placeholder="Search"
-                className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-              />
-              <Button
-                type="submit"
-                size="icon"
-                variant="standard"
-                className="rounded-none rounded-r-md bg-[var(--button)]"
-                aria-label="Search"
-              >
-                <Search className="h-5 w-5 text-[var(--text)]" />
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
-          <Table className="w-full caption-top border-collapse overflow-y-visible">
-            <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
-              <TableRow>
-                <TableHead className="min-w-[40px]"></TableHead>
-                {getTableHeaders()}
-                <TableHead className="text-[var(--text)]">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody className="overflow-visible relative z-0">
-              {currentRecords.map((session) => (
-                <TableRow
-                  key={session.coach}
-                  className={cn(
-                    "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]"
-                  )}
-                >
-                  <TableCell
-                    className={cn(
-                      "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)] border-transparent"
-                    )}
-                  >
-                    <Checkbox
-                      checked={selectedSessions.includes(session.coach)}
-                      onClick={(e) => e.stopPropagation()}
-                      onCheckedChange={() => toggleSelectSession(session.coach)}
-                    />
-                  </TableCell>
-                  {renderTableCells(session)}
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      {/* Updated action icons */}
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-white border-0 shadow-none"
-                      >
-                        <Eye className="h-4 w-4" />
-                        <span className="sr-only">View</span>
-                      </Button>
-                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <MessageCircle className="h-4 w-4" />
-                        <span className="sr-only">Chat</span>
-                      </Button>
-                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                        <Flag className="h-4 w-4" />
-                        <span className="sr-only">Flag</span>
-                      </Button>
                     </div>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
 
-        <div className="flex items-center justify-between flex-wrap gap-2 p-4">
-          <div className="flex items-center gap-4">
-            <span className="text-low text-[var(--text)]">
-              Showing {indexOfFirstRecord + 1}-
-              {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
-              {sortedData.length} items
-            </span>
-          </div>
-          <div className="flex items-center gap-2 ">
-            {/* Updated pagination */}
-            <Button
-              variant="border"
-              size="icon"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <Button
-                key={page}
-                variant={page === currentPage ? "brand" : "border"}
-                size="sm"
-                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"}`}
-                onClick={() => setCurrentPage(page)}
-              >
-                {page}
-              </Button>
-            ))}
-            <Button
-              variant="border"
-              size="icon"
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              disabled={currentPage === totalPages}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
+                    {/* Search Bar */}
+                    <div className="flex items-center gap-2">
+                        <div className="flex items-center border rounded-md overflow-hidden bg-[var(--faded)]">
+                            <Input
+                                placeholder="Search"
+                                className="border-none focus:ring-0 focus:outline-none px-2 py-1 w-40"
+                            />
+                            <Button type="submit" size="icon" variant="default" className="bg-[var(--button)] rounded-none rounded-r-md">
+                                <Search className="h-5 w-5 text-[var(--text)]" />
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Table */}
+                <div className="overflow-x-auto text-[var(--text)] w-full">
+                    <Table className="w-full border-collapse">
+                        <TableHeader className="bg-[var(--faded)]">
+                            <TableRow>
+                                <TableHead className="min-w-[40px]"></TableHead>
+                                {getTableHeaders()}
+                                <TableHead className="text-[var(--text)]">Actions</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {currentRecords.map((session) => (
+                                <TableRow
+                                    key={session.id}
+                                    data-id={session.id}
+                                    className={cn(
+                                        "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
+                                        selectedStack.some((c) => c.id === session.id)
+                                            ? "bg-[var(--brand-color3)]"
+                                            : ""
+                                    )}
+                                    onClick={() => {
+                                        toggleSelectUser(session.id);
+                                        handleRowClick(session as ItemWithId);
+                                    }}
+                                >
+                                    <TableCell
+                                        className={cn(
+                                            "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
+                                            selectedStack.some((c) => c.id === session.id)
+                                                ? focusedId === session.id
+                                                    ? "border-[var(--brand-color)]"
+                                                    : "border-transparent"
+                                                : "border-transparent"
+                                        )}
+                                    >
+                                        <Checkbox
+                                            checked={selectedSessions.includes(session.id)}
+                                            onClick={(e) => e.stopPropagation()}
+                                            onCheckedChange={() => toggleSelectUser(session.id)}
+                                        />
+                                    </TableCell>
+                                    {renderTableCells(session)}
+                                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="noborder"
+                          size="sm"
+                          className="bg-white border-0 shadow-none"
+                        >
+                          <Eye className="h-4 w-4" />
+                          <span className="sr-only">View</span>
+                        </Button>
+                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                          <MessageCircle className="h-4 w-4" />
+                          <span className="sr-only">Chat</span>
+                        </Button>
+                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                          <Flag className="h-4 w-4" />
+                          <span className="sr-only">Flag</span>
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
+
+                {/* Pagination */}
+                <div className="flex items-center justify-between p-4">
+                    <div className="flex items-center gap-4">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" size="sm" className="flex items-center gap-2">
+                                    {recordsPerPage}
+                                    <ChevronDown className="h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="bg-[var(--background)] text-[var(--text)]">
+                                {[5, 10, 25, 50, 100].map((size) => (
+                                    <DropdownMenuItem
+                                        key={size}
+                                        onClick={() => {
+                                            setRecordsPerPage(size);
+                                            setCurrentPage(1);
+                                        }}
+                                    >
+                                        {size}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                        <span className="text-[var(--text)]">
+                            Showing {indexOfFirstRecord + 1}–
+                            {Math.min(indexOfLastRecord, sortedData.length)} of {sortedData.length}
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Button
+                            variant="border"
+                            size="icon"
+                            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                        >
+                            <ChevronLeft className="h-4 w-4" />
+                        </Button>
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <Button
+                                key={page}
+                                variant={page === currentPage ? "brand" : "border"}
+                                size="sm"
+                                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"}`}
+                                onClick={() => setCurrentPage(page)}
+                            >
+                                {page}
+                            </Button>
+                        ))}
+                        <Button
+                            variant="border"
+                            size="icon"
+                            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                        >
+                            <ChevronRight className="h-4 w-4" />
+                        </Button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
+
 }
