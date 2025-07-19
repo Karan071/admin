@@ -45,7 +45,6 @@ import { Badge } from "@/components/ui/badge";
 // import { useNavigate } from "react-router-dom"
 import { mockUsers } from "@/data/Data";
 import { cn } from "@/lib/utils";
-import CountUp  from "@/components/ui/countup";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -93,6 +92,7 @@ const stats = [
 
 export default function Explorer() {
   const [showFilter, setShowFilter] = useState(false);
+
   return (
     <div className="flex flex-col">
       <main className="flex flex-col gap-4">
@@ -101,20 +101,6 @@ export default function Explorer() {
             Explorers Dashboard
           </h1>
         </div>
-    const [showFilter, setShowFilter] = useState(false);
-    return (
-        <div className="flex flex-col">
-            <main className="flex flex-col gap-4">
-                <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-                    <h1 className="text-2xl font-bold text-[var(--text-head)]">Explorers</h1>
-                    {/*<div className="flex gap-2">
-                        <Button variant="outline" className="flex items-center gap-2">
-                            <Download className="h-4 w-4" />
-                            Export
-                        </Button>
-                        <Button>Bulk Actions</Button>
-                    </div>*/}
-                </div>
 
         <StatsCards />
 
@@ -138,30 +124,33 @@ export default function Explorer() {
 }
 
 function StatsCards() {
-    return (
-        <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-6">
-            {stats.map((stat, index) => (
-                <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
-                    <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
-                        <div className="flex justify-between h-full items-center">
-                            <div
-                                className={`${color} text-xs uppercase text-light line-clamp-1`}
-                            >
-                                {stat.title}
-                            </div>
-                            {stat.performance}
-                        </div>
-                        <div className="flex  items-center gap-4">
-                            <div className={`rounded-full `}>
-                                <stat.icon className={`h-8 w-8 ${color2}`} />
-                            </div>
-                            <div className={`${color2} text-2xl`}>{stat.value}</div>
-                        </div>
-                    </CardHeader>
-                </Card>
-            ))}
-        </div>
-    );
+  return (
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-6">
+      {stats.map((stat, index) => (
+        <Card
+          key={index}
+          className="xl:rounded-sm shadow-none bg-[var(--background)]"
+        >
+          <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
+            <div className="flex justify-between h-full items-center">
+              <div
+                className={`${color} text-xs uppercase text-light line-clamp-1`}
+              >
+                {stat.title}
+              </div>
+              {stat.performance}
+            </div>
+            <div className="flex  items-center gap-4">
+              <div className={`rounded-full `}>
+                <stat.icon className={`h-8 w-8 ${color2}`} />
+              </div>
+              <div className={`${color2} text-2xl`}>{stat.value}</div>
+            </div>
+          </CardHeader>
+        </Card>
+      ))}
+    </div>
+  );
 }
 
 interface FilterProps {
@@ -421,17 +410,19 @@ function AdvancedFilters({ onClose }: FilterProps) {
 }
 
 function ExplorerTable() {
-    const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage, setRecordsPerPage] = useState(5);
-    const [sortConfig, setSortConfig] = useState<{
-        key: string;
-        direction: "ascending" | "descending";
-    } | null>(null);
-    const [selectedStack, setSelectedStack] = useState<
-        typeof mockUsers
-    >(mockUsers[0] ? [mockUsers[0]] : []);
-    const [focusedId, setFocusedId] = useState<string | null>(mockUsers[0]?.id || null);
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [sortConfig, setSortConfig] = useState<{
+    key: string;
+    direction: "ascending" | "descending";
+  } | null>(null);
+  const [selectedStack, setSelectedStack] = useState<typeof mockUsers>(
+    mockUsers[0] ? [mockUsers[0]] : []
+  );
+  const [focusedId, setFocusedId] = useState<string | null>(
+    mockUsers[0]?.id || null
+  );
 
   // Sorting logic
   const sortedData = [...mockUsers];
@@ -479,24 +470,24 @@ function ExplorerTable() {
     }
   };
 
-    const bringToTop = (userId: string) => {
-        const coach = selectedStack.find((c) => c.id === userId);
-        if (coach) {
-            setSelectedStack((prev) => [
-                coach,
-                ...prev.filter((c) => c.id !== userId),
-            ]);
-            setFocusedId(userId);
-        }
-    };
+  const bringToTop = (userId: string) => {
+    const coach = selectedStack.find((c) => c.id === userId);
+    if (coach) {
+      setSelectedStack((prev) => [
+        coach,
+        ...prev.filter((c) => c.id !== userId),
+      ]);
+      setFocusedId(userId);
+    }
+  };
 
   useEffect(() => {
     const allRows = document.querySelectorAll("tr[data-id]");
 
-        allRows.forEach((row) => {
-            const id = String(row.getAttribute("data-id"));
-            const isInStack = selectedStack.some((key) => key.id === id);
-            const isTop = focusedId === id;
+    allRows.forEach((row) => {
+      const id = String(row.getAttribute("data-id"));
+      const isInStack = selectedStack.some((key) => key.id === id);
+      const isTop = focusedId === id;
 
       // Remove previous styles
       row.classList.remove(
@@ -507,12 +498,12 @@ function ExplorerTable() {
       if (isInStack) {
         row.classList.add("bg-[var(--brand-color3)]");
 
-                if (isTop) {
-                    row.classList.add("border-l-[var(--brand-color)]");
-                }
-            }
-        });
-    }, [selectedStack, focusedId]);
+        if (isTop) {
+          row.classList.add("border-l-[var(--brand-color)]");
+        }
+      }
+    });
+  }, [selectedStack, focusedId]);
 
   {
     /*const removeCoach = (userId: string) => {
@@ -523,19 +514,19 @@ function ExplorerTable() {
   };*/
   }
 
-    const handleRowClick = (user: (typeof mockUsers)[0]) => {
-        // Double-click detected
-        const exists = selectedStack.find((c) => c.id === user.id);
-        if (!exists) {
-            setSelectedStack((prev) => {
-                const updated = [user, ...prev];
-                return updated.slice(0, 5); // limit to 5
-            });
-            setFocusedId(user.id);
-        } else {
-            bringToTop(user.id);
-        }
-    };
+  const handleRowClick = (user: (typeof mockUsers)[0]) => {
+    // Double-click detected
+    const exists = selectedStack.find((c) => c.id === user.id);
+    if (!exists) {
+      setSelectedStack((prev) => {
+        const updated = [user, ...prev];
+        return updated.slice(0, 5); // limit to 5
+      });
+      setFocusedId(user.id);
+    } else {
+      bringToTop(user.id);
+    }
+  };
 
   const toggleSelectUser = (userId: string) => {
     if (selectedUsers.includes(userId)) {
@@ -608,188 +599,202 @@ function ExplorerTable() {
           </div>
         </div>
 
-                <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
-                    <Table className="w-full caption-top border-collapse overflow-y-visible">
-                        <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
-                            <TableRow>
-                                <TableHead className="min-w-[40px]"></TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("profile.name")}
-                                    className="cursor-pointer text-[var(--text)] text-low"
-                                >
-                                    Profile{" "}
-                                    {sortConfig?.key === "profile.name" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("UserType")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    User Type{" "}
-                                    {sortConfig?.key === "UserType" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("Contact")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Contact{" "}
-                                    {sortConfig?.key === "Contact" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("ProfileStage")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Profile Stage{" "}
-                                    {sortConfig?.key === "ProfileStage" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("assessments")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Assessments{" "}
-                                    {sortConfig?.key === "assessments" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("Sessions")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Sessions{" "}
-                                    {sortConfig?.key === "Sessions" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("Source")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Source{" "}
-                                    {sortConfig?.key === "Source" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("lastActive")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Last Active / DOJ{" "}
-                                    {sortConfig?.key === "lastActive" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead
-                                    onClick={() => requestSort("Status")}
-                                    className="cursor-pointer text-[var(--text)]"
-                                >
-                                    Status{" "}
-                                    {sortConfig?.key === "Status" &&
-                                        (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                                </TableHead>
-                                <TableHead className="text-[var(--text)]">Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody className="overflow-visible relative z-0">
-                            {currentRecords.map((user) => (
-                                <TableRow
-                                    key={user.id}
-                                    data-id={user.id}
-                                    className={cn(
-                                        "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-                                        selectedStack.some((c) => c.id === user.id)
-                                            ? "bg-[var(--brand-color3)]"
-                                            : ""
-                                    )}
-                                    onClick={() => {
+        <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
+          <Table className="w-full caption-top border-collapse overflow-y-visible">
+            <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
+              <TableRow>
+                <TableHead className="min-w-[40px]"></TableHead>
+                <TableHead
+                  onClick={() => requestSort("profile.name")}
+                  className="cursor-pointer text-[var(--text)] text-low"
+                >
+                  Profile{" "}
+                  {sortConfig?.key === "profile.name" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("UserType")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  User Type{" "}
+                  {sortConfig?.key === "UserType" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("Contact")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Contact{" "}
+                  {sortConfig?.key === "Contact" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("ProfileStage")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Profile Stage{" "}
+                  {sortConfig?.key === "ProfileStage" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("assessments")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Assessments{" "}
+                  {sortConfig?.key === "assessments" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("Sessions")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Sessions{" "}
+                  {sortConfig?.key === "Sessions" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("Source")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Source{" "}
+                  {sortConfig?.key === "Source" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("lastActive")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Last Active / DOJ{" "}
+                  {sortConfig?.key === "lastActive" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("Status")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Status{" "}
+                  {sortConfig?.key === "Status" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead className="text-[var(--text)]">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody className="overflow-visible relative z-0">
+              {currentRecords.map((user) => (
+                <TableRow
+                  key={user.id}
+                  data-id={user.id}
+                  className={cn(
+                    "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
+                    selectedStack.some((c) => c.id === user.id)
+                      ? "bg-[var(--brand-color3)]"
+                      : ""
+                  )}
+                  onClick={() => {
                     toggleSelectUser(user.id);
                     handleRowClick(user);
                   }}
-                                >
-                                    <TableCell className={cn(
-                                        "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
-                                        selectedStack.some((c) => c.id === user.id)
-                                            ? focusedId === user.id
-                                                ? "border-[var(--brand-color)]"
-                                                : "border-transparent"
-                                            : "border-transparent"
-                                    )}>
-                                        <Checkbox
-                                            checked={selectedUsers.includes(user.id)}
-                                            onCheckedChange={() => toggleSelectUser(user.id)}
-                                        />
-                                    </TableCell>
-                                    <TableCell
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className="h-14 w-14 rounded-full overflow-hidden">
-                                                <img
-                                                    src={user.photo}
-                                                    alt={user.name}
-                                                    className="h-14 w-14 object-cover"
-                                                />
-                                            </div>
-                                            <div>
-                                                <div className="flex justify-start items-center">
-                                                    <div className="font-medium">{user.name}</div>
-                                                    <div className="flex items-center gap-1 ">
-                                                        {user.gender === "M" ? (
-                                                            <Mars className="h-4" />
-                                                        ) : (
-                                                            <Venus className="h-4" />
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>{user.userType}</TableCell>
-                                    <TableCell>
-                                        <div className="text-low">{user.email}</div>
-                                        <div className="text-xs text-[var(--text)]">
-                                            {user.phone}
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge variant="standard">{user.profileStage}</Badge>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="text-sm">
-                                            {user.assessments.completed}/{user.assessments.total} Complete
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="text-sm">
-                                            {user.sessions.total} ({user.sessions.missed} Missed)
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>{user.source}</TableCell>
-                                    <TableCell>
-                                        <div className="text-sm">{user.joinDate}</div>
-                                        <div className="text-xs text-[var(--text)]">{user.lastLogin}</div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge
-                                            //@ts-ignore
-                                            variant={user.status === "Active" ? "success" : "secondary"}
-                                            className={user.status === "Active" ? "bg-[var(--green2)] text-[var(--green)]" : "bg-[var(--red2)] text-[var(--red)]"}
-                                        >
-                                            {user.status}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <Button
-                                                variant="noborder"
-                                                size="sm"
-                                                className="bg-white border-0 shadow-none"
-                                            // onClick={() => navigate(`/user-details/${user.id}`)}
-                                            >
-                                                <Eye className="h-4 w-4" />
-                                                <span className="sr-only">View</span>
-                                            </Button>
-                                            <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
-                                                <MessageCircle className="h-4 w-4" />
-                                                <span className="sr-only">Chat</span>
-                                            </Button>
+                >
+                  <TableCell
+                    className={cn(
+                      "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
+                      selectedStack.some((c) => c.id === user.id)
+                        ? focusedId === user.id
+                          ? "border-[var(--brand-color)]"
+                          : "border-transparent"
+                        : "border-transparent"
+                    )}
+                  >
+                    <Checkbox
+                      checked={selectedUsers.includes(user.id)}
+                      onCheckedChange={() => toggleSelectUser(user.id)}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-4">
+                      <div className="h-14 w-14 rounded-full overflow-hidden">
+                        <img
+                          src={user.photo}
+                          alt={user.name}
+                          className="h-14 w-14 object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex justify-start items-center">
+                          <div className="font-medium">{user.name}</div>
+                          <div className="flex items-center gap-1 ">
+                            {user.gender === "M" ? (
+                              <Mars className="h-4" />
+                            ) : (
+                              <Venus className="h-4" />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </TableCell>
+                  <TableCell>{user.userType}</TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.email}</div>
+                    <div className="text-xs text-[var(--text)]">
+                      {user.phone}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="standard">{user.profileStage}</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-sm">
+                      {user.assessments.completed}/{user.assessments.total}{" "}
+                      Complete
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-sm">
+                      {user.sessions.total} ({user.sessions.missed} Missed)
+                    </div>
+                  </TableCell>
+                  <TableCell>{user.source}</TableCell>
+                  <TableCell>
+                    <div className="text-sm">{user.joinDate}</div>
+                    <div className="text-xs text-[var(--text)]">
+                      {user.lastLogin}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <Badge
+                      //@ts-ignore
+                      variant={
+                        user.status === "Active" ? "success" : "secondary"
+                      }
+                      className={
+                        user.status === "Active"
+                          ? "bg-[var(--green2)] text-[var(--green)]"
+                          : "bg-[var(--red2)] text-[var(--red)]"
+                      }
+                    >
+                      {user.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="noborder"
+                        size="sm"
+                        className="bg-white border-0 shadow-none"
+                        // onClick={() => navigate(`/user-details/${user.id}`)}
+                      >
+                        <Eye className="h-4 w-4" />
+                        <span className="sr-only">View</span>
+                      </Button>
+                      <Button
+                        variant="noborder"
+                        size="sm"
+                        className="bg-[var(--background)] border-0 shadow-none"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        <span className="sr-only">Chat</span>
+                      </Button>
 
                       <Button
                         variant="noborder"
