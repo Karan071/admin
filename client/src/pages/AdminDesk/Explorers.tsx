@@ -78,7 +78,7 @@ export default function Explorer() {
         <div className="flex flex-col">
             <main className="flex flex-col gap-4">
                 <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-                    <h1 className="text-2xl font-bold text-[var(--text-head)]">Explorers Dashboard</h1>
+                    <h1 className="text-2xl font-bold text-[var(--text-head)]">Explorers</h1>
                     {/*<div className="flex gap-2">
                         <Button variant="outline" className="flex items-center gap-2">
                             <Download className="h-4 w-4" />
@@ -112,7 +112,7 @@ export default function Explorer() {
 
 function StatsCards() {
     return (
-        <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-6">
             {stats.map((stat, index) => (
                 <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
                     <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -417,10 +417,10 @@ function ExplorerTable() {
         key: string;
         direction: "ascending" | "descending";
     } | null>(null);
-    const [selectedCoachStack, setSelectedCoachStack] = useState<
+    const [selectedStack, setSelectedStack] = useState<
         typeof mockUsers
     >(mockUsers[0] ? [mockUsers[0]] : []);
-    const [focusedCoachId, setFocusedCoachId] = useState<string | null>(mockUsers[0]?.id || null);
+    const [focusedId, setFocusedId] = useState<string | null>(mockUsers[0]?.id || null);
 
     // Sorting logic
     const sortedData = [...mockUsers];
@@ -469,13 +469,13 @@ function ExplorerTable() {
     };
 
     const bringToTop = (userId: string) => {
-        const coach = selectedCoachStack.find((c) => c.id === userId);
+        const coach = selectedStack.find((c) => c.id === userId);
         if (coach) {
-            setSelectedCoachStack((prev) => [
+            setSelectedStack((prev) => [
                 coach,
                 ...prev.filter((c) => c.id !== userId),
             ]);
-            setFocusedCoachId(userId);
+            setFocusedId(userId);
         }
     };
 
@@ -484,8 +484,8 @@ function ExplorerTable() {
 
         allRows.forEach((row) => {
             const id = String(row.getAttribute("data-id"));
-            const isInStack = selectedCoachStack.some((coach) => coach.id === id);
-            const isTop = focusedCoachId === id;
+            const isInStack = selectedStack.some((key) => key.id === id);
+            const isTop = focusedId === id;
 
             // Remove previous styles
             row.classList.remove(
@@ -501,7 +501,7 @@ function ExplorerTable() {
                 }
             }
         });
-    }, [selectedCoachStack, focusedCoachId]);
+    }, [selectedStack, focusedId]);
 
     {/*const removeCoach = (userId: string) => {
     setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
@@ -512,13 +512,13 @@ function ExplorerTable() {
 
     const handleRowClick = (user: (typeof mockUsers)[0]) => {
         // Double-click detected
-        const exists = selectedCoachStack.find((c) => c.id === user.id);
+        const exists = selectedStack.find((c) => c.id === user.id);
         if (!exists) {
-            setSelectedCoachStack((prev) => {
+            setSelectedStack((prev) => {
                 const updated = [user, ...prev];
                 return updated.slice(0, 5); // limit to 5
             });
-            setFocusedCoachId(user.id);
+            setFocusedId(user.id);
         } else {
             bringToTop(user.id);
         }
@@ -677,16 +677,19 @@ function ExplorerTable() {
                                     data-id={user.id}
                                     className={cn(
                                         "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-                                        selectedCoachStack.some((c) => c.id === user.id)
+                                        selectedStack.some((c) => c.id === user.id)
                                             ? "bg-[var(--brand-color3)]"
                                             : ""
                                     )}
-                                    onClick={() => handleRowClick(user)}
+                                    onClick={() => {
+                    toggleSelectUser(user.id);
+                    handleRowClick(user);
+                  }}
                                 >
                                     <TableCell className={cn(
                                         "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]", // base classes
-                                        selectedCoachStack.some((c) => c.id === user.id)
-                                            ? focusedCoachId === user.id
+                                        selectedStack.some((c) => c.id === user.id)
+                                            ? focusedId === user.id
                                                 ? "border-[var(--brand-color)]"
                                                 : "border-transparent"
                                             : "border-transparent"

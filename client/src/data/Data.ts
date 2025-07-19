@@ -7450,3 +7450,96 @@ export const CommissionTable=[
     "actions": ["View"]
   }
 ]
+
+export const addTeamMember=[
+  {
+    "id": 1,
+    "name": "Aisha Khan",
+    "email": "aisha@domain.com",
+    "role": "Manager",
+    "desksAssigned": ["Relations", "Review"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 2,
+    "name": "Ravi Mehra",
+    "email": "ravi@domain.com",
+    "role": "Lead",
+    "desksAssigned": ["Digital"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 3,
+    "name": "Priya Shah",
+    "email": "priya@domain.com",
+    "role": "Executive",
+    "desksAssigned": ["Finance"],
+    "status": "Inactive",
+    "actions": ["View", "Edit"]
+  },
+  {
+    "id": 4,
+    "name": "Omar Farooq",
+    "email": "omar@domain.com",
+    "role": "Head",
+    "desksAssigned": ["Review", "Digital"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 5,
+    "name": "Neha Verma",
+    "email": "neha@domain.com",
+    "role": "Manager",
+    "desksAssigned": ["Relations"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 6,
+    "name": "Karan Singh",
+    "email": "karan@domain.com",
+    "role": "Executive",
+    "desksAssigned": ["Digital", "Finance"],
+    "status": "Inactive",
+    "actions": ["View"]
+  },
+  {
+    "id": 7,
+    "name": "Fatima Noor",
+    "email": "fatima@domain.com",
+    "role": "Admin",
+    "desksAssigned": ["Relations", "Review", "Finance"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 8,
+    "name": "Arjun Das",
+    "email": "arjun@domain.com",
+    "role": "Lead",
+    "desksAssigned": ["Review"],
+    "status": "Disabled",
+    "actions": ["View"]
+  },
+  {
+    "id": 9,
+    "name": "Sara Ali",
+    "email": "sara@domain.com",
+    "role": "Head",
+    "desksAssigned": ["Digital", "Finance"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 10,
+    "name": "Dev Patel",
+    "email": "dev@domain.com",
+    "role": "Manager",
+    "desksAssigned": ["Relations", "Review"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  }
+]

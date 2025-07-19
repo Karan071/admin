@@ -13,6 +13,7 @@ import Masterclasses from "@/pages/AdminDesk/Manage/Masterclass";
 import Courses from "@/pages/AdminDesk/Manage/Courses";
 import AccessCodes from "@/pages/AdminDesk/Manage/Access";
 import DeskUsers from "@/pages/AdminDesk/Manage/Users";
+import { AddTeamMember as AdminAddTeamMember } from "@/pages/AdminDesk/AddTeamMember";
 
 // Relation Desk
 import { Relation as Relations } from "@/pages/RelationDesk/Relation";
@@ -83,6 +84,7 @@ export default function AppRoutes() {
       <Route path="admin/access-codes" element={<AccessCodes />} />
       <Route path="admin/consultant-premium" element={<ConsultantPremium />} />
       <Route path="admin/desk-iam" element={<DeskUsers />} />
+      <Route path="admin/addTeamMember" element={<AdminAddTeamMember />} />
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
