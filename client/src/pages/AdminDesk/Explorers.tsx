@@ -45,6 +45,7 @@ import { Badge } from "@/components/ui/badge";
 // import { useNavigate } from "react-router-dom"
 import { mockUsers } from "@/data/Data";
 import { cn } from "@/lib/utils";
+import CountUp from "@/components/ui/countup";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -144,7 +145,17 @@ function StatsCards() {
               <div className={`rounded-full `}>
                 <stat.icon className={`h-8 w-8 ${color2}`} />
               </div>
-              <div className={`${color2} text-2xl`}>{stat.value}</div>
+              <div className={`${color2} text-2xl`}>
+                <CountUp
+                  from={0}
+                  to={stat.value}
+                  separator=","
+                  direction="up"
+                  duration={1}
+                  className="count-up-text"
+                />
+                
+              </div>
             </div>
           </CardHeader>
         </Card>
