@@ -13,6 +13,7 @@ import Masterclasses from "@/pages/AdminDesk/Manage/Masterclass";
 import Courses from "@/pages/AdminDesk/Manage/Courses";
 import AccessCodes from "@/pages/AdminDesk/Manage/Access";
 import DeskUsers from "@/pages/AdminDesk/Manage/Users";
+import { AddTeamMember as AdminAddTeamMember } from "@/pages/AdminDesk/AddTeamMember";
 
 // Relation Desk
 import { Relation as Relations } from "@/pages/RelationDesk/Relation";
@@ -51,16 +52,16 @@ import { Earning as FinanceEarning } from "@/pages/FinanceDesk/Earning";
 import { Platform as FinancePlatform } from "@/pages/FinanceDesk/platform";
 
 // Review Desk
-import { Approvals as ReviewDesk } from "@/pages/ApprovalDesk/Approval";
-import { Forms as ReviewForms } from "@/pages/ApprovalDesk/Forms";
-import { GoogleMap as ReviewGoogleMaps } from "@/pages/ApprovalDesk/Googlemap";
-import { ProfileCoach as ReviewProfileCoach } from "@/pages/ApprovalDesk/ProfileCoach";
-import { Companies as ReviewCompanies } from "@/pages/ApprovalDesk/Organization/Companies";
-import { Schools as ReviewSchools } from "@/pages/ApprovalDesk/Organization/Schools";
-import { Institutes as ReviewInstitutes } from "@/pages/ApprovalDesk/Organization/Institutes";
-import { Colleges as ReviewColleges } from "@/pages/ApprovalDesk/Organization/Colleges";
-import { Universities as ReviewUniversities } from "@/pages/ApprovalDesk/Organization/Universities";
-import { Ngos as ReviewNgos } from "@/pages/ApprovalDesk/Organization/Ngos";
+import { Approvals as ReviewDesk } from "@/pages/ReviewDesk/Approval";
+import { Forms as ReviewForms } from "@/pages/ReviewDesk/Forms";
+import { GoogleMap as ReviewGoogleMaps } from "@/pages/ReviewDesk/Googlemap";
+import { ProfileCoach as ReviewProfileCoach } from "@/pages/ReviewDesk/ProfileCoach";
+import { Companies as ReviewCompanies } from "@/pages/ReviewDesk/Organization/Companies";
+import { Schools as ReviewSchools } from "@/pages/ReviewDesk/Organization/Schools";
+import { Institutes as ReviewInstitutes } from "@/pages/ReviewDesk/Organization/Institutes";
+import { Colleges as ReviewColleges } from "@/pages/ReviewDesk/Organization/Colleges";
+import { Universities as ReviewUniversities } from "@/pages/ReviewDesk/Organization/Universities";
+import { Ngos as ReviewNgos } from "@/pages/ReviewDesk/Organization/Ngos";
 
 export default function AppRoutes() {
   return (
@@ -84,6 +85,7 @@ export default function AppRoutes() {
       <Route path="admin/access-codes" element={<AccessCodes />} />
       <Route path="admin/consultant-premium" element={<ConsultantPremium />} />
       <Route path="admin/desk-iam" element={<DeskUsers />} />
+      <Route path="admin/addTeamMember" element={<AdminAddTeamMember />} />
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />

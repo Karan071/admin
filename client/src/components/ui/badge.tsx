@@ -21,9 +21,9 @@ const badgeVariants = cva(
           "text-[var(--text)] bg-[var(--brand-color2)] dark:bg-[var(--brand-color2)] border-0",
         standard:
           "text-[var(--text)] bg-[var(--faded)] border-0",
-          
         border:
           "text-[var(--text)] [a&]:hover:bg-[var(--faded)]",
+        success: "",
         
       },
     },

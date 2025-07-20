@@ -72,7 +72,7 @@ export default function Organisation() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation Dashboard</h1>
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation</h1>
       <OrgCard />
 
       <Button
@@ -311,7 +311,7 @@ function OrgFilter({ onClose }: OrgFilterProps) {
 
 function OrgCard() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-6">
       {orgStats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -346,10 +346,10 @@ function OrganisationTable() {
     key: string;
     direction: "ascending" | "descending";
   } | null>(null);
-  const [selectedCoachStack, setSelectedCoachStack] = useState<
+  const [selectedStack, setSelectedStack] = useState<
     typeof orgTableData
   >(orgTableData[0] ? [orgTableData[0]] : []);
-  const [focusedCoachId, setFocusedCoachId] = useState<number | null>(orgTableData[0]?.id || null);
+  const [focusedId, setFocusedId] = useState<number | null>(orgTableData[0]?.id || null);
 
   // Sorting logic
   const sortedData = [...orgTableData];
@@ -398,13 +398,13 @@ function OrganisationTable() {
   };
 
   const bringToTop = (userId: number) => {
-    const coach = selectedCoachStack.find((c) => c.id === userId);
+    const coach = selectedStack.find((c) => c.id === userId);
     if (coach) {
-      setSelectedCoachStack((prev) => [
+      setSelectedStack((prev) => [
         coach,
         ...prev.filter((c) => c.id !== userId),
       ]);
-      setFocusedCoachId(userId);
+      setFocusedId(userId);
     }
   };
 
@@ -413,8 +413,8 @@ function OrganisationTable() {
 
     allRows.forEach((row) => {
       const id = Number(row.getAttribute("data-id"));
-      const isInStack = selectedCoachStack.some((coach) => coach.id === id);
-      const isTop = focusedCoachId === id;
+      const isInStack = selectedStack.some((coach) => coach.id === id);
+      const isTop = focusedId === id;
 
       // Remove previous styles
       row.classList.remove(
@@ -430,7 +430,7 @@ function OrganisationTable() {
         }
       }
     });
-  }, [selectedCoachStack, focusedCoachId]);
+  }, [selectedStack, focusedId]);
 
   {/*const removeCoach = (userId: number) => {
     setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
@@ -441,13 +441,13 @@ function OrganisationTable() {
 
   const handleRowClick = (user: (typeof orgTableData)[0]) => {
     // Double-click detected
-    const exists = selectedCoachStack.find((c) => c.id === user.id);
+    const exists = selectedStack.find((c) => c.id === user.id);
     if (!exists) {
-      setSelectedCoachStack((prev) => {
+      setSelectedStack((prev) => {
         const updated = [user, ...prev];
         return updated.slice(0, 5); // limit to 5
       });
-      setFocusedCoachId(user.id);
+      setFocusedId(user.id);
     } else {
       bringToTop(user.id);
     }
@@ -597,7 +597,7 @@ function OrganisationTable() {
                   data-id={user.id}
                   className={cn(
                     "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-                    selectedCoachStack.some((c) => c.id === user.id)
+                    selectedStack.some((c) => c.id === user.id)
                       ? "bg-[var(--brand-color3)]"
                       : ""
                   )}
@@ -609,8 +609,8 @@ function OrganisationTable() {
                   <TableCell
                     className={cn(
                       "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
-                      selectedCoachStack.some((c) => c.id === user.id)
-                        ? focusedCoachId === user.id
+                      selectedStack.some((c) => c.id === user.id)
+                        ? focusedId === user.id
                           ? "border-[var(--brand-color)]"
                           : "border-transparent"
                         : "border-transparent"

@@ -93,9 +93,8 @@ export default function Coaches() {
   const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-[var(--text-head)]">Coaches</h1>
-        <StatsCards />
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Coaches</h1>
+      <StatsCards />
         {/*<Buttonbar />*/}
         <Button
           variant="border"
@@ -111,7 +110,6 @@ export default function Coaches() {
 
         <CoachTableSection />
       </div>
-    </div>
   );
 }
 
@@ -364,34 +362,6 @@ function StatsCards() {
 
 
 
-/*function Buttonbar() {
-  return (
-    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
-      <Button variant="brand" size="new">
-        <Plus className="h-3 w-3" />
-        <span className="">Add Contacts</span>
-      </Button>
-      <div className="flex gap-4">
-        <Button variant="delete" size="new">
-          <Trash2 className="h-4 w-4" />
-        </Button>
-        <Button variant="standard" size="new">
-          <Funnel className="h-3 w-3" />
-          <span className="">Filter</span>
-        </Button>
-        <Button variant="standard" size="new">
-          <span className="">Import</span>
-        </Button>
-        <Button variant="standard" size="new">
-          <EllipsisVertical className="h-4 w-4" />
-        </Button>
-      </div>
-    </div>
-  );
-}
-*/
-
-
 function CoachTableSection() {
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -494,7 +464,7 @@ function CoachTableSection() {
   };*/}
 
   const handleRowClick = (user: (typeof coachTableData)[0]) => {
-    // Double-click detected
+ 
     const exists = selectedCoachStack.find((c) => c.id === user.id);
     if (!exists) {
       setSelectedCoachStack((prev) => {
@@ -518,8 +488,8 @@ function CoachTableSection() {
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
-          <div className="flex items-center justify-between pl-0 p-4">
+        <div className="flex items-center justify-between border-b  h-20 p-4 mt-auto">
+          <div className="flex items-center justify-between pl-0 p-4  gap-2">
             <div className="flex items-center gap-2 border-none shadow-none">
               <Checkbox
                 id="select-all"
@@ -537,7 +507,7 @@ function CoachTableSection() {
             </div>
 
             {selectedUsers.length > 0 && (
-              <div className="flex gap-2 flex-wrap">        {/*wrap */}
+              <div className="flex gap-2">        {/*wrap */}
                 <Button variant="border" size="sm">
                   <Bell className="h-4 w-4" />
                   Send Reminder

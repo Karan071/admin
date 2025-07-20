@@ -182,6 +182,11 @@ export const SidebarData = {
           url: "/desk/admin/desk-iam",
           icon: Settings,
         },
+        {
+          title: "Add Team Member",
+          url: "/desk/admin/addTeamMember",
+          icon: Newspaper,
+        },
       ],
     },
     {
