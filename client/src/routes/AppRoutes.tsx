@@ -34,7 +34,8 @@ import { Insights as DigitalInsights } from "@/pages/DigitalDesk/Insights";
 import { VideoLibraries as DigitalVideoLibraries } from "@/pages/DigitalDesk/VideoLibrary";
 import { News as DigitalNews } from "@/pages/DigitalDesk/News";
 import { Testimonials as DigitalTestimonials } from "@/pages/DigitalDesk/Testimonials";
-import { Libraries as DigitalLibrary } from "@/pages/DigitalDesk/Libraries";
+import { Careers as DigitalCareers } from "@/pages/DigitalDesk/Libraries/Careers";
+import { Exams as DigitalExams } from "@/pages/DigitalDesk/Libraries/Exams";
 import { Help as DigitalHelp } from "@/pages/DigitalDesk/Help";
 import { Faqs as DigitalFaqs } from "@/pages/DigitalDesk/Faqs";
 import { Teams as DigitalTeam } from "@/pages/DigitalDesk/Teams";
@@ -100,11 +101,11 @@ export default function AppRoutes() {
       <Route path="review/forms" element={<ReviewForms />} />
 
       {/* Contents Desk Routes */}
-      <Route path="contents/insights" element={<DigitalInsights />} />
+
       <Route path="contents/video-library" element={<DigitalVideoLibraries />} />
       <Route path="contents/in-the-news" element={<DigitalNews />} />
       <Route path="contents/testimonials" element={<DigitalTestimonials />} />
-      <Route path="contents/careers" element={<div>Contents Careers Page</div>} />
+      <Route path="contents/careers" element={<DigitalCareers />} />
       <Route path="contents/courses" element={<div>Contents Courses Page</div>} />
       <Route path="contents/exams" element={<div>Contents Exams Page</div>} />
       <Route path="contents/colleges" element={<div>Contents Colleges Page</div>} />
@@ -146,14 +147,19 @@ export default function AppRoutes() {
       <Route path="relation/abuses" element={<RelationAbuses />} />
       <Route path="relation/feedback" element={<RelationFeedback />} />
       <Route path="relation/review" element={<RelationReviews />} />
+            {/* Digital Desk Routes */}
       <Route path="digital/insights" element={<DigitalInsights />} />
       <Route path="digital/video-library" element={<DigitalVideoLibraries />} />
+       <Route path="digital/exams" element={<DigitalExams />} />
       <Route path="digital/in-news" element={<DigitalNews />} />
+            
+      <Route path="digital/careers" element={<DigitalCareers />} />
       <Route path="digital/testimonials" element={<DigitalTestimonials />} />
-      <Route path="digital/library" element={<DigitalLibrary />} />
+      {/* <Route path="digital/library" element={<Digital />} /> */}
       <Route path="digital/help-articles" element={<DigitalHelp />} />
       <Route path="digital/faqs" element={<DigitalFaqs />} />
       <Route path="digital/teams" element={<DigitalTeam />} />
+
       <Route path="finance/dashboard" element={<FinanceDesk />} />
       <Route path="finance/payout" element={<FinancePayout />} />
       <Route path="finance/commission" element={<FinanceCommission />} />

@@ -7450,3 +7450,115 @@ export const CommissionTable=[
     "actions": ["View"]
   }
 ]
+export const CareersTable =[
+    {
+      "title": "Career Options in Cybersecurity",
+      "tags": ["Security", "IT"],
+      "for": ["UG", "PG"],
+      "source": "Public Data",
+      "lastUpdated": "2025-05-18",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    },
+    {
+      "title": "Exploring Graphic Design Paths",
+      "tags": ["Creativity", "Media"],
+      "for": ["UG"],
+      "source": "On Request",
+      "lastUpdated": "2025-05-16",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
+  export const ExamsTable= [
+    {
+      "title": "CUET UG 2025 Schedule",
+      "tags": ["CUET", "UG"],
+      "for": ["11–12", "UG"],
+      "source": "Public Data",
+      "upcomingDate": "2025-07-15",
+      "lastUpdated": "2025-05-17",
+      "status": "Draft",
+      "actions": ["Edit", "Schedule"]
+    },
+    {
+      "title": "CLAT 2025 Key Dates",
+      "tags": ["Law", "Entrance"],
+      "for": ["UG"],
+      "source": "Public Data",
+      "upcomingDate": "2025-12-10",
+      "lastUpdated": "2025-05-18",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    }
+  ]
+
+
+
+  export const  ScholarshipsTable=[
+    {
+      "title": "Women in STEM UG Scholarship",
+      "tags": ["Gender", "STEM"],
+      "for": ["UG"],
+      "source": "On Request",
+      "upcomingDate": "2025-09-05",
+      "lastUpdated": "2025-05-18",
+      "status": "Pending",
+      "actions": ["Edit", "Approve"]
+    },
+    {
+      "title": "International Leaders Fund",
+      "tags": ["Global", "PG"],
+      "for": ["PG"],
+      "source": "Owner",
+      "upcomingDate": "2025-10-30",
+      "lastUpdated": "2025-05-14",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
+
+  export const NgosTable= [
+    {
+      "title": "Skill Building for Youth",
+      "tags": ["Development", "Edu"],
+      "for": ["Schools", "UG"],
+      "source": "Owner",
+      "lastUpdated": "2025-05-16",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    },
+    {
+      "title": "NGO-College Career Bridges",
+      "tags": ["Awareness", "Support"],
+      "for": ["UG", "PG"],
+      "source": "Public Data",
+      "lastUpdated": "2025-05-13",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
+
+
+   export const CollegesTables=[
+    {
+      "title": "India's Top Business Schools",
+      "tags": ["MBA", "PGDM"],
+      "for": ["PG"],
+      "source": "Public Data",
+      "upcomingDate": "2025-06-20",
+      "lastUpdated": "2025-05-16",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    },
+    {
+      "title": "B.A. Admissions 2025 – Mumbai U",
+      "tags": ["Arts", "UG"],
+      "for": ["UG"],
+      "source": "On Request",
+      "upcomingDate": "2025-06-30",
+      "lastUpdated": "2025-05-15",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
