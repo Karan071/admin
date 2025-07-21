@@ -78,56 +78,45 @@ const stats = [
 ];
 
 export function Problems() {
-  const [showFilter, setShowFilter] = useState(false);
   return (
-   <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Problems</h1>
       <StatsCards />
       <Buttonbar />
-      <Button
-              variant="border"
-              onClick={() => setShowFilter(true)}
-              className="flex items-center gap-2 self-end"
-            >
-              <Filter className="h-4 w-4" />
-              {showFilter ? "Hide Filters" : "Show Filters"}
-            </Button>
-      
-            {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
-      
       <ProblemTable />
     </div>
   );
 }
 
 function StatsCards() {
-    return (
-        <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
-            {stats.map((stat, index) => (
-                <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
-                    <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
-                        <div className="flex justify-between h-full items-center">
-                            <div
-                                className={`${color} text-xs uppercase text-light line-clamp-1`}
-                            >
-                                {stat.title}
-                            </div>
-                            {stat.performance}
-                        </div>
-                        <div className="flex  items-center gap-4">
-                            <div className={`rounded-full `}>
-                                <stat.icon className={`h-8 w-8 ${color2}`} />
-                            </div>
-                            <div className={`${color2} text-2xl`}>{stat.value}</div>
-                        </div>
-                    </CardHeader>
-                </Card>
-            ))}
-        </div>
-    );
+  return (
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+      {stats.map((stat, index) => (
+        <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
+          <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
+            <div className="flex justify-between h-full items-center">
+              <div
+                className={`${color} text-xs uppercase text-light line-clamp-1`}
+              >
+                {stat.title}
+              </div>
+              {stat.performance}
+            </div>
+            <div className="flex  items-center gap-4">
+              <div className={`rounded-full `}>
+                <stat.icon className={`h-8 w-8 ${color2}`} />
+              </div>
+              <div className={`${color2} text-2xl`}>{stat.value}</div>
+            </div>
+          </CardHeader>
+        </Card>
+      ))}
+    </div>
+  );
 }
 
 function Buttonbar() {
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
@@ -135,11 +124,22 @@ function Buttonbar() {
         <span className="">New Problem</span>
       </Button>
       <div className="flex gap-4">
+        <Button
+          variant="standard" size="new"
+          onClick={() => setShowFilter(true)}
+          className="flex items-center gap-2 self-end"
+        >
+          <Filter className="h-3 w-3" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
+
         <Button variant="delete" size="new">
           <Trash2 className="h-4 w-4" />
         </Button>
         <Button variant="standard" size="new">
-          <FileUp className="h-4 w-4"/>
+          <FileUp className="h-4 w-4" />
           <span className="">Import</span>
         </Button>
       </div>
@@ -374,9 +374,9 @@ function ProblemTable() {
   return (
     <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto shadow-none">
       <div className="flex-1 rounded-md bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full"></div>
-      
+
       <div className="flex items-center justify-between h-20 border-b p-4">
-          <div className="flex items-center justify-between pl-0 p-4  gap-2">
+        <div className="flex items-center justify-between pl-0 p-4  gap-2">
           <div className="flex items-center gap-2 border-none shadow-none">
             <Checkbox
               id="select-all"
@@ -414,21 +414,21 @@ function ProblemTable() {
             </div>
           )}
         </div>
-          <div className="flex items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-            <Input
-              placeholder="Search"
-              className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-            />
-            <Button
-              type="submit"
-              size="icon"
-              variant="standard"
-              className="rounded-none rounded-r-md bg-[var(--button)]"
-              aria-label="Search"
-            >
-              <Search className="h-5 w-5 text-[var(--text)]" />
-            </Button>
-          </div>
+        <div className="flex items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
+          <Input
+            placeholder="Search"
+            className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
+          />
+          <Button
+            type="submit"
+            size="icon"
+            variant="standard"
+            className="rounded-none rounded-r-md bg-[var(--button)]"
+            aria-label="Search"
+          >
+            <Search className="h-5 w-5 text-[var(--text)]" />
+          </Button>
+        </div>
       </div>
 
       {/* Table content */}
@@ -436,7 +436,7 @@ function ProblemTable() {
         <Table className="w-full caption-top border-collapse overflow-y-visible">
           <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
             <TableRow>
-                <TableHead className="min-w-[40px]"></TableHead>
+              <TableHead className="min-w-[40px]"></TableHead>
               <TableHead
                 onClick={() => requestSort("user")}
                 className="cursor-pointer text-[var(--text)]"
@@ -477,28 +477,28 @@ function ProblemTable() {
           <TableBody>
             {currentRecords.map((problem) => (
               <TableRow
-                              key={problem.id}
-                              data-id={problem.id}
-                              className={cn(
-                                "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-              
-                              )}
-                              onClick={() => {
-                                toggleSelectUser(problem.id);
-                              }}
-                            >
-                              <TableCell
-                                className={cn(
-                                  "pl-3 transition-all duration-200 border-l-4 border-[var(--background)] group-hover:border-[var(--brand-color)]",
-              
-                                )}
-                              >
-                                <Checkbox
-                                  checked={selectedUsers.includes(problem.id)}
-                                  onClick={(e) => e.stopPropagation()}
-                                  onCheckedChange={() => toggleSelectUser(problem.id)}
-                                />
-                                </TableCell>
+                key={problem.id}
+                data-id={problem.id}
+                className={cn(
+                  "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
+
+                )}
+                onClick={() => {
+                  toggleSelectUser(problem.id);
+                }}
+              >
+                <TableCell
+                  className={cn(
+                    "pl-3 transition-all duration-200 border-l-4 border-[var(--background)] group-hover:border-[var(--brand-color)]",
+
+                  )}
+                >
+                  <Checkbox
+                    checked={selectedUsers.includes(problem.id)}
+                    onClick={(e) => e.stopPropagation()}
+                    onCheckedChange={() => toggleSelectUser(problem.id)}
+                  />
+                </TableCell>
                 <TableCell className="font-medium">{problem.user}</TableCell>
                 <TableCell>{problem.submittedOn}</TableCell>
                 <TableCell>{problem.issueType}</TableCell>
@@ -579,9 +579,8 @@ function ProblemTable() {
               key={page}
               variant={page === currentPage ? "brand" : "border"}
               size="sm"
-              className={`h-8 w-8 p-0 ${
-                page === currentPage ? "text-white" : "text-[var(--text)]"
-              }`}
+              className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"
+                }`}
               onClick={() => setCurrentPage(page)}
             >
               {page}
