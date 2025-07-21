@@ -81,9 +81,11 @@ function NavSection({
     }[];
   };
 }) {
+  const [openItem, setOpenItem] = React.useState<string | null>(null);
+
   return (
     <Collapsible defaultOpen>
-      <SidebarGroup>
+      <SidebarGroup className="space-y-1">
         <CollapsibleTrigger asChild>
           <SidebarGroupLabel className="text-[var(--text)] font-semibold text-sm uppercase tracking-wide cursor-pointer">
             {section.title}
@@ -91,14 +93,16 @@ function NavSection({
           </SidebarGroupLabel>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <SidebarMenu>
+          <SidebarMenu className="space-y-1">
             {section.items.map((item) =>
               item.isCollapsible && item.items ? (
-                // Render collapsible menu if the item has sub-items
                 <Collapsible
                   key={item.title}
                   asChild
-                  defaultOpen={item.isActive}
+                  open={openItem === item.title}
+                  onOpenChange={(isOpen) =>
+                    setOpenItem(isOpen ? item.title : null)
+                  }
                   className="group/collapsible text-[var(--text)]"
                 >
                   <SidebarMenuItem>
@@ -115,7 +119,7 @@ function NavSection({
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <SidebarMenuSub>
+                      <SidebarMenuSub className="space-y-1">
                         {item.items.map((subItem) => (
                           <SidebarMenuSubItem
                             key={subItem.title}
@@ -138,7 +142,6 @@ function NavSection({
                   </SidebarMenuItem>
                 </Collapsible>
               ) : (
-                // Render simple link if the item has no sub-items
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     tooltip={item.title}

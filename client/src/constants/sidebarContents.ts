@@ -40,6 +40,7 @@ import {
   Quote,
   Users2,
   Building,
+  TrophyIcon,
 } from "lucide-react";
 
 export const SidebarData = {
@@ -97,10 +98,10 @@ export const SidebarData = {
               url: "/desk/admin/problems",
               icon: AlertCircle,
             },
-            { 
-              title: "Bugs", 
-              url: "/desk/admin/bugs", 
-              icon: Bug 
+            {
+              title: "Bugs",
+              url: "/desk/admin/bugs",
+              icon: Bug,
             },
             {
               title: "Abuses",
@@ -145,10 +146,10 @@ export const SidebarData = {
           url: "#",
           isCollapsible: true,
           items: [
-            { 
-              title: "Assessments", 
-              url: "/desk/admin/assessments", 
-              icon: FileText 
+            {
+              title: "Assessments",
+              url: "/desk/admin/assessments",
+              icon: FileText,
             },
             {
               title: "Sessions",
@@ -229,10 +230,10 @@ export const SidebarData = {
               url: "/desk/review/universities",
               icon: GraduationCap,
             },
-            { 
-              title: "Companies", 
-              url: "/desk/review/companies", 
-              icon: Briefcase 
+            {
+              title: "Companies",
+              url: "/desk/review/companies",
+              icon: Briefcase,
             },
             {
               title: "NGO's",
@@ -252,10 +253,10 @@ export const SidebarData = {
               url: "/desk/review/careers",
               icon: Briefcase,
             },
-            { 
-              title: "Exams", 
-              url: "/desk/review/exams", 
-              icon: FileText 
+            {
+              title: "Exams",
+              url: "/desk/review/exams",
+              icon: FileText,
             },
             {
               title: "Courses",
@@ -290,25 +291,25 @@ export const SidebarData = {
       title: "Digital",
       isHeading: true,
       items: [
-        { 
-          title: "Digital Desk", 
-          url: "/desk/digital/desk", 
-          icon: Briefcase 
+        {
+          title: "Digital Desk",
+          url: "/desk/digital/desk",
+          icon: Briefcase,
         },
-        { 
-          title: "Campaigns", 
-          url: "/desk/digital/campaigns", 
-          icon: Briefcase 
+        {
+          title: "Campaigns",
+          url: "/desk/digital/campaigns",
+          icon: Briefcase,
         },
         {
           title: "Comments",
           url: "/desk/digital/comments",
           icon: Award,
         },
-        { 
-          title: "Helpful", 
-          url: "/desk/digital/helpful", 
-          icon: Briefcase 
+        {
+          title: "Helpful",
+          url: "/desk/digital/helpful",
+          icon: Briefcase,
         },
         {
           title: "Insights",
@@ -341,10 +342,10 @@ export const SidebarData = {
           url: "#",
           isCollapsible: true,
           items: [
-            { 
-              title: "Institutes", 
-              url: "/desk/digital/institutes", 
-              icon: Briefcase 
+            {
+              title: "Institutes",
+              url: "/desk/digital/institutes",
+              icon: Briefcase,
             },
             {
               title: "Schools",
@@ -384,10 +385,10 @@ export const SidebarData = {
               url: "/desk/digital/exams",
               icon: FileText,
             },
-            { 
-              title: "Careers", 
-              url: "/desk/digital/careers", 
-              icon: Briefcase 
+            {
+              title: "Careers",
+              url: "/desk/digital/careers",
+              icon: Briefcase,
             },
             {
               title: "Courses",
@@ -421,7 +422,6 @@ export const SidebarData = {
           url: "/desk/digital/templates",
           icon: MessageCircle,
         },
-        
 
         {
           title: "Teams Directory",
@@ -468,6 +468,32 @@ export const SidebarData = {
           title: "Leaderboard",
           url: "/desk/relation/leaderboard",
           icon: Trophy,
+        },
+      ],
+    },
+    {
+      title: "DevOps",
+      isHeading: true,
+      items: [
+        {
+          title: "DevOps Desk",
+          url: "/desk/devops/desk",
+          icon: TrophyIcon,
+        },
+        {
+          title: "Pipeline",
+          url: "/desk/devops/pipeline",
+          icon: TrophyIcon,
+        },
+        {
+          title: "Cases",
+          url: "/desk/devops/cases",
+          icon: TrophyIcon,
+        },
+        {
+          title: "Leaderboard",
+          url: "/desk/devops/leaderboard",
+          icon: TrophyIcon,
         },
       ],
     },
