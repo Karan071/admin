@@ -297,12 +297,12 @@ export const SidebarData = {
         },
         { 
           title: "Campaigns", 
-          url: "/desk/digital/careers", 
+          url: "/desk/digital/campaigns", 
           icon: Briefcase 
         },
         {
           title: "Comments",
-          url: "/desk/digital/scholarships",
+          url: "/desk/digital/comments",
           icon: Award,
         },
         { 
@@ -332,7 +332,7 @@ export const SidebarData = {
         },
         {
           title: "Surveys",
-          url: "/desk/digital/faqs",
+          url: "/desk/digital/surveys",
           icon: MessageCircle,
         },
         {
@@ -343,32 +343,32 @@ export const SidebarData = {
           items: [
             { 
               title: "Institutes", 
-              url: "/desk/digital/careers", 
+              url: "/desk/digital/institutes", 
               icon: Briefcase 
             },
             {
               title: "Schools",
-              url: "/desk/digital/courses",
+              url: "/desk/digital/schools",
               icon: BookOpen,
             },
             {
               title: "Colleges",
-              url: "/desk/digital/exams",
+              url: "/desk/digital/colleges",
               icon: FileText,
             },
             {
               title: "Companies",
-              url: "/desk/digital/colleges",
+              url: "/desk/digital/companies",
               icon: School,
             },
             {
               title: "University",
-              url: "/desk/digital/skills",
+              url: "/desk/digital/university",
               icon: Target,
             },
             {
               title: "NGO's",
-              url: "/desk/digital/scholarships",
+              url: "/desk/digital/ngos",
               icon: Award,
             },
           ],
@@ -418,7 +418,7 @@ export const SidebarData = {
         },
         {
           title: "Templates",
-          url: "/desk/digital/faqs",
+          url: "/desk/digital/templates",
           icon: MessageCircle,
         },
         
