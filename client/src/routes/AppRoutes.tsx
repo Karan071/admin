@@ -35,7 +35,11 @@ import { Insights as DigitalInsights } from "@/pages/DigitalDesk/Insights";
 import { VideoLibraries as DigitalVideoLibraries } from "@/pages/DigitalDesk/VideoLibrary";
 import { News as DigitalNews } from "@/pages/DigitalDesk/News";
 import { Testimonials as DigitalTestimonials } from "@/pages/DigitalDesk/Testimonials";
+import { Scholarships as DigitalScholarships } from "@/pages/DigitalDesk/Libraries/Scholarships";
+import { Campaigns as DigitalCampaigns } from "@/pages/DigitalDesk/Campaigns";
 import { Careers as DigitalCareers } from "@/pages/DigitalDesk/Libraries/Careers";
+import { Skills as DigitalSkills } from "@/pages/DigitalDesk/Libraries/Skills";
+import { Courses as DigitalCourses } from "@/pages/DigitalDesk/Libraries/Courses";
 import { Exams as DigitalExams } from "@/pages/DigitalDesk/Libraries/Exams";
 import { Help as DigitalHelp } from "@/pages/DigitalDesk/Help";
 import { Faqs as DigitalFaqs } from "@/pages/DigitalDesk/Faqs";
@@ -151,13 +155,15 @@ export default function AppRoutes() {
       <Route path="relation/review" element={<RelationReviews />} />
             {/* Digital Desk Routes */}
       <Route path="digital/insights" element={<DigitalInsights />} />
+            <Route path="digital/campaigns" element={< DigitalCampaigns />} />
       <Route path="digital/video-library" element={<DigitalVideoLibraries />} />
        <Route path="digital/exams" element={<DigitalExams />} />
       <Route path="digital/in-news" element={<DigitalNews />} />
-            
+             <Route path="digital/courses" element={<DigitalCourses />} />    
+              <Route path="digital/scholarships" element={<DigitalScholarships />} /> 
       <Route path="digital/careers" element={<DigitalCareers />} />
       <Route path="digital/testimonials" element={<DigitalTestimonials />} />
-      {/* <Route path="digital/library" element={<Digital />} /> */}
+      <Route path="digital/skills" element={<DigitalSkills />} />
       <Route path="digital/help-articles" element={<DigitalHelp />} />
       <Route path="digital/faqs" element={<DigitalFaqs />} />
       <Route path="digital/teams" element={<DigitalTeam />} />

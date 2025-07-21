@@ -7450,3 +7450,211 @@ export const CommissionTable=[
     "actions": ["View"]
   }
 ]
+export const CareersTable =[
+    { "id": 1,
+      "title": "Career Options in Cybersecurity",
+      "tags": ["Security", "IT"],
+      "for": ["UG", "PG"],
+      "source": "Public Data",
+      "lastUpdated": "2025-05-18",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    },
+    { "id": 2,
+      "title": "Exploring Graphic Design Paths",
+      "tags": ["Creativity", "Media"],
+      "for": ["UG"],
+      "source": "On Request",
+      "lastUpdated": "2025-05-16",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
+  export const ExamsTable= [
+    { "id": 1,
+      "title": "CUET UG 2025 Schedule",
+      "tags": ["CUET", "UG"],
+      "for": ["11–12", "UG"],
+      "source": "Public Data",
+      "upcomingDate": "2025-07-15",
+      "lastUpdated": "2025-05-17",
+      "status": "Draft",
+      "actions": ["Edit", "Schedule"]
+    },
+    { "id": 2,
+      "title": "CLAT 2025 Key Dates",
+      "tags": ["Law", "Entrance"],
+      "for": ["UG"],
+      "source": "Public Data",
+      "upcomingDate": "2025-12-10",
+      "lastUpdated": "2025-05-18",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    }
+  ]
+
+
+
+  export const  ScholarshipsTable=[
+    { "id": 1,
+      "title": "Women in STEM UG Scholarship",
+      "tags": ["Gender", "STEM"],
+      "for": ["UG"],
+      "source": "On Request",
+      "upcomingDate": "2025-09-05",
+      "lastUpdated": "2025-05-18",
+      "status": "Pending",
+      "actions": ["Edit", "Approve"]
+    },
+    {
+       "id": 2,
+      "title": "International Leaders Fund",
+      "tags": ["Global", "PG"],
+      "for": ["PG"],
+      "source": "Owner",
+      "upcomingDate": "2025-10-30",
+      "lastUpdated": "2025-05-14",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
+
+  export const NgosTable= [
+    {
+       "id": 1,
+      "title": "Skill Building for Youth",
+      "tags": ["Development", "Edu"],
+      "for": ["Schools", "UG"],
+      "source": "Owner",
+      "lastUpdated": "2025-05-16",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    },
+    {
+       "id": 2,
+      "title": "NGO-College Career Bridges",
+      "tags": ["Awareness", "Support"],
+      "for": ["UG", "PG"],
+      "source": "Public Data",
+      "lastUpdated": "2025-05-13",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
+
+
+   export const CollegesTables=[
+    { "id": 1,
+      "title": "India's Top Business Schools",
+      "tags": ["MBA", "PGDM"],
+      "for": ["PG"],
+      "source": "Public Data",
+      "upcomingDate": "2025-06-20",
+      "lastUpdated": "2025-05-16",
+      "status": "Published",
+      "actions": ["Edit", "Archive"]
+    },
+    { "id": 2,
+      "title": "B.A. Admissions 2025 – Mumbai U",
+      "tags": ["Arts", "UG"],
+      "for": ["UG"],
+      "source": "On Request",
+      "upcomingDate": "2025-06-30",
+      "lastUpdated": "2025-05-15",
+      "status": "Draft",
+      "actions": ["Edit", "Publish"]
+    }
+  ]
+
+export const addTeamMember=[
+  {
+    "id": 1,
+    "name": "Aisha Khan",
+    "email": "aisha@domain.com",
+    "role": "Manager",
+    "desksAssigned": ["Relations", "Review"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 2,
+    "name": "Ravi Mehra",
+    "email": "ravi@domain.com",
+    "role": "Lead",
+    "desksAssigned": ["Digital"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 3,
+    "name": "Priya Shah",
+    "email": "priya@domain.com",
+    "role": "Executive",
+    "desksAssigned": ["Finance"],
+    "status": "Inactive",
+    "actions": ["View", "Edit"]
+  },
+  {
+    "id": 4,
+    "name": "Omar Farooq",
+    "email": "omar@domain.com",
+    "role": "Head",
+    "desksAssigned": ["Review", "Digital"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 5,
+    "name": "Neha Verma",
+    "email": "neha@domain.com",
+    "role": "Manager",
+    "desksAssigned": ["Relations"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 6,
+    "name": "Karan Singh",
+    "email": "karan@domain.com",
+    "role": "Executive",
+    "desksAssigned": ["Digital", "Finance"],
+    "status": "Inactive",
+    "actions": ["View"]
+  },
+  {
+    "id": 7,
+    "name": "Fatima Noor",
+    "email": "fatima@domain.com",
+    "role": "Admin",
+    "desksAssigned": ["Relations", "Review", "Finance"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 8,
+    "name": "Arjun Das",
+    "email": "arjun@domain.com",
+    "role": "Lead",
+    "desksAssigned": ["Review"],
+    "status": "Disabled",
+    "actions": ["View"]
+  },
+  {
+    "id": 9,
+    "name": "Sara Ali",
+    "email": "sara@domain.com",
+    "role": "Head",
+    "desksAssigned": ["Digital", "Finance"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  },
+  {
+    "id": 10,
+    "name": "Dev Patel",
+    "email": "dev@domain.com",
+    "role": "Manager",
+    "desksAssigned": ["Relations", "Review"],
+    "status": "Active",
+    "actions": ["View", "Edit", "Disable"]
+  }
+]
