@@ -78,24 +78,12 @@ const stats = [
 ];
 
 export function Bugs() {
-  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Bugs</h1>
       <StatsCards />
       <Buttonbar />
-      {/*<Buttonbar />*/}
-      <Button
-        variant="border"
-        onClick={() => setShowFilter(true)}
-        className="flex items-center gap-2 self-end"
-      >
-        <Filter className="h-4 w-4" />
-        {showFilter ? "Hide Filters" : "Show Filters"}
-      </Button>
-
-      {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
-
+      
       <BugTable />
     </div>
   );
@@ -129,6 +117,7 @@ function StatsCards() {
 }
 
 function Buttonbar() {
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
@@ -136,6 +125,17 @@ function Buttonbar() {
         <span className="">Add Bug Report</span>
       </Button>
       <div className="flex gap-4">
+        {/*<Buttonbar />*/}
+      <Button
+        variant="standard" size="new" 
+        onClick={() => setShowFilter(true)}
+        className="flex items-center gap-2 self-end"
+      >
+        <Filter className="h-3 w-3" />
+        {showFilter ? "Hide Filters" : "Show Filters"}
+      </Button>
+
+      {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
         <Button variant="delete" size="new">
           <Trash2 className="h-4 w-4" />
         </Button>

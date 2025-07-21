@@ -13,6 +13,8 @@ import {
   Check,
   Archive,
   RotateCw,
+  CircleArrowDown,
+  CircleArrowUp,
 } from "lucide-react";
 import { useState } from "react";
 import { Card, CardHeader } from "@/components/ui/card";
@@ -36,31 +38,38 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+
+
+const color = "text-[var(--text)]";
+const color2 = "text-[var(--text-head)]";
+const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
+const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
+
 const stats = [
   {
     title: "Total Feedback",
     value: "12,457",
     icon: Users,
+    performance: Down,
   },
   {
     title: "Categories",
     value: "Platform, Session, Assessments, Design",
     icon: UserCheck,
+    performance: Up,
   },
   {
     title: "Last Updated",
     value: "18 May 2025",
     icon: UserPlus,
+    performance: Up,
   },
 ];
 
-const color = "text-[var(--text)]";
-const color2 = "text-[var(--text-head)]";
-
 export function Feedback() {
   return (
-    <div>
-      <h1>Feedback</h1>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Feedback</h1>
       <StatsCards />
       <Buttonbar />
       <FeedbackTable />
@@ -69,32 +78,30 @@ export function Feedback() {
 }
 
 function StatsCards() {
-  return (
-    <div className="grid gap-4 xl:gap-2 md:grid-cols-2 xl:grid-cols-3 mt-4">
-      {stats.map((stat, index) => (
-        <Card
-          key={index}
-          className="xl:rounded-sm shadow-none bg-[var(--background)]"
-        >
-          <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
-            <div className="flex justify-between h-full items-center">
-              <div
-                className={`${color} text-xs uppercase text-light line-clamp-1`}
-              >
-                {stat.title}
-              </div>
-            </div>
-            <div className="flex  items-center gap-4">
-              <div className={`rounded-full `}>
-                <stat.icon className={`h-8 w-8 ${color2}`} />
-              </div>
-              <div className={`${color2} text-xl`}>{stat.value}</div>
-            </div>
-          </CardHeader>
-        </Card>
-      ))}
-    </div>
-  );
+    return (
+        <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-3">
+            {stats.map((stat, index) => (
+                <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
+                    <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
+                        <div className="flex justify-between h-full items-center">
+                            <div
+                                className={`${color} text-xs uppercase text-light line-clamp-1`}
+                            >
+                                {stat.title}
+                            </div>
+                            {stat.performance}
+                        </div>
+                        <div className="flex  items-center gap-4">
+                            <div className={`rounded-full `}>
+                                <stat.icon className={`h-8 w-8 ${color2}`} />
+                            </div>
+                            <div className={`${color2} text-2xl`}>{stat.value}</div>
+                        </div>
+                    </CardHeader>
+                </Card>
+            ))}
+        </div>
+    );
 }
 
 function Buttonbar() {

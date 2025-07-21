@@ -79,56 +79,45 @@ const stats = [
 ];
 
 export function Abuses() {
-  const [showFilter, setShowFilter] = useState(false);
   return (
-   <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Abuses</h1>
       <StatsCards />
       <Buttonbar />
-      <Button
-              variant="border"
-              onClick={() => setShowFilter(true)}
-              className="flex items-center gap-2 self-end"
-            >
-              <Filter className="h-4 w-4" />
-              {showFilter ? "Hide Filters" : "Show Filters"}
-            </Button>
-      
-            {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
-      
       <AbuseTable />
     </div>
   );
 }
 
 function StatsCards() {
-    return (
-        <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
-            {stats.map((stat, index) => (
-                <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
-                    <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
-                        <div className="flex justify-between h-full items-center">
-                            <div
-                                className={`${color} text-xs uppercase text-light line-clamp-1`}
-                            >
-                                {stat.title}
-                            </div>
-                            {stat.performance}
-                        </div>
-                        <div className="flex  items-center gap-4">
-                            <div className={`rounded-full `}>
-                                <stat.icon className={`h-8 w-8 ${color2}`} />
-                            </div>
-                            <div className={`${color2} text-2xl`}>{stat.value}</div>
-                        </div>
-                    </CardHeader>
-                </Card>
-            ))}
-        </div>
-    );
+  return (
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+      {stats.map((stat, index) => (
+        <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
+          <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
+            <div className="flex justify-between h-full items-center">
+              <div
+                className={`${color} text-xs uppercase text-light line-clamp-1`}
+              >
+                {stat.title}
+              </div>
+              {stat.performance}
+            </div>
+            <div className="flex  items-center gap-4">
+              <div className={`rounded-full `}>
+                <stat.icon className={`h-8 w-8 ${color2}`} />
+              </div>
+              <div className={`${color2} text-2xl`}>{stat.value}</div>
+            </div>
+          </CardHeader>
+        </Card>
+      ))}
+    </div>
+  );
 }
 
 function Buttonbar() {
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
@@ -136,6 +125,17 @@ function Buttonbar() {
         <span className="">Add Contacts</span>
       </Button>
       <div className="flex gap-4">
+        <Button
+          variant="standard" size="new"
+          onClick={() => setShowFilter(true)}
+          className="flex items-center gap-2 self-end"
+        >
+          <Filter className="h-3 w-3" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
+
         <Button variant="delete" size="new">
           <Trash2 className="h-4 w-4" />
         </Button>
@@ -424,7 +424,7 @@ function AbuseTable() {
 
           {selectedUsers.length > 0 && (
             <div className="flex gap-2">        {/*wrap */}
-              
+
               <Button variant="border" size="sm">
                 <Check className="h-4 w-4 text-[var(--green)]" />
                 Mark Reviewed
@@ -444,21 +444,21 @@ function AbuseTable() {
             </div>
           )}
         </div>
-          <div className="flex items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-            <Input
-              placeholder="Search"
-              className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-            />
-            <Button
-              type="submit"
-              size="icon"
-              variant="standard"
-              className="rounded-none rounded-r-md bg-[var(--button)]"
-              aria-label="Search"
-            >
-              <Search className="h-5 w-5 text-[var(--text)]" />
-            </Button>
-          </div>
+        <div className="flex items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
+          <Input
+            placeholder="Search"
+            className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
+          />
+          <Button
+            type="submit"
+            size="icon"
+            variant="standard"
+            className="rounded-none rounded-r-md bg-[var(--button)]"
+            aria-label="Search"
+          >
+            <Search className="h-5 w-5 text-[var(--text)]" />
+          </Button>
+        </div>
       </div>
 
       {/* Table content */}
@@ -523,28 +523,28 @@ function AbuseTable() {
           <TableBody>
             {currentRecords.map((abuse) => (
               <TableRow
-                              key={abuse.id}
-                              data-id={abuse.id}
-                              className={cn(
-                                "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-              
-                              )}
-                              onClick={() => {
-                                toggleSelectUser(abuse.id);
-                              }}
-                            >
-                              <TableCell
-                                className={cn(
-                                  "pl-3 transition-all duration-200 border-l-4 border-[var(--background)] group-hover:border-[var(--brand-color)]",
-              
-                                )}
-                              >
-                                <Checkbox
-                                  checked={selectedUsers.includes(abuse.id)}
-                                  onClick={(e) => e.stopPropagation()}
-                                  onCheckedChange={() => toggleSelectUser(abuse.id)}
-                                />
-                              </TableCell>
+                key={abuse.id}
+                data-id={abuse.id}
+                className={cn(
+                  "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
+
+                )}
+                onClick={() => {
+                  toggleSelectUser(abuse.id);
+                }}
+              >
+                <TableCell
+                  className={cn(
+                    "pl-3 transition-all duration-200 border-l-4 border-[var(--background)] group-hover:border-[var(--brand-color)]",
+
+                  )}
+                >
+                  <Checkbox
+                    checked={selectedUsers.includes(abuse.id)}
+                    onClick={(e) => e.stopPropagation()}
+                    onCheckedChange={() => toggleSelectUser(abuse.id)}
+                  />
+                </TableCell>
                 <TableCell className="font-medium">
                   {abuse.reportedBy}
                 </TableCell>
@@ -627,9 +627,8 @@ function AbuseTable() {
               key={page}
               variant={page === currentPage ? "brand" : "border"}
               size="sm"
-              className={`h-8 w-8 p-0 ${
-                page === currentPage ? "text-white" : "text-[var(--text)]"
-              }`}
+              className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"
+                }`}
               onClick={() => setCurrentPage(page)}
             >
               {page}
