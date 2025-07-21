@@ -317,7 +317,7 @@ export const SidebarData = {
         },
         {
           title: "Video",
-          url: "/desk/digital/video",
+          url: "/desk/digital/videolibraries",
           icon: Video,
         },
         {
@@ -425,7 +425,7 @@ export const SidebarData = {
 
         {
           title: "Teams Directory",
-          url: "/desk/contents/teams",
+          url: "/desk/digital/teams",
           icon: Users2,
         },
       ],

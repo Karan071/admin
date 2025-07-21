@@ -32,6 +32,18 @@ import { Leaderboard as RelationLeaderboard } from "@/pages/RelationDesk/Leaderb
 
 // Digital/Contents Desk
 import { Insights as DigitalInsights } from "@/pages/DigitalDesk/Insights";
+import { Colleges as DigitalColleges } from "@/pages/DigitalDesk/Organisations/Colleges";
+import { Schools as DigitalSchools } from "@/pages/DigitalDesk/Organisations/Schools";
+import { Ngos as DigitalNgos } from "@/pages/DigitalDesk/Organisations/Ngos";
+import { Companies as DigitalCompanies } from "@/pages/DigitalDesk/Organisations/Companies";
+import { University as DigitalUniversity  } from "@/pages/DigitalDesk/Organisations/University";
+import { DigitalDesk as DigitalDesk  } from "@/pages/DigitalDesk/DigitalDesk";
+import { Surveys as DigitalSurveys  } from "@/pages/DigitalDesk/Surveys";
+import { Comments as DigitalComments  } from "@/pages/DigitalDesk/Comments";
+import { Helpful as DigitalHelpful  } from "@/pages/DigitalDesk/Helpful";
+
+import { Template as DigitalTemplate } from "@/pages/DigitalDesk/Templates";
+import { Institutes as DigitalInstitutes } from "@/pages/DigitalDesk/Organisations/Institutes";
 import { VideoLibraries as DigitalVideoLibraries } from "@/pages/DigitalDesk/VideoLibrary";
 import { News as DigitalNews } from "@/pages/DigitalDesk/News";
 import { Testimonials as DigitalTestimonials } from "@/pages/DigitalDesk/Testimonials";
@@ -93,41 +105,34 @@ export default function AppRoutes() {
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
-      <Route path="review/companies" element={<ReviewCompanies/>} />
+      <Route path="review/companies" element={<ReviewCompanies />} />
       <Route path="review/courses" element={<Courses />} />
-      <Route path="review/schools" element={<ReviewSchools/>} />
-      <Route path="review/institutes" element={<ReviewInstitutes/>} />
-      <Route path="review/colleges" element={<ReviewColleges/>} />
-      <Route path="review/universities" element={<ReviewUniversities/>} />
-      <Route path="review/ngos" element={<ReviewNgos/>} />
+      <Route path="review/schools" element={<ReviewSchools />} />
+      <Route path="review/institutes" element={<ReviewInstitutes />} />
+      <Route path="review/colleges" element={<ReviewColleges />} />
+      <Route path="review/universities" element={<ReviewUniversities />} />
+      <Route path="review/ngos" element={<ReviewNgos />} />
       <Route path="review/exams" element={<div>Approval Exams Page</div>} />
       <Route path="review/careers" element={<div>Approval Careers Page</div>} />
-      <Route path="review/scholarships" element={<div>Approval Scholarships Page</div>} />
+      <Route
+        path="review/scholarships"
+        element={<div>Approval Scholarships Page</div>}
+      />
       <Route path="review/map-listing" element={<ReviewGoogleMaps />} />
       <Route path="review/forms" element={<ReviewForms />} />
 
       {/* Contents Desk Routes */}
 
-      <Route path="contents/video-library" element={<DigitalVideoLibraries />} />
-      <Route path="contents/in-the-news" element={<DigitalNews />} />
-      <Route path="contents/testimonials" element={<DigitalTestimonials />} />
-      <Route path="contents/careers" element={<DigitalCareers />} />
-      <Route path="contents/courses" element={<div>Contents Courses Page</div>} />
-      <Route path="contents/exams" element={<div>Contents Exams Page</div>} />
-      <Route path="contents/colleges" element={<div>Contents Colleges Page</div>} />
-      <Route path="contents/skills" element={<div>Contents Skills Page</div>} />
-      <Route path="contents/scholarships" element={<div>Contents Scholarships Page</div>} />
-      <Route path="contents/companies" element={<div>Contents Companies Page</div>} />
-      <Route path="contents/help-articles" element={<DigitalHelp />} />
-      <Route path="contents/faqs" element={<DigitalFaqs />} />
-      <Route path="contents/teams" element={<DigitalTeam />} />
-
+  
       {/* Relation Desk Routes */}
       <Route path="relation/follow-ups" element={<RelationFollowup />} />
       <Route path="relation/leads" element={<div>Relation Leads Page</div>} />
       <Route path="relation/cases" element={<div>Relation Cases Page</div>} />
       <Route path="relation/my-accounts" element={<RelationAccount />} />
-      <Route path="relation/my-teams" element={<div>Relation My Teams Page</div>} />
+      <Route
+        path="relation/my-teams"
+        element={<div>Relation My Teams Page</div>}
+      />
       <Route path="relation/leaderboard" element={<RelationLeaderboard />} />
 
       {/* Finance Desk Routes */}
@@ -153,21 +158,31 @@ export default function AppRoutes() {
       <Route path="relation/abuses" element={<RelationAbuses />} />
       <Route path="relation/feedback" element={<RelationFeedback />} />
       <Route path="relation/review" element={<RelationReviews />} />
-            {/* Digital Desk Routes */}
+      {/* Digital Desk Routes */}
       <Route path="digital/insights" element={<DigitalInsights />} />
-            <Route path="digital/campaigns" element={< DigitalCampaigns />} />
-      <Route path="digital/video-library" element={<DigitalVideoLibraries />} />
-       <Route path="digital/exams" element={<DigitalExams />} />
-      <Route path="digital/in-news" element={<DigitalNews />} />
-             <Route path="digital/courses" element={<DigitalCourses />} />    
-              <Route path="digital/scholarships" element={<DigitalScholarships />} /> 
+      <Route path="digital/campaigns" element={<DigitalCampaigns />} />
+            <Route path="digital/comments" element={<DigitalComments />} />
+                  <Route path="digital/helpful" element={<DigitalHelpful />} />
+                                    <Route path="digital/surveys" element={<DigitalSurveys />} />
+                                                <Route path="digital/schools" element={<DigitalSchools/>} />
+                                                            <Route path="digital/companies" element={<DigitalCompanies />} />
+                                                                        <Route path="digital/university" element={<DigitalUniversity />} />
+                                                                                    <Route path="digital/ngos" element={<DigitalNgos />} />
+            <Route path="digital/colleges" element={<DigitalColleges/>} />
+                        <Route path="digital/institutes" element={<DigitalInstitutes/>} />
+      <Route path="digital/videolibraries" element={<DigitalVideoLibraries />} />
+      <Route path="digital/exams" element={<DigitalExams />} />
+            <Route path="digital/desk" element={<DigitalDesk />} />
+      <Route path="digital/in-the-news" element={<DigitalNews />} />
+      <Route path="digital/courses" element={<DigitalCourses />} />
+      <Route path="digital/scholarships" element={<DigitalScholarships />} />
       <Route path="digital/careers" element={<DigitalCareers />} />
       <Route path="digital/testimonials" element={<DigitalTestimonials />} />
       <Route path="digital/skills" element={<DigitalSkills />} />
       <Route path="digital/help-articles" element={<DigitalHelp />} />
       <Route path="digital/faqs" element={<DigitalFaqs />} />
       <Route path="digital/teams" element={<DigitalTeam />} />
-
+      <Route path="digital/templates" element={<DigitalTemplate />} />
       <Route path="finance/dashboard" element={<FinanceDesk />} />
       <Route path="finance/payout" element={<FinancePayout />} />
       <Route path="finance/commission" element={<FinanceCommission />} />
