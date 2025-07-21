@@ -7450,74 +7450,348 @@ export const CommissionTable=[
     "actions": ["View"]
   }
 ]
-export const CareersTable =[
-    { "id": 1,
-      "title": "Career Options in Cybersecurity",
-      "tags": ["Security", "IT"],
-      "for": ["UG", "PG"],
-      "source": "Public Data",
-      "lastUpdated": "2025-05-18",
-      "status": "Published",
-      "actions": ["Edit", "Archive"]
-    },
-    { "id": 2,
-      "title": "Exploring Graphic Design Paths",
-      "tags": ["Creativity", "Media"],
-      "for": ["UG"],
-      "source": "On Request",
-      "lastUpdated": "2025-05-16",
-      "status": "Draft",
-      "actions": ["Edit", "Publish"]
-    }
-  ]
-  export const ExamsTable= [
-    { "id": 1,
-      "title": "CUET UG 2025 Schedule",
-      "tags": ["CUET", "UG"],
-      "for": ["11–12", "UG"],
-      "source": "Public Data",
-      "upcomingDate": "2025-07-15",
-      "lastUpdated": "2025-05-17",
-      "status": "Draft",
-      "actions": ["Edit", "Schedule"]
-    },
-    { "id": 2,
-      "title": "CLAT 2025 Key Dates",
-      "tags": ["Law", "Entrance"],
-      "for": ["UG"],
-      "source": "Public Data",
-      "upcomingDate": "2025-12-10",
-      "lastUpdated": "2025-05-18",
-      "status": "Published",
-      "actions": ["Edit", "Archive"]
-    }
-  ]
+export const CareersTable = [
+  {
+    id: 1,
+    title: "Career Options in Cybersecurity",
+    tags: ["Security", "IT"],
+    for: ["UG", "PG"],
+    source: "Public Data",
+    lastUpdated: "2025-05-18",
+    status: "Published",
+    actions: ["Edit", "Archive"]
+  },
+  {
+    id: 2,
+    title: "Exploring Graphic Design Paths",
+    tags: ["Creativity", "Media"],
+    for: ["UG"],
+    source: "On Request",
+    lastUpdated: "2025-05-16",
+    status: "Draft",
+    actions: ["Edit", "Publish"]
+  },
+  {
+    id: 3,
+    title: "Data Science Career Roadmap",
+    tags: ["Analytics", "Tech"],
+    for: ["PG", "PhD"],
+    source: "Partner",
+    lastUpdated: "2025-06-01",
+    status: "Published",
+    actions: ["Edit", "Archive"]
+  },
+  {
+    id: 4,
+    title: "Career in Environmental Law",
+    tags: ["Law", "Sustainability"],
+    for: ["UG", "PG"],
+    source: "Public Data",
+    lastUpdated: "2025-06-10",
+    status: "Pending Review",
+    actions: ["Edit", "Approve"]
+  },
+  {
+    id: 5,
+    title: "AI & Machine Learning Roles",
+    tags: ["AI", "Innovation"],
+    for: ["PG"],
+    source: "Owner",
+    lastUpdated: "2025-05-25",
+    status: "Draft",
+    actions: ["Edit", "Publish"]
+  },
+  {
+    id: 6,
+    title: "Careers in Clinical Psychology",
+    tags: ["Healthcare", "Behavioral Science"],
+    for: ["PG"],
+    source: "On Request",
+    lastUpdated: "2025-06-15",
+    status: "Published",
+    actions: ["Edit", "Archive"]
+  },
+  {
+    id: 7,
+    title: "Building a Career in Game Development",
+    tags: ["Gaming", "Tech"],
+    for: ["UG"],
+    source: "Partner",
+    lastUpdated: "2025-05-20",
+    status: "Draft",
+    actions: ["Edit", "Publish"]
+  },
+  {
+    id: 8,
+    title: "Freelancing as a Digital Marketer",
+    tags: ["Marketing", "Freelance"],
+    for: ["UG", "PG"],
+    source: "Owner",
+    lastUpdated: "2025-06-12",
+    status: "Published",
+    actions: ["Edit", "Archive"]
+  },
+  {
+    id: 9,
+    title: "Pathways into International Relations",
+    tags: ["Politics", "Global"],
+    for: ["PG"],
+    source: "Public Data",
+    lastUpdated: "2025-05-30",
+    status: "Pending Review",
+    actions: ["Edit", "Approve"]
+  },
+  {
+    id: 10,
+    title: "Career Opportunities in Renewable Energy",
+    tags: ["Energy", "Environment"],
+    for: ["UG", "PG"],
+    source: "Partner",
+    lastUpdated: "2025-06-18",
+    status: "Published",
+    actions: ["Edit", "Archive"]
+  }
+];
+
+  export const ExamsTable = [
+  {
+    "id": 1,
+    "title": "CUET UG 2025 Schedule",
+    "tags": ["CUET", "UG"],
+    "for": ["11–12", "UG"],
+    "source": "Public Data",
+    "upcomingDate": "2025-07-15",
+    "lastUpdated": "2025-05-17",
+    "status": "Draft",
+    "actions": ["Edit", "Schedule"]
+  },
+  {
+    "id": 2,
+    "title": "CLAT 2025 Key Dates",
+    "tags": ["Law", "Entrance"],
+    "for": ["UG"],
+    "source": "Public Data",
+    "upcomingDate": "2025-12-10",
+    "lastUpdated": "2025-05-18",
+    "status": "Published",
+    "actions": ["Edit", "Archive"]
+  },
+  {
+    "id": 3,
+    "title": "JEE Main 2026 First Attempt",
+    "tags": ["Engineering", "JEE"],
+    "for": ["11–12", "UG"],
+    "source": "NTA",
+    "upcomingDate": "2026-01-10",
+    "lastUpdated": "2025-07-01",
+    "status": "Draft",
+    "actions": ["Edit", "Schedule"]
+  },
+  {
+    "id": 4,
+    "title": "NEET UG 2026 Tentative Dates",
+    "tags": ["Medical", "Entrance"],
+    "for": ["11–12", "UG"],
+    "source": "Public Data",
+    "upcomingDate": "2026-05-05",
+    "lastUpdated": "2025-06-20",
+    "status": "Draft",
+    "actions": ["Edit"]
+  },
+  {
+    "id": 5,
+    "title": "UPSC Prelims 2026 Notification",
+    "tags": ["UPSC", "Government"],
+    "for": ["UG", "Graduates"],
+    "source": "UPSC",
+    "upcomingDate": "2026-02-15",
+    "lastUpdated": "2025-07-10",
+    "status": "Scheduled",
+    "actions": ["Edit", "Reschedule"]
+  },
+  {
+    "id": 6,
+    "title": "SSC CGL 2025 Tier 1",
+    "tags": ["SSC", "Government"],
+    "for": ["Graduates"],
+    "source": "SSC",
+    "upcomingDate": "2025-09-12",
+    "lastUpdated": "2025-06-30",
+    "status": "Published",
+    "actions": ["Edit", "Archive"]
+  },
+  {
+    "id": 7,
+    "title": "GATE 2026 Application Start",
+    "tags": ["Engineering", "PG"],
+    "for": ["Graduates", "PG"],
+    "source": "IIT Council",
+    "upcomingDate": "2025-09-01",
+    "lastUpdated": "2025-07-18",
+    "status": "Draft",
+    "actions": ["Edit", "Schedule"]
+  },
+  {
+    "id": 8,
+    "title": "NDA 2 2025 Admit Card",
+    "tags": ["Defence", "UPSC"],
+    "for": ["11–12", "UG"],
+    "source": "UPSC",
+    "upcomingDate": "2025-08-05",
+    "lastUpdated": "2025-07-15",
+    "status": "Scheduled",
+    "actions": ["Edit", "Notify"]
+  },
+  {
+    "id": 9,
+    "title": "CAT 2025 Registration Open",
+    "tags": ["MBA", "Entrance"],
+    "for": ["Graduates"],
+    "source": "IIM Council",
+    "upcomingDate": "2025-08-10",
+    "lastUpdated": "2025-07-10",
+    "status": "Published",
+    "actions": ["Edit", "Close"]
+  },
+  {
+    "id": 10,
+    "title": "ICSE 10th Board Exam Dates",
+    "tags": ["ICSE", "Board"],
+    "for": ["10"],
+    "source": "CISCE",
+    "upcomingDate": "2026-02-22",
+    "lastUpdated": "2025-07-12",
+    "status": "Draft",
+    "actions": ["Edit", "Finalize"]
+  },
+  {
+    "id": 11,
+    "title": "CBSE 12th Term 1 Timetable",
+    "tags": ["CBSE", "Board"],
+    "for": ["11–12"],
+    "source": "CBSE",
+    "upcomingDate": "2025-11-10",
+    "lastUpdated": "2025-07-19",
+    "status": "Draft",
+    "actions": ["Edit", "Review"]
+  }
+];
 
 
 
-  export const  ScholarshipsTable=[
-    { "id": 1,
-      "title": "Women in STEM UG Scholarship",
-      "tags": ["Gender", "STEM"],
-      "for": ["UG"],
-      "source": "On Request",
-      "upcomingDate": "2025-09-05",
-      "lastUpdated": "2025-05-18",
-      "status": "Pending",
-      "actions": ["Edit", "Approve"]
-    },
-    {
-       "id": 2,
-      "title": "International Leaders Fund",
-      "tags": ["Global", "PG"],
-      "for": ["PG"],
-      "source": "Owner",
-      "upcomingDate": "2025-10-30",
-      "lastUpdated": "2025-05-14",
-      "status": "Draft",
-      "actions": ["Edit", "Publish"]
-    }
-  ]
+ export const ScholarshipsTable = [
+  {
+    id: 1,
+    title: "Women in STEM UG Scholarship",
+    tags: ["Gender", "STEM"],
+    for: ["UG"],
+    source: "On Request",
+    upcomingDate: "2025-09-05",
+    lastUpdated: "2025-05-18",
+    status: "Pending",
+    actions: ["Edit", "Approve"]
+  },
+  {
+    id: 2,
+    title: "International Leaders Fund",
+    tags: ["Global", "PG"],
+    for: ["PG"],
+    source: "Owner",
+    upcomingDate: "2025-10-30",
+    lastUpdated: "2025-05-14",
+    status: "Draft",
+    actions: ["Edit", "Publish"]
+  },
+  {
+    id: 3,
+    title: "Merit-Based UG Scholarship",
+    tags: ["Merit", "UG"],
+    for: ["UG"],
+    source: "Partner",
+    upcomingDate: "2025-08-10",
+    lastUpdated: "2025-06-01",
+    status: "Active",
+    actions: ["Edit", "Deactivate"]
+  },
+  {
+    id: 4,
+    title: "Social Impact Fellowship",
+    tags: ["Community", "PG"],
+    for: ["PG"],
+    source: "On Request",
+    upcomingDate: "2025-11-15",
+    lastUpdated: "2025-05-30",
+    status: "Pending",
+    actions: ["Edit", "Approve"]
+  },
+  {
+    id: 5,
+    title: "Tech Innovators Grant",
+    tags: ["Technology", "Research"],
+    for: ["PhD"],
+    source: "Owner",
+    upcomingDate: "2025-09-25",
+    lastUpdated: "2025-06-10",
+    status: "Draft",
+    actions: ["Edit", "Publish"]
+  },
+  {
+    id: 6,
+    title: "Underprivileged Support Program",
+    tags: ["Social", "UG"],
+    for: ["UG"],
+    source: "NGO",
+    upcomingDate: "2025-08-05",
+    lastUpdated: "2025-06-12",
+    status: "Pending",
+    actions: ["Edit", "Approve"]
+  },
+  {
+    id: 7,
+    title: "International Mobility Scholarship",
+    tags: ["Exchange", "PG"],
+    for: ["PG"],
+    source: "Partner",
+    upcomingDate: "2025-12-01",
+    lastUpdated: "2025-06-18",
+    status: "Active",
+    actions: ["Edit", "Suspend"]
+  },
+  {
+    id: 8,
+    title: "First Generation Learners Award",
+    tags: ["Equity", "UG"],
+    for: ["UG"],
+    source: "On Request",
+    upcomingDate: "2025-09-12",
+    lastUpdated: "2025-06-03",
+    status: "Pending",
+    actions: ["Edit", "Approve"]
+  },
+  {
+    id: 9,
+    title: "Women Entrepreneurs Grant",
+    tags: ["Gender", "Entrepreneurship"],
+    for: ["PG", "PhD"],
+    source: "Owner",
+    upcomingDate: "2025-11-05",
+    lastUpdated: "2025-05-22",
+    status: "Draft",
+    actions: ["Edit", "Publish"]
+  },
+  {
+    id: 10,
+    title: "Sustainable Development Research Fund",
+    tags: ["Environment", "Research"],
+    for: ["PhD"],
+    source: "Partner",
+    upcomingDate: "2025-10-10",
+    lastUpdated: "2025-06-20",
+    status: "Active",
+    actions: ["Edit", "Archive"]
+  }
+];
+
 
   export const NgosTable= [
     {

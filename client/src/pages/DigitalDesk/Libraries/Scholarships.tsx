@@ -621,7 +621,7 @@ function TableSection() {
                     <Badge
                       variant={
                         item.status === "Published" ? "standard" : 
-                        item.status === "Pending" ? "destructive" : "border"
+                        item.status === "Pending" ? "brand" : "border"
                       }
                     >
                       {item.status}
