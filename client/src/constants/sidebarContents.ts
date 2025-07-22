@@ -51,11 +51,11 @@ export const SidebarData = {
   },
   sections: [
     {
-      title: "Admin",
+      title: "Platform",
       isHeading: true,
       items: [
         {
-          title: "Admin Desk",
+          title: "Platform Desk",
           url: "/desk/admin/desk",
           icon: Activity,
         },

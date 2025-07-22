@@ -23,7 +23,7 @@ const badgeVariants = cva(
           "text-[var(--text)] bg-[var(--faded)] border-0",
         border:
           "text-[var(--text)] [a&]:hover:bg-[var(--faded)]",
-        success: "",
+        success: "texy-green-500 bg-green-300",
         
       },
     },

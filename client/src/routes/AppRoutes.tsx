@@ -193,6 +193,7 @@ export default function AppRoutes() {
       <Route path="approval/dashboard" element={<ReviewDesk />} />
       <Route path="approval/google-map" element={<ReviewGoogleMaps />} />
       <Route path="approval/profile-coach" element={<ReviewProfileCoach />} />
+      
     </Routes>
   );
 }
