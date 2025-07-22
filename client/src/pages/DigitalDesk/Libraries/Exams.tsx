@@ -3,7 +3,7 @@ import {
   Eye,
   Filter,
   BadgeDollarSign,
-  Package,
+
   Notebook,
   Search,
   GitGraph,
@@ -55,17 +55,12 @@ const stats = [
     performance: Up,
   },
  
-  {
-    title: "Categories Covered",
-    value: "Careers, Exams, Colleges, Scholarships, Schools, Corporations, NGOs",
-    icon: Package,
-    performance: Down,
-  },
+
   {
     title: "Last Updated",
     value: "18 May 2025",
     icon: BadgeDollarSign,
-    performance: Up,
+    performance: Down,
   },
 ];
 

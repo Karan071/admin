@@ -917,7 +917,7 @@ export const FormsSubmittedData = [
     "id": 6,
     "user": "Sara Iqbal",
     "type": "College",
-    "name": "Lighthouse Women’s College",
+    "name": "Lighthouse Women's College",
     "location": "Kolkata",
     "submitted": "11 May 2025",
     "entry": "View",
@@ -1124,7 +1124,7 @@ export const NewsMentionsData = [
   {
     "id": "7",
     "logo": "![Logo]",
-    "title": "Empowering Rural Youth: Aimshala’s Impact",
+    "title": "Empowering Rural Youth: Aimshala's Impact",
     "source": "The Hindu",
     "link": "[Read More]",
     "clicks": "989",
@@ -1135,7 +1135,7 @@ export const NewsMentionsData = [
   {
     "id": "8",
     "logo": "![Logo]",
-    "title": "Tech for Good: Aimshala’s Learning Tools",
+    "title": "Tech for Good: Aimshala's Learning Tools",
     "source": "YourStory",
     "link": "[Read More]",
     "clicks": "812",
@@ -1168,7 +1168,7 @@ export const NewsMentionsData = [
   {
     "id": "11",
     "logo": "![Logo]",
-    "title": "Aimshala’s Bootcamps Transforming Lives",
+    "title": "Aimshala's Bootcamps Transforming Lives",
     "source": "TOI",
     "link": "[Read More]",
     "clicks": "912",
@@ -1838,7 +1838,7 @@ export const PublishedTableData = [
     "actions": ["View", "Edit", "Archive"]
   },
   {
-    "title": "Beginner’s Guide to Data Science",
+    "title": "Beginner's Guide to Data Science",
     "author": "Riya Malhotra",
     "category": "Careers",
     "tags": ["Data", "Python"],
@@ -6619,7 +6619,7 @@ export const TestmonialsData=[
     "Category": "Coach",
     "For": "UG Students",
     "Type": "Text",
-    "Content Preview": "Here’s how we mentor students to stay focused and confident.",
+    "Content Preview": "Here's how we mentor students to stay focused and confident.",
     "Date": "14 May 2025",
     "Status": "Draft",
     "Actions": ["Edit", "Publish"]
@@ -6700,7 +6700,7 @@ export const paymentsTable = [
     "User": "Aarti Verma",
     "Product": "Masterclass: ACT",
     "Type": "Masterclass",
-    "ProductTitle": "“Design Careers 101”",
+    "ProductTitle": "Design Careers 101",
     "Gross": "₹500",
     "PlatformFee": "₹100",
     "GST": "₹18",
@@ -6713,7 +6713,7 @@ export const paymentsTable = [
     "User": "Rohan Mehta",
     "Product": "Assessment: SkillFit",
     "Type": "Assessment",
-    "ProductTitle": "“Logical Aptitude Test”",
+    "ProductTitle": "Logical Aptitude Test",
     "Gross": "₹300",
     "PlatformFee": "₹60",
     "GST": "₹10.8",
@@ -6726,7 +6726,7 @@ export const paymentsTable = [
     "User": "Sneha Kapoor",
     "Product": "1:1 Session: UX Review",
     "Type": "1:1 Session",
-    "ProductTitle": "“Portfolio Feedback Call”",
+    "ProductTitle": "Portfolio Feedback Call",
     "Gross": "₹800",
     "PlatformFee": "₹160",
     "GST": "₹28.8",
@@ -6739,7 +6739,7 @@ export const paymentsTable = [
     "User": "Aman Singh",
     "Product": "Learning Path: Product Design",
     "Type": "Learning",
-    "ProductTitle": "“Design Thinking Track”",
+    "ProductTitle": "Design Thinking Track",
     "Gross": "₹1000",
     "PlatformFee": "₹200",
     "GST": "₹36",
@@ -6752,7 +6752,7 @@ export const paymentsTable = [
     "User": "Pooja Rathi",
     "Product": "Masterclass: Career Jumpstart",
     "Type": "Masterclass",
-    "ProductTitle": "“Level-Up Your Resume”",
+    "ProductTitle": "Level-Up Your Resume",
     "Gross": "₹600",
     "PlatformFee": "₹120",
     "GST": "₹21.6",
@@ -6765,7 +6765,7 @@ export const paymentsTable = [
     "User": "Mehul Desai",
     "Product": "Assessment: Career Fit",
     "Type": "Assessment",
-    "ProductTitle": "“Find Your Strengths”",
+    "ProductTitle": "Find Your Strengths",
     "Gross": "₹450",
     "PlatformFee": "₹90",
     "GST": "₹16.2",
@@ -6778,7 +6778,7 @@ export const paymentsTable = [
     "User": "Ishita Rawal",
     "Product": "1:1 Session: Interview Prep",
     "Type": "1:1 Session",
-    "ProductTitle": "“Mock Interview Call”",
+    "ProductTitle": "Mock Interview Call",
     "Gross": "₹750",
     "PlatformFee": "₹150",
     "GST": "₹27",
@@ -6791,7 +6791,7 @@ export const paymentsTable = [
     "User": "Nikhil Anand",
     "Product": "Learning: UX Essentials",
     "Type": "Learning",
-    "ProductTitle": "“Basics of UX Design”",
+    "ProductTitle": "Basics of UX Design",
     "Gross": "₹400",
     "PlatformFee": "₹80",
     "GST": "₹14.4",
@@ -6804,7 +6804,7 @@ export const paymentsTable = [
     "User": "Kritika Bansal",
     "Product": "Masterclass: Personal Branding",
     "Type": "Masterclass",
-    "ProductTitle": "“Build Your LinkedIn”",
+    "ProductTitle": "Build Your LinkedIn",
     "Gross": "₹550",
     "PlatformFee": "₹110",
     "GST": "₹19.8",
@@ -6817,7 +6817,7 @@ export const paymentsTable = [
     "User": "Rajeev Iyer",
     "Product": "Assessment: Personality Check",
     "Type": "Assessment",
-    "ProductTitle": "“MBTI Deep Dive”",
+    "ProductTitle": "MBTI Deep Dive",
     "Gross": "₹350",
     "PlatformFee": "₹70",
     "GST": "₹12.6",
@@ -7794,27 +7794,108 @@ export const CareersTable = [
 
 
   export const NgosTable= [
-    {
-       "id": 1,
-      "title": "Skill Building for Youth",
-      "tags": ["Development", "Edu"],
-      "for": ["Schools", "UG"],
-      "source": "Owner",
-      "lastUpdated": "2025-05-16",
-      "status": "Published",
-      "actions": ["Edit", "Archive"]
-    },
-    {
-       "id": 2,
-      "title": "NGO-College Career Bridges",
-      "tags": ["Awareness", "Support"],
-      "for": ["UG", "PG"],
-      "source": "Public Data",
-      "lastUpdated": "2025-05-13",
-      "status": "Draft",
-      "actions": ["Edit", "Publish"]
-    }
-  ]
+  {
+    "id": "NGO1001",
+    "Title": "Skill Building for Youth",
+    "Tags": "Development, Edu",
+    "For": "Schools, UG",
+    "Source": "Owner",
+    "LastUpdated": "2025-05-16",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "NGO1002",
+    "Title": "College Career Bridges",
+    "Tags": "Awareness, Support",
+    "For": "UG, PG",
+    "Source": "Public Data",
+    "LastUpdated": "2025-05-13",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "NGO1003",
+    "Title": "Women Empowerment Network",
+    "Tags": "Gender Equality, Training",
+    "For": "UG, PG",
+    "Source": "Owner",
+    "LastUpdated": "2025-05-18",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "NGO1004",
+    "Title": "Green Future Foundation",
+    "Tags": "Environment, Awareness",
+    "For": "Schools",
+    "Source": "On Request",
+    "LastUpdated": "2025-05-11",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "NGO1005",
+    "Title": "Youth Mentorship India",
+    "Tags": "Mentorship, Growth",
+    "For": "Schools, UG",
+    "Source": "Public Data",
+    "LastUpdated": "2025-05-15",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "NGO1006",
+    "Title": "Digital Learning Alliance",
+    "Tags": "Digital Literacy, Education",
+    "For": "UG",
+    "Source": "Owner",
+    "LastUpdated": "2025-05-14",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "NGO1007",
+    "Title": "Health Access Project",
+    "Tags": "Healthcare, Outreach",
+    "For": "UG, PG",
+    "Source": "Public Data",
+    "LastUpdated": "2025-05-10",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "NGO1008",
+    "Title": "SkillUp Rural Youth",
+    "Tags": "Vocational Training",
+    "For": "UG",
+    "Source": "On Request",
+    "LastUpdated": "2025-05-12",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "NGO1009",
+    "Title": "STEM for All",
+    "Tags": "Science, Technology",
+    "For": "Schools, UG",
+    "Source": "Public Data",
+    "LastUpdated": "2025-05-19",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "NGO1010",
+    "Title": "CareerReady Foundation",
+    "Tags": "Career, Employability",
+    "For": "UG, PG",
+    "Source": "Owner",
+    "LastUpdated": "2025-05-17",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  }
+]
+
 
 
    export const CollegesTables=[
@@ -7930,5 +8011,809 @@ export const addTeamMember=[
     "desksAssigned": ["Relations", "Review"],
     "status": "Active",
     "actions": ["View", "Edit", "Disable"]
+  }
+]
+export const CampaignTable= [
+    {
+      "id": "CAM1001",
+      "campaignName": "UG Masterclass Promo",
+      "channels": ["WhatsApp", "Email"],
+      "scheduledFor": "2025-07-12T10:00:00",
+      "audience": "Explorers",
+      "status": "Sent",
+      "actions": ["View", "Edit"]
+    },
+    {
+      "id": "CAM1002",
+      "campaignName": "Feedback Follow-up",
+      "channels": ["Web", "App"],
+      "scheduledFor": "2025-07-13T15:30:00",
+      "audience": "All Users",
+      "status": "Scheduled",
+      "actions": ["Edit", "Cancel"]
+    },
+    {
+      "id": "CAM1003",
+      "campaignName": "Partner Outreach Round 1",
+      "channels": ["Email"],
+      "scheduledFor": "2025-07-10T09:00:00",
+      "audience": "Organisations",
+      "status": "Failed",
+      "actions": ["Retry", "View"]
+    }
+  ]
+  export const CommentTable = [
+  {
+    id: "Com1001",
+    comment: "This helped me prepare!",
+    by: "ritika@email",
+    on: "Insight: Career Map Guide",
+    status: "Approved",
+    action: ["Edit", "Delete"]
+  },
+  {
+    id: "Com1002",
+    comment: "Coach was late to session",
+    by: "vivek@email",
+    on: "Session: UG Stream Talk",
+    status: "Approved",
+    action: ["Approve", "Remove", "Reply"]
+  },
+  {
+    id: "Com1003",
+    comment: "PDF not loading",
+    by: "internal_note",
+    on: "Article: Assessment Steps",
+    status: "Pending",
+    action: ["Approve", "Reject"]
+  },
+  {
+    id: "Com1004",
+    comment: "Loved the interactive format!",
+    by: "megha@email",
+    on: "Webinar: Study Abroad Planning",
+    status: "Approved",
+    action: ["Edit", "Delete"]
+  },
+  {
+    id: "Com1005",
+    comment: "Audio was unclear in parts.",
+    by: "anil@email",
+    on: "Video: Scholarship Tips",
+    status: "Flagged",
+    action: ["Approve", "Remove", "Reply"]
+  },
+  {
+    id: "Com1006",
+    comment: "Can we get the session recording?",
+    by: "sunita@email",
+    on: "Live Q&A: Career Guidance",
+    status: "Pending",
+    action: ["Approve", "Reject"]
+  },
+  {
+    id: "Com1007",
+    comment: "Helpful for choosing my stream.",
+    by: "yash@email",
+    on: "Tool: Stream Selector",
+    status: "Approved",
+    action: ["Edit", "Delete"]
+  },
+  {
+    id: "Com1008",
+    comment: "Session timing was not updated.",
+    by: "priya@email",
+    on: "Event: Mentor Meet",
+    status: "Flagged",
+    action: ["Approve", "Remove", "Reply"]
+  },
+  {
+    id: "Com1009",
+    comment: "Informative article. Thanks!",
+    by: "nisha@email",
+    on: "Blog: Exam Stress Tips",
+    status: "Approved",
+    action: ["Edit", "Delete"]
+  },
+  {
+    id: "Com1010",
+    comment: "Link was broken on mobile view.",
+    by: "support_team",
+    on: "Page: Feedback Form",
+    status: "Pending",
+    action: ["Approve", "Reject"]
+  }
+];
+export const SurveysTable=[
+  {
+    "id": "SUR1001",
+    "title": "Career Preferences Survey",
+    "createdBy": "Riya Malhotra",
+    "for": ["11–12", "UG"],
+    "questions": 10,
+    "responses": 4120,
+    "status": "Active",
+    "lastUpdated": "16 May 2025",
+    "actions": ["Edit", "Results", "Close"]
+  },
+  {
+    "id": "SUR1002",
+    "title": "Online Learning Feedback",
+    "createdBy": "Team Aimshala",
+    "for": ["UG", "PG"],
+    "questions": 8,
+    "responses": 2630,
+    "status": "Active",
+    "lastUpdated": "14 May 2025",
+    "actions": ["Edit", "Results", "Close"]
+  },
+  {
+    "id": "SUR1003",
+    "title": "Skill Awareness Check",
+    "createdBy": "Rahul Sen",
+    "for": ["PG"],
+    "questions": 6,
+    "responses": 1020,
+    "status": "Draft",
+    "lastUpdated": "12 May 2025",
+    "actions": ["Edit", "Activate", "Delete"]
+  },
+  {
+    "id": "SUR1004",
+    "title": "Internship Readiness Survey",
+    "createdBy": "Sonal Aggarwal",
+    "for": ["UG"],
+    "questions": 12,
+    "responses": 1875,
+    "status": "Active",
+    "lastUpdated": "10 May 2025",
+    "actions": ["Edit", "Results", "Close"]
+  },
+  {
+    "id": "SUR1005",
+    "title": "Exam Preparation Patterns",
+    "createdBy": "Team Aimshala",
+    "for": ["11–12"],
+    "questions": 9,
+    "responses": 3390,
+    "status": "Draft",
+    "lastUpdated": "09 May 2025",
+    "actions": ["Edit", "Activate", "Delete"]
+  },
+  {
+    "id": "SUR1006",
+    "title": "Study Abroad Interest Form",
+    "createdBy": "Amit Verma",
+    "for": ["UG", "PG"],
+    "questions": 7,
+    "responses": 2010,
+    "status": "Active",
+    "lastUpdated": "08 May 2025",
+    "actions": ["Edit", "Results", "Close"]
+  },
+  {
+    "id": "SUR1007",
+    "title": "Technology Usage in Study",
+    "createdBy": "Nikita Roy",
+    "for": ["9–10", "11–12"],
+    "questions": 11,
+    "responses": 1420,
+    "status": "Pending",
+    "lastUpdated": "06 May 2025",
+    "actions": ["Edit", "Activate", "Delete"]
+  },
+  {
+    "id": "SUR1008",
+    "title": "Campus Experience Survey",
+    "createdBy": "Rohit Sharma",
+    "for": ["UG"],
+    "questions": 10,
+    "responses": 980,
+    "status": "Active",
+    "lastUpdated": "04 May 2025",
+    "actions": ["Edit", "Results", "Close"]
+  },
+  {
+    "id": "SUR1009",
+    "title": "Career Awareness Tracker",
+    "createdBy": "Team Aimshala",
+    "for": ["11–12", "UG"],
+    "questions": 8,
+    "responses": 2890,
+    "status": "Draft",
+    "lastUpdated": "02 May 2025",
+    "actions": ["Edit", "Activate", "Delete"]
+  },
+  {
+    "id": "SUR1010",
+    "title": "Life Skills Self Assessment",
+    "createdBy": "Riya Malhotra",
+    "for": ["UG", "PG"],
+    "questions": 9,
+    "responses": 1750,
+    "status": "Active",
+    "lastUpdated": "01 May 2025",
+    "actions": ["Edit", "Results", "Close"]
+  }
+]
+export const InstitutesTable= [
+  {
+    "id": "INS1001",
+    "Title": "IIM Ahmedabad",
+    "Tags": "Top B-School, Government",
+    "InstituteType": "Autonomous",
+    "DataSource": "Public Data",
+    "UpcomingUpdate": "2025-06-20",
+    "LastUpdated": "2025-05-16",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "INS1002",
+    "Title": "University of Mumbai",
+    "Tags": "Arts, Commerce, Science",
+    "InstituteType": "State University",
+    "DataSource": "On Request",
+    "UpcomingUpdate": "2025-06-30",
+    "LastUpdated": "2025-05-15",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "INS1003",
+    "Title": "Delhi University",
+    "Tags": "UG, PG, NAAC A+",
+    "InstituteType": "Central University",
+    "DataSource": "Public Data",
+    "UpcomingUpdate": "2025-07-05",
+    "LastUpdated": "2025-06-10",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "INS1004",
+    "Title": "BITS Pilani",
+    "Tags": "Engineering, Private",
+    "InstituteType": "Deemed University",
+    "DataSource": "Public Data",
+    "UpcomingUpdate": "2025-08-01",
+    "LastUpdated": "2025-06-25",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "INS1005",
+    "Title": "Amity University Noida",
+    "Tags": "Private, Multi-discipline",
+    "InstituteType": "Private University",
+    "DataSource": "On Request",
+    "UpcomingUpdate": "2025-07-10",
+    "LastUpdated": "2025-06-20",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "INS1006",
+    "Title": "IIT Bombay",
+    "Tags": "Engineering, Government",
+    "InstituteType": "Institute of National Importance",
+    "DataSource": "Public Data",
+    "UpcomingUpdate": "2025-07-15",
+    "LastUpdated": "2025-06-28",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "INS1007",
+    "Title": "Christ University",
+    "Tags": "UG, PG, Autonomous",
+    "InstituteType": "Deemed University",
+    "DataSource": "On Request",
+    "UpcomingUpdate": "2025-08-05",
+    "LastUpdated": "2025-07-01",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "INS1008",
+    "Title": "Jawaharlal Nehru University",
+    "Tags": "Research, Central",
+    "InstituteType": "Central University",
+    "DataSource": "Public Data",
+    "UpcomingUpdate": "2025-07-25",
+    "LastUpdated": "2025-06-30",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "INS1009",
+    "Title": "SRM Institute of Science and Technology",
+    "Tags": "Engineering, Private, NAAC A++",
+    "InstituteType": "Deemed University",
+    "DataSource": "On Request",
+    "UpcomingUpdate": "2025-08-10",
+    "LastUpdated": "2025-07-10",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "INS1010",
+    "Title": "Banaras Hindu University",
+    "Tags": "UG, PG, Research",
+    "InstituteType": "Central University",
+    "DataSource": "Public Data",
+    "UpcomingUpdate": "2025-07-28",
+    "LastUpdated": "2025-07-15",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  }
+]
+export const SchoolsTable=[
+  {
+    "id": "SCH1001",
+    "Title": "Greenwood High School",
+    "Tags": "CBSE, Urban Campus",
+    "For": "Classes 8-12",
+
+    "Source": "Public Data",
+    "UpcomingDate": "2025-06-20",
+    "LastUpdated": "2025-05-16",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "SCH1002",
+    "Title": "St. Xavier's Senior Secondary School",
+    "Tags": "ICSE, Boys",
+    "For": "Classes 8-12",
+
+    "Source": "On Request",
+    "UpcomingDate": "2025-06-30",
+    "LastUpdated": "2025-05-15",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "SCH1003",
+    "Title": "DPS Noida",
+    "Tags": "CBSE, Co-ed, Day School",
+    "For": "Classes 8-12",
+
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-05",
+    "LastUpdated": "2025-06-10",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "SCH1004",
+    "Title": "The Heritage School Gurgaon",
+    "Tags": "Progressive, CBSE, Co-ed",
+    "For": "Classes 8-12",
+
+    "Source": "Public Data",
+    "UpcomingDate": "2025-08-01",
+    "LastUpdated": "2025-06-25",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "SCH1005",
+    "Title": "Amity International School, Saket",
+    "Tags": "CBSE, Tech-Enabled",
+    "For": "Classes 8-12",
+
+    "Source": "On Request",
+    "UpcomingDate": "2025-07-10",
+    "LastUpdated": "2025-06-20",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "SCH1006",
+    "Title": "Springdales School, Delhi",
+    "Tags": "CBSE, Co-ed, Cultural",
+    "For": "Classes 8-12",
+  
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-15",
+    "LastUpdated": "2025-06-28",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "SCH1007",
+    "Title": "Mayo College Girls' School",
+    "Tags": "ICSE, Residential, Girls",
+    "For": "Classes 8-12",
+
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-05",
+    "LastUpdated": "2025-07-01",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "SCH1008",
+    "Title": "Modern School Barakhamba",
+    "Tags": "CBSE, Sports Focused",
+    "For": "Classes 8-12",
+
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-25",
+    "LastUpdated": "2025-06-30",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "SCH1009",
+    "Title": "The Doon School",
+    "Tags": "ICSE, Residential, Boys",
+    "For": "Classes 8-12",
+
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-10",
+    "LastUpdated": "2025-07-10",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "SCH1010",
+    "Title": "La Martiniere for Girls, Kolkata",
+    "Tags": "ICSE, Girls, Heritage",
+    "For": "Classes 8-12",
+
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-28",
+    "LastUpdated": "2025-07-15",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  }
+]
+ export const CollegesTable= [
+  {
+    "id": "COL1001",
+    "Title": "Top Business Schools",
+    "Tags": "MBA, PGDM",
+    "Degree": "MBA",
+    "For": "PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-06-20",
+    "LastUpdated": "2025-05-16",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COL1002",
+    "Title": "Mumbai University - B.A.",
+    "Tags": "Arts, UG",
+    "Degree": "B.A.",
+    "For": "UG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-06-30",
+    "LastUpdated": "2025-05-15",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "COL1003",
+    "Title": "Delhi University - B.Com.",
+    "Tags": "Commerce, UG",
+    "Degree": "B.Com.",
+    "For": "UG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-05",
+    "LastUpdated": "2025-06-10",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COL1004",
+    "Title": "IIT Bombay - M.Tech",
+    "Tags": "Engineering, PG",
+    "Degree": "M.Tech",
+    "For": "PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-10",
+    "LastUpdated": "2025-06-20",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COL1005",
+    "Title": "Amity University - BBA",
+    "Tags": "Management, UG",
+    "Degree": "BBA",
+    "For": "UG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-01",
+    "LastUpdated": "2025-07-01",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "COL1006",
+    "Title": "Christ University - B.Sc.",
+    "Tags": "Science, UG",
+    "Degree": "B.Sc.",
+    "For": "UG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-08-15",
+    "LastUpdated": "2025-07-10",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COL1007",
+    "Title": "Jawaharlal Nehru University - M.A.",
+    "Tags": "Humanities, PG",
+    "Degree": "M.A.",
+    "For": "PG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-20",
+    "LastUpdated": "2025-07-15",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "COL1008",
+    "Title": "SRM Institute - B.Tech",
+    "Tags": "Engineering, UG",
+    "Degree": "B.Tech",
+    "For": "UG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-09-01",
+    "LastUpdated": "2025-07-20",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COL1009",
+    "Title": "Presidency College - M.Sc.",
+    "Tags": "Science, PG",
+    "Degree": "M.Sc.",
+    "For": "PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-09-10",
+    "LastUpdated": "2025-07-22",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COL1010",
+    "Title": "Banaras Hindu University - LLB",
+    "Tags": "Law, UG",
+    "Degree": "LLB",
+    "For": "UG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-09-15",
+    "LastUpdated": "2025-07-18",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  }
+]
+
+export const UniversitiesTable=[
+  {
+    "id": "UNI1001",
+    "Title": "Top Business Universities",
+    "Tags": "MBA, PGDM",
+    "For": "PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-06-20",
+    "LastUpdated": "2025-05-16",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "UNI1002",
+    "Title": "Mumbai University",
+    "Tags": "Arts, UG",
+    "For": "UG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-06-30",
+    "LastUpdated": "2025-05-15",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "UNI1003",
+    "Title": "Delhi University",
+    "Tags": "Commerce, Economics, UG",
+    "For": "UG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-05",
+    "LastUpdated": "2025-06-10",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "UNI1004",
+    "Title": "Jawaharlal Nehru University",
+    "Tags": "Humanities, PG, Research",
+    "For": "PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-07-15",
+    "LastUpdated": "2025-06-20",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "UNI1005",
+    "Title": "Banaras Hindu University",
+    "Tags": "Law, Arts, UG",
+    "For": "UG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-01",
+    "LastUpdated": "2025-07-01",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "UNI1006",
+    "Title": "Anna University",
+    "Tags": "Engineering, Technology, PG",
+    "For": "PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-08-10",
+    "LastUpdated": "2025-07-05",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "UNI1007",
+    "Title": "Pune University",
+    "Tags": "Science, Commerce, UG",
+    "For": "UG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-15",
+    "LastUpdated": "2025-07-10",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "UNI1008",
+    "Title": "Osmania University",
+    "Tags": "Pharmacy, Life Sciences, PG",
+    "For": "PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-08-25",
+    "LastUpdated": "2025-07-12",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "UNI1009",
+    "Title": "University of Calcutta",
+    "Tags": "Arts, Literature, UG",
+    "For": "UG",
+    "Source": "On Request",
+    "UpcomingDate": "2025-09-01",
+    "LastUpdated": "2025-07-15",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "UNI1010",
+    "Title": "IGNOU - Open University",
+    "Tags": "Distance Learning, UG, PG",
+    "For": "UG, PG",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-09-10",
+    "LastUpdated": "2025-07-20",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  }
+]
+export const CompaniesTables=[
+  {
+    "id": "COM1001",
+    "Title": "Top Tech Employers",
+    "Tags": "Software, IT Services",
+    "For": "Experienced",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-08-01",
+    "LastUpdated": "2025-07-10",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COM1002",
+    "Title": "Infosys",
+    "Tags": "Consulting, Technology",
+    "For": "Fresher, Experienced",
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-10",
+    "LastUpdated": "2025-07-11",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "COM1003",
+    "Title": "Tata Consultancy Services",
+    "Tags": "IT Services, BPO",
+    "For": "Fresher",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-08-15",
+    "LastUpdated": "2025-07-15",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COM1004",
+    "Title": "Accenture India",
+    "Tags": "Strategy, Tech Services",
+    "For": "Experienced",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-08-20",
+    "LastUpdated": "2025-07-14",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COM1005",
+    "Title": "Wipro",
+    "Tags": "Software, Digital",
+    "For": "Fresher, Experienced",
+    "Source": "On Request",
+    "UpcomingDate": "2025-08-25",
+    "LastUpdated": "2025-07-16",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "COM1006",
+    "Title": "HCL Technologies",
+    "Tags": "Cloud, Engineering Services",
+    "For": "Experienced",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-09-01",
+    "LastUpdated": "2025-07-18",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COM1007",
+    "Title": "Google India",
+    "Tags": "AI, Cloud, Search",
+    "For": "Experienced",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-09-05",
+    "LastUpdated": "2025-07-20",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COM1008",
+    "Title": "Amazon Development Center",
+    "Tags": "E-commerce, AWS",
+    "For": "Fresher",
+    "Source": "On Request",
+    "UpcomingDate": "2025-09-10",
+    "LastUpdated": "2025-07-21",
+    "Status": "Draft",
+    "Actions": ["Edit", "Publish"]
+  },
+  {
+    "id": "COM1009",
+    "Title": "Capgemini",
+    "Tags": "Digital Consulting, Cloud",
+    "For": "Fresher, Experienced",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-09-15",
+    "LastUpdated": "2025-07-22",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
+  },
+  {
+    "id": "COM1010",
+    "Title": "Cognizant Technology Solutions",
+    "Tags": "IT, Digital Transformation",
+    "For": "Experienced",
+    "Source": "Public Data",
+    "UpcomingDate": "2025-09-20",
+    "LastUpdated": "2025-07-22",
+    "Status": "Published",
+    "Actions": ["Edit", "Archive"]
   }
 ]
