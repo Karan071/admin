@@ -85,7 +85,7 @@ function NavSection({
 
   return (
     <Collapsible defaultOpen>
-      <SidebarGroup className="space-y-1">
+      <SidebarGroup className="">
         <CollapsibleTrigger asChild>
           <SidebarGroupLabel className="text-[var(--text)] font-semibold text-sm uppercase tracking-wide cursor-pointer">
             {section.title}
@@ -119,7 +119,7 @@ function NavSection({
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <SidebarMenuSub className="space-y-1">
+                      <SidebarMenuSub className="">
                         {item.items.map((subItem) => (
                           <SidebarMenuSubItem
                             key={subItem.title}

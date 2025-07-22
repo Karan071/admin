@@ -56,12 +56,12 @@ export const SidebarData = {
       items: [
         {
           title: "Platform Desk",
-          url: "/desk/admin/desk",
+          url: "/desk/platform/desk",
           icon: Activity,
         },
         {
           title: "Recent Activities",
-          url: "/desk/admin/activities",
+          url: "/desk/platform/activities",
           icon: Activity,
         },
         {
@@ -72,17 +72,17 @@ export const SidebarData = {
           items: [
             {
               title: "Explorers",
-              url: "/desk/admin/explorers",
+              url: "/desk/platform/explorers",
               icon: Users,
             },
             {
               title: "Organisations",
-              url: "/desk/admin/organisations",
+              url: "/desk/platform/organisations",
               icon: Building2,
             },
             {
               title: "Channel Partner",
-              url: "/desk/admin/channels",
+              url: "/desk/platform/channels",
               icon: Building2,
             },
           ],
@@ -95,49 +95,49 @@ export const SidebarData = {
           items: [
             {
               title: "Problems",
-              url: "/desk/admin/problems",
+              url: "/desk/platform/problems",
               icon: AlertCircle,
             },
             {
               title: "Bugs",
-              url: "/desk/admin/bugs",
+              url: "/desk/platform/bugs",
               icon: Bug,
             },
             {
               title: "Abuses",
-              url: "/desk/admin/abuses",
+              url: "/desk/platform/abuses",
               icon: Shield,
             },
           ],
         },
         {
           title: "Feedback",
-          url: "/desk/admin/feedback",
+          url: "/desk/platform/feedback",
           icon: MessageSquare,
         },
         {
           title: "Review",
-          url: "/desk/admin/review",
+          url: "/desk/platform/review",
           icon: Star,
         },
         {
           title: "Explorers",
-          url: "/desk/admin/explorers",
+          url: "/desk/platform/explorers",
           icon: Users,
         },
         {
           title: "Coaches",
-          url: "/desk/admin/coaches",
+          url: "/desk/platform/coaches",
           icon: UserCheck,
         },
         {
           title: "Organisations",
-          url: "/desk/admin/organisations",
+          url: "/desk/platform/organisations",
           icon: Building,
         },
         {
           title: "Plans",
-          url: "/desk/admin/plans",
+          url: "/desk/platform/plans",
           icon: ClipboardList,
         },
         {
@@ -148,44 +148,44 @@ export const SidebarData = {
           items: [
             {
               title: "Assessments",
-              url: "/desk/admin/assessments",
+              url: "/desk/platform/assessments",
               icon: FileText,
             },
             {
               title: "Sessions",
-              url: "/desk/admin/sessions",
+              url: "/desk/platform/sessions",
               icon: Video,
             },
             {
               title: "Session Pool",
-              url: "/desk/admin/session-pool",
+              url: "/desk/platform/session-pool",
               icon: Library,
             },
             {
               title: "Masterclasses",
-              url: "/desk/admin/masterclasses",
+              url: "/desk/platform/masterclasses",
               icon: GraduationCap,
             },
             {
               title: "Access Codes",
-              url: "/desk/admin/access-codes",
+              url: "/desk/platform/access-codes",
               icon: Key,
             },
             {
               title: "Consultant Premium",
-              url: "/desk/admin/consultant-premium",
+              url: "/desk/platform/consultant-premium",
               icon: Crown,
             },
           ],
         },
         {
           title: "Desk IAM",
-          url: "/desk/admin/desk-iam",
+          url: "/desk/platform/desk-iam",
           icon: Settings,
         },
         {
           title: "Add Team Member",
-          url: "/desk/admin/addTeamMember",
+          url: "/desk/platform/addTeamMember",
           icon: Newspaper,
         },
       ],

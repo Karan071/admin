@@ -83,25 +83,25 @@ export default function AppRoutes() {
   return (
     <Routes>
       {/* Admin Desk Routes */}
-      <Route path="admin/activities" element={<Activities />} />
-      <Route path="admin/leads" element={<div>Admin Leads Page</div>} />
-      <Route path="admin/bugs" element={<RelationBug />} />
-      <Route path="admin/abuses" element={<RelationAbuses />} />
-      <Route path="admin/problems" element={<RelationProblem />} />
-      <Route path="admin/feedback" element={<RelationFeedback />} />
-      <Route path="admin/review" element={<RelationReviews />} />
-      <Route path="admin/explorers" element={<Explorers />} />
-      <Route path="admin/coaches" element={<Coaches />} />
-      <Route path="admin/organisations" element={<Organisations />} />
-      <Route path="admin/plans" element={<div>Admin Plans Page</div>} />
-      <Route path="admin/assessments" element={<Assessments />} />
-      <Route path="admin/sessions" element={<Sessions />} />
-      <Route path="admin/session-pool" element={<SessionPool />} />
-      <Route path="admin/masterclasses" element={<Masterclasses />} />
-      <Route path="admin/access-codes" element={<AccessCodes />} />
-      <Route path="admin/consultant-premium" element={<ConsultantPremium />} />
-      <Route path="admin/desk-iam" element={<DeskUsers />} />
-      <Route path="admin/addTeamMember" element={<AdminAddTeamMember />} />
+      <Route path="platform/activities" element={<Activities />} />
+      <Route path="platform/leads" element={<div>platform Leads Page</div>} />
+      <Route path="platform/bugs" element={<RelationBug />} />
+      <Route path="platform/abuses" element={<RelationAbuses />} />
+      <Route path="platform/problems" element={<RelationProblem />} />
+      <Route path="platform/feedback" element={<RelationFeedback />} />
+      <Route path="platform/review" element={<RelationReviews />} />
+      <Route path="platform/explorers" element={<Explorers />} />
+      <Route path="platform/coaches" element={<Coaches />} />
+      <Route path="platform/organisations" element={<Organisations />} />
+      <Route path="platform/plans" element={<div>platform Plans Page</div>} />
+      <Route path="platform/assessments" element={<Assessments />} />
+      <Route path="platform/sessions" element={<Sessions />} />
+      <Route path="platform/session-pool" element={<SessionPool />} />
+      <Route path="platform/masterclasses" element={<Masterclasses />} />
+      <Route path="platform/access-codes" element={<AccessCodes />} />
+      <Route path="platform/consultant-premium" element={<ConsultantPremium />} />
+      <Route path="platform/desk-iam" element={<DeskUsers />} />
+      <Route path="platform/addTeamMember" element={<AdminAddTeamMember />} />
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
