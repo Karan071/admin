@@ -9,13 +9,12 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Filter, NotebookText } from "lucide-react";
+import { Calendar1, ChevronDown, Filter, NotebookText, Plus } from "lucide-react";
 import {
   Users,
   UserCheck,
   UserPlus,
   MessageSquare,
-  Calendar,
 } from "lucide-react";
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import React from "react";
@@ -54,13 +53,13 @@ const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 
 const stats = [
   {
-    title: "Total Users",
+    title: "Total Explorers",
     value: 12457,
     icon: Users,
     performance: Up,
   },
   {
-    title: "Active Learners (30 Days)",
+    title: "Active Explorers (30 Days)",
     value: 4385,
     icon: UserCheck,
     performance: Up,
@@ -72,31 +71,24 @@ const stats = [
     performance: Down,
   },
   {
-    title: "Total Enquiries",
-    value: 42,
+    title: "New Signups (This Month)",
+    value: 1038,
     icon: MessageSquare,
     performance: Up,
   },
   {
-    title: "Users with Sessions Booked",
-    value: 1205,
-    icon: Calendar,
-    performance: Down,
-  },
-  {
-    title: "Users Completed ACE Test",
-    value: 3785,
+    title: "Total Enquiries",
+    value: 642,
     icon: NotebookText,
     performance: Down,
   },
 ];
 
 export default function Explorer() {
-  const [showFilter, setShowFilter] = useState(false);
 
   return (
     <div className="flex flex-col">
-      <main className="flex flex-col gap-4">
+      <main className="flex flex-col gap-2">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <h1 className="text-2xl font-bold text-[var(--text-head)]">
             Explorers Dashboard
@@ -104,18 +96,8 @@ export default function Explorer() {
         </div>
 
         <StatsCards />
-
-        <Button
-          variant="border"
-          onClick={() => setShowFilter(true)}
-          className="flex items-center gap-2 self-end"
-        >
-          <Filter className="h-4 w-4" />
-          {showFilter ? "Hide Filters" : "Show Filters"}
-        </Button>
-
-        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
-
+        <Buttonbar/>
+       
         <div className="">
           <ExplorerTable />
         </div>
@@ -124,13 +106,44 @@ export default function Explorer() {
   );
 }
 
+function Buttonbar() {
+  const [showFilter, setShowFilter] = useState(false);
+  return (
+    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
+        <div className="flex gap-4">
+      <Button variant="brand" size="new">
+        <Plus className="h-3 w-3" />
+        <span className="">Add Explorer</span>
+      </Button>
+        </div>
+      <div className="flex gap-4">
+        <Button variant="standard" size="new">
+          <Calendar1 className="h-3 w-3" />
+          <span className="">Select Date Range</span>
+        </Button>
+        <Button
+          variant="standard" size="new"
+          onClick={() => setShowFilter(true)}
+        >
+          <Filter className="h-3 w-3" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
+
+      </div>
+    </div>
+  );
+}
+
+
 function StatsCards() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-6">
+    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
       {stats.map((stat, index) => (
         <Card
           key={index}
-          className="xl:rounded-sm shadow-none bg-[var(--background)]"
+          className="rounded-sm shadow-none bg-[var(--background)]"
         >
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
             <div className="flex justify-between h-full items-center">
@@ -215,7 +228,7 @@ function AdvancedFilters({ onClose }: FilterProps) {
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
       <div
         ref={modalRef}
-        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+        className="relative w-full max-w-[700px] h-[500px] rounded-sm bg-[var(--background)] "
       >
         <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
           <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">
@@ -592,7 +605,7 @@ function ExplorerTable() {
             )}
           </div>
           <div className="flex justify-end items-center gap-4 ">
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
+            <div className="flex justify-around items-center border-1 rounded-sm overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -657,14 +670,6 @@ function ExplorerTable() {
                 </TableHead>
                 <TableHead
                   onClick={() => requestSort("Sessions")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  Sessions{" "}
-                  {sortConfig?.key === "Sessions" &&
-                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead
-                  onClick={() => requestSort("Source")}
                   className="cursor-pointer text-[var(--text)]"
                 >
                   Source{" "}
@@ -758,11 +763,6 @@ function ExplorerTable() {
                     <div className="text-sm">
                       {user.assessments.completed}/{user.assessments.total}{" "}
                       Complete
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-sm">
-                      {user.sessions.total} ({user.sessions.missed} Missed)
                     </div>
                   </TableCell>
                   <TableCell>{user.source}</TableCell>

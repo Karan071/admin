@@ -13,8 +13,6 @@ import {
   Users,
   UserCheck,
   UserPlus,
-  MessageSquare,
-  Calendar,
 } from "lucide-react";
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import { useState } from "react";
@@ -58,28 +56,16 @@ const stats = [
     performance: Up,
   },
   {
-    title: "Pending Approvals",
-    value: "34",
-    icon: UserCheck,
-    performance: Up,
-  },
-  {
     title: "New This Week",
     value: "27",
     icon: UserPlus,
     performance: Down,
   },
   {
-    title: "Sessions Conducted",
-    value: "4,860",
-    icon: MessageSquare,
+    title: "Pending Approvals",
+    value: "34",
+    icon: UserCheck,
     performance: Up,
-  },
-  {
-    title: "Masterclasses Hosted",
-    value: "67",
-    icon: Calendar,
-    performance: Down,
   },
   {
     title: "Coaches with Orgs",
@@ -92,7 +78,7 @@ const stats = [
 export default function Coaches() {
   const [showFilter, setShowFilter] = useState(false);
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Coaches</h1>
       <StatsCards />
         {/*<Buttonbar />*/}
@@ -162,7 +148,7 @@ function AdvancedFilters({ onClose }: FilterProps) {
 
       <div
         ref={modalRef}
-        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+        className="relative w-full max-w-[700px] h-[500px] rounded-sm bg-[var(--background)] "
       >
         <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
           <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
@@ -334,9 +320,9 @@ function AdvancedFilters({ onClose }: FilterProps) {
 
 function StatsCards() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-6">
+    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
       {stats.map((stat, index) => (
-        <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
+        <Card key={index} className="rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
             <div className="flex justify-between h-full items-center">
               <div
@@ -363,7 +349,7 @@ function StatsCards() {
 
 
 function CoachTableSection() {
-  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(5);
   const [sortConfig, setSortConfig] = useState<{
@@ -373,7 +359,7 @@ function CoachTableSection() {
   const [selectedCoachStack, setSelectedCoachStack] = useState<
     typeof coachTableData
   >(coachTableData[0] ? [coachTableData[0]] : []);
-  const [focusedCoachId, setFocusedCoachId] = useState<number | null>(coachTableData[0]?.id || null);
+  const [focusedCoachId, setFocusedCoachId] = useState<string | null>(coachTableData[0]?.id || null);
 
   // Sorting logic
   const sortedData = [...coachTableData];
@@ -416,12 +402,12 @@ function CoachTableSection() {
       setSelectedUsers([]);
     } else {
       setSelectedUsers(
-        currentRecords.map((user): number => user.id)
+        currentRecords.map((user): string => user.id)
       );
     }
   };
 
-  const bringToTop = (userId: number) => {
+  const bringToTop = (userId: string) => {
     const coach = selectedCoachStack.find((c) => c.id === userId);
     if (coach) {
       setSelectedCoachStack((prev) => [
@@ -436,7 +422,7 @@ function CoachTableSection() {
     const allRows = document.querySelectorAll("tr[data-id]");
 
     allRows.forEach((row) => {
-      const id = Number(row.getAttribute("data-id"));
+      const id = String(row.getAttribute("data-id"));
       const isInStack = selectedCoachStack.some((coach) => coach.id === id);
       const isTop = focusedCoachId === id;
 
@@ -477,7 +463,7 @@ function CoachTableSection() {
     }
   };
 
-  const toggleSelectUser = (userId: number) => {
+  const toggleSelectUser = (userId: string) => {
     if (selectedUsers.includes(userId)) {
       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
     } else {
@@ -525,7 +511,7 @@ function CoachTableSection() {
           </div>
           <div className="flex justify-end items-center gap-4 ">
 
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
+            <div className="flex justify-around items-center border-1 rounded-sm overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -558,6 +544,14 @@ function CoachTableSection() {
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
+                  onClick={() => requestSort("type")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Type{" "}
+                  {sortConfig?.key === "type" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
                   onClick={() => requestSort("Specialty")}
                   className="cursor-pointer text-[var(--text)]"
                 >
@@ -582,26 +576,10 @@ function CoachTableSection() {
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("sessions.total")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  Sessions{" "}
-                  {sortConfig?.key === "sessions.total" &&
-                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead
-                  onClick={() => requestSort("assessments")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  Assessments{" "}
-                  {sortConfig?.key === "assessments" &&
-                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead
                   onClick={() => requestSort("orgLinked")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Org Linked{" "}
+                  Organisation{" "}
                   {sortConfig?.key === "orgLinked" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
@@ -659,11 +637,15 @@ function CoachTableSection() {
                         />
                       </div>
                       <div>
-                        <div className="flex justify-start items-center">
+                        <div className="flex justify-start flex-col">
                           <div className="font-medium">{user.profile.name}</div>
+                          <div className="text-xs">{user.id}</div>
                         </div>
                       </div>
                     </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.type}</div>
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-wrap gap-1">
@@ -682,15 +664,6 @@ function CoachTableSection() {
                   </TableCell>
                   <TableCell>
                     <Badge variant="standard">{user.status}</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-low">
-                      <div>{`${user.sessions.total}`}</div>
-                      <div className="text-xs text-[var(--text)]">{`${user.sessions.completed} Completed`}</div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-low">{user.assessments}</div>
                   </TableCell>
                   <TableCell>{user.orgLinked}</TableCell>
                   <TableCell>

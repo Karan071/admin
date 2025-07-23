@@ -1,96 +1,123 @@
-import { Building2, UserCheck, Globe, Clock, Link, CircleArrowUp, CircleArrowDown, Search, Bell, Check, X, Flag } from "lucide-react";
-import { Card, CardHeader, CardTitle, } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Filter, ChevronRight, ChevronLeft, Eye } from "lucide-react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import {
+  Search,
+  Building2,
+  Filter,
+  Phone,
+  MessageCircleIcon,
+  BoxSelect,
+  Notebook,
+  ScrollText,
+  FileDown,
+} from "lucide-react";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Users,
+  UserCheck,
+  UserPlus,
+} from "lucide-react";
+import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { orgTableData } from "@/data/Data";
-
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { LeadExplore } from "@/data/Data";
+//import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
-//import { AnimatePresence, motion } from "framer-motion";
-import photo from "@/assets/asset.jpg"
+import { cn } from "@/lib/utils";
+import { Checkbox } from "@/components/ui/checkbox";
+import React from "react";
 import RadioButton from "@/components/ui/Radiobutton";
-import DatePick from "@/components/ui/DatePicker"
-import CitySelection from "@/components/ui/CitySelection";
-
-
-
+import {DateRangePicker} from '@/components/ui/RangeCalender'
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
 const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
-const orgStats = [
+
+const stats = [
   {
-    title: "Total Organisations",
-    value: "1438",
+    title: "Total Leads",
+    value: "128",
+    icon: Users,
+    performance: Up,
+  },
+  {
+    title: "High Score Leads",
+    value: " 28",
+    icon: UserPlus,
+    performance: Down,
+  },
+  {
+    title: "Assigned",
+    value: "90",
+    icon: UserCheck,
+    performance: Up,
+  },
+  {
+    title: "Engaged",
+    value: "32",
     icon: Building2,
     performance: Up,
   },
   {
-    title: "Claimed Profiles",
-    value: "456",
-    icon: UserCheck,
-    performance: Down,
-  },
-  {
-    title: "Public (Unclaimed)",
-    value: "982",
-    icon: Globe,
+    title: "Converted",
+    value: "18",
+    icon: Building2,
     performance: Up,
   },
   {
-    title: "Pending Approvals",
+    title: "Unassigned",
     value: "12",
-    icon: Clock,
-    performance: Up,
-  },
-  {
-    title: "Representative Assigned",
-    value: "182",
-    icon: Link,
+    icon: Building2,
     performance: Up,
   },
 ];
 
-
-
-export default function Organisation() {
-  const [showFilter, setShowFilter] = useState(false)
-
+export function Explorer() {
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation</h1>
-      <OrgCard />
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Explorer Leads</h1>
+      <StatsCards />
+        {/*<Buttonbar />*/}
+        <Button
+          variant="border"
+          onClick={() => setShowFilter(true)}
+          className="flex items-center gap-2 self-end"
+        >
+          <Filter className="h-4 w-4" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
 
-      <Button
-        variant="border"
-        onClick={() => setShowFilter(true)}
-        className="flex items-center gap-2 self-end"
-      >
-        <Filter className="h-4 w-4" />
-        {showFilter ? "Hide Filters" : "Show Filters"}
-      </Button>
+        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
 
-      {showFilter && <OrgFilter onClose={() => setShowFilter(false)} />}
 
-      <OrganisationTable />
-    </div>
-  )
+        <CoachTableSection />
+      </div>
+  );
 }
 
-interface OrgFilterProps {
+interface FilterProps {
   onClose: () => void;
 }
 
 
-function OrgFilter({ onClose }: OrgFilterProps) {
+function AdvancedFilters({ onClose }: FilterProps) {
   const modalRef = React.useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState("General");
 
@@ -114,19 +141,22 @@ function OrgFilter({ onClose }: OrgFilterProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  const [type, setType] = useState("School");
-  const [claim, setClaim] = useState("Claimed");
-  const [coach, setCoach] = useState("Yes");
-  const [session, setSession] = useState("10+");
+  const [status, setStatus] = useState("New");
+  const [segment, setSegment] = useState("6-8");
+  const [lead, setLead] = useState("High");
+  const [obj, setObj] = useState("Study Abroad");
+  const [assigned, setAssigned] = useState("Team Member 1");
+  const [partner, setPartner] = useState("Yes");
 
   const tabList = [
     "General",
-    "Type",
-    "Claim Status",
-    "Location",
-    "Affiliated Coaches",
-    "Sessions Conducted",
-    "Last Activity",
+    "Segment",
+    "Status",
+    "Lead Score",
+    "Objective",
+    "Assigned To",
+    "Channel Partner",
+    "Date Range",
   ];
 
   return (
@@ -170,71 +200,67 @@ function OrgFilter({ onClose }: OrgFilterProps) {
           <div className="p-6 overflow-y-auto relative w-full">
             {activeTab === "General" && (
               <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter Name/Email/Phone :</label>
+                <label htmlFor="Gen" className="text-[var(--text)]">Enter Name :</label>
                 <Input id="Gen" placeholder="Enter .." type="text" className="mt-4 w-full " />
 
               </>
             )}
 
-            {activeTab === "Type" && (
+            {activeTab === "Status" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the type of Organisation you are:
+                  Select the Status:
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
-                    "School",
-                    "Institute",
-                    "Collage",
-                    "University",
-                    "NGO",
-                    "Corporation",
+                    "New",
+                    "Contacted",
+                    "In Follow-Up",
+                    "Engaged",
+                    "Closed"
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={type}
-                      onChange={setType}
+                      selected={status}
+                      onChange={setStatus}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Claim Status" && (
+            {activeTab === "Segment" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select Your Current Claim Status:
+                  Select the Segment :
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
-                    "Claimed",
-                    "Public (Unclaimed)",
-                    "Pending Approval",
+                    "6-8",
+                    "9-10",
+                    "11-12",
+                    "UG",
+                    "PG",
+                    "Professional"
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={claim}
-                      onChange={setClaim}
+                      selected={segment}
+                      onChange={setSegment}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Location" && (
-              <>
-                <CitySelection />
-              </>
-            )}
-
-            {activeTab === "Affiliated Coaches" && (
+            {activeTab === "Channel Partner" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Are you Affiliated with Coaches:
+                  Filter with Channel Partner:
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
@@ -245,42 +271,88 @@ function OrgFilter({ onClose }: OrgFilterProps) {
                       key={option}
                       label={option}
                       value={option}
-                      selected={coach}
-                      onChange={setCoach}
+                      selected={partner}
+                      onChange={setPartner}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Sessions Conducted" && (
+            {activeTab === "Lead Score" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  How Many Sessions have you Conducted:
+                  Select the Lead Score :
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)]  ">
                   {[
-                    "0",
-                    "1-10",
-                    "10+",
+                    "High",
+                    "Medium",
+                    "Low",
                   ].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={session}
-                      onChange={setSession}
+                      selected={lead}
+                      onChange={setLead}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Last Activity" && (
+            {activeTab === "Objective" && (
               <>
-                <label htmlFor="act" className="text-[var(--text)]">Enter You Last Activity Date:</label>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select the Objective :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)]  ">
+                  {[
+                    "Study Abroad",
+                    "Career Change",
+                    "Job Prep",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={obj}
+                      onChange={setObj}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Assigned To" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select the Assigned To :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)]  ">
+                  {[
+                    "Team Member 1",
+                    "Team Member 2",
+                    "Team Member 3",
+                  ].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={assigned}
+                      onChange={setAssigned}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Date Range" && (
+              <>
+                <label htmlFor="act" className="text-[var(--text)]">Select the Date Range:</label>
                 <div className="mt-4 min-w-full">
-                  <DatePick />
+                  <DateRangePicker />
                 </div>
               </>
             )}
@@ -303,10 +375,11 @@ function OrgFilter({ onClose }: OrgFilterProps) {
   );
 }
 
-function OrgCard() {
+
+function StatsCards() {
   return (
-    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
-      {orgStats.map((stat, index) => (
+    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-6">
+      {stats.map((stat, index) => (
         <Card key={index} className="rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
             <div className="flex justify-between h-full items-center">
@@ -332,7 +405,8 @@ function OrgCard() {
 
 
 
-function OrganisationTable() {
+
+function CoachTableSection() {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(5);
@@ -340,13 +414,13 @@ function OrganisationTable() {
     key: string;
     direction: "ascending" | "descending";
   } | null>(null);
-  const [selectedStack, setSelectedStack] = useState<
-    typeof orgTableData
-  >(orgTableData[0] ? [orgTableData[0]] : []);
-  const [focusedId, setFocusedId] = useState<string | null>(orgTableData[0]?.id || null);
+  const [selectedCoachStack, setSelectedCoachStack] = useState<
+    typeof LeadExplore
+  >(LeadExplore[0] ? [LeadExplore[0]] : []);
+  const [focusedCoachId, setFocusedCoachId] = useState<string | null>(LeadExplore[0]?.id || null);
 
   // Sorting logic
-  const sortedData = [...orgTableData];
+  const sortedData = [...LeadExplore];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
       const aValue = a[sortConfig.key as keyof typeof a];
@@ -386,19 +460,19 @@ function OrganisationTable() {
       setSelectedUsers([]);
     } else {
       setSelectedUsers(
-        currentRecords.map((user) => user.id)
+        currentRecords.map((user): string => user.id)
       );
     }
   };
 
   const bringToTop = (userId: string) => {
-    const coach = selectedStack.find((c) => c.id === userId);
+    const coach = selectedCoachStack.find((c) => c.id === userId);
     if (coach) {
-      setSelectedStack((prev) => [
+      setSelectedCoachStack((prev) => [
         coach,
         ...prev.filter((c) => c.id !== userId),
       ]);
-      setFocusedId(userId);
+      setFocusedCoachId(userId);
     }
   };
 
@@ -407,8 +481,8 @@ function OrganisationTable() {
 
     allRows.forEach((row) => {
       const id = String(row.getAttribute("data-id"));
-      const isInStack = selectedStack.some((coach) => coach.id === id);
-      const isTop = focusedId === id;
+      const isInStack = selectedCoachStack.some((coach) => coach.id === id);
+      const isTop = focusedCoachId === id;
 
       // Remove previous styles
       row.classList.remove(
@@ -424,24 +498,18 @@ function OrganisationTable() {
         }
       }
     });
-  }, [selectedStack, focusedId]);
+  }, [selectedCoachStack, focusedCoachId]);
 
-  {/*const removeCoach = (userId: number) => {
-    setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
-    if (focusedCoachId === userId) {
-      setFocusedCoachId(null);
-    }
-  };*/}
 
-  const handleRowClick = (user: (typeof orgTableData)[0]) => {
-    // Double-click detected
-    const exists = selectedStack.find((c) => c.id === user.id);
+  const handleRowClick = (user: (typeof LeadExplore)[0]) => {
+ 
+    const exists = selectedCoachStack.find((c) => c.id === user.id);
     if (!exists) {
-      setSelectedStack((prev) => {
+      setSelectedCoachStack((prev) => {
         const updated = [user, ...prev];
         return updated.slice(0, 5); // limit to 5
       });
-      setFocusedId(user.id);
+      setFocusedCoachId(user.id);
     } else {
       bringToTop(user.id);
     }
@@ -458,8 +526,8 @@ function OrganisationTable() {
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
-          <div className="flex items-center justify-between pl-0 p-4">
+        <div className="flex items-center justify-between border-b  h-20 p-4 mt-auto">
+          <div className="flex items-center justify-between pl-0 p-4  gap-2">
             <div className="flex items-center gap-2 border-none shadow-none">
               <Checkbox
                 id="select-all"
@@ -477,24 +545,33 @@ function OrganisationTable() {
             </div>
 
             {selectedUsers.length > 0 && (
-              <div className="flex gap-2 ml-2">
+              <div className="flex gap-2">        {/*wrap */}
                 <Button variant="border" size="sm">
-                  <Bell className="h-4 w-4" />
-                  Send Reminder
+                  <BoxSelect className="h-4 w-4" />
+                  Assign / Reassign Leads
                 </Button>
                 <Button variant="border" size="sm">
-                  <Check className=" h-4 w-4 text-[var(--green)]" />
-                  Approve All
+                  <Notebook className=" h-4 w-4" />
+                  Change Status
                 </Button>
-                <Button variant="delete" size="sm">
-                  <X className=" h-4 w-4 text-[var(--red)]" />
-                  Block / Remove
+                <Button variant="border" size="sm">
+                  <ScrollText className=" h-4 w-4" />
+                  Tag with Lead Score
+                </Button>
+                <Button variant="border" size="sm">
+                  <MessageCircleIcon className=" h-4 w-4" />
+                  Send Campaign Message
+                </Button>
+                <Button variant="border" size="sm">
+                  <FileDown className=" h-4 w-4" />
+                  Export (.CSV)
                 </Button>
               </div>
             )}
           </div>
           <div className="flex justify-end items-center gap-4 ">
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
+
+            <div className="flex justify-around items-center border-1 rounded-sm overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -509,6 +586,7 @@ function OrganisationTable() {
                 <Search className="h-5 w-5 text-[var(--text)]" />
               </Button>
             </div>
+
           </div>
         </div>
 
@@ -518,60 +596,67 @@ function OrganisationTable() {
               <TableRow>
                 <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
-                  onClick={() => requestSort("profile.name")}
+                  onClick={() => requestSort("name")}
                   className="cursor-pointer text-[var(--text)] text-low"
                 >
-                  Organization{" "}
-                  {sortConfig?.key === "profile.name" &&
+                  Name{" "}
+                  {sortConfig?.key === "name" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("contact.email")}
+                  onClick={() => requestSort("segment")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Contact{" "}
-                  {sortConfig?.key === "contact.email" &&
+                  Segment{" "}
+                  {sortConfig?.key === "segment" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("Location")}
+                  onClick={() => requestSort("objective")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Location{" "}
-                  {sortConfig?.key === "Location" &&
+                  Objective{" "}
+                  {sortConfig?.key === "objective" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("Type")}
+                  onClick={() => requestSort("status")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Type{" "}
-                  {sortConfig?.key === "Type" &&
+                  Status{" "}
+                  {sortConfig?.key === "status" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("ClaimedStatus")}
+                  onClick={() => requestSort("leadScore")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Claimed Status{" "}
-                  {sortConfig?.key === "ClaimedStatus" &&
+                  Lead Score{" "}
+                  {sortConfig?.key === "leadScore" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("representative")}
+                  onClick={() => requestSort("assignedTo")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Representative{" "}
-                  {sortConfig?.key === "representative" &&
+                  Assigned To{" "}
+                  {sortConfig?.key === "assignedTo" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
-                
                 <TableHead
-                  onClick={() => requestSort("lastActive")}
+                  onClick={() => requestSort("source")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Registered/Last Active{" "}
-                  {sortConfig?.key === "lastActive" &&
+                  Source{" "}
+                  {sortConfig?.key === "source" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("createdOn")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Created On{" "}
+                  {sortConfig?.key === "createdOn" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead className="text-[var(--text)]">Actions</TableHead>
@@ -584,7 +669,7 @@ function OrganisationTable() {
                   data-id={user.id}
                   className={cn(
                     "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-                    selectedStack.some((c) => c.id === user.id)
+                    selectedCoachStack.some((c) => c.id === user.id)
                       ? "bg-[var(--brand-color3)]"
                       : ""
                   )}
@@ -596,8 +681,8 @@ function OrganisationTable() {
                   <TableCell
                     className={cn(
                       "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
-                      selectedStack.some((c) => c.id === user.id)
-                        ? focusedId === user.id
+                      selectedCoachStack.some((c) => c.id === user.id)
+                        ? focusedCoachId === user.id
                           ? "border-[var(--brand-color)]"
                           : "border-transparent"
                         : "border-transparent"
@@ -609,15 +694,9 @@ function OrganisationTable() {
                       onCheckedChange={() => toggleSelectUser(user.id)}
                     />
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                  >
                     <div className="flex items-center gap-4">
-                      <div className="h-14 w-14 rounded-full overflow-hidden">
-                        <img
-                          src={photo}
-                          alt={user.name}
-                          className="h-14 w-14 object-cover"
-                        />
-                      </div>
                       <div>
                         <div className="flex justify-start flex-col">
                           <div className="font-medium">{user.name}</div>
@@ -627,72 +706,36 @@ function OrganisationTable() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.contact.email}</div>
-                    <div className="text-xs text-[var(--text)]">
-                      {user.contact.phone}
-                    </div>
+                    <div className="text-low">{user.segment}</div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-sm">
-                      <div>{`${user.location}`}</div>
-                    </div>
+                    <div className="text-low">{user.objective}</div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="standard">{user.type}</Badge>
+                    <Badge variant="standard">{user.status}</Badge>
                   </TableCell>
                   <TableCell>
-                    <div className="text-sm">{user.claimStatus}</div>
+                    <Badge variant="standard">{user.leadScore}</Badge>
                   </TableCell>
-                  <TableCell>
-                    <div className="text-sm">{user.representative}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-low">{user.registered}</div>
-                    <div className="text-xs text-[var(--text)]">{user.lastActive}</div>
-                  </TableCell>
+                  <TableCell>{user.assignedTo}</TableCell>
+                  <TableCell>{user.source}</TableCell>
+                  <TableCell>{user.createdOn}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-white border-0 shadow-none"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // navigate(`/user-details/${user.id}`) or your view logic
-                        }}
+                      // onClick={() => navigate(`/user-details/${user.id}`)}
                       >
-                        <Eye className="h-4 w-4" />
-                        <span className="sr-only">View</span>
+                        <Phone className="h-4 w-3" />
+                        <span className="sr-only">Call</span>
                       </Button>
-
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-[var(--background)] border-0 shadow-none"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // approve logic
-                        }}
-                      >
-                        <Check className="h-4 w-3 text-[var(--green)]" />
-                        <span className="sr-only">Approve</span>
-                      </Button>
-
-                      <Button
-                        variant="noborder"
-                        size="sm"
-                        className="bg-[var(--background)] border-0 shadow-none"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // block logic
-                        }}
-                      >
-                        <Flag className="h-4 w-3" />
-                        <span className="sr-only">Flagk</span>
+                      <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                        <MessageCircleIcon className="h-4 w-3" />
+                        <span className="sr-only">Message</span>
                       </Button>
                     </div>
                   </TableCell>
-
                 </TableRow>
               ))}
             </TableBody>
@@ -766,154 +809,6 @@ function OrganisationTable() {
           </div>
         </div>
       </div>
-
-
-
-      {/*<div className="xl:block hidden">
-      <div className="lg:h-[500px] xl:min-w-90 xxl:min-w-100  sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
-        <AnimatePresence>
-          {selectedCoachStack.map((coach, index) => {
-            const isTopCard =
-              coach.id === Number(focusedCoachId) ||
-              (focusedCoachId === null && index === 0);
-            const cardIndex = selectedCoachStack.length - 1 - index;
-
-            return (
-              <motion.div
-                key={coach.id}
-                className="absolute left-0 right-0 mx-auto max-w-md w-full h-max cursor-pointer shadow-none"
-                style={{
-                  top: `${cardIndex * 30}px`,
-                  zIndex: isTopCard ? 100 : 10 + cardIndex,
-                }}
-                onClick={() => bringToTop(coach.id)}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{
-                  opacity: 1,
-                  scale: isTopCard ? 1 : 0.95,
-                }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                whileHover={isTopCard ? {} : { scale: 0.97 }}
-              >
-                <motion.div
-                  className="relative border h-full border-border rounded-lg overflow-hidden bg-background"
-                  whileTap={isTopCard ? { scale: 0.98 } : {}}
-                >
-                  {!isTopCard && (
-                    <motion.div
-                      className="flex items-center justify-between text-xs text-[var(--text)] px-4 py-2 bg-accent/10 rounded-t-lg z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      <div>
-                        <span className="truncate max-w-[100px] block">
-                          {coach.name}
-                        </span>
-                      </div>
-                      <div>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            removeCoach(coach.id);
-                          }}
-                          className="text-[var(--red)] hover:text-[var(--red)/70] text-[16px]"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {isTopCard && (
-                    
-                    <motion.div
-                      className="flex  flex-col  justify-center items-center p-6"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <div className="flex-col ">
-                      <motion.img
-                        src={photo}
-                        alt={coach.name}
-                        className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg m-auto"
-                        whileHover={{ scale: 1.05 }}
-                      />
-                      <h1 className="text-xl font-semibold mt-4 text-[var(--text-head)]">
-                        {coach.name}
-                      </h1>
-                      <h2 className="text-sm text-[var(--text)] mb-2">
-                        {coach.location}
-                      </h2>
-
-                      <div className="flex justify-center gap-3 mt-2">
-                        <motion.button
-                          className="bg-[var(--green2)] rounded-full p-2 hover:[var(--green2)/80] transition-colors"
-                          title="Call"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Phone className="w-5 h-5 text-[var(--green)]" />
-                        </motion.button>
-                        <motion.button
-                          className="bg-[var(--red2)] rounded-full p-2 hover:bg-[var(--red2)/80] dark:bg-[var(--red2)] transition-colors"
-                          title="Email"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Mail className="w-5 h-5 text-[var(--red)]" />
-                        </motion.button>
-                        <motion.button
-                          className="bg-[var(--yellow2)] dark:bg-[var(--yellow2)] rounded-full p-2 hover:bg-[var(--yellow2)/80] transition-colors"
-                          title="Message"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <MessageCircle className="w-5 h-5 text-[var(--yellow)]" />
-                        </motion.button>
-                      </div>
-                      </div>
-                      <div className="mt-6 text-sm text-left w-full">
-                        <h3 className="font-semibold text-[var(--text-head)] mb-1">
-                          PERSONAL INFORMATION
-                        </h3>
-                        <p className="text-[var(--text)] text-sm mb-4">
-                          This coach has not added a bio.
-                        </p>
-                        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--text)]">
-                          <div className="font-medium">Designation</div>
-                          <div>{coach.type}</div>
-                          <div className="font-medium">Email ID</div>
-                          <div>{coach.contact.email}</div>
-                          <div className="font-medium">Phone No</div>
-                          <div>{coach.contact.phone}</div>
-                          <div className="font-medium">Lead Score</div>
-                          <div>-</div>
-                          <div className="font-medium">Tags</div>
-                          <div className="flex gap-2">
-                            <Badge variant="brand" className="text-xs ">
-                              Lead
-                            </Badge>
-                            <Badge variant="brand" className="text-xs">
-                              Partner
-                            </Badge>
-                          </div>
-                          <div className="font-medium">Last Contacted</div>
-                          <div>{coach.lastActive}</div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </div>
-    </div>*/}
     </div>
   );
 }

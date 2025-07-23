@@ -72,12 +72,6 @@ import { Approvals as ReviewDesk } from "@/pages/ReviewDesk/Approval";
 import { Forms as ReviewForms } from "@/pages/ReviewDesk/Forms";
 import { GoogleMap as ReviewGoogleMaps } from "@/pages/ReviewDesk/Googlemap";
 import { ProfileCoach as ReviewProfileCoach } from "@/pages/ReviewDesk/ProfileCoach";
-import { Companies as ReviewCompanies } from "@/pages/ReviewDesk/Organization/Companies";
-import { Schools as ReviewSchools } from "@/pages/ReviewDesk/Organization/Schools";
-import { Institutes as ReviewInstitutes } from "@/pages/ReviewDesk/Organization/Institutes";
-import { Colleges as ReviewColleges } from "@/pages/ReviewDesk/Organization/Colleges";
-import { Universities as ReviewUniversities } from "@/pages/ReviewDesk/Organization/Universities";
-import { Ngos as ReviewNgos } from "@/pages/ReviewDesk/Organization/Ngos";
 
 export default function AppRoutes() {
   return (
@@ -105,13 +99,7 @@ export default function AppRoutes() {
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
-      <Route path="review/companies" element={<ReviewCompanies />} />
       <Route path="review/courses" element={<Courses />} />
-      <Route path="review/schools" element={<ReviewSchools />} />
-      <Route path="review/institutes" element={<ReviewInstitutes />} />
-      <Route path="review/colleges" element={<ReviewColleges />} />
-      <Route path="review/universities" element={<ReviewUniversities />} />
-      <Route path="review/ngos" element={<ReviewNgos />} />
       <Route path="review/exams" element={<div>Approval Exams Page</div>} />
       <Route path="review/careers" element={<div>Approval Careers Page</div>} />
       <Route path="review/scholarships" element={<div>Approval Scholarships Page</div>}/>
