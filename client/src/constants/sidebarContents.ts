@@ -431,7 +431,7 @@ export const SidebarData = {
       ],
     },
     {
-      title: "Relation ",
+      title: "Relation",
       isHeading: true,
       items: [
         {
@@ -440,34 +440,118 @@ export const SidebarData = {
           icon: PhoneCall,
         },
         {
-          title: "Search",
-          url: "/desk/relation/search",
-          icon: PhoneCall,
-        },
-        {
-          title: "Follow Ups",
-          url: "/desk/relation/follow-ups",
+          title: "My Pipeline",
+          url: "/desk/relation/my-pipeline",
           icon: PhoneCall,
         },
         {
           title: "Pool",
-          url: "/desk/relation/follow-ups",
+          url: "/desk/relation/pool",
           icon: PhoneCall,
         },
         {
-          title: "My Accounts",
-          url: "/desk/relation/my-accounts",
-          icon: CircleUser,
+          title: "Leads",
+          icon: UserPlus,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            {
+              title: "Explorers",
+              url: "/desk/relation/leads/explorers",
+              icon: Users,
+            },
+            {
+              title: "Coaches",
+              url: "/desk/relation/leads/coaches",
+              icon: UserCheck,
+            },
+            {
+              title: "Organisations",
+              url: "/desk/relation/leads/organisations",
+              icon: Building2,
+            },
+            {
+              title: "Channel Partner",
+              url: "/desk/relation/leads/channel-partner",
+              icon: Building,
+            },
+            {
+              title: "Partnerships Requests",
+              url: "/desk/relation/leads/partnerships-requests",
+              icon: MessageCircle,
+            },
+          ],
         },
         {
-          title: "My Teams",
-          url: "/desk/relation/my-teams",
-          icon: Users2,
+          title: "Cases",
+          icon: Folder,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            {
+              title: "Problems",
+              url: "/desk/relation/cases/problems",
+              icon: AlertCircle,
+            },
+            {
+              title: "Bugs",
+              url: "/desk/relation/cases/bugs",
+              icon: Bug,
+            },
+            {
+              title: "Abuses",
+              url: "/desk/relation/cases/abuses",
+              icon: Shield,
+            },
+          ],
         },
         {
-          title: "Leaderboard",
-          url: "/desk/relation/leaderboard",
-          icon: Trophy,
+          title: "Explorers",
+          url: "/desk/relation/explorers",
+          icon: Users,
+        },
+        {
+          title: "Coaches",
+          url: "/desk/relation/coaches",
+          icon: UserCheck,
+        },
+        {
+          title: "Organisations",
+          icon: Building2,
+          url: "#",
+          isCollapsible: true,
+          items: [
+            {
+              title: "Institutes",
+              url: "/desk/relation/organisations/institutes",
+              icon: GraduationCap,
+            },
+            {
+              title: "Schools",
+              url: "/desk/relation/organisations/schools",
+              icon: School,
+            },
+            {
+              title: "Colleges",
+              url: "/desk/relation/organisations/colleges",
+              icon: BookOpen,
+            },
+            {
+              title: "Companies",
+              url: "/desk/relation/organisations/companies",
+              icon: Briefcase,
+            },
+            {
+              title: "Universities",
+              url: "/desk/relation/organisations/universities",
+              icon: GraduationCap,
+            },
+            {
+              title: "NGO's",
+              url: "/desk/relation/organisations/ngos",
+              icon: Heart,
+            },
+          ],
         },
       ],
     },
@@ -481,7 +565,7 @@ export const SidebarData = {
           icon: TrophyIcon,
         },
         {
-          title: "Pipeline",
+          title: "My Tasks",
           url: "/desk/devops/pipeline",
           icon: TrophyIcon,
         },
@@ -493,6 +577,32 @@ export const SidebarData = {
         {
           title: "Leaderboard",
           url: "/desk/devops/leaderboard",
+          icon: TrophyIcon,
+        },
+      ],
+    },
+    {
+      title: "HR",
+      isHeading: true,
+      items: [
+        {
+          title: "HR Desk",
+          url: "/desk/hr/desk",
+          icon: TrophyIcon,
+        },
+        {
+          title: "Follow Ups",
+          url: "/desk/hr/follow-ups",
+          icon: TrophyIcon,
+        },
+        {
+          title: "Applications",
+          url: "/desk/hr/applications",
+          icon: TrophyIcon,
+        },
+        {
+          title: "Openings",
+          url: "/desk/hr/openings",
           icon: TrophyIcon,
         },
       ],
