@@ -6,6 +6,7 @@ import Explorers from "@/pages/AdminDesk/Explorers";
 import Organisations from "@/pages/AdminDesk/Organisations";
 import Activities from "@/pages/AdminDesk/Activities";
 import { Forms as AdminForms } from "@/pages/AdminDesk/Forms";
+import { CustomInput as AdminCustomInput } from "@/pages/AdminDesk/CustomInputs";
 import Assessments from "@/pages/AdminDesk/Manage/Assessments";
 import Sessions from "@/pages/AdminDesk/Manage/Sessions";
 import SessionPool from "@/pages/AdminDesk/Manage/SessionPool";
@@ -89,6 +90,7 @@ export default function AppRoutes() {
       <Route path="platform/explorers" element={<Explorers />} />
       <Route path="platform/coaches" element={<Coaches />} />
       <Route path="platform/forms" element={<AdminForms />} />
+      <Route path="platform/forms/customInput" element={<AdminCustomInput />} />
       <Route path="platform/organisations" element={<Organisations />} />
       <Route path="platform/plans" element={<div>platform Plans Page</div>} />
       <Route path="platform/assessments" element={<Assessments />} />

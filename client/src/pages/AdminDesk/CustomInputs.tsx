@@ -27,39 +27,27 @@ const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
 const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 const orgStats = [
   {
-    title: "Total Forms Created",
-    value: "24",
+    title: "Pending Inputs",
+    value: "38",
     icon: Building2,
     performance: Up,
   },
   {
-    title: "Active Forms",
-    value: "18",
+    title: "Approved",
+    value: "94",
     icon: UserCheck,
     performance: Down,
   },
   {
-    title: "Inactive Forms",
-    value: "4",
+    title: "Rejected",
+    value: "17",
     icon: Globe,
     performance: Down,
   },
   {
-    title: "Pending Approvals",
-    value: "3",
+    title: "New This Week",
+    value: "12",
     icon: Clock,
-    performance: Up,
-  },
-  {
-    title: "Total Submissions",
-    value: "3,920",
-    icon: Link,
-    performance: Up,
-  },
-  {
-    title: "New Submissions Today",
-    value: "74",
-    icon: Link,
     performance: Up,
   },
 ];
@@ -67,7 +55,7 @@ const orgStats = [
 
 
 
-export function Forms() {
+export function CustomInput() {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
@@ -304,7 +292,7 @@ function OrgFilter({ onClose }: OrgFilterProps) {
 
 function StatCard() {
   return (
-    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-6">
+    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
       {orgStats.map((stat, index) => (
         <Card key={index} className="rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -424,12 +412,6 @@ function OrganisationTable() {
     });
   }, [selectedStack, focusedId]);
 
-  {/*const removeCoach = (userId: number) => {
-    setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
-    if (focusedCoachId === userId) {
-      setFocusedCoachId(null);
-    }
-  };*/}
 
   const handleRowClick = (user: (typeof AdminFormTable)[0]) => {
     // Double-click detected
