@@ -72,6 +72,7 @@ import { Approvals as ReviewDesk } from "@/pages/ReviewDesk/Approval";
 import { Forms as ReviewForms } from "@/pages/ReviewDesk/Forms";
 import { GoogleMap as ReviewGoogleMaps } from "@/pages/ReviewDesk/Googlemap";
 import { ProfileCoach as ReviewProfileCoach } from "@/pages/ReviewDesk/ProfileCoach";
+import { Organisation as ReviewOrganisation } from "@/pages/ReviewDesk/Organization";
 
 export default function AppRoutes() {
   return (
@@ -99,6 +100,7 @@ export default function AppRoutes() {
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
+      <Route path="review/organisation" element={<ReviewOrganisation />} />
       <Route path="review/courses" element={<Courses />} />
       <Route path="review/exams" element={<div>Approval Exams Page</div>} />
       <Route path="review/careers" element={<div>Approval Careers Page</div>} />

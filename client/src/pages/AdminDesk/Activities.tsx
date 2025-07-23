@@ -7,6 +7,8 @@ import {
     User,
     Newspaper,
     Filter,
+    Bell,
+    X,
 } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -34,6 +36,7 @@ import React from "react";
 import { CardTitle } from "@/components/ui/card";
 import RadioButton from "@/components/ui/Radiobutton";
 import DatePicker from '@/components/ui/DatePicker';
+import { Checkbox } from "@/components/ui/checkbox";
 
 
 export default function Activities() {
@@ -52,7 +55,7 @@ export default function Activities() {
 
       {showFilter && <AdvanceFilter onClose={() => setShowFilter(false)} />}
 
-            <CoachTable />
+            <ActivityTable />
         </div>
     )
 }
@@ -240,9 +243,10 @@ function AdvanceFilter({ onClose }: FilterProps) {
 
 
 
-function CoachTable() {
+function ActivityTable() {
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage, setRecordsPerPage] = useState(5);
+    const [recordsPerPage, setRecordsPerPage] = useState(10);
     const [sortConfig, setSortConfig] = useState<{
         key: string;
         direction: "ascending" | "descending";
@@ -281,42 +285,90 @@ function CoachTable() {
             direction = "descending";
         }
         setSortConfig({ key, direction });
-    };
+    }
+     const toggleSelectUser = (userId: string) => {
+    if (selectedUsers.includes(userId)) {
+      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    } else {
+      setSelectedUsers([...selectedUsers, userId]);
+    }
+  };
     
+  const toggleSelectAll = () => {
+    if (selectedUsers.length === currentRecords.length) {
+      setSelectedUsers([]);
+    } else {
+      setSelectedUsers(
+        currentRecords.map((user): string => user.id)
+      );
+    }
+  };
 
 
     return (
         <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
             <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-                <div className="flex items-center justify-between border-b h-20 p-4 mt-auto">
-                    <div className="flex items-center justify-between pl-0 p-4">
-                        
-                    </div>
-                    <div className="flex justify-end items-center gap-4 ">
+        <div className="flex items-center justify-between border-b  h-20 p-4 mt-auto">
+          <div className="flex items-center justify-between pl-0 p-4  gap-2">
+            <div className="flex items-center gap-2 border-none shadow-none">
+              <Checkbox
+                id="select-all"
+                checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
+                onCheckedChange={toggleSelectAll}
+              />
+              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                Select All
+              </label>
+              {selectedUsers.length > 0 && (
+                <Badge variant="border" className="ml-2 ">
+                  {selectedUsers.length} selected
+                </Badge>
+              )}
+            </div>
 
-                        <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-                            <Input
-                                placeholder="Search"
-                                className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-                            />
-                            <Button
-                                type="submit"
-                                size="icon"
-                                variant="standard"
-                                className="rounded-none rounded-r-md bg-[var(--button)]"
-                                aria-label="Search"
-                            >
-                                <Search className="h-5 w-5 text-[var(--text)]" />
-                            </Button>
-                        </div>
+            {selectedUsers.length > 0 && (
+              <div className="flex gap-2">        {/*wrap */}
+                <Button variant="border" size="sm">
+                  <Bell className="h-4 w-4" />
+                  Send Reminder
+                </Button>
+                <Button variant="border" size="sm">
+                  <Check className=" h-4 w-4 text-[var(--green)]" />
+                  Approve All
+                </Button>
+                <Button variant="delete" size="sm">
+                  <X className=" h-4 w-4 text-[var(--red)]" />
+                  Block / Remove
+                </Button>
+              </div>
+            )}
+          </div>
+          <div className="flex justify-end items-center gap-4 ">
 
-                    </div>
-                </div>
+            <div className="flex justify-around items-center border-1 rounded-sm overflow-hidden bg-[var(--faded)]">
+              <Input
+                placeholder="Search"
+                className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
+              />
+              <Button
+                type="submit"
+                size="icon"
+                variant="standard"
+                className="rounded-none rounded-r-md bg-[var(--button)]"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5 text-[var(--text)]" />
+              </Button>
+            </div>
+
+          </div>
+        </div>
 
                 <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
                     <Table className="w-full caption-top border-collapse overflow-y-visible">
                         <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
                             <TableRow>
+                                <TableHead className="min-w-[40px]"></TableHead>
                                 <TableHead onClick={() => requestSort("dateTime")} className="cursor-pointer text-[var(--text)]">
                                     Date & Time {sortConfig?.key === "dateTime" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
                                 </TableHead>
@@ -341,35 +393,44 @@ function CoachTable() {
                                         "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
                                     )}
                                 >
+                                <TableCell
+                    className={cn(
+                      "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
+                     )}
+                  >
+                    <Checkbox
+                      checked={selectedUsers.includes(user.id)}
+                      onClick={(e) => e.stopPropagation()}
+                      onCheckedChange={() => toggleSelectUser(user.id)}
+                    />
+                    </TableCell>
                                     <TableCell className="font-medium">{user.dateTime}</TableCell>
                                     <TableCell>{user.activityType}</TableCell>
-                                    <TableCell><Badge variant="border">{user.entity}</Badge></TableCell>
+                                    <TableCell><Badge variant="standard">{user.entity}</Badge></TableCell>
                                     <TableCell>{user.description}</TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-2">
                                             <Button
                                                 variant="noborder"
                                                 size="sm"
-                                                className="bg-white border-0 shadow-none"
-                                            // onClick={() => navigate(`/user-details/${user.id}`)}
                                             >
                                                 <Eye className="h-4 w-3" />
                                                 <span className="sr-only">View</span>
                                             </Button>
-                                            <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                                            <Button variant="noborder" size="sm" >
                                                 <Check className="h-4 w-3 text-[var(--green)]" />
                                                 <span className="sr-only">Varify</span>
                                             </Button>
 
-                                            <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                                            <Button variant="noborder" size="sm">
                                                 <Star className="h-4 w-3" />
                                                 <span className="sr-only">Review</span>
                                             </Button>
-                                            <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                                            <Button variant="noborder" size="sm">
                                                 <User className="h-4 w-3" />
                                                 <span className="sr-only">Assign</span>
                                             </Button>
-                                            <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                                            <Button variant="noborder" size="sm">
                                                 <Newspaper className="h-4 w-3 " />
                                                 <span className="sr-only">Followups</span>
                                             </Button>
@@ -395,7 +456,7 @@ function CoachTable() {
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                                {[5, 10, 25, 50, 100].map((size) => (
+                                {[10, 25, 50, 100].map((size) => (
                                     <DropdownMenuItem
                                         key={size}
                                         onClick={() => {

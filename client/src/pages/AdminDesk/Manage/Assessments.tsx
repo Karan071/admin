@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown, Search, Check, Users, FileCheck2, FileText, CheckCircle2, Trash, Copy, FileDown, Edit, BadgeQuestionMark, Newspaper, Plus } from "lucide-react";
+import { Clock, CircleArrowUp, CircleArrowDown, Search,  Users, FileCheck2, FileText, CheckCircle2, Trash,  FileDown, Edit, BadgeQuestionMark, Newspaper, Plus, FileUp, Download, MessageCircle, NotebookPen, Pen } from "lucide-react";
 import { Card, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -26,31 +26,31 @@ const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
 const Stats = [
   {
     title: "Total Assessments",
-    value: "128",
+    value: "38",
     icon: Users,
     performance: Up,
   },
   {
-    title: "Active Assessments",
-    value: "87",
+    title: "Published",
+    value: "26",
     icon: FileCheck2,
     performance: Down,
   },
   {
-    title: "Assessments Taken",
-    value: "8,947",
+    title: "Drafts",
+    value: "7",
     icon: FileText,
     performance: Up,
   },
   {
-    title: "In Progress",
-    value: "563",
+    title: "Pending Approvals",
+    value: "5",
     icon: Clock,
     performance: Up,
   },
   {
-    title: "Completed Reports Generated",
-    value: "6,482",
+    title: "New This Month",
+    value: "6",
     icon: CheckCircle2,
     performance: Up,
   },
@@ -58,31 +58,22 @@ const Stats = [
 
 
 
-export default function Organisation() {
-  const [showFilter, setShowFilter] = useState(false)
+export default function Assessments() {
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation Dashboard</h1>
+    <div className="flex flex-col gap-2">
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Assessments</h1>
       <StatCard />
       <Buttonbar />
-      <Button
-        variant="border"
-        onClick={() => setShowFilter(true)}
-        className="flex items-center gap-2 self-end"
-      >
-        <Filter className="h-4 w-4" />
-        {showFilter ? "Hide Filters" : "Show Filters"}
-      </Button>
-
-      {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
-
+      
       <AssessmentTable />
     </div>
   )
 }
 
 function Buttonbar() {
+  
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
@@ -92,16 +83,26 @@ function Buttonbar() {
       <div className="flex gap-4 flex-wrap">
         <Button variant="standard" size="new">
           <BadgeQuestionMark className="h-3 w-3" />
-          <span className="">Manage Questions</span>
+          <span className="">Manage Categories</span>
         </Button>
         <Button variant="standard" size="new">
-          <Eye className="h-3 w-3" />
-          <span className="">View Results</span>
+          <FileUp className="h-3 w-3" />
+          <span className="">Import (.CSV)</span>
         </Button>
         <Button variant="standard" size="new">
           <FileDown className="h-3 w-3" />
-          <span className="">Export Reports</span>
+          <span className="">Export</span>
         </Button>
+        <Button
+        variant="standard" size="new"
+        onClick={() => setShowFilter(true)}
+      >
+        <Filter className="h-4 w-4" />
+        {showFilter ? "Hide Filters" : "Show Filters"}
+      </Button>
+
+      {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
+
       </div>
     </div>
   );
@@ -114,7 +115,7 @@ interface FilterProps {
 
 function AssessFilter({ onClose }: FilterProps) {
   const modalRef = React.useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState("General");
+  const [activeTab, setActiveTab] = useState("Segment");
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -141,12 +142,10 @@ function AssessFilter({ onClose }: FilterProps) {
   const [status, setStatus] = useState("Active");
 
   const tabList = [
-    "General",
-    "Target Group",
+    "Segment",
     "Category",
     "Status",
-    "Created By",
-    "Date Range",
+    "Created Date",
   ];
 
   return (
@@ -154,7 +153,7 @@ function AssessFilter({ onClose }: FilterProps) {
 
       <div
         ref={modalRef}
-        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+        className="relative w-full max-w-[700px] h-[500px] rounded-sm bg-[var(--background)] "
       >
         <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
           <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
@@ -188,18 +187,12 @@ function AssessFilter({ onClose }: FilterProps) {
           {/* Tab Content */}
 
           <div className="p-6 overflow-y-auto relative w-full">
-            {activeTab === "General" && (
-              <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter Assessment Name :</label>
-                <Input id="Gen" placeholder="Enter .." type="text" className="mt-4 w-full " />
+           
 
-              </>
-            )}
-
-            {activeTab === "Target Group" && (
+            {activeTab === "Segment" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Target Group:
+                  Select the Segment:
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
                   {[
@@ -269,15 +262,8 @@ function AssessFilter({ onClose }: FilterProps) {
               </>
             )}
 
-            {activeTab === "Created By" && (
-              <>
-                <label htmlFor="Gen" className="text-[var(--text)]">Enter The Creator/Coach / Admin Name :</label>
-                <Input id="Gen" placeholder="Enter.." type="text" className="mt-4 w-full " />
-
-              </>
-            )}
-
-            {activeTab === "Date Range" && (
+           
+            {activeTab === "Created Date" && (
               <>
                 <label htmlFor="act" className="text-[var(--text)]">Enter the Last Assessment Date :</label>
                 <div className="mt-4 min-w-full">
@@ -331,18 +317,14 @@ function StatCard() {
   );
 }
 function AssessmentTable() {
-  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "ascending" | "descending";
   } | null>(null);
-  const [selectedAssessment, setSelectedAssessment] = useState<
-    typeof assessmentsTable
-  >(assessmentsTable[0] ? [assessmentsTable[0]] : []);
-  const [focusedAssessmentId, setFocusedAssessmentId] = useState<number | null>(assessmentsTable[0]?.id || null);
-
+  
   // Sorting logic
   const sortedData = [...assessmentsTable];
   if (sortConfig !== null) {
@@ -392,63 +374,9 @@ function AssessmentTable() {
     }
   };
 
-  const bringToTop = (userId: number) => {
-    const coach = selectedAssessment.find((c) => c.id === userId);
-    if (coach) {
-      setSelectedAssessment((prev) => [
-        coach,
-        ...prev.filter((c) => c.id !== userId),
-      ]);
-      setFocusedAssessmentId(userId);
-    }
-  };
+ 
 
-  useEffect(() => {
-    const allRows = document.querySelectorAll("tr[data-id]");
-
-    allRows.forEach((row) => {
-      const id = Number(row.getAttribute("data-id"));
-      const isInStack = selectedAssessment.some((coach) => coach.id === id);
-      const isTop = focusedAssessmentId === id;
-
-      // Remove previous styles
-      row.classList.remove(
-        "bg-[var(--brand-color3)]",
-        "border-l-[var(--brand-color)]"
-      );
-
-      if (isInStack) {
-        row.classList.add("bg-[var(--brand-color3)]");
-
-        if (isTop) {
-          row.classList.add("border-l-[var(--brand-color)]");
-        }
-      }
-    });
-  }, [selectedAssessment, focusedAssessmentId]);
-
-  {/*const removeCoach = (userId: number) => {
-    setSelectedCoachStack((prev) => prev.filter((c) => c.id !== userId));
-    if (focusedCoachId === userId) {
-      setFocusedCoachId(null);
-    }
-  };*/}
-
-  const handleRowClick = (user: (typeof assessmentsTable)[0]) => {
-    // Double-click detected
-    const exists = assessmentsTable.find((c) => c.id === user.id);
-    if (!exists) {
-      setSelectedAssessment((prev) => {
-        const updated = [user, ...prev];
-        return updated.slice(0, 5); // limit to 5
-      });
-      setFocusedAssessmentId(user.id);
-    } else {
-      bringToTop(user.id);
-    }
-  };
-
-  const toggleSelectUser = (userId: number) => {
+  const toggleSelectUser = (userId: string) => {
     if (selectedUsers.includes(userId)) {
       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
     } else {
@@ -480,26 +408,30 @@ function AssessmentTable() {
             {selectedUsers.length > 0 && (
               <div className="flex gap-2 ml-2">
                 <Button variant="border" size="sm">
-                  <Check className="h-4 w-4" />
-                  Activate Selected
+                  <Download className="h-4 w-4" />
+                  Export Pricing Data
                 </Button>
                 <Button variant="border" size="sm">
-                  <Copy className=" h-4 w-4" />
-                  Duplicate
+                  <NotebookPen className=" h-4 w-4" />
+                  Update Commission Rules
                 </Button>
                 <Button variant="delete" size="sm">
                   <Trash className=" h-4 w-4" />
-                  Delete
+                  Mark as Inactive
                 </Button>
                 <Button variant="border" size="sm">
-                  <FileDown className=" h-4 w-4" />
-                  Export Result Data
+                  <Pen className=" h-4 w-4" />
+                  Assign Category
+                </Button>
+                <Button variant="border" size="sm">
+                  <MessageCircle className=" h-4 w-4" />
+                  Notify Consultants
                 </Button>
               </div>
             )}
           </div>
           <div className="flex justify-end items-center gap-4 ">
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
+            <div className="flex justify-around items-center border-1 rounded-sm overflow-hidden bg-[var(--faded)]">
               <Input
                 placeholder="Search"
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
@@ -523,51 +455,83 @@ function AssessmentTable() {
               <TableRow>
                 <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
-                  onClick={() => requestSort("profile.name")}
+                  onClick={() => requestSort("assessmentName")}
                   className="cursor-pointer text-[var(--text)] text-low"
                 >
-                  Name{" "}
-                  {sortConfig?.key === "profile.name" &&
+                  Assessment Name{" "}
+                  {sortConfig?.key === "assessmentName" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("contact.email")}
+                  onClick={() => requestSort("segments")}
                   className="cursor-pointer text-[var(--text)]"
                 >
-                  Target Group{" "}
-                  {sortConfig?.key === "contact.email" &&
+                  Segments{" "}
+                  {sortConfig?.key === "segments" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("Location")}
+                  onClick={() => requestSort("category")}
                   className="cursor-pointer text-[var(--text)]"
                 >
                   Category{" "}
-                  {sortConfig?.key === "Location" &&
+                  {sortConfig?.key === "category" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("Type")}
+                  onClick={() => requestSort("price")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Price (₹){" "}
+                  {sortConfig?.key === "price" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("consultantDiscount")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Consultant Discount{" "}
+                  {sortConfig?.key === "consultantDiscount" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("consultantShare")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Consultant Share (₹){" "}
+                  {sortConfig?.key === "consultantShare" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("premiumDiscount")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Premium Discount{" "}
+                  {sortConfig?.key === "premiumDiscount" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("premiumShare")}
+                  className="cursor-pointer text-[var(--text)]"
+                >
+                  Premium Share (₹){" "}
+                  {sortConfig?.key === "premiumShare" &&
+                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
+                </TableHead>
+                <TableHead
+                  onClick={() => requestSort("status")}
                   className="cursor-pointer text-[var(--text)]"
                 >
                   Status{" "}
-                  {sortConfig?.key === "Type" &&
+                  {sortConfig?.key === "status" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("ClaimedStatus")}
+                  onClick={() => requestSort("createdOn")}
                   className="cursor-pointer text-[var(--text)]"
                 >
                   Created On{" "}
-                  {sortConfig?.key === "ClaimedStatus" &&
-                    (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead
-                  onClick={() => requestSort("Coaches")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  Attempts{" "}
-                  {sortConfig?.key === "Coaches" &&
+                  {sortConfig?.key === "createdOn" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead className="text-[var(--text)]">Actions</TableHead>
@@ -580,24 +544,16 @@ function AssessmentTable() {
                   data-id={user.id}
                   className={cn(
                     "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-                    selectedAssessment.some((c) => c.id === user.id)
-                      ? "bg-[var(--brand-color3)]"
-                      : ""
+                  
                   )}
                   onClick={() => {
                     toggleSelectUser(user.id);
-                    handleRowClick(user);
                   }}
                 >
                   <TableCell
                     className={cn(
                       "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
-                      selectedAssessment.some((c) => c.id === user.id)
-                        ? focusedAssessmentId === user.id
-                          ? "border-[var(--brand-color)]"
-                          : "border-transparent"
-                        : "border-transparent"
-                    )}
+                     )}
                   >
                     <Checkbox
                       checked={selectedUsers.includes(user.id)}
@@ -609,18 +565,33 @@ function AssessmentTable() {
                     <div className="flex items-center gap-4">
                       <div>
                         <div className="flex justify-start items-center">
-                          <div className="font-medium">{user.name}</div>
+                          <div className="font-medium">{user.assessmentName}</div>
                         </div>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.targetGroup}</div>
+                    <div className="text-low">{user.segments}</div>
                   </TableCell>
                   <TableCell>
                     <div className="text-sm">
                       <div>{`${user.category}`}</div>
                     </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.price}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.consultantDiscount}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.consultantShare}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.premiumDiscount}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-low">{user.premiumShare}</div>
                   </TableCell>
                   <TableCell>
                     <Badge variant="standard">{user.status}</Badge>
@@ -629,14 +600,10 @@ function AssessmentTable() {
                     <div className="text-sm">{user.createdOn}</div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-sm">{user.attempts}</div>
-                  </TableCell>
-                  <TableCell>
                     <div className="flex items-center gap-2">
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-white border-0 shadow-none"
                         onClick={(e) => {
                           e.stopPropagation();
                           // navigate(`/user-details/${user.id}`) or your view logic
@@ -649,7 +616,6 @@ function AssessmentTable() {
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-[var(--background)] border-0 shadow-none"
                         onClick={(e) => {
                           e.stopPropagation();
                           // approve logic
@@ -662,7 +628,6 @@ function AssessmentTable() {
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-[var(--background)] border-0 shadow-none"
                         onClick={(e) => {
                           e.stopPropagation();
                           // block logic
@@ -674,7 +639,6 @@ function AssessmentTable() {
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-[var(--background)] border-0 shadow-none"
                         onClick={(e) => {
                           e.stopPropagation();
                           // block logic
@@ -706,7 +670,7 @@ function AssessmentTable() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
+                {[10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
                     onClick={() => {

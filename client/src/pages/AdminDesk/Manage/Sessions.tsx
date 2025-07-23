@@ -21,7 +21,7 @@ import * as React from "react";
 
 import { useEffect } from "react";
 import RadioButton from "@/components/ui/Radiobutton";
-import DatePick from "@/components/ui/DatePicker";
+import { DateRangePicker } from "@/components/ui/RangeCalender";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -82,7 +82,7 @@ export default function Organisation() {
 
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Sessions</h1>
       <StatCard />
       <Buttonbar />
@@ -192,7 +192,7 @@ function AssessFilter({ onClose }: FilterProps) {
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
       <div
         ref={modalRef}
-        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+        className="relative w-full max-w-[700px] h-[500px] rounded-sm bg-[var(--background)] "
       >
         <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
           <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
@@ -352,7 +352,7 @@ function AssessFilter({ onClose }: FilterProps) {
               <>
                 <label htmlFor="act" className="text-[var(--text)]">Enter the Last Assessment Date :</label>
                 <div className="mt-4 min-w-full">
-                  <DatePick />
+                  <DateRangePicker />
                 </div>
               </>
             )}
@@ -376,7 +376,7 @@ function AssessFilter({ onClose }: FilterProps) {
 
 function StatCard() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
       {Stats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -407,7 +407,7 @@ function SessionTabs() {
     const [activeTab, setActiveTab] = useState("upcoming");
     const [selectedSessions, setSelectedSessions] = useState<number[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage, setRecordsPerPage] = useState(5);
+    const [recordsPerPage, setRecordsPerPage] = useState(10);
     const [sortConfig, setSortConfig] = useState({
         key: "id",
         direction: "ascending"
@@ -567,7 +567,101 @@ function SessionTabs() {
     const getTableHeaders = () => {
     switch (activeTab) {
       case "upcoming":
+        return (
+          <>
+            <TableHead
+              onClick={() => requestSort("user")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              User {sortConfig?.key === "user" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("coach")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Coach {sortConfig?.key === "coach" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("coachType")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Coach Type {sortConfig?.key === "coachType" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("dateTime")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Date & Time {sortConfig?.key === "dateTime" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("type")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Type {sortConfig?.key === "type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("amount")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Amount {sortConfig?.key === "amount" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("statusTimeline")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Status {sortConfig?.key === "statusTimeline" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+          </>
+        );
+
       case "live":
+        return (
+          <>
+            <TableHead
+              onClick={() => requestSort("user")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              User {sortConfig?.key === "user" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("coach")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Coach {sortConfig?.key === "coach" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("coachType")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Coach Type {sortConfig?.key === "coachType" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("dateTime")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Date & Time {sortConfig?.key === "dateTime" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("type")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Type {sortConfig?.key === "type" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("amount")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Amount {sortConfig?.key === "amount" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+            <TableHead
+              onClick={() => requestSort("statusTimeline")}
+              className="cursor-pointer text-[var(--text)]"
+            >
+              Status {sortConfig?.key === "statusTimeline" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
+            </TableHead>
+          </>
+        );
+
       case "cancelled":
         return (
           <>
@@ -616,6 +710,7 @@ function SessionTabs() {
           </>
         );
         
+      
       case "completed":
         return (
           <>
@@ -734,7 +829,39 @@ function SessionTabs() {
     
     switch (activeTab) {
       case "upcoming":
+        return (
+          <>
+            <TableCell className="font-medium">{session.user}</TableCell>
+            <TableCell>{session.coach}</TableCell>
+            <TableCell>{session.coachType}</TableCell>
+            <TableCell>{formatDateTime(session.dateTime)}</TableCell>
+            <TableCell>{session.type}</TableCell>
+            <TableCell>{session.amount}</TableCell>
+            <TableCell>
+              <Badge className={getBadgeStyles(currentStatus)}>
+                {currentStatus}
+              </Badge>
+            </TableCell>
+          </>
+        );
+
       case "live":
+        return (
+          <>
+            <TableCell className="font-medium">{session.user}</TableCell>
+            <TableCell>{session.coach}</TableCell>
+            <TableCell>{session.coachType}</TableCell>
+            <TableCell>{formatDateTime(session.dateTime)}</TableCell>
+            <TableCell>{session.type}</TableCell>
+            <TableCell>{session.amount}</TableCell>
+            <TableCell>
+              <Badge className={getBadgeStyles(currentStatus)}>
+                {currentStatus}
+              </Badge>
+            </TableCell>
+          </>
+        );
+
       case "cancelled":
         return (
           <>
@@ -804,10 +931,10 @@ function SessionTabs() {
     return (
         <div className="flex flex-col gap-0 w-full">
             {/* Tab Navigation */}
-            <div className="flex border-b">
+            <div className="flex">
         <Button
           variant={activeTab === "upcoming" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg"
+          className="rounded-b-none rounded-r-sm rounded-l-sm"
           onClick={() => {
             setActiveTab("upcoming");
             setCurrentPage(1);
@@ -818,7 +945,7 @@ function SessionTabs() {
         </Button>
         <Button
           variant={activeTab === "live" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          className="rounded-b-none rounded-r-sm rounded-l-sm flex items-center gap-2"
           onClick={() => {
             setActiveTab("live");
             setCurrentPage(1);
@@ -829,7 +956,7 @@ function SessionTabs() {
         </Button>
         <Button
           variant={activeTab === "completed" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          className="rounded-b-none rounded-r-sm rounded-l-sm flex items-center gap-2"
           onClick={() => {
             setActiveTab("completed");
             setCurrentPage(1);
@@ -840,7 +967,7 @@ function SessionTabs() {
         </Button>
         <Button
           variant={activeTab === "cancelled" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          className="rounded-b-none rounded-r-sm rounded-l-sm flex items-center gap-2"
           onClick={() => {
             setActiveTab("cancelled");
             setCurrentPage(1);
@@ -851,7 +978,7 @@ function SessionTabs() {
         </Button>
         <Button
           variant={activeTab === "refund" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          className="rounded-b-none rounded-r-sm rounded-l-sm flex items-center gap-2"
           onClick={() => {
             setActiveTab("refund");
             setCurrentPage(1);
@@ -863,7 +990,7 @@ function SessionTabs() {
       </div>
 
             {/* Table Controls */}
-            <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+            <div className="flex-1 rounded-md rounded-l-none border bg-[var(--background)] overflow-x-auto">
                 <div className="flex items-center justify-between border-b h-20 p-4">
                     <div className="flex items-center gap-2">
                         <Checkbox
@@ -881,17 +1008,17 @@ function SessionTabs() {
                         )}
                         {selectedSessions.length > 0 && (
               <div className="flex gap-2 ml-2">
-                <Button variant="border" size="sm" className="text-[var(--text)]">
+                <Button variant="border" size="sm" >
                   <Bell className="h-4 w-4" />
                   Send Reminder
                 </Button>
                 {activeTab === "refund" && (
-                  <Button variant="border" size="sm" className="text-[var(--text)]">
+                  <Button variant="border" size="sm" >
                     <Check className="h-4 w-4" />
                     Approve All
                   </Button>
                 )}
-                <Button variant="delete" size="sm" className="text-[var(--text)]">
+                <Button variant="delete" size="sm" >
                   <X className="h-4 w-4" />
                   Cancel All
                 </Button>
@@ -901,7 +1028,7 @@ function SessionTabs() {
 
                     {/* Search Bar */}
                     <div className="flex items-center gap-2">
-                        <div className="flex items-center border rounded-md overflow-hidden bg-[var(--faded)]">
+                        <div className="flex items-center border rounded-sm overflow-hidden bg-[var(--faded)]">
                             <Input
                                 placeholder="Search"
                                 className="border-none focus:ring-0 focus:outline-none px-2 py-1 w-40"
@@ -961,16 +1088,15 @@ function SessionTabs() {
                         <Button
                           variant="noborder"
                           size="sm"
-                          className="bg-white border-0 shadow-none"
                         >
                           <Eye className="h-4 w-4" />
                           <span className="sr-only">View</span>
                         </Button>
-                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                        <Button variant="noborder" size="sm" >
                           <MessageCircle className="h-4 w-4" />
                           <span className="sr-only">Chat</span>
                         </Button>
-                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                        <Button variant="noborder" size="sm" >
                           <Flag className="h-4 w-4" />
                           <span className="sr-only">Flag</span>
                         </Button>
@@ -993,7 +1119,7 @@ function SessionTabs() {
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="bg-[var(--background)] text-[var(--text)]">
-                                {[5, 10, 25, 50, 100].map((size) => (
+                                {[10, 25, 50, 100].map((size) => (
                                     <DropdownMenuItem
                                         key={size}
                                         onClick={() => {

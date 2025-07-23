@@ -17,7 +17,7 @@ import { useEffect } from "react";
 
 
 
-export function Organization() {
+export function Organisation() {
     return (
         <div className="flex gap-4 flex-col">
             <h1 className="text-2xl font-bold text-[var(--text-head)]">Organization</h1>

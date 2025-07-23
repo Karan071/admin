@@ -675,8 +675,6 @@ function CoachTableSection() {
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
                       >
                         <Eye className="h-4 w-3" />
                         <span className="sr-only">View</span>
