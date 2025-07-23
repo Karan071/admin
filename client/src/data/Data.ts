@@ -9052,3 +9052,156 @@ export const LeadExplore=[
     "actions": ["📞 Call", "💬 Message"]
   }
 ]
+
+export const AdminFormTable=[
+  {
+    "id": "FRM0001",
+    "formName": "Explorer Interest Form",
+    "type": "Lead Capture",
+    "targetAudience": "Explorers",
+    "status": "Active",
+    "submissions": 1245,
+    "createdOn": "10 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0002",
+    "formName": "Mentor Signup Form",
+    "type": "Registration",
+    "targetAudience": "Mentors",
+    "status": "Active",
+    "submissions": 980,
+    "createdOn": "11 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0003",
+    "formName": "Campus Feedback Survey",
+    "type": "Survey",
+    "targetAudience": "Students",
+    "status": "Inactive",
+    "submissions": 732,
+    "createdOn": "12 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0004",
+    "formName": "Event Registration Form",
+    "type": "Event",
+    "targetAudience": "Participants",
+    "status": "Active",
+    "submissions": 1453,
+    "createdOn": "13 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0005",
+    "formName": "Internship Application",
+    "type": "Application",
+    "targetAudience": "UG Students",
+    "status": "Active",
+    "submissions": 867,
+    "createdOn": "14 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0006",
+    "formName": "Career Counseling Request",
+    "type": "Support",
+    "targetAudience": "Explorers",
+    "status": "Inactive",
+    "submissions": 410,
+    "createdOn": "15 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0007",
+    "formName": "Scholarship Eligibility Check",
+    "type": "Lead Capture",
+    "targetAudience": "PG Students",
+    "status": "Active",
+    "submissions": 689,
+    "createdOn": "16 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0008",
+    "formName": "Training Feedback",
+    "type": "Survey",
+    "targetAudience": "Trainees",
+    "status": "Active",
+    "submissions": 520,
+    "createdOn": "17 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0009",
+    "formName": "Workshop Sign-up",
+    "type": "Event",
+    "targetAudience": "Learners",
+    "status": "Active",
+    "submissions": 1184,
+    "createdOn": "18 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0010",
+    "formName": "Parent Feedback Form",
+    "type": "Survey",
+    "targetAudience": "Parents",
+    "status": "Inactive",
+    "submissions": 324,
+    "createdOn": "19 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0011",
+    "formName": "Alumni Contact Update",
+    "type": "Data Collection",
+    "targetAudience": "Alumni",
+    "status": "Active",
+    "submissions": 591,
+    "createdOn": "20 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0012",
+    "formName": "Course Feedback Form",
+    "type": "Survey",
+    "targetAudience": "Students",
+    "status": "Active",
+    "submissions": 703,
+    "createdOn": "21 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0013",
+    "formName": "Job Interest Form",
+    "type": "Lead Capture",
+    "targetAudience": "Job Seekers",
+    "status": "Active",
+    "submissions": 842,
+    "createdOn": "22 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0014",
+    "formName": "Newsletter Signup",
+    "type": "Subscription",
+    "targetAudience": "General",
+    "status": "Active",
+    "submissions": 1050,
+    "createdOn": "23 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0015",
+    "formName": "Volunteer Registration",
+    "type": "Registration",
+    "targetAudience": "Volunteers",
+    "status": "Inactive",
+    "submissions": 278,
+    "createdOn": "24 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  }
+]

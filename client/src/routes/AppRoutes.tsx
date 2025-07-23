@@ -5,6 +5,7 @@ import Coaches from "@/pages/AdminDesk/Coaches";
 import Explorers from "@/pages/AdminDesk/Explorers";
 import Organisations from "@/pages/AdminDesk/Organisations";
 import Activities from "@/pages/AdminDesk/Activities";
+import { Forms as AdminForms } from "@/pages/AdminDesk/Forms";
 import Assessments from "@/pages/AdminDesk/Manage/Assessments";
 import Sessions from "@/pages/AdminDesk/Manage/Sessions";
 import SessionPool from "@/pages/AdminDesk/Manage/SessionPool";
@@ -87,6 +88,7 @@ export default function AppRoutes() {
       <Route path="platform/review" element={<RelationReviews />} />
       <Route path="platform/explorers" element={<Explorers />} />
       <Route path="platform/coaches" element={<Coaches />} />
+      <Route path="platform/forms" element={<AdminForms />} />
       <Route path="platform/organisations" element={<Organisations />} />
       <Route path="platform/plans" element={<div>platform Plans Page</div>} />
       <Route path="platform/assessments" element={<Assessments />} />

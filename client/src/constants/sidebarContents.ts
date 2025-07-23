@@ -39,6 +39,7 @@ import {
   Users2,
   Building,
   TrophyIcon,
+  FormInput,
 } from "lucide-react";
 
 export const SidebarData = {
@@ -175,6 +176,11 @@ export const SidebarData = {
               icon: Crown,
             },
           ],
+        },
+        {
+          title: "Forms",
+          url: "/desk/platform/forms",
+          icon: FormInput,
         },
         {
           title: "Desk IAM",
