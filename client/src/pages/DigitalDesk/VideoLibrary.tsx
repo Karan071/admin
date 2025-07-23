@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Plus,
   Funnel,
@@ -7,6 +8,9 @@ import {
   Upload,
   Download,
   Eye,
+  Bell,
+  FileDown,
+  X,
 } from "lucide-react";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Video, BookPlus, Clock, MessageSquare } from "lucide-react";
@@ -165,6 +169,8 @@ function Buttonbar() {
 function CoachTableSection() {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(5);
+  // Selection state for checkboxes
+  const [selectedVideos, setSelectedVideos] = useState<string[]>([]);
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "ascending" | "descending";
@@ -196,6 +202,23 @@ function CoachTableSection() {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = sortedData.slice(indexOfFirstRecord, indexOfLastRecord);
+
+  // --- Selection helpers ---
+  const toggleSelectAll = () => {
+    if (selectedVideos.length === currentRecords.length) {
+      setSelectedVideos([]);
+    } else {
+      setSelectedVideos(currentRecords.map((video) => video.id));
+    }
+  };
+
+  const toggleSelectVideo = (videoId: string) => {
+    if (selectedVideos.includes(videoId)) {
+      setSelectedVideos(selectedVideos.filter((id) => id !== videoId));
+    } else {
+      setSelectedVideos([...selectedVideos, videoId]);
+    }
+  };
 
   const requestSort = (key: string) => {
     let direction: "ascending" | "descending" = "ascending";
@@ -261,7 +284,40 @@ function CoachTableSection() {
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        <div className="flex items-center justify-between border-b p-4 mt-auto">
+        <div className="flex h-20 items-center justify-between border-b p-4 mt-auto">
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="select-all"
+              checked={selectedVideos.length === currentRecords.length && currentRecords.length > 0}
+              onCheckedChange={toggleSelectAll}
+            />
+            <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+              Select All
+            </label>
+            {selectedVideos.length > 0 && (
+              <Badge variant="border" className="ml-2">
+                {selectedVideos.length} selected
+              </Badge>
+            )}
+
+            {selectedVideos.length > 0 && (
+              <div className="flex gap-2 ml-2">
+                <Button variant="border" size="sm">
+                  <Bell className="h-4 w-4" />
+                  Send Reminder
+                </Button>
+                <Button variant="border" size="sm">
+                  <FileDown className="h-4 w-4" />
+                  Export list
+                </Button>
+                <Button variant="delete" size="sm">
+                  <X className="h-4 w-4 text-[var(--red)]" />
+                  Delete
+                </Button>
+              </div>
+            )}
+          </div>
+
           <div className="flex justify-end items-center gap-4 ">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -311,6 +367,7 @@ function CoachTableSection() {
           <Table className="w-full caption-top border-collapse overflow-y-visible">
             <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
               <TableRow>
+                <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
                   onClick={() => requestSort("title")}
                   className="cursor-pointer text-[var(--text)] text-low"
@@ -397,11 +454,14 @@ function CoachTableSection() {
                       ? "bg-[var(--brand-color3)]"
                       : ""
                   )}
-                  onClick={() => handleRowClick(video)}
+                  onClick={() => {
+                    toggleSelectVideo(video.id);
+                    handleRowClick(video);
+                  }}
                 >
                   <TableCell
                     className={cn(
-                      "pl-4 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
+                      "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
                       selectedCoachStack.some((c) => c.id === video.id)
                         ? focusedCoachId === video.id
                           ? "border-[var(--brand-color)]"
@@ -409,13 +469,18 @@ function CoachTableSection() {
                         : "border-transparent"
                     )}
                   >
+                    <Checkbox
+                      checked={selectedVideos.includes(video.id)}
+                      onClick={(e) => e.stopPropagation()}
+                      onCheckedChange={() => toggleSelectVideo(video.id)}
+                    />
+                  </TableCell>
+
+                  <TableCell>
                     <div className="flex items-center gap-4">
-                    
                       <div>
                         <div className="font-medium">{video.title}</div>
-                        <div className="text-sm text-[var(--text)]">
-                          Duration: 12:34
-                        </div>
+                        <div className="text-sm text-[var(--text)]">Duration: 12:34</div>
                       </div>
                     </div>
                   </TableCell>

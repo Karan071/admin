@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import {  CardTitle } from "@/components/ui/card";
 
-
+import { Card, CardHeader } from "@/components/ui/card";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -36,6 +36,8 @@ import {
 } from "@/components/ui/table";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import {  CommentTable } from "@/data/Data";
+import {  BookPlus, Clock, MessageSquare } from "lucide-react";
+import { CircleArrowDown, CircleArrowUp } from "lucide-react";
 //import { motion, AnimatePresence } from "motion/react";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -43,6 +45,44 @@ import { Checkbox } from "@/components/ui/checkbox";
 import DatePicker from '@/components/ui/DatePicker';
 import React from "react";
 import RadioButton from "@/components/ui/Radiobutton";
+const color = "text-[var(--text)]";
+const color2 = "text-[var(--text-head)]";
+const trend = <CircleArrowUp className="text-[var(--green)] h-4" />;
+const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
+const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
+
+const stats = [
+  {
+    title: "Total Comments",
+    value: CommentTable.length.toString(),
+    icon: MessageSquare,
+    performance: trend,
+  },
+  {
+    title: "Approved Comments",
+    value: CommentTable.filter(c => c.status === "Approved").length.toString(),
+    icon: BookPlus,
+    performance: Up,
+  },
+  {
+    title: "Pending Comments",
+    value: CommentTable.filter(c => c.status === "Pending").length.toString(),
+    icon: Clock,
+    performance: Down,
+  },
+  {
+    title: "Flagged Comments",
+    value: CommentTable.filter(c => c.status === "Flagged").length.toString(),
+    icon: MessageSquare,
+    performance: Up,
+  },
+  {
+    title: "Unique Commenters",
+    value: Array.from(new Set(CommentTable.map(c => c.by))).length.toString(),
+    icon: Eye,
+    performance: Down,
+  },
+];
 
 
 
@@ -60,7 +100,7 @@ export function Comments() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-[var(--text-head)]">Comments</h1>
-    
+        <StatsCards />
         <Topbar  />
      
         <TableSection/>
@@ -68,7 +108,35 @@ export function Comments() {
     </div>
   );
 }
-
+function StatsCards() {
+  return (
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5">
+      {stats.map((stat, index) => (
+        <Card
+          key={index}
+          className="xl:rounded-sm shadow-none bg-[var(--background)]"
+        >
+          <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
+            <div className="flex justify-between h-full items-center">
+              <div
+                className={`${color} text-xs uppercase text-light line-clamp-1`}
+              >
+                {stat.title}
+              </div>
+              {stat.performance}
+            </div>
+            <div className="flex  items-center gap-4">
+              <div className={`rounded-full `}>
+                <stat.icon className={`h-8 w-8 ${color2}`} />
+              </div>
+              <div className={`${color2} text-2xl`}>{stat.value}</div>
+            </div>
+          </CardHeader>
+        </Card>
+      ))}
+    </div>
+  );
+}
 function Topbar() {
      const [showFilter, setShowFilter] = useState(false);
   return (
@@ -80,7 +148,7 @@ function Topbar() {
          
         >
           <Plus className="h-3 w-3" />
-          <span>  Create New Campaign</span>
+          <span>  Create New </span>
         </Button>
          </div>
       <div className="flex gap-4 align-middle">
@@ -262,7 +330,7 @@ function AdvancedFilters({ onClose }: FilterProps) {
 function TableSection() {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "ascending" | "descending";
@@ -566,7 +634,7 @@ function TableSection() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
+                {[ 10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
                     onClick={() => {

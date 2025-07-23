@@ -486,7 +486,7 @@ export function Campaigns() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-[var(--text-head)]">
-          Campaigns
+        Campaign Manager
         </h1>
         <StatsCards />
         <Topbar setCreateOpen={setCreateOpen} />
@@ -499,13 +499,60 @@ export function Campaigns() {
 
 function Topbar({ setCreateOpen }: { setCreateOpen: (open: boolean) => void }) {
   const [showFilter, setShowFilter] = useState(false);
+  const [showStats, setShowStats] = useState(false);
+
+  // Calculate campaign statistics based on table data
+  const campaignStats = {
+    total: CampaignTable.length,
+    sent: CampaignTable.filter(campaign => campaign.status === "Sent").length,
+    scheduled: CampaignTable.filter(campaign => campaign.status === "Scheduled").length,
+    failed: CampaignTable.filter(campaign => campaign.status === "Failed").length,
+    draft: CampaignTable.filter(campaign => campaign.status === "Draft").length,
+  };
+
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
-      <div>
+      <div className="flex items-center gap-3">
         <Button variant="brand" size="new" onClick={() => setCreateOpen(true)}>
           <Plus className="h-3 w-3" />
           <span> Create New Campaign</span>
         </Button>
+        {/* Campaign Statistics Dropdown Toggle */}
+        <div className="relative">
+          <Button
+            variant="border"
+            size="sm"
+            className="flex items-center gap-2"
+            onClick={() => setShowStats((prev) => !prev)}
+          >
+            <span>Campaign Status</span>
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+          {showStats && (
+            <div className="absolute left-0 mt-2 z-50 min-w-[220px] bg-white dark:bg-[var(--background)] border rounded-lg shadow-lg p-4 flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <span className="text-[var(--text)]">Total:</span>
+                <Badge variant="secondary" className="font-medium">{campaignStats.total}</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[var(--text)]">Sent:</span>
+                <Badge variant="standard" style={{backgroundColor:'#bbf7d0', color:'#166534'}} className="font-medium">{campaignStats.sent}</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[var(--text)]">Scheduled:</span>
+                <Badge variant="standard" style={{backgroundColor:'#dbeafe', color:'#1e40af'}} className="font-medium">{campaignStats.scheduled}</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[var(--text)]">Failed:</span>
+                <Badge variant="standard" style={{backgroundColor:'#fecaca', color:'#991b1b'}} className="font-medium">{campaignStats.failed}</Badge>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[var(--text)]">Draft:</span>
+                <Badge variant="standard" style={{backgroundColor:'#f3f4f6', color:'#374151'}} className="font-medium">{campaignStats.draft}</Badge>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <div className="flex gap-4 align-middle">
         <Button
@@ -516,7 +563,6 @@ function Topbar({ setCreateOpen }: { setCreateOpen: (open: boolean) => void }) {
           <Filter className="h-4 w-4" />
           {showFilter ? "Hide Filters" : "Show Filters"}
         </Button>
-
         {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
       </div>
     </div>
@@ -551,10 +597,11 @@ function AdvancedFilters({ onClose }: FilterProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  const [status, setStatus] = useState("Paid");
-  const [type, setType] = useState("Session");
+  const [status, setStatus] = useState("Scheduled");
+  const [channel, setChannel] = useState("Web");
+  const [audience, setAudience] = useState("Explorer");
 
-  const tabList = ["General", "Commission Type", "Status", "Date Range"];
+  const tabList = ["General", "Channel", "Audience", "Status", "Date Range"];
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
@@ -610,38 +657,57 @@ function AdvancedFilters({ onClose }: FilterProps) {
               </>
             )}
 
-            {activeTab === "Status" && (
+            {activeTab === "Channel" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Statue:
+                  Select the Channel:
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
-                  {["Paid", "Pending", "Cancelled"].map((option) => (
+                  {["Web", "App", "WhatsApp", "Email"].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={status}
-                      onChange={setStatus}
+                      selected={channel}
+                      onChange={setChannel}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {activeTab === "Commission Type" && (
+            {activeTab === "Audience" && (
               <>
                 <p className="text-sm text-[var(--text-head)] mb-4">
-                  Select the Commission Type:
+                  Select the Audience:
                 </p>
                 <div className="flex flex-col gap-4 text-[var(--text)] ">
-                  {["Session", "Referral", "Campaign"].map((option) => (
+                  {["Explorer", "Coach", "Org", "Partner", "Custom"].map((option) => (
                     <RadioButton
                       key={option}
                       label={option}
                       value={option}
-                      selected={type}
-                      onChange={setType}
+                      selected={audience}
+                      onChange={setAudience}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Status" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select the Status:
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {["Scheduled", "Sent", "Draft", "Failed"].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={status}
+                      onChange={setStatus}
                     />
                   ))}
                 </div>
@@ -710,7 +776,8 @@ function StatsCards() {
 function TableSection() {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
+  const [searchQuery, setSearchQuery] = useState("");
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "ascending" | "descending";
@@ -722,12 +789,43 @@ function TableSection() {
     CampaignTable[0]?.id || null
   );
 
-  // Sorting logic
-  const sortedData = [...CampaignTable];
+  // Search and sorting logic
+  const filteredData = CampaignTable.filter((campaign) => {
+    if (!searchQuery) return true;
+    
+    const query = searchQuery.toLowerCase();
+    return (
+      campaign.campaignName.toLowerCase().includes(query) ||
+      campaign.audience.toLowerCase().includes(query) ||
+      campaign.status.toLowerCase().includes(query) ||
+      (Array.isArray(campaign.channels) 
+        ? campaign.channels.some(channel => channel.toLowerCase().includes(query))
+        : String(campaign.channels).toLowerCase().includes(query)
+      )
+    );
+  });
+
+  const sortedData = [...filteredData];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
-      const aValue = a[sortConfig.key as keyof typeof a];
-      const bValue = b[sortConfig.key as keyof typeof b];
+      let aValue: any = a[sortConfig.key as keyof typeof a];
+      let bValue: any = b[sortConfig.key as keyof typeof b];
+      
+      // Handle special cases for different field types
+      if (sortConfig.key === "channels") {
+        // Sort by first channel in the array
+        aValue = Array.isArray(aValue) ? aValue[0] || "" : "";
+        bValue = Array.isArray(bValue) ? bValue[0] || "" : "";
+      } else if (sortConfig.key === "scheduledFor") {
+        // Convert date strings to Date objects for proper comparison
+        aValue = new Date(aValue || "");
+        bValue = new Date(bValue || "");
+      }
+      
+      // Handle null/undefined values
+      if (aValue === null || aValue === undefined) aValue = "";
+      if (bValue === null || bValue === undefined) bValue = "";
+      
       if (aValue < bValue) {
         return sortConfig.direction === "ascending" ? -1 : 1;
       }
@@ -760,12 +858,17 @@ function TableSection() {
 
   // Select All logic
   const toggleSelectAll = () => {
-    if (selectedUsers.length === currentRecords.length) {
+    if (selectedUsers.length === currentRecords.length && currentRecords.length > 0) {
       setSelectedUsers([]);
     } else {
       setSelectedUsers(currentRecords.map((user) => user.id));
     }
   };
+
+  // Helper function to check if all current records are selected
+  const areAllCurrentRecordsSelected = currentRecords.length > 0 && 
+    selectedUsers.length === currentRecords.length &&
+    currentRecords.every(record => selectedUsers.includes(record.id));
 
   const bringToTop = (userId: string) => {
     const coach = selectedStack.find((c) => c.id === userId);
@@ -824,6 +927,41 @@ function TableSection() {
     }
   };
 
+  // Campaign-specific action functions
+  const handleSendReminder = () => {
+    const selectedCampaigns = CampaignTable.filter(campaign => selectedUsers.includes(campaign.id));
+    console.log("Sending reminders for campaigns:", selectedCampaigns.map(c => c.campaignName));
+    // Add your reminder logic here
+  };
+
+  const handleExportCampaigns = () => {
+    const selectedCampaigns = CampaignTable.filter(campaign => selectedUsers.includes(campaign.id));
+    console.log("Exporting campaigns:", selectedCampaigns);
+    // Add your export logic here
+  };
+
+  const handleMarkInactive = () => {
+    const selectedCampaigns = CampaignTable.filter(campaign => selectedUsers.includes(campaign.id));
+    console.log("Marking campaigns as inactive:", selectedCampaigns.map(c => c.campaignName));
+    // Add your inactive logic here
+  };
+
+  const handleRetryFailed = () => {
+    const failedCampaigns = CampaignTable.filter(campaign => 
+      selectedUsers.includes(campaign.id) && campaign.status === "Failed"
+    );
+    console.log("Retrying failed campaigns:", failedCampaigns.map(c => c.campaignName));
+    // Add your retry logic here
+  };
+
+  const handleCancelScheduled = () => {
+    const scheduledCampaigns = CampaignTable.filter(campaign => 
+      selectedUsers.includes(campaign.id) && campaign.status === "Scheduled"
+    );
+    console.log("Canceling scheduled campaigns:", scheduledCampaigns.map(c => c.campaignName));
+    // Add your cancel logic here
+  };
+
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
@@ -833,10 +971,7 @@ function TableSection() {
             <div className="flex items-center gap-2 border-none shadow-none">
               <Checkbox
                 id="select-all-campaigns"
-                checked={
-                  selectedUsers.length === currentRecords.length &&
-                  currentRecords.length > 0
-                }
+                checked={areAllCurrentRecordsSelected}
                 onCheckedChange={toggleSelectAll}
               />
               <label
@@ -854,17 +989,33 @@ function TableSection() {
 
             {selectedUsers.length > 0 && (
               <div className="flex gap-2 ml-2">
-                <Button variant="border" size="sm">
+                <Button variant="border" size="sm" onClick={handleSendReminder}>
                   <Bell className="h-4 w-4" />
                   Send Reminder
                 </Button>
-                <Button variant="border" size="sm">
+                <Button variant="border" size="sm" onClick={handleExportCampaigns}>
                   <FileDown className=" h-4 w-4" />
-                  Export list
+                  Export Campaigns
                 </Button>
-                <Button variant="delete" size="sm">
+                {CampaignTable.filter(campaign => 
+                  selectedUsers.includes(campaign.id) && campaign.status === "Failed"
+                ).length > 0 && (
+                  <Button variant="border" size="sm" onClick={handleRetryFailed}>
+                    <Bell className="h-4 w-4" />
+                    Retry Failed
+                  </Button>
+                )}
+                {CampaignTable.filter(campaign => 
+                  selectedUsers.includes(campaign.id) && campaign.status === "Scheduled"
+                ).length > 0 && (
+                  <Button variant="border" size="sm" onClick={handleCancelScheduled}>
+                    <X className="h-4 w-4" />
+                    Cancel Scheduled
+                  </Button>
+                )}
+                <Button variant="delete" size="sm" onClick={handleMarkInactive}>
                   <X className=" h-4 w-4 text-[var(--red)]" />
-                  Mark Inactive / Remove
+                  Mark Inactive
                 </Button>
               </div>
             )}
@@ -874,7 +1025,9 @@ function TableSection() {
           <div className="flex justify-end items-center gap-4 ">
             <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
               <Input
-                placeholder="Search"
+                placeholder="Search campaigns..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
               />
               <Button
@@ -896,35 +1049,35 @@ function TableSection() {
               <TableRow>
                 <TableHead className="min-w-[40px]"></TableHead>
                 <TableHead
-                  onClick={() => requestSort("name")}
+                  onClick={() => requestSort("campaignName")}
                   className="cursor-pointer text-[var(--text)] text-low"
                 >
                   Campaign Name{" "}
-                  {sortConfig?.key === "name" &&
+                  {sortConfig?.key === "campaignName" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("role")}
+                  onClick={() => requestSort("channels")}
                   className="cursor-pointer text-[var(--text)]"
                 >
                   Channels{" "}
-                  {sortConfig?.key === "role" &&
+                  {sortConfig?.key === "channels" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("commissionType")}
+                  onClick={() => requestSort("scheduledFor")}
                   className="cursor-pointer text-[var(--text)]"
                 >
                   Scheduled For{" "}
-                  {sortConfig?.key === "commissionType" &&
+                  {sortConfig?.key === "scheduledFor" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead
-                  onClick={() => requestSort("linkedSessionOrOrder")}
+                  onClick={() => requestSort("audience")}
                   className="cursor-pointer text-[var(--text)]"
                 >
                   Audience{" "}
-                  {sortConfig?.key === "linkedSessionOrOrder" &&
+                  {sortConfig?.key === "audience" &&
                     (sortConfig.direction === "ascending" ? "↑" : "↓")}
                 </TableHead>
                 <TableHead className="text-[var(--text)]">Status</TableHead>
@@ -973,10 +1126,14 @@ function TableSection() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.channels}</div>
+                    <div className="text-low">
+                      {Array.isArray(user.channels) ? user.channels.join(", ") : user.channels}
+                    </div>
                   </TableCell>
                   <TableCell>
-                    <div className="text-low">{user.scheduledFor}</div>
+                    <div className="text-low">
+                      {user.scheduledFor ? new Date(user.scheduledFor).toLocaleDateString() : "Not scheduled"}
+                    </div>
                   </TableCell>
                   <TableCell>
                     <div className="text-low">{user.audience}</div>
@@ -1024,7 +1181,7 @@ function TableSection() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
+                {[ 10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
                     onClick={() => {
@@ -1041,7 +1198,7 @@ function TableSection() {
             <span className="text-low text-[var(--text)]">
               Showing {indexOfFirstRecord + 1}-
               {Math.min(indexOfLastRecord, sortedData.length)} of{" "}
-              {sortedData.length} explorers
+              {sortedData.length} campaigns
             </span>
           </div>
           <div className="flex items-center gap-2 ">

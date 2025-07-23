@@ -1038,7 +1038,7 @@ export const VideoTableData: VideoTableItem[] = [
     for: "UG Students",
     playCount: 1240,
     videoUrl: "https://example.com/video1",
-    status: "Published"
+    status: "Published",
   },
   {
     id: "2",
@@ -1050,9 +1050,164 @@ export const VideoTableData: VideoTableItem[] = [
     for: "Final Year",
     playCount: 890,
     videoUrl: "https://example.com/video2",
-    status: "Published"
+    status: "Published",
   },
-  // Add more mock data as needed...
+  {
+    id: "3",
+    title: "Learning Data Structures",
+    speaker: "Amit Kumar",
+    mode: "Recorded",
+    category: "Technology",
+    mapping: "DSA",
+    for: "CS Students",
+    playCount: 650,
+    videoUrl: "https://example.com/video3",
+    status: "Published",
+  },
+  {
+    id: "4",
+    title: "Soft Skills for Engineers",
+    speaker: "Sneha Gupta",
+    mode: "Live",
+    category: "Soft Skills",
+    mapping: "Communication",
+    for: "Engineering Students",
+    playCount: 720,
+    videoUrl: "https://example.com/video4",
+    status: "Published",
+  },
+  {
+    id: "5",
+    title: "Understanding AI Basics",
+    speaker: "Vikram Singh",
+    mode: "Recorded",
+    category: "Technology",
+    mapping: "Artificial Intelligence",
+    for: "UG Students",
+    playCount: 980,
+    videoUrl: "https://example.com/video5",
+    status: "Published",
+  },
+  {
+    id: "6",
+    title: "Product Management 101",
+    speaker: "Anjali Mehta",
+    mode: "Live",
+    category: "Management",
+    mapping: "Product",
+    for: "MBA Aspirants",
+    playCount: 430,
+    videoUrl: "https://example.com/video6",
+    status: "Published",
+  },
+  {
+    id: "7",
+    title: "Resume Building Workshop",
+    speaker: "Karan Joshi",
+    mode: "Recorded",
+    category: "Career Guidance",
+    mapping: "Job Ready",
+    for: "Final Year",
+    playCount: 1120,
+    videoUrl: "https://example.com/video7",
+    status: "Published",
+  },
+  {
+    id: "8",
+    title: "Entrepreneurship Basics",
+    speaker: "Pooja Rani",
+    mode: "Live",
+    category: "Business",
+    mapping: "Startups",
+    for: "Entrepreneurs",
+    playCount: 540,
+    videoUrl: "https://example.com/video8",
+    status: "Published",
+  },
+  {
+    id: "9",
+    title: "Time Management Hacks",
+    speaker: "Rajesh Verma",
+    mode: "Recorded",
+    category: "Soft Skills",
+    mapping: "Productivity",
+    for: "All Students",
+    playCount: 870,
+    videoUrl: "https://example.com/video9",
+    status: "Published",
+  },
+  {
+    id: "10",
+    title: "Cloud Computing Essentials",
+    speaker: "Neha Arora",
+    mode: "Recorded",
+    category: "Technology",
+    mapping: "Cloud",
+    for: "UG Students",
+    playCount: 760,
+    videoUrl: "https://example.com/video10",
+    status: "Published",
+  },
+  {
+    id: "11",
+    title: "Public Speaking Mastery",
+    speaker: "Siddharth Jain",
+    mode: "Live",
+    category: "Soft Skills",
+    mapping: "Communication",
+    for: "All Students",
+    playCount: 680,
+    videoUrl: "https://example.com/video11",
+    status: "Published",
+  },
+  {
+    id: "12",
+    title: "Design Thinking Crash Course",
+    speaker: "Meera Kapoor",
+    mode: "Recorded",
+    category: "Design",
+    mapping: "Problem Solving",
+    for: "Innovators",
+    playCount: 590,
+    videoUrl: "https://example.com/video12",
+    status: "Published",
+  },
+  {
+    id: "13",
+    title: "Networking Strategies",
+    speaker: "Alok Gupta",
+    mode: "Live",
+    category: "Career Guidance",
+    mapping: "Professional Network",
+    for: "MBA Students",
+    playCount: 450,
+    videoUrl: "https://example.com/video13",
+    status: "Published",
+  },
+  {
+    id: "14",
+    title: "Cybersecurity Awareness",
+    speaker: "Divya Desai",
+    mode: "Recorded",
+    category: "Technology",
+    mapping: "Security",
+    for: "UG Students",
+    playCount: 530,
+    videoUrl: "https://example.com/video14",
+    status: "Published",
+  },
+  {
+    id: "15",
+    title: "Negotiation Skills for Career",
+    speaker: "Harshita Singh",
+    mode: "Live",
+    category: "Soft Skills",
+    mapping: "Negotiation",
+    for: "Professionals",
+    playCount: 610,
+    videoUrl: "https://example.com/video15",
+    status: "Published",
+  },
 ];
 export const NewsMentionsData = [
   {
@@ -2048,6 +2203,17 @@ export const PendingApprovalTableData = [
     "actions": ["Review", "Approve", "Reject"]
   }
 ]
+export const ArchivedTableData = [
+  {
+    "title": "Scholarships in 2023",
+    "author": "Team Aimshala",
+    "category": "Colleges",
+    "archivedOn": "02 Jan 2024",
+    "reason": "Outdated Deadlines",
+    "actions": ["Restore", "Delete"]
+  }
+];
+
 
 const coachTypes = ["Coach", "Mentor", "Educator"];
 
@@ -8013,35 +8179,171 @@ export const addTeamMember=[
     "actions": ["View", "Edit", "Disable"]
   }
 ]
-export const CampaignTable= [
-    {
-      "id": "CAM1001",
-      "campaignName": "UG Masterclass Promo",
-      "channels": ["WhatsApp", "Email"],
-      "scheduledFor": "2025-07-12T10:00:00",
-      "audience": "Explorers",
-      "status": "Sent",
-      "actions": ["View", "Edit"]
-    },
-    {
-      "id": "CAM1002",
-      "campaignName": "Feedback Follow-up",
-      "channels": ["Web", "App"],
-      "scheduledFor": "2025-07-13T15:30:00",
-      "audience": "All Users",
-      "status": "Scheduled",
-      "actions": ["Edit", "Cancel"]
-    },
-    {
-      "id": "CAM1003",
-      "campaignName": "Partner Outreach Round 1",
-      "channels": ["Email"],
-      "scheduledFor": "2025-07-10T09:00:00",
-      "audience": "Organisations",
-      "status": "Failed",
-      "actions": ["Retry", "View"]
-    }
-  ]
+export const CampaignTable = [
+  {
+    "id": "CAM1001",
+    "campaignName": "UG Masterclass Promo",
+    "channels": ["WhatsApp", "Email"],
+    "scheduledFor": "2025-07-12T10:00:00",
+    "audience": "Explorers",
+    "status": "Sent",
+    "actions": ["View", "Edit"]
+  },
+  {
+    "id": "CAM1002",
+    "campaignName": "Feedback Follow-up",
+    "channels": ["Web", "App"],
+    "scheduledFor": "2025-07-13T15:30:00",
+    "audience": "All Users",
+    "status": "Scheduled",
+    "actions": ["Edit", "Cancel"]
+  },
+  {
+    "id": "CAM1003",
+    "campaignName": "Partner Outreach Round 1",
+    "channels": ["Email"],
+    "scheduledFor": "2025-07-10T09:00:00",
+    "audience": "Organisations",
+    "status": "Failed",
+    "actions": ["Retry", "View"]
+  },
+  {
+    "id": "CAM1004",
+    "campaignName": "Welcome Drip Campaign",
+    "channels": ["Email"],
+    "scheduledFor": "2025-07-15T08:00:00",
+    "audience": "New Users",
+    "status": "Scheduled",
+    "actions": ["Edit", "Cancel"]
+  },
+  {
+    "id": "CAM1005",
+    "campaignName": "Course Completion Reminder",
+    "channels": ["SMS", "App"],
+    "scheduledFor": "2025-07-16T17:00:00",
+    "audience": "Learners",
+    "status": "Sent",
+    "actions": ["View"]
+  },
+  {
+    "id": "CAM1006",
+    "campaignName": "Event Invitation: Webinar July",
+    "channels": ["Email", "Web"],
+    "scheduledFor": "2025-07-18T13:30:00",
+    "audience": "Subscribers",
+    "status": "Scheduled",
+    "actions": ["Edit", "Cancel"]
+  },
+  {
+    "id": "CAM1007",
+    "campaignName": "Re-engagement Push",
+    "channels": ["App", "SMS"],
+    "scheduledFor": "2025-07-19T10:00:00",
+    "audience": "Dormant Users",
+    "status": "Scheduled",
+    "actions": ["Edit"]
+  },
+  {
+    "id": "CAM1008",
+    "campaignName": "Offer: Premium Upgrade",
+    "channels": ["Email", "App"],
+    "scheduledFor": "2025-07-20T12:00:00",
+    "audience": "Free Users",
+    "status": "Sent",
+    "actions": ["View", "Duplicate"]
+  },
+  {
+    "id": "CAM1009",
+    "campaignName": "Survey Participation Request",
+    "channels": ["Email"],
+    "scheduledFor": "2025-07-21T11:00:00",
+    "audience": "Active Users",
+    "status": "Scheduled",
+    "actions": ["Edit", "Cancel"]
+  },
+  {
+    "id": "CAM1010",
+    "campaignName": "Batch Start Notification",
+    "channels": ["SMS"],
+    "scheduledFor": "2025-07-22T09:00:00",
+    "audience": "Students",
+    "status": "Sent",
+    "actions": ["View"]
+  },
+  {
+    "id": "CAM1011",
+    "campaignName": "Upsell: Certification Add-on",
+    "channels": ["Email", "App"],
+    "scheduledFor": "2025-07-23T14:00:00",
+    "audience": "Enrolled Users",
+    "status": "Scheduled",
+    "actions": ["Edit", "Duplicate"]
+  },
+  {
+    "id": "CAM1012",
+    "campaignName": "Instructor Introduction",
+    "channels": ["App"],
+    "scheduledFor": "2025-07-24T16:00:00",
+    "audience": "New Students",
+    "status": "Scheduled",
+    "actions": ["Edit"]
+  },
+  {
+    "id": "CAM1013",
+    "campaignName": "Promo Code Expiry Reminder",
+    "channels": ["SMS", "Email"],
+    "scheduledFor": "2025-07-25T18:00:00",
+    "audience": "Deal Seekers",
+    "status": "Scheduled",
+    "actions": ["Edit", "Cancel"]
+  },
+  {
+    "id": "CAM1014",
+    "campaignName": "Alumni Community Drive",
+    "channels": ["Web", "Email"],
+    "scheduledFor": "2025-07-26T15:30:00",
+    "audience": "Past Students",
+    "status": "Sent",
+    "actions": ["View", "Duplicate"]
+  },
+  {
+    "id": "CAM1015",
+    "campaignName": "Monthly Digest July",
+    "channels": ["Email"],
+    "scheduledFor": "2025-07-27T10:30:00",
+    "audience": "All Users",
+    "status": "Scheduled",
+    "actions": ["Edit"]
+  },
+  {
+    "id": "CAM1016",
+    "campaignName": "Nudging Abandoned Carts",
+    "channels": ["App", "Email"],
+    "scheduledFor": "2025-07-28T09:45:00",
+    "audience": "Interested Users",
+    "status": "Scheduled",
+    "actions": ["Edit", "Retry"]
+  },
+  {
+    "id": "CAM1017",
+    "campaignName": "Beta Program Launch",
+    "channels": ["Web", "Email"],
+    "scheduledFor": "2025-07-29T13:00:00",
+    "audience": "Power Users",
+    "status": "Scheduled",
+    "actions": ["Edit"]
+  },
+  {
+    "id": "CAM1018",
+    "campaignName": "Support Satisfaction Survey",
+    "channels": ["Email"],
+    "scheduledFor": "2025-07-30T11:30:00",
+    "audience": "Helpdesk Users",
+    "status": "Scheduled",
+    "actions": ["Edit", "Cancel"]
+  }
+];
+
   export const CommentTable = [
   {
     id: "Com1001",

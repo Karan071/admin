@@ -1,33 +1,41 @@
+
+import {
+  Clock,
+  CircleArrowUp,
+  MessageCircle,
+  Flag,
+  CircleArrowDown,
+  Search,
+  X,
+  Check,
+ 
+  Users,
+  FileCheck2,
+  FileText,
+ 
+  FileDown,
+  BadgeQuestionMark,
+  Plus,
+  Eye,
+  Edit,
+  Archive,
+  Trash2,
+  ChevronDown,
+  ChevronRight,
+  ChevronLeft,
+  FileDown as Download,
+  Filter,
+} from "lucide-react";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import {
-  Search,
-  Download,
-  Trash,
-  Archive,
-  Pen,
-  Eye,
-  Filter,
-  Check,
-  X,
-  Bell,
-  Plus,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  BookOpenCheck,
-  FileEdit,
-  Clock,
-} from "lucide-react";
-import { Card, CardHeader } from "@/components/ui/card";
-import { useState, useEffect } from "react";
-import { Badge } from "@/components/ui/badge";
-import {
   DropdownMenu,
-  DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -36,65 +44,331 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 import {
   PublishedTableData,
   DraftsTableData,
   PendingApprovalTableData,
+  ArchivedTableData, 
 } from "@/data/Data";
-import { Checkbox } from "@/components/ui/checkbox";
-import { DatePickerWithRange } from "@/components/application-component/date-range-picker";
-import { cn } from "@/lib/utils";
-interface Filters {
-  source: string;
-  status: {
-    published: boolean;
-    pending: boolean;
-  };
-  dateRange: { from?: Date; to?: Date } | undefined; // Make `from` and `to` optional
-}
+import * as React from "react";
 
-const tabs = [
-  { id: "published", label: "Published", icon: BookOpenCheck },
-  { id: "drafts", label: "Drafts", icon: FileEdit },
-  { id: "pending", label: "Pending Approval", icon: Clock },
-];
+import { useEffect } from "react";
+import RadioButton from "@/components/ui/Radiobutton";
+import DatePick from "@/components/ui/DatePicker";
 
-// Define colors for the StatsCards component
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
-
-// Stats cards for Insights
-const insightsStats = [
+const Up = <CircleArrowUp className="text-[var(--green)] h-4" />;
+const Down = <CircleArrowDown className="text-[var(--red)] h-4" />;
+const Stats = [
   {
-    title: "Total Insights Published:",
+    title: "Total Published",
     value: "468",
-    icon: BookOpenCheck,
-    performance: null,
+    icon: Users,
+    performance: Up,
   },
   {
     title: "Pending Approval",
     value: "23",
-    icon: Clock,
-    performance: null,
+    icon: FileCheck2,
+    performance: Down,
   },
   {
-    title: "Total Views Last 30 Days",
+    title: "Total Views Last",
     value: "19,320",
-    icon: Eye,
-    performance: null,
+    icon: FileText,
+    performance: Up,
   },
   {
-    title: "Total Comments on Insights",
+    title: "Total Comments",
     value: "412",
-    icon: Bell,
-    performance: null,
+    icon: Clock,
+    performance: Up,
   },
+ 
 ];
 
-function StatsCards() {
+export function Insights() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 lg:grid-cols-4">
-      {insightsStats.map((stat, index) => (
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Insights</h1>
+      <StatCard />
+      <Buttonbar />
+
+      <SessionTabs />
+    </div>
+  );
+}
+
+function Buttonbar() {
+  const [showFilter, setShowFilter] = useState(false);
+  return (
+    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
+      <Button variant="brand" size="new">
+        <Plus className="h-3 w-3" />
+        <span className="">Add New Insight </span>
+      </Button>
+      <div className="flex gap-4 flex-wrap">
+        <Button variant="standard" size="new">
+          <FileDown className="h-3 w-3" />
+          <span className=""> Manage Categories & Tags</span>
+        </Button>
+        <Button variant="standard" size="new">
+          <FileDown className="h-3 w-3" />
+          <span className=""> Assign Editors</span>
+        </Button>
+        <Button variant="standard" size="new">
+          <Eye className="h-3 w-3" />
+          <span className=""> Import Bulk Content (Excel/CSV)</span>
+        </Button>
+        <Button variant="standard" size="new">
+          <BadgeQuestionMark className="h-3 w-3" />
+          <span className="">Export Insights Data</span>
+        </Button>
+       
+        <Button
+          variant="standard"
+          size="new"
+          onClick={() => setShowFilter(true)}
+        >
+          <Filter className="h-3 w-3" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
+      </div>
+    </div>
+  );
+}
+
+interface FilterProps {
+  onClose: () => void;
+}
+
+function AssessFilter({ onClose }: FilterProps) {
+  const modalRef = React.useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState("General");
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (modalRef.current && modalRef.current.contains(e.target as Node)) {
+        return;
+      }
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-radix-popper-content-wrapper]")) {
+        return;
+      }
+      onClose();
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [onClose]);
+
+  const [coach, setCoach] = useState("Consultant");
+  const [session, setSession] = useState("1:1");
+  const [booking, setBooking] = useState("Booked");
+  const [refund, setRefund] = useState("Not Requested");
+  const [mode, setMode] = useState("Manual");
+
+  const tabList = [
+    "General",
+    "Coach Type",
+    "Session Type",
+    "Booking Status",
+    "Refund Status",
+    "Date Range",
+    "Acceptance Mode",
+  ];
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
+      <div
+        ref={modalRef}
+        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+      >
+        <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
+          <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">
+            Filters
+          </CardTitle>
+          <Button
+            variant="link"
+            className="text-sm text-[var(--brand-color)] p-0 h-auto block hover:no-underline hover:cursor-pointer"
+          >
+            Clear All
+          </Button>
+        </div>
+        <div className="flex ">
+          <div className="overflow-y-auto min-w-[180px] border-r-1 h-[360px]">
+            <div className="flex flex-col ">
+              {tabList.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`text-left text-sm px-3 py-3 border-l-3  ${
+                    activeTab === tab
+                      ? "bg-[var(--brand-color3)] dark:bg-[var(--brand-color2)] text-[var(--brand-color)] dark:text-[var(--text-head)] font-semibold border-[var(--brand-color)]"
+                      : "text-[var(--text)] hover:bg-[var(--faded)] border-transparent"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-6 overflow-y-auto relative w-full">
+            {activeTab === "General" && (
+              <>
+                <label htmlFor="Gen" className="text-[var(--text)]">
+                  Search by Name :
+                </label>
+                <Input
+                  id="Gen"
+                  placeholder="Enter .."
+                  type="text"
+                  className="mt-4 w-full "
+                />
+              </>
+            )}
+
+            {activeTab === "Coach Type" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select the Coach Type:
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {["Consultant", "Mentor", "Educator", "Counselor"].map(
+                    (option) => (
+                      <RadioButton
+                        key={option}
+                        label={option}
+                        value={option}
+                        selected={coach}
+                        onChange={setCoach}
+                      />
+                    )
+                  )}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Session Type" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select the Session Type :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {["1:1", "In-Person", "Ask Question", "Instant", "B2B"].map(
+                    (option) => (
+                      <RadioButton
+                        key={option}
+                        label={option}
+                        value={option}
+                        selected={session}
+                        onChange={setSession}
+                      />
+                    )
+                  )}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Booking Status" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Booking Status :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {["Booked", "Completed", "Missed", "Cancelled"].map(
+                    (option) => (
+                      <RadioButton
+                        key={option}
+                        label={option}
+                        value={option}
+                        selected={booking}
+                        onChange={setBooking}
+                      />
+                    )
+                  )}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Refund Status" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Refund Status :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {["Not Requested", "Requested", "Approved", "Denied"].map(
+                    (option) => (
+                      <RadioButton
+                        key={option}
+                        label={option}
+                        value={option}
+                        selected={refund}
+                        onChange={setRefund}
+                      />
+                    )
+                  )}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Acceptance Mode" && (
+              <>
+                <p className="text-sm text-[var(--text-head)] mb-4">
+                  Select Acceptance Mode :
+                </p>
+                <div className="flex flex-col gap-4 text-[var(--text)] ">
+                  {["Manual", "Auto"].map((option) => (
+                    <RadioButton
+                      key={option}
+                      label={option}
+                      value={option}
+                      selected={mode}
+                      onChange={setMode}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Date Range" && (
+              <>
+                <label htmlFor="act" className="text-[var(--text)]">
+                  Enter the Last Assessment Date :
+                </label>
+                <div className="mt-4 min-w-full">
+                  <DatePick />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+        <div className="relative bottom-0 right-0 w-full px-6 py-4 flex border-t-1 justify-end gap-2">
+          <div className="flex gap-4 absolute left-[50%] -translate-x-[50%]">
+            <Button variant="border" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button variant="brand" onClick={onClose}>
+              Apply Filters
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatCard() {
+  return (
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+      {Stats.map((stat, index) => (
         <Card
           key={index}
           className="xl:rounded-sm shadow-none bg-[var(--background)]"
@@ -108,7 +382,7 @@ function StatsCards() {
               </div>
               {stat.performance}
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex  items-center gap-4">
               <div className={`rounded-full `}>
                 <stat.icon className={`h-8 w-8 ${color2}`} />
               </div>
@@ -121,516 +395,324 @@ function StatsCards() {
   );
 }
 
-function InsightsAdvancedFilters({
-  filters,
-  setFilters,
-  onReset,
-  onApply,
-}: {
-  filters: Filters;
-  setFilters: (filters: Filters) => void;
-  onReset: () => void;
-  onApply: () => void;
-}) {
-  return (
-    <Card className="mt-8 shadow-none bg-[var(--background)]">
-      <CardHeader>
-        <div className="text-lg font-bold text-[var(--text-head)]">Filters</div>
-      </CardHeader>
-      <div className="px-6 pb-6">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 text-[var(--text)]">
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Source</label>
-            <Input
-              placeholder="Search by news source"
-              className="mt-2"
-              value={filters.source}
-              onChange={(e) =>
-                setFilters({ ...filters, source: e.target.value })
-              }
-            />
-          </div>
+const actionIconMap: Record<string, React.ReactNode> = {
+  Edit: <Edit className="h-4 w-4 mr-1" />,
+  Archive: <Archive className="h-4 w-4 mr-1" />,
+  Publish: <Check className="h-4 w-4 mr-1" />,
+  Approve: <Check className="h-4 w-4 mr-1" />,
+  Reject: <X className="h-4 w-4 mr-1" />,
+  View: <Eye className="h-4 w-4 mr-1" />,
+  Invoice: <FileText className="h-4 w-4 mr-1" />,
+  Activate: <Check className="h-4 w-4 mr-1" />,
+  Delete: <Trash2 className="h-4 w-4 mr-1" />,
+  Review: <FileCheck2 className="h-4 w-4 mr-1" />,
+  Flag: <Flag className="h-4 w-4 mr-1" />,
+  Assign: <Users className="h-4 w-4 mr-1" />,
+  Resolve: <Check className="h-4 w-4 mr-1" />,
+  Close: <X className="h-4 w-4 mr-1" />,
+  Restore: <Check className="h-4 w-4 mr-1" />,
+  Respond: <MessageCircle className="h-4 w-4 mr-1" />,
+  Remove: <Trash2 className="h-4 w-4 mr-1" />,
+  Reply: <MessageCircle className="h-4 w-4 mr-1" />,
+  Note: <FileText className="h-4 w-4 mr-1" />,
+  Done: <Check className="h-4 w-4 mr-1" />,
+  Questions: <BadgeQuestionMark className="h-4 w-4 mr-1" />,
+  Results: <FileDown className="h-4 w-4 mr-1" />,
+  Details: <Eye className="h-4 w-4 mr-1" />,
+  Debug: <FileCheck2 className="h-4 w-4 mr-1" />,
+  Fix: <Check className="h-4 w-4 mr-1" />,
+  Verify: <Check className="h-4 w-4 mr-1" />,
+  Comment: <MessageCircle className="h-4 w-4 mr-1" />,
+  Download: <Download className="h-4 w-4 mr-1" />,
+  Cancel: <X className="h-4 w-4 mr-1" />,
+  Suspend: <Flag className="h-4 w-4 mr-1" />,
+  Deactivate: <X className="h-4 w-4 mr-1" />,
+  Investigate: <Search className="h-4 w-4 mr-1" />,
+  Refund: <FileDown className="h-4 w-4 mr-1" />,
+};
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Status</label>
-            <div className="flex flex-wrap gap-4 mt-2">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="published"
-                  checked={filters.status.published}
-                  onCheckedChange={(checked) =>
-                    setFilters({
-                      ...filters,
-                      status: {
-                        ...filters.status,
-                        published: checked as boolean,
-                      },
-                    })
-                  }
-                />
-                <label htmlFor="published" className="text-sm">
-                  Published
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="pending"
-                  checked={filters.status.pending}
-                  onCheckedChange={(checked) =>
-                    setFilters({
-                      ...filters,
-                      status: {
-                        ...filters.status,
-                        pending: checked as boolean,
-                      },
-                    })
-                  }
-                />
-                <label htmlFor="pending" className="text-sm">
-                  Pending
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Date Range</label>
-            <div className="mt-2">
-              <DatePickerWithRange
-                // value={filters.dateRange}
-                onChange={(range) =>
-                  setFilters({ ...filters, dateRange: range })
-                }
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 flex justify-end gap-2 ">
-          <Button variant="border" onClick={onReset}>
-            Reset
-          </Button>
-          <Button variant="brand" onClick={onApply}>
-            Apply Filters
-          </Button>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-interface BaseItem {
-  title: string;
-  author: string;
-  category: string;
-  actions: string[];
-}
-
-interface PublishedItem extends BaseItem {
-  tags: string[];
-  for: string;
-  views: number;
-  status: string;
-}
-
-interface DraftItem extends BaseItem {
-  lastEdited: string;
-  suggestedTags: string[];
-}
-
-interface PendingItem extends BaseItem {
-  submittedOn: string;
-  assignedEditor: string;
-}
-
-type ContentItem = PublishedItem | DraftItem | PendingItem;
-
-export function Insights() {
+function SessionTabs() {
   const [activeTab, setActiveTab] = useState("published");
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [filtersOpen, setFiltersOpen] = useState(false);
-  const [filters, setFilters] = useState<Filters>({
-    source: "",
-    status: { published: true, pending: true },
-    dateRange: undefined,
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
+  const [sortConfig, setSortConfig] = useState({
+    key: "title",
+    direction: "ascending",
   });
-  const [page, setPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "ascending" | "descending";
-  } | null>(null);
 
-  const handleApplyFilters = () => {
-    setFiltersOpen(false);
-    console.log("Filters applied:", filters);
-  };
+  // Assign IDs to rows if not present (for selection)
+  const addIds = (data: any[]) =>
+    data.map((item, idx) => ({ id: idx + 1, ...item }));
 
-  // Reset filters handler
-  const handleResetFilters = () => {
-    setFilters({
-      source: "",
-      status: { published: true, pending: true },
-      dateRange: undefined,
-    });
-    console.log("Filters reset");
-  };
-
-
-  const getCurrentData = (): ContentItem[] => {
+  const getCurrentData = () => {
     switch (activeTab) {
       case "published":
-        return PublishedTableData;
+        return addIds(PublishedTableData);
       case "drafts":
-        return DraftsTableData;
+        return addIds(DraftsTableData);
       case "pending":
-        return PendingApprovalTableData;
+        return addIds(PendingApprovalTableData);
+      case "archived":
+        return addIds(ArchivedTableData); // Add archived data
       default:
-        return PublishedTableData;
+        return [];
     }
   };
 
-  // Sorting logic
-  let sortedData = [...getCurrentData()];
-  if (sortConfig !== null) {
+  const currentData = getCurrentData();
+  let sortedData = [...currentData];
+  if (sortConfig && typeof sortConfig.key === "string" && typeof sortConfig.direction === "string") {
+    sortedData = sortedData.filter((item) => item && typeof item === "object");
     sortedData.sort((a, b) => {
-      // @ts-ignore: Dynamic property access
       const aValue = a[sortConfig.key];
-      // @ts-ignore: Dynamic property access
       const bValue = b[sortConfig.key];
-
-      if (aValue < bValue) {
-        return sortConfig.direction === "ascending" ? -1 : 1;
+      if (aValue === undefined || bValue === undefined) return 0;
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortConfig.direction === "ascending"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
       }
-      if (aValue > bValue) {
-        return sortConfig.direction === "ascending" ? 1 : -1;
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return sortConfig.direction === "ascending" ? aValue - bValue : bValue - aValue;
       }
       return 0;
     });
   }
 
   const totalPages = Math.ceil(sortedData.length / recordsPerPage);
-  const indexLast = page * recordsPerPage;
-  const indexFirst = indexLast - recordsPerPage;
-  const currentRecords = sortedData.slice(indexFirst, indexLast);
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = sortedData.slice(indexOfFirstRecord, indexOfLastRecord);
 
-  // Reset page and selections when tab changes
-  useEffect(() => {
-    setPage(1);
-    setSelectedItems([]);
-    setSortConfig(null);
-  }, [activeTab]);
-
-  // Selection handlers
-  const toggleSelectAll = () => {
-    setSelectedItems(
-      selectedItems.length === currentRecords.length
-        ? []
-        : currentRecords.map((item) => item.title)
-    );
-  };
-
-  const toggleSelectItem = (title: string) => {
-    setSelectedItems(
-      selectedItems.includes(title)
-        ? selectedItems.filter((t) => t !== title)
-        : [...selectedItems, title]
-    );
-  };
-
-  const actionToIcon = {
-    View: <Eye className="h-4 w-4" />,
-    Edit: <Pen className="h-4 w-4" />,
-    Archive: <Archive className="h-4 w-4" />,
-    Delete: <Trash className="h-4 w-4" />,
-    Review: <Eye className="h-4 w-4" />,
-    Approve: <Check className="h-4 w-4" />,
-    Reject: <X className="h-4 w-4" />,
-  };
-
-  const isPublishedItem = (item: ContentItem): item is PublishedItem =>
-    "views" in item;
-  const isDraftItem = (item: ContentItem): item is DraftItem =>
-    "suggestedTags" in item;
-  const isPendingItem = (item: ContentItem): item is PendingItem =>
-    "assignedEditor" in item;
-
-  const getTagsToDisplay = (item: ContentItem): string[] => {
-    if (isPublishedItem(item)) return item.tags;
-    if (isDraftItem(item)) return item.suggestedTags;
-    if (isPendingItem(item)) return [item.assignedEditor];
-    return [];
-  };
-
-  const requestSort = (key: string) => {
-    let direction: "ascending" | "descending" = "ascending";
+  const requestSort = (key: any) => {
+    let direction = "ascending";
     if (sortConfig?.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
     setSortConfig({ key, direction });
   };
 
+  const toggleSelectAll = () => {
+    if (selectedRows.length === currentRecords.length) {
+      setSelectedRows([]);
+    } else {
+      setSelectedRows(currentRecords.map((item) => item.id));
+    }
+  };
+
+  const toggleSelectRow = (rowId: number) => {
+    if (selectedRows.includes(rowId)) {
+      setSelectedRows(selectedRows.filter((id) => id !== rowId));
+    } else {
+      setSelectedRows([...selectedRows, rowId]);
+    }
+  };
+
+  // Table headers for each tab
+  const getTableHeaders = () => {
+    switch (activeTab) {
+      case "published":
+        return (
+          <>
+            <TableHead onClick={() => requestSort("title")} className="cursor-pointer text-[var(--text)]">Title {sortConfig?.key === "title" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("author")} className="cursor-pointer text-[var(--text)]">Author {sortConfig?.key === "author" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("category")} className="cursor-pointer text-[var(--text)]">Category {sortConfig?.key === "category" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("tags")} className="cursor-pointer text-[var(--text)]">Tags {sortConfig?.key === "tags" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("For")} className="cursor-pointer text-[var(--text)]">For {sortConfig?.key === "For" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("views")} className="cursor-pointer text-[var(--text)]">Views {sortConfig?.key === "views" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("Status")} className="cursor-pointer text-[var(--text)]">Status {sortConfig?.key === "Status" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+
+          </>
+        );
+      case "drafts":
+        return (
+          <>
+            <TableHead onClick={() => requestSort("title")} className="cursor-pointer text-[var(--text)]">Title {sortConfig?.key === "title" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("author")} className="cursor-pointer text-[var(--text)]">Author {sortConfig?.key === "author" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("category")} className="cursor-pointer text-[var(--text)]">Category {sortConfig?.key === "category" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("lastEdited")} className="cursor-pointer text-[var(--text)]">Last Edited {sortConfig?.key === "lastEdited" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("suggestedTags")} className="cursor-pointer text-[var(--text)]">Suggested Tags {sortConfig?.key === "suggestedTags" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+          </>
+        );
+      case "pending":
+        return (
+          <>
+            <TableHead onClick={() => requestSort("title")} className="cursor-pointer text-[var(--text)]">Title {sortConfig?.key === "title" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("author")} className="cursor-pointer text-[var(--text)]">Author {sortConfig?.key === "author" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("category")} className="cursor-pointer text-[var(--text)]">Category {sortConfig?.key === "category" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("submittedOn")} className="cursor-pointer text-[var(--text)]">Submitted On {sortConfig?.key === "submittedOn" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("assignedEditor")} className="cursor-pointer text-[var(--text)]">Assigned Editor {sortConfig?.key === "assignedEditor" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+          </>
+        );
+      case "archived":
+        return (
+          <>
+            <TableHead onClick={() => requestSort("title")} className="cursor-pointer text-[var(--text)]">Title {sortConfig?.key === "title" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("author")} className="cursor-pointer text-[var(--text)]">Author {sortConfig?.key === "author" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("category")} className="cursor-pointer text-[var(--text)]">Category {sortConfig?.key === "category" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("archivedOn")} className="cursor-pointer text-[var(--text)]">Archived On {sortConfig?.key === "archivedOn" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+            <TableHead onClick={() => requestSort("reason")} className="cursor-pointer text-[var(--text)]">Reason {sortConfig?.key === "reason" && (sortConfig.direction === "ascending" ? "↑" : "↓")}</TableHead>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  // Table cells for each row
+  const renderTableCells = (row: Record<string, any>) => {
+    switch (activeTab) {
+      case "published":
+        return (
+          <>
+            <TableCell className="font-medium">{row.title}</TableCell>
+            <TableCell>{row.author}</TableCell>
+            <TableCell>{row.category}</TableCell>
+            <TableCell>{row.tags && Array.isArray(row.tags) ? row.tags.join(", ") : ""}</TableCell>
+            <TableCell>{row.for}</TableCell>
+            <TableCell>{row.views}</TableCell>
+            <TableCell>{row.status}</TableCell>
+          </>
+        );
+      case "drafts":
+        return (
+          <>
+            <TableCell className="font-medium">{row.title}</TableCell>
+            <TableCell>{row.author}</TableCell>
+            <TableCell>{row.category}</TableCell>
+            <TableCell>{row.lastEdited}</TableCell>
+            <TableCell>{row.suggestedTags && Array.isArray(row.suggestedTags) ? row.suggestedTags.join(", ") : ""}</TableCell>
+          </>
+        );
+      case "pending":
+        return (
+          <>
+            <TableCell className="font-medium">{row.title}</TableCell>
+            <TableCell>{row.author}</TableCell>
+            <TableCell>{row.category}</TableCell>
+            <TableCell>{row.submittedOn}</TableCell>
+            <TableCell>{row.assignedEditor}</TableCell>
+          </>
+        );
+      case "archived":
+        return (
+          <>
+            <TableCell className="font-medium">{row.title}</TableCell>
+            <TableCell>{row.author}</TableCell>
+            <TableCell>{row.category}</TableCell>
+            <TableCell>{row.archivedOn}</TableCell>
+            <TableCell>{row.reason}</TableCell>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-[var(--text-head)]">Insights</h1>
+    <div className="flex flex-col gap-0 w-full">
+      {/* Tab Navigation */}
+      <div className="flex border-b">
+        <Button
+          variant={activeTab === "published" ? "brand" : "border"}
+          className="rounded-b-none rounded-r-lg"
+          onClick={() => {
+            setActiveTab("published");
+            setCurrentPage(1);
+            setSelectedRows([]);
+          }}
+        >
+          Published
+        </Button>
+        <Button
+          variant={activeTab === "drafts" ? "brand" : "border"}
+          className="rounded-b-none rounded-r-lg"
+          onClick={() => {
+            setActiveTab("drafts");
+            setCurrentPage(1);
+            setSelectedRows([]);
+          }}
+        >
+          Drafts
+        </Button>
+        <Button
+          variant={activeTab === "pending" ? "brand" : "border"}
+          className="rounded-b-none rounded-r-lg"
+          onClick={() => {
+            setActiveTab("pending");
+            setCurrentPage(1);
+            setSelectedRows([]);
+          }}
+        >
+          Pending Approval
+        </Button>
+        <Button
+          variant={activeTab === "archived" ? "brand" : "border"}
+          className="rounded-b-none rounded-r-lg"
+          onClick={() => {
+            setActiveTab("archived");
+            setCurrentPage(1);
+            setSelectedRows([]);
+          }}
+        >
+          Archived
+        </Button>
+      </div>
 
-        {/* Stats Cards */}
-        <StatsCards />
-
-        {/* Filters Button */}
-        <div className="flex justify-end mt-4">
-          <Button
-            variant="border"
-            onClick={() => setFiltersOpen(!filtersOpen)}
-            className="flex items-center gap-2"
-          >
-            <Filter className="h-4 w-4" />
-            {filtersOpen ? "Hide Filters" : "Show Filters"}
-          </Button>
-        </div>
-
-        {/* Advanced Filters */}
-        {filtersOpen && (
-          <InsightsAdvancedFilters
-            filters={filters}
-            setFilters={setFilters}
-            onReset={handleResetFilters}
-            onApply={handleApplyFilters}
-          />
-        )}
-
-        {/* Tabs */}
-        <div className="flex justify-between items-center mb-0 mt-6">
-          <div className="flex">
-            {tabs.map((tab) => (
-              <Button
-                key={tab.id}
-                variant={activeTab === tab.id ? "brand" : "border"}
-                className={`rounded-b-none rounded-r-lg`}
-                onClick={() => setActiveTab(tab.id)}
-              >
-                <tab.icon className="h-4 w-4 mr-2" />
-                {tab.label}
-              </Button>
-            ))}
-          </div>
-          <Button variant="brand">
-            <Plus className="text-white mr-2" />
-            <span>Add Insight</span>
-          </Button>
-        </div>
-
-
-
- 
-
-      {/* Content Section */}
-      <div className="rounded-md border bg-[var(--background)] overflow-x-auto">
-        {/* Selection Header */}
-        <div className="flex items-center justify-between border-b p-4 mt-auto h-20">
-          <div className="flex items-center justify-between pl-0 p-4">
-            <div className="flex items-center gap-2 border-none shadow-none">
-              <Checkbox
-                id="select-all"
-                checked={selectedItems.length === currentRecords.length && currentRecords.length > 0}
-                onCheckedChange={toggleSelectAll}
-              />
-              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
-                Select All
-              </label>
-              {selectedItems.length > 0 && (
-                <Badge variant="border" className="ml-2">
-                  {selectedItems.length} selected
-                </Badge>
-              )}
-            </div>
-
-            {selectedItems.length > 0 && (
-              <div className="flex gap-2 ml-2">
-                <Button variant="border" size="sm">
-                  <Bell className="h-4 w-4" />
-                  Send Notification
-                </Button>
-                <Button variant="border" size="sm">
-                  <Download className="h-4 w-4" />
-                  Export Selected
-                </Button>
-                <Button variant="delete" size="sm">
-                  <X className="h-4 w-4" />
-                  Mark Inactive
-                </Button>
-              </div>
+      {/* Table Controls */}
+      <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+        <div className="flex items-center justify-between border-b h-20 p-4">
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="select-all"
+              checked={selectedRows.length === currentRecords.length && currentRecords.length > 0}
+              onCheckedChange={toggleSelectAll}
+            />
+            <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+              Select All
+            </label>
+            {selectedRows.length > 0 && (
+              <Badge variant="border" className="ml-2">
+                {selectedRows.length} selected
+              </Badge>
             )}
           </div>
-          
-          <div className="flex justify-end items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="border"
-                  size="sm"
-                  className="flex items-center gap-2 text-low text-[var(--text-head)]"
-                >
-                  {recordsPerPage}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="text-[var(--text)] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
-                  <DropdownMenuItem
-                    key={size}
-                    onClick={() => {
-                      setRecordsPerPage(size);
-                      setPage(1);
-                    }}
-                    className="text-[var(--text)] focus:bg-[var(--faded)]"
-                  >
-                    {size}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-              <Input
-                placeholder="Search"
-                className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-              />
-              <Button
-                type="submit"
-                size="icon"
-                variant="standard"
-                className="rounded-none rounded-r-md bg-[var(--button)]"
-                aria-label="Search"
-              >
-                <Search className="h-5 w-5 text-[var(--text)]" />
-              </Button>
-            </div>
-          </div>
+          {/* Search Bar (optional, can be implemented if needed) */}
         </div>
-
-        {/* Content Table */}
-        <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
-          <Table className="w-full caption-top border-collapse overflow-y-visible">
-            <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] opacity-100">
+        {/* Table */}
+        <div className="overflow-x-auto text-[var(--text)] w-full">
+          <Table className="w-full border-collapse">
+            <TableHeader className="bg-[var(--faded)]">
               <TableRow>
-                <TableHead className="min-w-[40px]">
-                  <Checkbox
-                    checked={
-                      selectedItems.length === currentRecords.length &&
-                      currentRecords.length > 0
-                    }
-                    onCheckedChange={toggleSelectAll}
-                  />
-                </TableHead>
-                <TableHead
-                  onClick={() => requestSort("title")}
-                  className="cursor-pointer text-[var(--text)] text-low"
-                >
-                  Title {sortConfig?.key === "title" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                <TableHead
-                  onClick={() => requestSort("author")}
-                  className="cursor-pointer text-[var(--text)]"
-                >
-                  Author {sortConfig?.key === "author" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                </TableHead>
-                {activeTab === "published" && (
-                  <TableHead
-                    onClick={() => requestSort("category")}
-                    className="cursor-pointer text-[var(--text)]"
-                  >
-                    Category {sortConfig?.key === "category" && (sortConfig.direction === "ascending" ? "↑" : "↓")}
-                  </TableHead>
-                )}
-                <TableHead className="cursor-pointer text-[var(--text)]">
-                  {activeTab === "published"
-                    ? "Tags"
-                    : activeTab === "drafts"
-                      ? "Suggested Tags"
-                      : "Assigned Editor"}
-                </TableHead>
-                {activeTab === "published" && <TableHead className="cursor-pointer text-[var(--text)]">Audience</TableHead>}
-                {activeTab === "published" && <TableHead className="cursor-pointer text-[var(--text)]">Views</TableHead>}
-                {activeTab === "drafts" && <TableHead className="cursor-pointer text-[var(--text)]">Last Edited</TableHead>}
-                {activeTab === "pending" && <TableHead className="cursor-pointer text-[var(--text)]">Submitted On</TableHead>}
+                <TableHead className="min-w-[40px]"></TableHead>
+                {getTableHeaders()}
                 <TableHead className="text-[var(--text)]">Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className="overflow-visible relative z-0">
-              {currentRecords.map((item) => (
-                <TableRow 
-                  key={item.title}
+            <TableBody>
+              {currentRecords.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-id={row.id}
                   className={cn(
-                    "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-                    selectedItems.includes(item.title) && "bg-[var(--brand-color3)]"
+                    "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]"
                   )}
+                  onClick={() => toggleSelectRow(row.id)}
                 >
-                  <TableCell className={cn(
-                    "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
-                    selectedItems.includes(item.title)
-                      ? "border-[var(--brand-color)]"
-                      : "border-transparent"
-                  )}>
+                  <TableCell className="pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]">
                     <Checkbox
-                      checked={selectedItems.includes(item.title)}
-                      onCheckedChange={() => toggleSelectItem(item.title)}
+                      checked={selectedRows.includes(row.id)}
+                      onClick={(e) => e.stopPropagation()}
+                      onCheckedChange={() => toggleSelectRow(row.id)}
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{item.title}</TableCell>
-                  <TableCell className="text-[var(--text)]">{item.author}</TableCell>
-
-                  {activeTab === "published" && (
-                    <TableCell>
-                      <Badge variant="standard">{item.category}</Badge>
-                    </TableCell>
-                  )}
-
-                  <TableCell>
-                    <div className="flex flex-wrap gap-1">
-                      {getTagsToDisplay(item).map((tag, idx) => (
-                        <Badge
-                          key={idx}
-                          variant="standard"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </TableCell>
-
-                  {activeTab === "published" && isPublishedItem(item) && (
-                    <TableCell className="text-[var(--text)]">{item.for}</TableCell>
-                  )}
-
-                  {activeTab === "published" && isPublishedItem(item) && (
-                    <TableCell>
-                      <Badge variant="secondary">
-                        {item.views.toLocaleString()}
-                      </Badge>
-                    </TableCell>
-                  )}
-
-                  {activeTab === "drafts" && isDraftItem(item) && (
-                    <TableCell className="text-[var(--text)]">{item.lastEdited}</TableCell>
-                  )}
-
-                  {activeTab === "pending" && isPendingItem(item) && (
-                    <TableCell className="text-[var(--text)]">{item.submittedOn}</TableCell>
-                  )}
-
+                  {renderTableCells(row)}
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      {item.actions.map((action, index) => (
-                        <Button
-                          key={index}
-                          variant="noborder"
-                          size="sm"
-                          title={action}
-                          className="bg-white border-0 shadow-none"
-                        >
-                          {actionToIcon[action as keyof typeof actionToIcon]}
-                          <span className="sr-only">{action}</span>
+                      {row.actions && row.actions.map((action: string, idx: number) => (
+                        <Button key={idx} variant="noborder" size="sm" aria-label={action}>
+                          {actionIconMap[action] || null}
                         </Button>
                       ))}
                     </div>
@@ -640,43 +722,59 @@ export function Insights() {
             </TableBody>
           </Table>
         </div>
-
         {/* Pagination */}
-        <div className="flex items-center justify-between flex-wrap gap-2 p-4">
+        <div className="flex items-center justify-between p-4">
           <div className="flex items-center gap-4">
-            <span className="text-low text-[var(--text)]">
-              Showing {indexFirst + 1}-
-              {Math.min(indexLast, sortedData.length)} of{" "}
-              {sortedData.length} items
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="flex items-center gap-2">
+                  {recordsPerPage}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-[var(--background)] text-[var(--text)]">
+                {[ 10, 25, 50, 100].map((size) => (
+                  <DropdownMenuItem
+                    key={size}
+                    onClick={() => {
+                      setRecordsPerPage(size);
+                      setCurrentPage(1);
+                    }}
+                  >
+                    {size}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <span className="text-[var(--text)]">
+              Showing {indexOfFirstRecord + 1}–{Math.min(indexOfLastRecord, sortedData.length)} of {sortedData.length}
             </span>
           </div>
           <div className="flex items-center gap-2">
             <Button
               variant="border"
               size="icon"
-              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-              disabled={page === 1}
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-              (pageNum) => (
-                <Button
-                  key={pageNum}
-                  variant={pageNum === page ? "brand" : "border"}
-                  size="sm"
-                  className={`h-8 w-8 p-0 ${pageNum === page ? "text-white" : "text-[var(--text)]"}`}
-                  onClick={() => setPage(pageNum)}
-                >
-                  {pageNum}
-                </Button>
-              )
-            )}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <Button
+                key={page}
+                variant={page === currentPage ? "brand" : "border"}
+                size="sm"
+                className={`h-8 w-8 p-0 ${page === currentPage ? "text-white" : "text-[var(--text)]"}`}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </Button>
+            ))}
             <Button
               variant="border"
               size="icon"
-              onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-              disabled={page === totalPages}
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -684,728 +782,5 @@ export function Insights() {
         </div>
       </div>
     </div>
-      </div>
   );
 }
-
-
-// import { Button } from "@/components/ui/button";
-// import {
-//   Search,
-//   Download,
-//   Trash,
-//   Archive,
-//   Pen,
-//   Eye,
-//   Filter,
-//   Check,
-//   X,
-//   Bell,
-//   Plus,
-//   ChevronDown,
-//   ChevronLeft,
-//   ChevronRight,
-//   BookOpenCheck,
-//   FileEdit,
-//   Clock,
-// } from "lucide-react";
-// import { Card, CardHeader } from "@/components/ui/card";
-// import { useState, useEffect } from "react";
-// import { Badge } from "@/components/ui/badge";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
-// import { Input } from "@/components/ui/input";
-// import {
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableHead,
-//   TableHeader,
-//   TableRow,
-// } from "@/components/ui/table";
-// import {
-//   PublishedTableData,
-//   DraftsTableData,
-//   PendingApprovalTableData,
-// } from "@/data/Data";
-// import { Checkbox } from "@/components/ui/checkbox";
-// import { DatePickerWithRange } from "@/components/application-component/date-range-picker";
-// import { cn } from "@/lib/utils";
-
-// interface Filters {
-//   source: string;
-//   status: {
-//     published: boolean;
-//     pending: boolean;
-//   };
-//   dateRange: { from: Date; to: Date } | undefined;
-// }
-
-// const tabs = [
-//   { id: "published", label: "Published", icon: BookOpenCheck },
-//   { id: "drafts", label: "Drafts", icon: FileEdit },
-//   { id: "pending", label: "Pending Approval", icon: Clock },
-// ];
-
-// // Define colors for the StatsCards component
-// const color = "text-[var(--text)]";
-// const color2 = "text-[var(--text-head)]";
-
-// // Stats cards for Insights
-// const insightsStats = [
-//   {
-//     title: "Total Insights Published:",
-//     value: "468",
-//     icon: BookOpenCheck,
-//     performance: null,
-//   },
-//   {
-//     title: "Pending Approval",
-//     value: "23",
-//     icon: Clock,
-//     performance: null,
-//   },
-//   {
-//     title: "Total Views Last 30 Days",
-//     value: "19,320",
-//     icon: Eye,
-//     performance: null,
-//   },
-//   {
-//     title: "Total Comments on Insights",
-//     value: "412",
-//     icon: Bell,
-//     performance: null,
-//   },
-// ];
-
-// function StatsCards() {
-//   return (
-//     <div className="grid gap-4 xl:gap-1 md:grid-cols-2 lg:grid-cols-4">
-//       {insightsStats.map((stat, index) => (
-//         <Card
-//           key={index}
-//           className="xl:rounded-sm shadow-none bg-[var(--background)]"
-//         >
-//           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
-//             <div className="flex justify-between h-full items-center">
-//               <div
-//                 className={`${color} text-xs uppercase text-light line-clamp-1`}
-//               >
-//                 {stat.title}
-//               </div>
-//               {stat.performance}
-//             </div>
-//             <div className="flex items-center gap-4">
-//               <div className={`rounded-full `}>
-//                 <stat.icon className={`h-8 w-8 ${color2}`} />
-//               </div>
-//               <div className={`${color2} text-2xl`}>{stat.value}</div>
-//             </div>
-//           </CardHeader>
-//         </Card>
-//       ))}
-//     </div>
-//   );
-// }
-
-// function InsightsAdvancedFilters({
-//   filters,
-//   setFilters,
-//   onReset,
-//   onApply,
-// }: {
-//   filters: Filters;
-//   setFilters: (filters: Filters) => void;
-//   onReset: () => void;
-//   onApply: () => void;
-// }) {
-//   return (
-//     <Card className="mt-8 shadow-none bg-[var(--background)]">
-//       <CardHeader>
-//         <div className="text-lg font-bold text-[var(--text-head)]">Filters</div>
-//       </CardHeader>
-//       <div className="px-6 pb-6">
-//         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 text-[var(--text)]">
-//           <div className="space-y-2">
-//             <label className="text-sm font-medium">Source</label>
-//             <Input
-//               placeholder="Search by news source"
-//               className="mt-2"
-//               value={filters.source}
-//               onChange={(e) =>
-//                 setFilters({ ...filters, source: e.target.value })
-//               }
-//             />
-//           </div>
-
-//           <div className="space-y-2">
-//             <label className="text-sm font-medium">Status</label>
-//             <div className="flex flex-wrap gap-4 mt-2">
-//               <div className="flex items-center space-x-2">
-//                 <Checkbox
-//                   id="published"
-//                   checked={filters.status.published}
-//                   onCheckedChange={(checked) =>
-//                     setFilters({
-//                       ...filters,
-//                       status: {
-//                         ...filters.status,
-//                         published: checked as boolean,
-//                       },
-//                     })
-//                   }
-//                 />
-//                 <label htmlFor="published" className="text-sm">
-//                   Published
-//                 </label>
-//               </div>
-//               <div className="flex items-center space-x-2">
-//                 <Checkbox
-//                   id="pending"
-//                   checked={filters.status.pending}
-//                   onCheckedChange={(checked) =>
-//                     setFilters({
-//                       ...filters,
-//                       status: {
-//                         ...filters.status,
-//                         pending: checked as boolean,
-//                       },
-//                     })
-//                   }
-//                 />
-//                 <label htmlFor="pending" className="text-sm">
-//                   Pending
-//                 </label>
-//               </div>
-//             </div>
-//           </div>
-
-//           <div className="space-y-2">
-//             <label className="text-sm font-medium">Date Range</label>
-//             <div className="mt-2">
-//               <DatePickerWithRange
-//                 value={filters.dateRange}
-//                 onChange={(range) =>
-//                   setFilters({ ...filters, dateRange: range })
-//                 }
-//               />
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="mt-8 flex justify-end gap-2 ">
-//           <Button variant="border" onClick={onReset}>
-//             Reset
-//           </Button>
-//           <Button variant="brand" onClick={onApply}>
-//             Apply Filters
-//           </Button>
-//         </div>
-//       </div>
-//     </Card>
-//   );
-// }
-
-// interface BaseItem {
-//   title: string;
-//   author: string;
-//   category: string;
-//   actions: string[];
-// }
-
-// interface PublishedItem extends BaseItem {
-//   tags: string[];
-//   for: string;
-//   views: number;
-//   status: string;
-// }
-
-// interface DraftItem extends BaseItem {
-//   lastEdited: string;
-//   suggestedTags: string[];
-// }
-
-// interface PendingItem extends BaseItem {
-//   submittedOn: string;
-//   assignedEditor: string;
-// }
-
-// type ContentItem = PublishedItem | DraftItem | PendingItem;
-
-// // Type guard functions
-// function isPublishedItem(item: ContentItem): item is PublishedItem {
-//   return 'views' in item;
-// }
-
-// function isDraftItem(item: ContentItem): item is DraftItem {
-//   return 'lastEdited' in item;
-// }
-
-// function isPendingItem(item: ContentItem): item is PendingItem {
-//   return 'submittedOn' in item;
-// }
-
-// // Tags handler
-// const getTagsToDisplay = (item: ContentItem): string[] => {
-//   if (isPublishedItem(item)) return item.tags;
-//   if (isDraftItem(item)) return item.suggestedTags;
-//   if (isPendingItem(item)) return [item.assignedEditor];
-//   return [];
-// };
-
-// // Action icons mapping
-// const actionToIcon = {
-//   View: <Eye className="h-4 w-4" />,
-//   Edit: <Pen className="h-4 w-4" />,
-//   Delete: <Trash className="h-4 w-4" />,
-//   Archive: <Archive className="h-4 w-4" />,
-//   Download: <Download className="h-4 w-4" />,
-//   'Set as Active': <Check className="h-4 w-4" />,
-//   'Set as Inactive': <X className="h-4 w-4" />,
-// };
-
-// export function Insights() {
-//   const [activeTab, setActiveTab] = useState("published");
-//   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-//   const [filtersOpen, setFiltersOpen] = useState(false);
-//   const [filters, setFilters] = useState<Filters>({
-//     source: "",
-//     status: { published: true, pending: true },
-//     dateRange: undefined,
-//   });
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [recordsPerPage, setRecordsPerPage] = useState(5);
-//   const [sortConfig, setSortConfig] = useState<{
-//     key: string;
-//     direction: "ascending" | "descending";
-//   } | null>(null);
-
-//   // Get current data based on active tab
-//   const getCurrentData = (): ContentItem[] => {
-//     switch (activeTab) {
-//       case "published": return PublishedTableData;
-//       case "drafts": return DraftsTableData;
-//       case "pending": return PendingApprovalTableData;
-//       default: return PublishedTableData;
-//     }
-//   };
-
-//   // Sorting logic
-//   let sortedData = [...getCurrentData()];
-//   if (sortConfig !== null) {
-//     sortedData.sort((a, b) => {
-//       // @ts-ignore: Dynamic property access
-//       const aValue = a[sortConfig.key];
-//       // @ts-ignore: Dynamic property access
-//       const bValue = b[sortConfig.key];
-
-//       if (aValue < bValue) {
-//         return sortConfig.direction === "ascending" ? -1 : 1;
-//       }
-//       if (aValue > bValue) {
-//         return sortConfig.direction === "ascending" ? 1 : -1;
-//       }
-//       return 0;
-//     });
-//   }
-
-//   const totalPages = Math.ceil(sortedData.length / recordsPerPage);
-//   const indexLast = currentPage * recordsPerPage;
-//   const indexFirst = indexLast - recordsPerPage;
-//   const currentRecords = sortedData.slice(indexFirst, indexLast);
-
-//   // Reset page and selections when tab changes
-//   useEffect(() => {
-//     setCurrentPage(1);
-//     setSelectedItems([]);
-//     setSortConfig(null);
-//   }, [activeTab]);
-
-//   // Selection handlers
-//   const toggleSelectAll = () => {
-//     setSelectedItems(
-//       selectedItems.length === currentRecords.length
-//         ? []
-//         : currentRecords.map((item) => item.title)
-//     );
-//   };
-
-//   const toggleSelectItem = (title: string) => {
-//     setSelectedItems(
-//       selectedItems.includes(title)
-//         ? selectedItems.filter((t) => t !== title)
-//         : [...selectedItems, title]
-//     );
-//   };
-
-//   const requestSort = (key: string) => {
-//     let direction: "ascending" | "descending" = "ascending";
-//     if (sortConfig?.key === key && sortConfig.direction === "ascending") {
-//       direction = "descending";
-//     }
-//     setSortConfig({ key, direction });
-//   };
-
-//   return (
-//     <div className="flex flex-col gap-4 p-4">
-//       <StatsCards />
-      
-//       {/* Tabs */}
-//       <div className="flex border-b">
-//         {tabs.map((tab) => (
-//           <Button
-//             key={tab.id}
-//             variant="noborder"
-//             className={cn(
-//               "rounded-none border-b-2 border-transparent",
-//               activeTab === tab.id && "border-[var(--brand-color)]"
-//             )}
-//             onClick={() => setActiveTab(tab.id)}
-//           >
-//             <tab.icon className="h-4 w-4 mr-2" />
-//             {tab.label}
-//           </Button>
-//         ))}
-//       </div>
-      
-//       {/* Filters Toggle */}
-//       <div className="flex justify-between">
-//         <Button
-//           variant="border"
-//           onClick={() => setFiltersOpen(!filtersOpen)}
-//           className="flex items-center gap-2"
-//         >
-//           <Filter className="h-4 w-4" />
-//           Advanced Filters
-//         </Button>
-//         <Button variant="brand">
-//           <Plus className="h-4 w-4 mr-2" />
-//           New Insight
-//         </Button>
-//       </div>
-      
-//       {/* Filters Section */}
-//       {filtersOpen && (
-//         <InsightsAdvancedFilters
-//           filters={filters}
-//           setFilters={setFilters}
-//           onReset={() => setFilters({
-//             source: "",
-//             status: { published: true, pending: true },
-//             dateRange: undefined
-//           })}
-//           onApply={() => console.log("Filters applied")}
-//         />
-//       )}
-
-//       {/* Table Section */}
-//       <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
-//         <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-//           {/* Selection Header */}
-//           <div className="flex items-center justify-between border-b p-4 mt-auto h-20">
-//             <div className="flex items-center justify-between pl-0 p-4">
-//               <div className="flex items-center gap-2 border-none shadow-none">
-//                 <Checkbox
-//                   id="select-all"
-//                   checked={
-//                     selectedItems.length === currentRecords.length && 
-//                     currentRecords.length > 0
-//                   }
-//                   onCheckedChange={toggleSelectAll}
-//                 />
-//                 <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
-//                   Select All
-//                 </label>
-//                 {selectedItems.length > 0 && (
-//                   <Badge variant="border" className="ml-2">
-//                     {selectedItems.length} selected
-//                   </Badge>
-//                 )}
-//               </div>
-
-//               {selectedItems.length > 0 && (
-//                 <div className="flex gap-2 ml-2">
-//                   <Button variant="border" size="sm">
-//                     <Bell className="h-4 w-4" />
-//                     Send Notification
-//                   </Button>
-//                   <Button variant="border" size="sm">
-//                     <Download className="h-4 w-4" />
-//                     Export Selected
-//                   </Button>
-//                   <Button variant="delete" size="sm">
-//                     <X className="h-4 w-4" />
-//                     Mark Inactive
-//                   </Button>
-//                 </div>
-//               )}
-//             </div>
-//             <div className="flex justify-end items-center gap-4">
-//               <DropdownMenu>
-//                 <DropdownMenuTrigger asChild>
-//                   <Button
-//                     variant="border"
-//                     size="sm"
-//                     className="flex items-center gap-2 text-low text-[var(--text-head)]"
-//                   >
-//                     {recordsPerPage}
-//                     <ChevronDown className="h-4 w-4" />
-//                   </Button>
-//                 </DropdownMenuTrigger>
-//                 <DropdownMenuContent className="text-[var(--text)] dark:bg-[var(--background)]">
-//                   {[5, 10, 25, 50, 100].map((size) => (
-//                     <DropdownMenuItem
-//                       key={size}
-//                       onClick={() => {
-//                         setRecordsPerPage(size);
-//                         setCurrentPage(1);
-//                       }}
-//                       className="text-[var(--text)] focus:bg-[var(--faded)]"
-//                     >
-//                       {size}
-//                     </DropdownMenuItem>
-//                   ))}
-//                 </DropdownMenuContent>
-//               </DropdownMenu>
-//               <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-//                 <Input
-//                   placeholder="Search"
-//                   className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-//                 />
-//                 <Button
-//                   type="submit"
-//                   size="icon"
-//                   variant="standard"
-//                   className="rounded-none rounded-r-md bg-[var(--button)]"
-//                   aria-label="Search"
-//                 >
-//                   <Search className="h-5 w-5 text-[var(--text)]" />
-//                 </Button>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Content Table */}
-//           <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
-//             <Table className="w-full caption-top border-collapse overflow-y-visible">
-//               <TableHeader className="bg-[var(--faded)] hover:bg-[var(--faded)] dark:bg-[var(--faded)] opacity-100">
-//                 <TableRow>
-//                   <TableHead className="min-w-[40px]"></TableHead>
-//                   <TableHead
-//                     onClick={() => requestSort("title")}
-//                     className="cursor-pointer text-[var(--text)] text-low"
-//                   >
-//                     Title{" "}
-//                     {sortConfig?.key === "title" &&
-//                       (sortConfig.direction === "ascending" ? "↑" : "↓")}
-//                   </TableHead>
-//                   <TableHead
-//                     onClick={() => requestSort("author")}
-//                     className="cursor-pointer text-[var(--text)]"
-//                   >
-//                     Author{" "}
-//                     {sortConfig?.key === "author" &&
-//                       (sortConfig.direction === "ascending" ? "↑" : "↓")}
-//                   </TableHead>
-//                   {activeTab === "published" && (
-//                     <TableHead
-//                       onClick={() => requestSort("category")}
-//                       className="cursor-pointer text-[var(--text)]"
-//                     >
-//                       Category{" "}
-//                       {sortConfig?.key === "category" &&
-//                         (sortConfig.direction === "ascending" ? "↑" : "↓")}
-//                     </TableHead>
-//                   )}
-//                   <TableHead className="cursor-pointer text-[var(--text)]">
-//                     {activeTab === "published"
-//                       ? "Tags"
-//                       : activeTab === "drafts"
-//                       ? "Suggested Tags"
-//                       : "Assigned Editor"}
-//                   </TableHead>
-//                   {activeTab === "published" && (
-//                     <TableHead className="cursor-pointer text-[var(--text)]">
-//                       Audience
-//                     </TableHead>
-//                   )}
-//                   {activeTab === "published" && (
-//                     <TableHead
-//                       onClick={() => requestSort("views")}
-//                       className="cursor-pointer text-[var(--text)]"
-//                     >
-//                       Views{" "}
-//                       {sortConfig?.key === "views" &&
-//                         (sortConfig.direction === "ascending" ? "↑" : "↓")}
-//                     </TableHead>
-//                   )}
-//                   {activeTab === "drafts" && (
-//                     <TableHead
-//                       onClick={() => requestSort("lastEdited")}
-//                       className="cursor-pointer text-[var(--text)]"
-//                     >
-//                       Last Edited{" "}
-//                       {sortConfig?.key === "lastEdited" &&
-//                         (sortConfig.direction === "ascending" ? "↑" : "↓")}
-//                     </TableHead>
-//                   )}
-//                   {activeTab === "pending" && (
-//                     <TableHead
-//                       onClick={() => requestSort("submittedOn")}
-//                       className="cursor-pointer text-[var(--text)]"
-//                     >
-//                       Submitted On{" "}
-//                       {sortConfig?.key === "submittedOn" &&
-//                         (sortConfig.direction === "ascending" ? "↑" : "↓")}
-//                     </TableHead>
-//                   )}
-//                   <TableHead className="text-[var(--text)]">Actions</TableHead>
-//                 </TableRow>
-//               </TableHeader>
-//               <TableBody className="overflow-visible relative z-0">
-//                 {currentRecords.map((item) => (
-//                   <TableRow
-//                     key={item.title}
-//                     className={cn(
-//                       "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
-//                       selectedItems.includes(item.title) &&
-//                         "bg-[var(--brand-color3)]"
-//                     )}
-//                   >
-//                     <TableCell
-//                       className={cn(
-//                         "pl-3 transition-all duration-200 border-l-4 group-hover:border-[var(--brand-color)]",
-//                         selectedItems.includes(item.title)
-//                           ? "border-[var(--brand-color)]"
-//                           : "border-transparent"
-//                       )}
-//                     >
-//                       <Checkbox
-//                         checked={selectedItems.includes(item.title)}
-//                         onCheckedChange={() => toggleSelectItem(item.title)}
-//                       />
-//                     </TableCell>
-//                     <TableCell className="font-medium">{item.title}</TableCell>
-//                     <TableCell className="text-[var(--text)]">
-//                       {item.author}
-//                     </TableCell>
-
-//                     {activeTab === "published" && (
-//                       <TableCell>
-//                         <Badge variant="standard">{item.category}</Badge>
-//                       </TableCell>
-//                     )}
-
-//                     <TableCell>
-//                       <div className="flex flex-wrap gap-1">
-//                         {getTagsToDisplay(item).map((tag, idx) => (
-//                           <Badge key={idx} variant="standard">
-//                             {tag}
-//                           </Badge>
-//                         ))}
-//                       </div>
-//                     </TableCell>
-
-//                     {activeTab === "published" && isPublishedItem(item) && (
-//                       <TableCell className="text-[var(--text)]">
-//                         {item.for}
-//                       </TableCell>
-//                     )}
-
-//                     {activeTab === "published" && isPublishedItem(item) && (
-//                       <TableCell>
-//                         <Badge variant="secondary">
-//                           {item.views.toLocaleString()}
-//                         </Badge>
-//                       </TableCell>
-//                     )}
-
-//                     {activeTab === "drafts" && isDraftItem(item) && (
-//                       <TableCell className="text-[var(--text)]">
-//                         {item.lastEdited}
-//                       </TableCell>
-//                     )}
-
-//                     {activeTab === "pending" && isPendingItem(item) && (
-//                       <TableCell className="text-[var(--text)]">
-//                         {item.submittedOn}
-//                       </TableCell>
-//                     )}
-
-//                     <TableCell>
-//                       <div className="flex items-center gap-2">
-//                         {item.actions.map((action, index) => (
-//                           <Button
-//                             key={index}
-//                             variant="noborder"
-//                             size="sm"
-//                             title={action}
-//                             className="bg-white border-0 shadow-none"
-//                           >
-//                             {actionToIcon[action as keyof typeof actionToIcon]}
-//                             <span className="sr-only">{action}</span>
-//                           </Button>
-//                         ))}
-//                       </div>
-//                     </TableCell>
-//                   </TableRow>
-//                 ))}
-//               </TableBody>
-//             </Table>
-//           </div>
-
-//           {/* Pagination */}
-//           <div className="flex items-center justify-between flex-wrap gap-2 p-4">
-//             <div className="flex items-center gap-4">
-//               <span className="text-low text-[var(--text)]">
-//                 Showing {indexFirst + 1}-
-//                 {Math.min(indexLast, sortedData.length)} of {sortedData.length}{" "}
-//                 items
-//               </span>
-//             </div>
-//             <div className="flex items-center gap-2">
-//               <Button
-//                 variant="border"
-//                 size="icon"
-//                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-//                 disabled={currentPage === 1}
-//               >
-//                 <ChevronLeft className="h-4 w-4" />
-//               </Button>
-//               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-//                 (pageNum) => (
-//                   <Button
-//                     key={pageNum}
-//                     variant={pageNum === currentPage ? "brand" : "border"}
-//                     size="sm"
-//                     className={`h-8 w-8 p-0 ${
-//                       pageNum === currentPage ? "text-white" : "text-[var(--text)]"
-//                     }`}
-//                     onClick={() => setCurrentPage(pageNum)}
-//                   >
-//                     {pageNum}
-//                   </Button>
-//                 )
-//               )}
-//               <Button
-//                 variant="border"
-//                 size="icon"
-//                 onClick={() =>
-//                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-//                 }
-//                 disabled={currentPage === totalPages}
-//               >
-//                 <ChevronRight className="h-4 w-4" />
-//               </Button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
