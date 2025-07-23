@@ -5,6 +5,7 @@ import Coaches from "@/pages/AdminDesk/Coaches";
 import Explorers from "@/pages/AdminDesk/Explorers";
 import Organisations from "@/pages/AdminDesk/Organisations";
 import Activities from "@/pages/AdminDesk/Activities";
+import { Forms as AdminForms } from "@/pages/AdminDesk/Forms";
 import Assessments from "@/pages/AdminDesk/Manage/Assessments";
 import Sessions from "@/pages/AdminDesk/Manage/Sessions";
 import SessionPool from "@/pages/AdminDesk/Manage/SessionPool";
@@ -72,12 +73,7 @@ import { Approvals as ReviewDesk } from "@/pages/ReviewDesk/Approval";
 import { Forms as ReviewForms } from "@/pages/ReviewDesk/Forms";
 import { GoogleMap as ReviewGoogleMaps } from "@/pages/ReviewDesk/Googlemap";
 import { ProfileCoach as ReviewProfileCoach } from "@/pages/ReviewDesk/ProfileCoach";
-import { Companies as ReviewCompanies } from "@/pages/ReviewDesk/Organization/Companies";
-import { Schools as ReviewSchools } from "@/pages/ReviewDesk/Organization/Schools";
-import { Institutes as ReviewInstitutes } from "@/pages/ReviewDesk/Organization/Institutes";
-import { Colleges as ReviewColleges } from "@/pages/ReviewDesk/Organization/Colleges";
-import { Universities as ReviewUniversities } from "@/pages/ReviewDesk/Organization/Universities";
-import { Ngos as ReviewNgos } from "@/pages/ReviewDesk/Organization/Ngos";
+import { Organisation as ReviewOrganisation } from "@/pages/ReviewDesk/Organization";
 
 export default function AppRoutes() {
   return (
@@ -92,6 +88,7 @@ export default function AppRoutes() {
       <Route path="platform/review" element={<RelationReviews />} />
       <Route path="platform/explorers" element={<Explorers />} />
       <Route path="platform/coaches" element={<Coaches />} />
+      <Route path="platform/forms" element={<AdminForms />} />
       <Route path="platform/organisations" element={<Organisations />} />
       <Route path="platform/plans" element={<div>platform Plans Page</div>} />
       <Route path="platform/assessments" element={<Assessments />} />
@@ -105,13 +102,8 @@ export default function AppRoutes() {
 
       {/* Approval Desk Routes */}
       <Route path="review/coach-profiles" element={<ReviewProfileCoach />} />
-      <Route path="review/companies" element={<ReviewCompanies />} />
+      <Route path="review/organisation" element={<ReviewOrganisation />} />
       <Route path="review/courses" element={<Courses />} />
-      <Route path="review/schools" element={<ReviewSchools />} />
-      <Route path="review/institutes" element={<ReviewInstitutes />} />
-      <Route path="review/colleges" element={<ReviewColleges />} />
-      <Route path="review/universities" element={<ReviewUniversities />} />
-      <Route path="review/ngos" element={<ReviewNgos />} />
       <Route path="review/exams" element={<div>Approval Exams Page</div>} />
       <Route path="review/careers" element={<div>Approval Careers Page</div>} />
       <Route path="review/scholarships" element={<div>Approval Scholarships Page</div>}/>

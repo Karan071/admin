@@ -61,12 +61,12 @@ const orgStats = [
 
 
 
-export default function Organisation() {
+export function Forms() {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-2xl font-bold text-[var(--text-head)]">Organisation</h1>
+      <h1 className="text-2xl font-bold text-[var(--text-head)]">Forms</h1>
       <OrgCard />
 
       <Button
@@ -766,154 +766,6 @@ function OrganisationTable() {
           </div>
         </div>
       </div>
-
-
-
-      {/*<div className="xl:block hidden">
-      <div className="lg:h-[500px] xl:min-w-90 xxl:min-w-100  sticky xl:top-[10px] shadow-none lg:scale-100 min-w-full h-fit">
-        <AnimatePresence>
-          {selectedCoachStack.map((coach, index) => {
-            const isTopCard =
-              coach.id === Number(focusedCoachId) ||
-              (focusedCoachId === null && index === 0);
-            const cardIndex = selectedCoachStack.length - 1 - index;
-
-            return (
-              <motion.div
-                key={coach.id}
-                className="absolute left-0 right-0 mx-auto max-w-md w-full h-max cursor-pointer shadow-none"
-                style={{
-                  top: `${cardIndex * 30}px`,
-                  zIndex: isTopCard ? 100 : 10 + cardIndex,
-                }}
-                onClick={() => bringToTop(coach.id)}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{
-                  opacity: 1,
-                  scale: isTopCard ? 1 : 0.95,
-                }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                whileHover={isTopCard ? {} : { scale: 0.97 }}
-              >
-                <motion.div
-                  className="relative border h-full border-border rounded-lg overflow-hidden bg-background"
-                  whileTap={isTopCard ? { scale: 0.98 } : {}}
-                >
-                  {!isTopCard && (
-                    <motion.div
-                      className="flex items-center justify-between text-xs text-[var(--text)] px-4 py-2 bg-accent/10 rounded-t-lg z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      <div>
-                        <span className="truncate max-w-[100px] block">
-                          {coach.name}
-                        </span>
-                      </div>
-                      <div>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            removeCoach(coach.id);
-                          }}
-                          className="text-[var(--red)] hover:text-[var(--red)/70] text-[16px]"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {isTopCard && (
-                    
-                    <motion.div
-                      className="flex  flex-col  justify-center items-center p-6"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <div className="flex-col ">
-                      <motion.img
-                        src={photo}
-                        alt={coach.name}
-                        className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg m-auto"
-                        whileHover={{ scale: 1.05 }}
-                      />
-                      <h1 className="text-xl font-semibold mt-4 text-[var(--text-head)]">
-                        {coach.name}
-                      </h1>
-                      <h2 className="text-sm text-[var(--text)] mb-2">
-                        {coach.location}
-                      </h2>
-
-                      <div className="flex justify-center gap-3 mt-2">
-                        <motion.button
-                          className="bg-[var(--green2)] rounded-full p-2 hover:[var(--green2)/80] transition-colors"
-                          title="Call"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Phone className="w-5 h-5 text-[var(--green)]" />
-                        </motion.button>
-                        <motion.button
-                          className="bg-[var(--red2)] rounded-full p-2 hover:bg-[var(--red2)/80] dark:bg-[var(--red2)] transition-colors"
-                          title="Email"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Mail className="w-5 h-5 text-[var(--red)]" />
-                        </motion.button>
-                        <motion.button
-                          className="bg-[var(--yellow2)] dark:bg-[var(--yellow2)] rounded-full p-2 hover:bg-[var(--yellow2)/80] transition-colors"
-                          title="Message"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <MessageCircle className="w-5 h-5 text-[var(--yellow)]" />
-                        </motion.button>
-                      </div>
-                      </div>
-                      <div className="mt-6 text-sm text-left w-full">
-                        <h3 className="font-semibold text-[var(--text-head)] mb-1">
-                          PERSONAL INFORMATION
-                        </h3>
-                        <p className="text-[var(--text)] text-sm mb-4">
-                          This coach has not added a bio.
-                        </p>
-                        <div className="grid grid-cols-2 gap-y-2 text-sm text-[var(--text)]">
-                          <div className="font-medium">Designation</div>
-                          <div>{coach.type}</div>
-                          <div className="font-medium">Email ID</div>
-                          <div>{coach.contact.email}</div>
-                          <div className="font-medium">Phone No</div>
-                          <div>{coach.contact.phone}</div>
-                          <div className="font-medium">Lead Score</div>
-                          <div>-</div>
-                          <div className="font-medium">Tags</div>
-                          <div className="flex gap-2">
-                            <Badge variant="brand" className="text-xs ">
-                              Lead
-                            </Badge>
-                            <Badge variant="brand" className="text-xs">
-                              Partner
-                            </Badge>
-                          </div>
-                          <div className="font-medium">Last Contacted</div>
-                          <div>{coach.lastActive}</div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </div>
-    </div>*/}
     </div>
   );
 }

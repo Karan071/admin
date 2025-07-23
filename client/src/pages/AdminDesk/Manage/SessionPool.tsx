@@ -1,4 +1,4 @@
-import { Clock, CircleArrowUp, CircleArrowDown, Flag, MessageCircle, Search, X, Check, Bell, Users, FileCheck2, FileText, CheckCircle2, FileDown, BadgeQuestionMark, Plus, Eye } from "lucide-react";
+import { Clock, CircleArrowUp, CircleArrowDown, Flag, MessageCircle, Search, X, Check, Users, FileCheck2, FileText, CheckCircle2, FileDown, BadgeQuestionMark, Plus, Eye } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -58,29 +58,19 @@ const Stats = [
 ];
 
 export default function Organisation() {
-  const [showFilter, setShowFilter] = useState(false);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-bold text-[var(--text-head)]">Sessions Pool </h1>
       <StatCard />
       <Buttonbar />
-      <Button
-          variant="border"
-          onClick={() => setShowFilter(true)}
-          className="flex items-center gap-2 self-end"
-        >
-          <Filter className="h-4 w-4" />
-          {showFilter ? "Hide Filters" : "Show Filters"}
-        </Button>
-
-        {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
-      <SessionsPool />
+       <SessionsPool />
     </div>
   );
 }
 
 function Buttonbar() {
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
       <Button variant="brand" size="new">
@@ -88,6 +78,16 @@ function Buttonbar() {
         <span className=""> Add Session to Pool</span>
       </Button>
       <div className="flex gap-4 flex-wrap">
+        <Button
+          variant="standard" size="new"
+          onClick={() => setShowFilter(true)}
+        >
+          <Filter className="h-4 w-4" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AssessFilter onClose={() => setShowFilter(false)} />}
+     
         <Button variant="standard" size="new">
           <Eye className="h-3 w-3" />
           <span className="">Assign Slots</span>
@@ -147,7 +147,7 @@ function AssessFilter({ onClose }: FilterProps) {
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-center items-center p-4">
       <div
         ref={modalRef}
-        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+        className="relative w-full max-w-[700px] h-[500px] rounded-sm bg-[var(--background)] "
       >
         <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
           <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
@@ -316,7 +316,7 @@ function AssessFilter({ onClose }: FilterProps) {
 
 function StatCard() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-5">
+    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
       {Stats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -345,7 +345,7 @@ function SessionsPool() {
     const [activeTab, setActiveTab] = useState("instant");
     const [selectedSessions, setSelectedSessions] = useState<number[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage, setRecordsPerPage] = useState(5);
+    const [recordsPerPage, setRecordsPerPage] = useState(10);
     const [sortConfig, setSortConfig] = useState({
         key: "id",
         direction: "ascending"
@@ -771,10 +771,10 @@ function SessionsPool() {
     return (
         <div className="flex flex-col gap-0 w-full">
             {/* Tab Navigation */}
-            <div className="flex border-b">
+            <div className="flex">
         <Button
           variant={activeTab === "instant" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg"
+          className="rounded-b-none rounded-r-sm rounded-l-sm"
           onClick={() => {
             setActiveTab("instant");
             setCurrentPage(1);
@@ -785,7 +785,7 @@ function SessionsPool() {
         </Button>
         <Button
           variant={activeTab === "introductory" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          className="rounded-b-none rounded-r-sm rounded-l-sm flex items-center gap-2"
           onClick={() => {
             setActiveTab("introductory");
             setCurrentPage(1);
@@ -796,7 +796,7 @@ function SessionsPool() {
         </Button>
         <Button
           variant={activeTab === "b2b" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          className="rounded-b-none rounded-r-sm rounded-l-sm flex items-center gap-2"
           onClick={() => {
             setActiveTab("b2b");
             setCurrentPage(1);
@@ -807,7 +807,7 @@ function SessionsPool() {
         </Button>
         <Button
           variant={activeTab === "pending" ? "brand" : "border"}
-          className="rounded-b-none rounded-r-lg flex items-center gap-2"
+          className="rounded-b-none rounded-r-sm rounded-l-sm flex items-center gap-2"
           onClick={() => {
             setActiveTab("pending");
             setCurrentPage(1);
@@ -819,7 +819,7 @@ function SessionsPool() {
       </div>
 
             {/* Table Controls */}
-            <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto">
+            <div className="flex-1 rounded-md  rounded-l-none border bg-[var(--background)] overflow-x-auto">
                 <div className="flex items-center justify-between border-b h-20 p-4">
                     <div className="flex items-center gap-2">
                         <Checkbox
@@ -837,19 +837,19 @@ function SessionsPool() {
                         )}
                         {selectedSessions.length > 0 && (
               <div className="flex gap-2 ml-2">
-                <Button variant="border" size="sm" className="text-[var(--text)]">
-                  <Bell className="h-4 w-4" />
-                  Send Reminder
+                <Button variant="border" size="sm" >
+                  <Check className="h-4 w-4 text-[var(--green)]"/>
+                  Approve Selected
                 </Button>
                 {activeTab === "refund" && (
-                  <Button variant="border" size="sm" className="text-[var(--text)]">
-                    <Check className="h-4 w-4" />
-                    Approve All
+                  <Button variant="delete" size="sm" >
+                    <X className="h-4 w-4" />
+                    Remove from Pool
                   </Button>
                 )}
-                <Button variant="delete" size="sm" className="text-[var(--text)]">
-                  <X className="h-4 w-4" />
-                  Block / Remove
+                <Button variant="border" size="sm" >
+                  <FileDown className="h-4 w-4" />
+                  Export to CSV
                 </Button>
               </div>
             )}
@@ -857,7 +857,7 @@ function SessionsPool() {
 
                     {/* Search Bar */}
                     <div className="flex items-center gap-2">
-                        <div className="flex items-center border rounded-md overflow-hidden bg-[var(--faded)]">
+                        <div className="flex items-center border rounded-sm overflow-hidden bg-[var(--faded)]">
                             <Input
                                 placeholder="Search"
                                 className="border-none focus:ring-0 focus:outline-none px-2 py-1 w-40"
@@ -917,16 +917,15 @@ function SessionsPool() {
                         <Button
                           variant="noborder"
                           size="sm"
-                          className="bg-white border-0 shadow-none"
                         >
                           <Eye className="h-4 w-4" />
                           <span className="sr-only">View</span>
                         </Button>
-                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                        <Button variant="noborder" size="sm" >
                           <MessageCircle className="h-4 w-4" />
                           <span className="sr-only">Chat</span>
                         </Button>
-                        <Button variant="noborder" size="sm" className="bg-[var(--background)] border-0 shadow-none">
+                        <Button variant="noborder" size="sm" >
                           <Flag className="h-4 w-4" />
                           <span className="sr-only">Flag</span>
                         </Button>
@@ -949,7 +948,7 @@ function SessionsPool() {
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="bg-[var(--background)] text-[var(--text)]">
-                                {[5, 10, 25, 50, 100].map((size) => (
+                                {[10, 25, 50, 100].map((size) => (
                                     <DropdownMenuItem
                                         key={size}
                                         onClick={() => {

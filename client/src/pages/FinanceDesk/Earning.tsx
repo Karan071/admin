@@ -8,6 +8,10 @@ import {
   FileDown,
   Newspaper,
   Download,
+  Search,
+  Check,
+  Bell,
+  X,
 } from "lucide-react";
 import { Card, CardHeader,  } from "@/components/ui/card";
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
@@ -33,6 +37,7 @@ import {  EarningTable } from "@/data/Data";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -68,14 +73,12 @@ const stats = [
 
 export function Earning() {
   return (
-    <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-[var(--text-head)]">Earning</h1>
         <StatsCards />
         <Buttonbar/>
         <TableSection/>
       </div>
-    </div>
   );
 }
 
@@ -145,7 +148,7 @@ function StatsCards() {
 function TableSection() {
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "ascending" | "descending";
@@ -191,7 +194,7 @@ function TableSection() {
     setSortConfig({ key, direction });
   };
 
-  /*const toggleSelectAll = () => {
+  const toggleSelectAll = () => {
     if (selectedUsers.length === currentRecords.length) {
       setSelectedUsers([]);
     } else {
@@ -200,7 +203,7 @@ function TableSection() {
       );
     }
   };
-  */
+  
 
   const bringToTop = (userId: number) => {
     const coach = selectedStack.find((c) => c.id === userId);
@@ -267,9 +270,63 @@ function TableSection() {
   };
 
   return (
-    <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
+    <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap text-[var(--text)]">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        
+        <div className="flex items-center justify-between border-b  h-20 p-4 mt-auto">
+          <div className="flex items-center justify-between pl-0 p-4  gap-2">
+            <div className="flex items-center gap-2 border-none shadow-none">
+              <Checkbox
+                id="select-all"
+                checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
+                onCheckedChange={toggleSelectAll}
+              />
+              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                Select All
+              </label>
+              {selectedUsers.length > 0 && (
+                <Badge variant="border" className="ml-2 ">
+                  {selectedUsers.length} selected
+                </Badge>
+              )}
+            </div>
+
+            {selectedUsers.length > 0 && (
+              <div className="flex gap-2">        {/*wrap */}
+                <Button variant="border" size="sm">
+                  <Bell className="h-4 w-4" />
+                  Send Reminder
+                </Button>
+                <Button variant="border" size="sm">
+                  <Check className=" h-4 w-4 text-[var(--green)]" />
+                  Approve All
+                </Button>
+                <Button variant="delete" size="sm">
+                  <X className=" h-4 w-4 text-[var(--red)]" />
+                  Block / Remove
+                </Button>
+              </div>
+            )}
+          </div>
+          <div className="flex justify-end items-center gap-4 ">
+
+            <div className="flex justify-around items-center border-1 rounded-sm overflow-hidden bg-[var(--faded)]">
+              <Input
+                placeholder="Search"
+                className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
+              />
+              <Button
+                type="submit"
+                size="icon"
+                variant="standard"
+                className="rounded-none rounded-r-md bg-[var(--button)]"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5 text-[var(--text)]" />
+              </Button>
+            </div>
+
+          </div>
+        </div>
 
         <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
           <Table className="w-full caption-top border-collapse overflow-y-visible">
@@ -340,7 +397,7 @@ function TableSection() {
                   key={user.id}
                   data-id={user.id}
                   className={cn(
-                    "relative z-10 cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
+                    "relative z-10 h-[49px] cursor-pointer transition-all duration-200 group hover:bg-[var(--brand-color2)]",
                     selectedStack.some((c) => c.id === user.id)
                       ? "bg-[var(--brand-color3)]"
                       : ""
@@ -416,7 +473,7 @@ function TableSection() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
+                {[10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
                     onClick={() => {

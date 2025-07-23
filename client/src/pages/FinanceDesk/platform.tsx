@@ -11,6 +11,9 @@ import {
   Download,
   Flag,
   Pen,
+  Bell,
+  Check,
+  X,
 } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { CircleArrowDown, CircleArrowUp } from "lucide-react";
@@ -37,9 +40,9 @@ import { platformTable } from "@/data/Data";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
-import DatePicker from '@/components/ui/DatePicker';
 import React from "react";
 import RadioButton from "@/components/ui/Radiobutton";
+import { DateRangePicker } from "@/components/ui/RangeCalender";
 
 const color = "text-[var(--text)]";
 const color2 = "text-[var(--text-head)]";
@@ -65,29 +68,22 @@ const stats = [
     icon: DollarSign,
     performance: Down,
   },
-  {
-    title: "Most Profitable Product",
-    value: "Masterclass",
-    icon: BadgeDollarSign,
-    performance: Up,
-  },
 ];
 
 export function Platform() {
   return (
-    <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-bold text-[var(--text-head)]">Platform</h1>
         <StatsCards />
         <Buttonbar/>
-        <Topbar />
         <TableSection/>
       </div>
-    </div>
   );
 }
 
 function Buttonbar() {
+  
+  const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
         <div className="flex gap-4">
@@ -101,6 +97,19 @@ function Buttonbar() {
         </Button>
         </div>
       <div className="flex gap-4">
+        <Button
+          variant="standard" size="new"
+          onClick={() => setShowFilter(true)}
+        >
+          <Filter className="h-4 w-4" />
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
+
+        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
+        <Button variant="standard" size="new">
+          <FileDown className="h-3 w-3" />
+          <span className="">Export</span>
+        </Button>
         <Button variant="standard" size="new">
           <Eye className="h-3 w-3" />
           <span className="">View linked payment/payout record</span>
@@ -114,46 +123,6 @@ function Buttonbar() {
   );
 }
 
-function Topbar() {
-  const [showFilter, setShowFilter] = useState(false);
-  return (
-    <div className="flex justify-between px-4 py-3 bg-[var(--background)] rounded-sm gap-4 border flex-wrap shadow-none">
-        <div>
-      <div className="flex justify-around items-center border-1 rounded-md overflow-hidden bg-[var(--faded)]">
-                    <Input
-                      placeholder="Search"
-                      className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
-                    />
-                    <Button
-                      type="submit"
-                      size="icon"
-                      variant="standard"
-                      className="rounded-none rounded-r-md bg-[var(--button)]"
-                      aria-label="Search"
-                    >
-                      <Search className="h-5 w-5 text-[var(--text)]" />
-                    </Button>
-                  </div>
-         </div>
-      <div className="flex gap-4 align-middle">
-         <Button
-          variant="standard"
-          onClick={() => setShowFilter(true)}
-          className="flex items-center gap-2 self-end min-h-[40px]"
-        >
-          <Filter className="h-4 w-4" />
-          {showFilter ? "Hide Filters" : "Show Filters"}
-        </Button>
-
-        {showFilter && <AdvancedFilters onClose={() => setShowFilter(false)} />}
-        <Button variant="standard" size="new">
-          <FileDown className="h-3 w-3" />
-          <span className="">Export</span>
-        </Button>
-      </div>
-    </div>
-  );
-}
 
 
 interface FilterProps {
@@ -198,7 +167,7 @@ function AdvancedFilters({ onClose }: FilterProps) {
 
       <div
         ref={modalRef}
-        className="relative w-full max-w-[700px] h-[500px] rounded-xl bg-[var(--background)] "
+        className="relative w-full max-w-[700px] h-[500px] rounded-sm bg-[var(--background)] "
       >
         <div className="flex items-center justify-between mb-0 pb-4 p-6 min-w-full border-b-1">
           <CardTitle className="text-2xl font-semibold text-[var(--text-head)]">Filters</CardTitle>
@@ -266,7 +235,7 @@ function AdvancedFilters({ onClose }: FilterProps) {
               <>
                 <label htmlFor="act" className="text-[var(--text)]">Enter the Date range :</label>
                 <div className="mt-4 min-w-full">
-                  <DatePicker />
+                  <DateRangePicker />
                 </div>
               </>
             )}
@@ -292,7 +261,7 @@ function AdvancedFilters({ onClose }: FilterProps) {
 
 function StatsCards() {
   return (
-    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 xl:gap-1 md:grid-cols-2 xl:grid-cols-3">
       {stats.map((stat, index) => (
         <Card key={index} className="xl:rounded-sm shadow-none bg-[var(--background)]">
           <CardHeader className="flex-col items-center px-4 gap-4 py-0 h-full">
@@ -323,7 +292,7 @@ function StatsCards() {
 function TableSection() {
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "ascending" | "descending";
@@ -369,7 +338,7 @@ function TableSection() {
     setSortConfig({ key, direction });
   };
 
-  /*const toggleSelectAll = () => {
+  const toggleSelectAll = () => {
     if (selectedUsers.length === currentRecords.length) {
       setSelectedUsers([]);
     } else {
@@ -378,7 +347,7 @@ function TableSection() {
       );
     }
   };
-  */
+  
 
   const bringToTop = (userId: number) => {
     const coach = selectedStack.find((c) => c.id === userId);
@@ -447,7 +416,61 @@ function TableSection() {
   return (
     <div className="flex flex-row gap-4 w-full h-max xl:flex-nowrap flex-wrap">
       <div className="flex-1 rounded-md border bg-[var(--background)] overflow-x-auto xl:min-w-auto min-w-full">
-        
+        <div className="flex items-center justify-between border-b  h-20 p-4 mt-auto">
+          <div className="flex items-center justify-between pl-0 p-4  gap-2">
+            <div className="flex items-center gap-2 border-none shadow-none">
+              <Checkbox
+                id="select-all"
+                checked={selectedUsers.length === currentRecords.length && currentRecords.length > 0}
+                onCheckedChange={toggleSelectAll}
+              />
+              <label htmlFor="select-all" className="text-sm font-medium text-[var(--text)]">
+                Select All
+              </label>
+              {selectedUsers.length > 0 && (
+                <Badge variant="border" className="ml-2 ">
+                  {selectedUsers.length} selected
+                </Badge>
+              )}
+            </div>
+
+            {selectedUsers.length > 0 && (
+              <div className="flex gap-2">        {/*wrap */}
+                <Button variant="border" size="sm">
+                  <Bell className="h-4 w-4" />
+                  Send Reminder
+                </Button>
+                <Button variant="border" size="sm">
+                  <Check className=" h-4 w-4 text-[var(--green)]" />
+                  Approve All
+                </Button>
+                <Button variant="delete" size="sm">
+                  <X className=" h-4 w-4 text-[var(--red)]" />
+                  Block / Remove
+                </Button>
+              </div>
+            )}
+          </div>
+          <div className="flex justify-end items-center gap-4 ">
+
+            <div className="flex justify-around items-center border-1 rounded-sm overflow-hidden bg-[var(--faded)]">
+              <Input
+                placeholder="Search"
+                className="border-none focus:ring-0 focus-visible:ring-0 focus:outline-none px-2 py-1 w-40 sm:w-45"
+              />
+              <Button
+                type="submit"
+                size="icon"
+                variant="standard"
+                className="rounded-none rounded-r-md bg-[var(--button)]"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5 text-[var(--text)]" />
+              </Button>
+            </div>
+
+          </div>
+        </div>
 
         <div className="overflow-x-auto text-[var(--text)] w-full px-0 mx-0 text-low">
           <Table className="w-full caption-top border-collapse overflow-y-visible">
@@ -612,8 +635,6 @@ function TableSection() {
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
                       >
                         <Eye className="h-4 w-3" />
                         <span className="sr-only">View</span>
@@ -621,8 +642,6 @@ function TableSection() {
                       <Button
                         variant="noborder"
                         size="sm"
-                        className="bg-white border-0 shadow-none"
-                      // onClick={() => navigate(`/user-details/${user.id}`)}
                       >
                         <Pen className="h-4 w-3" />
                         <span className="sr-only">Edit</span>
@@ -649,7 +668,7 @@ function TableSection() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="text-[var(--text] dark:bg-[var(--background)]">
-                {[5, 10, 25, 50, 100].map((size) => (
+                {[10, 25, 50, 100].map((size) => (
                   <DropdownMenuItem
                     key={size}
                     onClick={() => {

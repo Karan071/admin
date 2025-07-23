@@ -2215,390 +2215,274 @@ export const ArchivedTableData = [
 ];
 
 
-const coachTypes = ["Coach", "Mentor", "Educator"];
-
 export const coachTableData = [
   {
-    id: 1,
-    profile: {
-      name: "Anjali Verma",
-      photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "anjali123"
+    "id": "COH0001",
+    "type": "coach",
+    "profile": {
+      "name": "Anjali Verma",
+       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
+      "gender": "F",
+      "type": "teacher",
+      "userid": "anjali123"
     },
-    specialty: "Psychology, UG Careers",
-    contact: {
-      email: "anjali@coachhub.org",
-      phone: "+91-9876543210"
+    "specialty": "Psychology, UG Careers",
+    "contact": {
+      "email": "anjali@coachhub.org",
+      "phone": "+91-9876543210"
     },
-    status: "Pending",
-    sessions: {
-      total: 32,
-      completed: 28
+    "status": "Pending",
+    "sessions": {
+      "total": 32,
+      "completed": 28
     },
-    assessments: 15,
-    orgLinked: "Aim College",
-    joined: "12 May",
-    lastActive: "17 May",
-    actions: ["View", "Approve", "Block"]
+    "assessments": 15,
+    "orgLinked": "Aim College",
+    "joined": "12 May",
+    "lastActive": "17 May",
+    "actions": ["View", "Approve", "Block"]
   },
   {
-    id: 2,
-    profile: {
-      name: "Rahul Singh",
+    "id": "COH0002",
+    "type": "mentor",
+    "profile": {
+      "name": "Rahul Singh",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "M",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "rahultech"
+     "gender": "M",
+      "type": "mentor",
+      "userid": "rahultech"
     },
-    specialty: "Engineering, Aptitude",
-    contact: {
-      email: "rahul@coachhub.org",
-      phone: "+91-9123456780"
+    "specialty": "Engineering, Aptitude",
+    "contact": {
+      "email": "rahul@coachhub.org",
+      "phone": "+91-9123456780"
     },
-    status: "Approved",
-    sessions: {
-      total: 45,
-      completed: 40
+    "status": "Approved",
+    "sessions": {
+      "total": 45,
+      "completed": 40
     },
-    assessments: 20,
-    orgLinked: "Tech Academy",
-    joined: "05 May",
-    lastActive: "27 May",
-    actions: ["View", "Block"]
+    "assessments": 20,
+    "orgLinked": "Tech Academy",
+    "joined": "05 May",
+    "lastActive": "27 May",
+    "actions": ["View", "Block"]
   },
   {
-    id: 3,
-    profile: {
-      name: "Sneha Sharma",
+    "id": "COH0003",
+    "type": "teacher",
+    "profile": {
+      "name": "Sneha Sharma",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "snehahealth"
+    "gender": "F",
+      "type": "coach",
+      "userid": "snehahealth"
     },
-    specialty: "Medical Prep",
-    contact: {
-      email: "sneha@coachhub.org",
-      phone: "+91-9988776655"
+    "specialty": "Medical Prep",
+    "contact": {
+      "email": "sneha@coachhub.org",
+      "phone": "+91-9988776655"
     },
-    status: "Pending",
-    sessions: {
-      total: 20,
-      completed: 18
+    "status": "Pending",
+    "sessions": {
+      "total": 20,
+      "completed": 18
     },
-    assessments: 10,
-    orgLinked: "BioMed Academy",
-    joined: "02 May",
-    lastActive: "18 May",
-    actions: ["View", "Approve", "Block"]
+    "assessments": 10,
+    "orgLinked": "BioMed Academy",
+    "joined": "02 May",
+    "lastActive": "18 May",
+    "actions": ["View", "Approve", "Block"]
   },
   {
-    id: 4,
-    profile: {
-      name: "Vikram Mehta",
+    "id": "COH0004",
+    "type": "mentor",
+    "profile": {
+      "name": "Vikram Mehta",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "M",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "vikramcareer"
+    "gender": "M",
+      "type": "teacher",
+      "userid": "vikramcareer"
     },
-    specialty: "Career Counselling",
-    contact: {
-      email: "vikram@coachhub.org",
-      phone: "+91-9876501234"
+    "specialty": "Career Counselling",
+    "contact": {
+      "email": "vikram@coachhub.org",
+      "phone": "+91-9876501234"
     },
-    status: "Approved",
-    sessions: {
-      total: 38,
-      completed: 35
+    "status": "Approved",
+    "sessions": {
+      "total": 38,
+      "completed": 35
     },
-    assessments: 18,
-    orgLinked: "Mentor India",
-    joined: "10 April",
-    lastActive: "28 May",
-    actions: ["View", "Block"]
+    "assessments": 18,
+    "orgLinked": "Mentor India",
+    "joined": "10 April",
+    "lastActive": "28 May",
+    "actions": ["View", "Block"]
   },
   {
-    id: 5,
-    profile: {
-      name: "Neha Joshi",
+    "id": "COH0005",
+    "type": "coach",
+    "profile": {
+      "name": "Neha Joshi",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "nehaadmissions"
+    "gender": "F",
+      "type": "mentor",
+      "userid": "nehaadmissions"
     },
-    specialty: "UG Admissions",
-    contact: {
-      email: "neha@coachhub.org",
-      phone: "+91-9090909090"
+    "specialty": "UG Admissions",
+    "contact": {
+      "email": "neha@coachhub.org",
+      "phone": "+91-9090909090"
     },
-    status: "Approved",
-    sessions: {
-      total: 29,
-      completed: 27
+    "status": "Approved",
+    "sessions": {
+      "total": 29,
+      "completed": 27
     },
-    assessments: 12,
-    orgLinked: "Future Path",
-    joined: "15 March",
-    lastActive: "30 May",
-    actions: ["View", "Block"]
+    "assessments": 12,
+    "orgLinked": "Future Path",
+    "joined": "15 March",
+    "lastActive": "30 May",
+    "actions": ["View", "Block"]
   },
   {
-    id: 6,
-    profile: {
-      name: "Amit Thakur",
+    "id": "COH0006",
+    "type": "teacher",
+    "profile": {
+      "name": "Amit Thakur",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "M",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "amitmba"
+    "gender": "M",
+      "type": "teacher",
+      "userid": "amitmba"
     },
-    specialty: "MBA Prep",
-    contact: {
-      email: "amit@coachhub.org",
-      phone: "+91-9898989898"
+    "specialty": "MBA Prep",
+    "contact": {
+      "email": "amit@coachhub.org",
+      "phone": "+91-9898989898"
     },
-    status: "Pending",
-    sessions: {
-      total: 24,
-      completed: 22
+    "status": "Pending",
+    "sessions": {
+      "total": 24,
+      "completed": 22
     },
-    assessments: 8,
-    orgLinked: "BizMasters",
-    joined: "09 May",
-    lastActive: "20 May",
-    actions: ["View", "Approve", "Block"]
+    "assessments": 8,
+    "orgLinked": "BizMasters",
+    "joined": "09 May",
+    "lastActive": "20 May",
+    "actions": ["View", "Approve", "Block"]
   },
   {
-    id: 7,
-    profile: {
-      name: "Pooja Iyer",
+    "id": "COH0007",
+    "type": "mentor",
+    "profile": {
+      "name": "Pooja Iyer",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "pooja_softskills"
+    "gender": "F",
+      "type": "coach",
+      "userid": "pooja_softskills"
     },
-    specialty: "Soft Skills, Resume Review",
-    contact: {
-      email: "pooja@coachhub.org",
-      phone: "+91-9555123456"
+    "specialty": "Soft Skills, Resume Review",
+    "contact": {
+      "email": "pooja@coachhub.org",
+      "phone": "+91-9555123456"
     },
-    status: "Approved",
-    sessions: {
-      total: 40,
-      completed: 39
+    "status": "Approved",
+    "sessions": {
+      "total": 40,
+      "completed": 39
     },
-    assessments: 25,
-    orgLinked: "SkillForge",
-    joined: "18 March",
-    lastActive: "31 May",
-    actions: ["View", "Block"]
+    "assessments": 25,
+    "orgLinked": "SkillForge",
+    "joined": "18 March",
+    "lastActive": "31 May",
+    "actions": ["View", "Block"]
   },
   {
-    id: 8,
-    profile: {
-      name: "Kunal Rao",
+    "id": "COH0008",
+    "type": "teacher",
+    "profile": {
+      "name": "Kunal Rao",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "M",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "kunal_sat"
+    "gender": "M",
+      "type": "mentor",
+      "userid": "kunal_sat"
     },
-    specialty: "SAT Prep",
-    contact: {
-      email: "kunal@coachhub.org",
-      phone: "+91-9321654987"
+    "specialty": "SAT Prep",
+    "contact": {
+      "email": "kunal@coachhub.org",
+      "phone": "+91-9321654987"
     },
-    status: "Approved",
-    sessions: {
-      total: 33,
-      completed: 30
+    "status": "Approved",
+    "sessions": {
+      "total": 33,
+      "completed": 30
     },
-    assessments: 13,
-    orgLinked: "EduBridge",
-    joined: "20 April",
-    lastActive: "29 May",
-    actions: ["View", "Block"]
+    "assessments": 13,
+    "orgLinked": "EduBridge",
+    "joined": "20 April",
+    "lastActive": "29 May",
+    "actions": ["View", "Block"]
   },
   {
-    id: 9,
-    profile: {
-      name: "Divya Kapoor",
+    "id": "COH0009",
+    "type": "coach",
+    "profile": {
+      "name": "Divya Kapoor",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "divya_career"
+    "gender": "F",
+      "type": "coach",
+      "userid": "divya_career"
     },
-    specialty: "Career Discovery",
-    contact: {
-      email: "divya@coachhub.org",
-      phone: "+91-9312345678"
+    "specialty": "Career Discovery",
+    "contact": {
+      "email": "divya@coachhub.org",
+      "phone": "+91-9312345678"
     },
-    status: "Pending",
-    sessions: {
-      total: 19,
-      completed: 15
+    "status": "Pending",
+    "sessions": {
+      "total": 19,
+      "completed": 15
     },
-    assessments: 5,
-    orgLinked: "Career Spark",
-    joined: "01 May",
-    lastActive: "14 May",
-    actions: ["View", "Approve", "Block"]
+    "assessments": 5,
+    "orgLinked": "Career Spark",
+    "joined": "01 May",
+    "lastActive": "14 May",
+    "actions": ["View", "Approve", "Block"]
   },
   {
-    id: 10,
-    profile: {
-      name: "Arjun Patel",
+    "id": "COH0010",
+    "type": "mentor",
+    "profile": {
+      "name": "Arjun Patel",
       photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "M",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "arjun_design"
+    "gender": "M",
+      "type": "teacher",
+      "userid": "arjun_design"
     },
-    specialty: "Design Colleges",
-    contact: {
-      email: "arjun@coachhub.org",
-      phone: "+91-9876611223"
+    "specialty": "Design Colleges",
+    "contact": {
+      "email": "arjun@coachhub.org",
+      "phone": "+91-9876611223"
     },
-    status: "Approved",
-    sessions: {
-      total: 27,
-      completed: 24
+    "status": "Approved",
+    "sessions": {
+      "total": 27,
+      "completed": 24
     },
-    assessments: 11,
-    orgLinked: "Creative Minds",
-    joined: "22 March",
-    lastActive: "28 May",
-    actions: ["View", "Block"]
-  },
-  {
-    id: 11,
-    profile: {
-      name: "Ritika Shah",
-      photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "ritika_gre"
-    },
-    specialty: "GRE / TOEFL",
-    contact: {
-      email: "ritika@coachhub.org",
-      phone: "+91-9456123456"
-    },
-    status: "Pending",
-    sessions: {
-      total: 22,
-      completed: 19
-    },
-    assessments: 7,
-    orgLinked: "Global Prep",
-    joined: "12 April",
-    lastActive: "26 May",
-    actions: ["View", "Approve", "Block"]
-  },
-  {
-    id: 12,
-    profile: {
-      name: "Manish Kaul",
-      photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "M",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "manish_leadership"
-    },
-    specialty: "Leadership, Communication",
-    contact: {
-      email: "manish@coachhub.org",
-      phone: "+91-9009090090"
-    },
-    status: "Approved",
-    sessions: {
-      total: 36,
-      completed: 34
-    },
-    assessments: 16,
-    orgLinked: "NextLead",
-    joined: "17 April",
-    lastActive: "30 May",
-    actions: ["View", "Block"]
-  },
-  {
-    id: 13,
-    profile: {
-      name: "Ishita Nair",
-      photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "ishita_arts"
-    },
-    specialty: "Liberal Arts",
-    contact: {
-      email: "ishita@coachhub.org",
-      phone: "+91-9988771122"
-    },
-    status: "Pending",
-    sessions: {
-      total: 26,
-      completed: 20
-    },
-    assessments: 9,
-    orgLinked: "ArtsEdge",
-    joined: "08 May",
-    lastActive: "19 May",
-    actions: ["View", "Approve", "Block"]
-  },
-  {
-    id: 14,
-    profile: {
-      name: "Nikhil Sharma",
-      photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "M",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "nikhil_bootcamp"
-    },
-    specialty: "Coding Bootcamps",
-    contact: {
-      email: "nikhil@coachhub.org",
-      phone: "+91-9765432100"
-    },
-    status: "Approved",
-    sessions: {
-      total: 30,
-      completed: 30
-    },
-    assessments: 14,
-    orgLinked: "CodeMasters",
-    joined: "28 March",
-    lastActive: "01 June",
-    actions: ["View", "Block"]
-  },
-  {
-    id: 15,
-    profile: {
-      name: "Tanya Jain",
-      photo: [picture1, picture2, picture3, picture4][Math.floor(Math.random() * 4)],
-      gender: "F",
-      type: coachTypes[Math.floor(Math.random() * 3)],
-      userid: "tanya_finance"
-    },
-    specialty: "Finance & Commerce",
-    contact: {
-      email: "tanya@coachhub.org",
-      phone: "+91-9874563210"
-    },
-    status: "Pending",
-    sessions: {
-      total: 18,
-      completed: 16
-    },
-    assessments: 6,
-    orgLinked: "BizEd",
-    joined: "05 May",
-    lastActive: "22 May",
-    actions: ["View", "Approve", "Block"]
+    "assessments": 11,
+    "orgLinked": "Creative Minds",
+    "joined": "22 March",
+    "lastActive": "28 May",
+    "actions": ["View", "Block"]
   }
-];
+]
+
 
 
 export const orgTableData = [
   {
-    id: 1,
+    id: "ORG0001",
     name: "Future Skills Academy",
     contact: {
       email: "contact@futureskills.org",
@@ -2611,10 +2495,11 @@ export const orgTableData = [
     sessions: 25,
     registered: "12 Mar",
     lastActive: "17 May",
+    representative: 6,
     actions: ["View", "Approve", "Flag"]
   },
   {
-    id: 2,
+    id: "ORG0002",
     name: "Bright Future School",
     contact: {
       email: "info@brightfuture.edu",
@@ -2627,10 +2512,11 @@ export const orgTableData = [
     sessions: 0,
     registered: "04 Apr",
     lastActive: "10 May",
+    representative: 2,
     actions: ["View", "Invite to Claim"]
   },
   {
-    id: 3,
+    id: "ORG0003",
     name: "Excel Learning Hub",
     contact: {
       email: "admin@excelhub.in",
@@ -2643,10 +2529,11 @@ export const orgTableData = [
     sessions: 18,
     registered: "10 Mar",
     lastActive: "25 May",
+    representative: 7,
     actions: ["View", "Flag"]
   },
   {
-    id: 4,
+    id: "ORG0004",
     name: "Rising Minds Academy",
     contact: {
       email: "hello@risingminds.org",
@@ -2659,10 +2546,11 @@ export const orgTableData = [
     sessions: 8,
     registered: "15 Feb",
     lastActive: "10 May",
+    representative: 4,
     actions: ["View", "Invite to Claim"]
   },
   {
-    id: 5,
+    id: "ORG0005",
     name: "Smart Prep School",
     contact: {
       email: "contact@smartprep.com",
@@ -2675,10 +2563,11 @@ export const orgTableData = [
     sessions: 5,
     registered: "01 Mar",
     lastActive: "28 May",
+    representative: 1,
     actions: ["View", "Approve"]
   },
   {
-    id: 6,
+    id: "ORG0006",
     name: "NextGen Learners",
     contact: {
       email: "info@nextgenlearners.org",
@@ -2691,10 +2580,11 @@ export const orgTableData = [
     sessions: 42,
     registered: "22 Feb",
     lastActive: "31 May",
+    representative: 8,
     actions: ["View", "Flag"]
   },
   {
-    id: 7,
+    id: "ORG0007",
     name: "Knowledge Tree Foundation",
     contact: {
       email: "support@knowledgetree.org",
@@ -2707,10 +2597,11 @@ export const orgTableData = [
     sessions: 0,
     registered: "18 Jan",
     lastActive: "11 Apr",
+    representative: 0,
     actions: ["View", "Invite to Claim"]
   },
   {
-    id: 8,
+    id: "ORG0008",
     name: "Elevate Academy",
     contact: {
       email: "connect@elevateedu.com",
@@ -2723,10 +2614,11 @@ export const orgTableData = [
     sessions: 38,
     registered: "09 Mar",
     lastActive: "29 May",
+    representative: 9,
     actions: ["View", "Approve", "Flag"]
   },
   {
-    id: 9,
+    id: "ORG0009",
     name: "Mindset Academy",
     contact: {
       email: "info@mindsetacademy.in",
@@ -2739,10 +2631,11 @@ export const orgTableData = [
     sessions: 0,
     registered: "02 Apr",
     lastActive: "05 May",
+    representative: 3,
     actions: ["View", "Invite to Claim"]
   },
   {
-    id: 10,
+    id: "ORG0010",
     name: "Pathfinder School",
     contact: {
       email: "admin@pathfinder.edu",
@@ -2755,10 +2648,11 @@ export const orgTableData = [
     sessions: 12,
     registered: "17 Mar",
     lastActive: "25 May",
+    representative: 5,
     actions: ["View", "Approve"]
   },
   {
-    id: 11,
+    id: "ORG0011",
     name: "Dream Big Foundation",
     contact: {
       email: "team@dreambig.org",
@@ -2771,10 +2665,11 @@ export const orgTableData = [
     sessions: 6,
     registered: "08 Mar",
     lastActive: "21 May",
+    representative: 4,
     actions: ["View", "Flag"]
   },
   {
-    id: 12,
+    id: "ORG0012",
     name: "Bright Minds Academy",
     contact: {
       email: "contact@brightminds.in",
@@ -2787,10 +2682,11 @@ export const orgTableData = [
     sessions: 0,
     registered: "11 Apr",
     lastActive: "13 May",
+    representative: 2,
     actions: ["View", "Invite to Claim"]
   },
   {
-    id: 13,
+    id: "ORG0013",
     name: "Talent Builders",
     contact: {
       email: "info@talentbuilders.in",
@@ -2803,10 +2699,11 @@ export const orgTableData = [
     sessions: 30,
     registered: "19 Feb",
     lastActive: "30 May",
+    representative: 10,
     actions: ["View", "Approve"]
   },
   {
-    id: 14,
+    id: "ORG0014",
     name: "Udaan Education Trust",
     contact: {
       email: "hello@udaantrust.org",
@@ -2819,10 +2716,11 @@ export const orgTableData = [
     sessions: 0,
     registered: "06 Mar",
     lastActive: "12 May",
+    representative: 1,
     actions: ["View", "Invite to Claim"]
   },
   {
-    id: 15,
+    id: "ORG0015",
     name: "SkillUp Learning Center",
     contact: {
       email: "contact@skillup.org",
@@ -2835,9 +2733,13 @@ export const orgTableData = [
     sessions: 21,
     registered: "25 Mar",
     lastActive: "31 May",
+    representative: 6,
     actions: ["View", "Flag"]
   }
 ];
+
+
+
 export const FinancePaymentsTableData = [
   {
     "User": "Aisha Khan",
@@ -2987,156 +2889,148 @@ export const FinanceCommissionsTableData = [
 
 export const assessmentsTable = [
   {
-    id: 1,
-    name: "Career Aptitude Test",
-    targetGroup: "11–12, UG",
-    category: "Career",
-    status: "Active",
-    createdOn: "10 May 2025",
-    attempts: 2304,
-    actions: ["View", "Edit", "Questions", "Results"],
+    "id": "ACS0001",
+    "assessmentName": "Career Aptitude Test",
+    "segments": "UG, PG",
+    "category": "Career",
+    "price": 499,
+    "consultantDiscount": "30%",
+    "consultantShare": 105,
+    "premiumDiscount": "40%",
+    "premiumShare": 140,
+    "status": "Published",
+    "createdOn": "10 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 2,
-    name: "SkillCheck Pro",
-    targetGroup: "PG, Professionals",
-    category: "Skills",
-    status: "Draft",
-    createdOn: "05 May 2025",
-    attempts: 0,
-    actions: ["Edit", "Activate", "Delete"],
+    "id": "ACS0002",
+    "assessmentName": "Engineering Skill Test",
+    "segments": "UG",
+    "category": "Engineering",
+    "price": 599,
+    "consultantDiscount": "25%",
+    "consultantShare": 120,
+    "premiumDiscount": "35%",
+    "premiumShare": 160,
+    "status": "Published",
+    "createdOn": "11 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 3,
-    name: "Engineering Stream Selector",
-    targetGroup: "10, 11–12",
-    category: "Career",
-    status: "Active",
-    createdOn: "02 May 2025",
-    attempts: 1785,
-    actions: ["View", "Edit", "Questions", "Results"],
+    "id": "ACS0003",
+    "assessmentName": "Medical Readiness Test",
+    "segments": "PG",
+    "category": "Medical",
+    "price": 699,
+    "consultantDiscount": "20%",
+    "consultantShare": 140,
+    "premiumDiscount": "30%",
+    "premiumShare": 180,
+    "status": "Published",
+    "createdOn": "12 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 4,
-    name: "Commerce Skill Analyzer",
-    targetGroup: "UG",
-    category: "Skills",
-    status: "Draft",
-    createdOn: "28 Apr 2025",
-    attempts: 0,
-    actions: ["Edit", "Activate", "Delete"],
+    "id": "ACS0004",
+    "assessmentName": "Law Entrance Prep Test",
+    "segments": "UG",
+    "category": "Law",
+    "price": 499,
+    "consultantDiscount": "28%",
+    "consultantShare": 110,
+    "premiumDiscount": "38%",
+    "premiumShare": 150,
+    "status": "Published",
+    "createdOn": "13 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 5,
-    name: "Aptitude Benchmark Test",
-    targetGroup: "UG, PG",
-    category: "Aptitude",
-    status: "Active",
-    createdOn: "20 Apr 2025",
-    attempts: 542,
-    actions: ["View", "Edit", "Questions", "Results"],
+    "id": "ACS0005",
+    "assessmentName": "MBA Readiness Test",
+    "segments": "PG",
+    "category": "Management",
+    "price": 799,
+    "consultantDiscount": "22%",
+    "consultantShare": 170,
+    "premiumDiscount": "32%",
+    "premiumShare": 200,
+    "status": "Published",
+    "createdOn": "14 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 6,
-    name: "Creativity Quotient Test",
-    targetGroup: "11–12",
-    category: "Personality",
-    status: "Draft",
-    createdOn: "15 Apr 2025",
-    attempts: 0,
-    actions: ["Edit", "Activate", "Delete"],
+    "id": "ACS0006",
+    "assessmentName": "Design Aptitude Test",
+    "segments": "UG",
+    "category": "Design",
+    "price": 449,
+    "consultantDiscount": "30%",
+    "consultantShare": 100,
+    "premiumDiscount": "45%",
+    "premiumShare": 135,
+    "status": "Published",
+    "createdOn": "15 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 7,
-    name: "Logical Reasoning Test",
-    targetGroup: "UG",
-    category: "Aptitude",
-    status: "Active",
-    createdOn: "12 Apr 2025",
-    attempts: 911,
-    actions: ["View", "Edit", "Questions", "Results"],
+    "id": "ACS0007",
+    "assessmentName": "Commerce Skills Test",
+    "segments": "UG, PG",
+    "category": "Commerce",
+    "price": 550,
+    "consultantDiscount": "26%",
+    "consultantShare": 115,
+    "premiumDiscount": "36%",
+    "premiumShare": 145,
+    "status": "Published",
+    "createdOn": "16 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 8,
-    name: "Communication Skills Survey",
-    targetGroup: "PG, Professionals",
-    category: "Skills",
-    status: "Draft",
-    createdOn: "07 Apr 2025",
-    attempts: 0,
-    actions: ["Edit", "Activate", "Delete"],
+    "id": "ACS0008",
+    "assessmentName": "Humanities Entrance Prep",
+    "segments": "UG",
+    "category": "Humanities",
+    "price": 475,
+    "consultantDiscount": "24%",
+    "consultantShare": 95,
+    "premiumDiscount": "34%",
+    "premiumShare": 130,
+    "status": "Published",
+    "createdOn": "17 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 9,
-    name: "Workplace Readiness Test",
-    targetGroup: "UG, PG",
-    category: "Career",
-    status: "Active",
-    createdOn: "01 Apr 2025",
-    attempts: 612,
-    actions: ["View", "Edit", "Questions", "Results"],
+    "id": "ACS0009",
+    "assessmentName": "General Knowledge Test",
+    "segments": "UG, PG",
+    "category": "General",
+    "price": 399,
+    "consultantDiscount": "20%",
+    "consultantShare": 80,
+    "premiumDiscount": "30%",
+    "premiumShare": 100,
+    "status": "Published",
+    "createdOn": "18 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
   },
   {
-    id: 10,
-    name: "Emotional Intelligence Test",
-    targetGroup: "Professionals",
-    category: "Personality",
-    status: "Active",
-    createdOn: "29 Mar 2025",
-    attempts: 432,
-    actions: ["View", "Edit", "Questions", "Results"],
-  },
-  {
-    id: 11,
-    name: "Programming Fundamentals",
-    targetGroup: "UG",
-    category: "Skills",
-    status: "Draft",
-    createdOn: "25 Mar 2025",
-    attempts: 0,
-    actions: ["Edit", "Activate", "Delete"],
-  },
-  {
-    id: 12,
-    name: "Numerical Ability Test",
-    targetGroup: "11–12, UG",
-    category: "Aptitude",
-    status: "Active",
-    createdOn: "20 Mar 2025",
-    attempts: 1380,
-    actions: ["View", "Edit", "Questions", "Results"],
-  },
-  {
-    id: 13,
-    name: "Decision-Making Skills",
-    targetGroup: "Professionals",
-    category: "Personality",
-    status: "Draft",
-    createdOn: "17 Mar 2025",
-    attempts: 0,
-    actions: ["Edit", "Activate", "Delete"],
-  },
-  {
-    id: 14,
-    name: "Data Interpretation Test",
-    targetGroup: "UG, PG",
-    category: "Aptitude",
-    status: "Active",
-    createdOn: "12 Mar 2025",
-    attempts: 789,
-    actions: ["View", "Edit", "Questions", "Results"],
-  },
-  {
-    id: 15,
-    name: "Leadership Style Profiler",
-    targetGroup: "PG, Professionals",
-    category: "Personality",
-    status: "Active",
-    createdOn: "10 Mar 2025",
-    attempts: 156,
-    actions: ["View", "Edit", "Questions", "Results"],
-  },
+    "id": "ACS0010",
+    "assessmentName": "Logical Reasoning Test",
+    "segments": "UG",
+    "category": "Aptitude",
+    "price": 525,
+    "consultantDiscount": "27%",
+    "consultantShare": 110,
+    "premiumDiscount": "37%",
+    "premiumShare": 145,
+    "status": "Published",
+    "createdOn": "19 Jul 2025",
+    "actions": ["Questions", "Results", "Edit", "Disable"]
+  }
 ];
+
+
 
 export const upcomingAssessmentsTable = [
   [
@@ -9117,5 +9011,499 @@ export const CompaniesTables=[
     "LastUpdated": "2025-07-22",
     "Status": "Published",
     "Actions": ["Edit", "Archive"]
+  }
+]
+
+
+export const DeskIAMtable=[
+  {
+    "id": "IAM0001",
+    "name": "Aisha Khan",
+    "designation": "Designation",
+    "email": "aisha@domain.com",
+    "mobile": "+91985724242",
+    "department": "Relations",
+    "reportingTo": "Vikram Singh",
+    "role": "Manager",
+    "lastLogin": "2 hours ago",
+    "status": "Active",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0002",
+    "name": "Ravi Malhotra",
+    "designation": "Team Lead",
+    "email": "ravi@domain.com",
+    "mobile": "+918765432100",
+    "department": "Digital",
+    "reportingTo": "Aisha Khan",
+    "role": "Lead",
+    "lastLogin": "4 hours ago",
+    "status": "Active",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0003",
+    "name": "Neha Verma",
+    "designation": "Analyst",
+    "email": "neha@domain.com",
+    "mobile": "+919876543210",
+    "department": "Finance",
+    "reportingTo": "Ravi Malhotra",
+    "role": "Executive",
+    "lastLogin": "1 day ago",
+    "status": "Inactive",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0004",
+    "name": "Omar Sheikh",
+    "designation": "Department Head",
+    "email": "omar@domain.com",
+    "mobile": "+919887766554",
+    "department": "Review",
+    "reportingTo": "Vikram Singh",
+    "role": "Head",
+    "lastLogin": "10 minutes ago",
+    "status": "Active",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0005",
+    "name": "Fatima Noor",
+    "designation": "Senior Analyst",
+    "email": "fatima@domain.com",
+    "mobile": "+919800112233",
+    "department": "Finance",
+    "reportingTo": "Omar Sheikh",
+    "role": "Manager",
+    "lastLogin": "5 hours ago",
+    "status": "Active",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0006",
+    "name": "Dev Patel",
+    "designation": "Junior Analyst",
+    "email": "dev@domain.com",
+    "mobile": "+918888999000",
+    "department": "Relations",
+    "reportingTo": "Fatima Noor",
+    "role": "Executive",
+    "lastLogin": "3 days ago",
+    "status": "Inactive",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0007",
+    "name": "Sara Ali",
+    "designation": "Team Lead",
+    "email": "sara@domain.com",
+    "mobile": "+917788990011",
+    "department": "Digital",
+    "reportingTo": "Dev Patel",
+    "role": "Lead",
+    "lastLogin": "7 hours ago",
+    "status": "Active",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0008",
+    "name": "Karan Singh",
+    "designation": "Executive",
+    "email": "karan@domain.com",
+    "mobile": "+919998887766",
+    "department": "Review",
+    "reportingTo": "Sara Ali",
+    "role": "Executive",
+    "lastLogin": "6 days ago",
+    "status": "Disabled",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0009",
+    "name": "Priya Nair",
+    "designation": "Finance Lead",
+    "email": "priya@domain.com",
+    "mobile": "+919999666333",
+    "department": "Finance",
+    "reportingTo": "Karan Singh",
+    "role": "Manager",
+    "lastLogin": "2 hours ago",
+    "status": "Active",
+    "actions": ["View", "Edit", "Reset Password"]
+  },
+  {
+    "id": "IAM0010",
+    "name": "Arjun Das",
+    "designation": "Head of Department",
+    "email": "arjun@domain.com",
+    "mobile": "+918822556677",
+    "department": "Relations",
+    "reportingTo": "Priya Nair",
+    "role": "Head",
+    "lastLogin": "Just now",
+    "status": "Active",
+    "actions": ["View", "Edit", "Reset Password"]
+  }
+]
+
+
+export const RecentActivityTable= [
+  {
+    "id": "RAC0001",
+    "dateTime": "20 Jul 25, 10:12 AM",
+    "activityType": "Profile Update",
+    "entity": "Coach",
+    "description": "Radhika Mehta updated her specialisations and availability",
+    "actionable": "View"
+  },
+  {
+    "id": "RAC0002",
+    "dateTime": "20 Jul 25, 11:05 AM",
+    "activityType": "Session Completed",
+    "entity": "Coach",
+    "description": "Rahul Singh completed a session with Anjali Verma",
+    "actionable": "View"
+  },
+  {
+    "id": "RAC0003",
+    "dateTime": "20 Jul 25, 11:45 AM",
+    "activityType": "New Registration",
+    "entity": "Organization",
+    "description": "Bright Future School was registered",
+    "actionable": "View"
+  },
+  {
+    "id": "RAC0004",
+    "dateTime": "20 Jul 25, 12:30 PM",
+    "activityType": "Claim Request",
+    "entity": "Organization",
+    "description": "Excel Learning Hub submitted a claim request",
+    "actionable": "Review"
+  },
+  {
+    "id": "RAC0005",
+    "dateTime": "20 Jul 25, 01:10 PM",
+    "activityType": "Assessment Uploaded",
+    "entity": "Coach",
+    "description": "Sneha Sharma uploaded a new aptitude assessment",
+    "actionable": "View"
+  },
+  {
+    "id": "RAC0006",
+    "dateTime": "20 Jul 25, 01:55 PM",
+    "activityType": "Access Granted",
+    "entity": "Admin",
+    "description": "Admin granted access to Vikram Mehta",
+    "actionable": "Audit"
+  },
+  {
+    "id": "RAC0007",
+    "dateTime": "20 Jul 25, 02:20 PM",
+    "activityType": "Password Reset",
+    "entity": "Coach",
+    "description": "Pooja Iyer requested a password reset",
+    "actionable": "Reset"
+  },
+  {
+    "id": "RAC0008",
+    "dateTime": "20 Jul 25, 03:00 PM",
+    "activityType": "Invite Sent",
+    "entity": "Organization",
+    "description": "Invite sent to Mindset Academy to claim profile",
+    "actionable": "Track"
+  },
+  {
+    "id": "RAC0009",
+    "dateTime": "20 Jul 25, 03:40 PM",
+    "activityType": "Session Cancelled",
+    "entity": "Coach",
+    "description": "Session cancelled by Neha Joshi due to scheduling conflict",
+    "actionable": "Reschedule"
+  },
+  {
+    "id": "RAC0010",
+    "dateTime": "20 Jul 25, 04:15 PM",
+    "activityType": "Contact Update",
+    "entity": "Coach",
+    "description": "Arjun Patel updated his email and mobile number",
+    "actionable": "View"
+  }
+]
+
+export const LeadExplore=[
+  {
+    "id": "LEX0001",
+    "name": "Aayush Kapoor",
+    "segment": "UG",
+    "objective": "Investment Banking",
+    "status": "Engaged",
+    "leadScore": "High",
+    "assignedTo": "Riya Sinha",
+    "source": "Website",
+    "createdOn": "10 Jul 2025",
+    "actions": ["📞 Call", "💬 Message"]
+  },
+  {
+    "id": "LEX0002",
+    "name": "Sneha Rathi",
+    "segment": "PG",
+    "objective": "Product Management",
+    "status": "New",
+    "leadScore": "Low",
+    "assignedTo": "Amit Joshi",
+    "source": "Email Campaign",
+    "createdOn": "11 Jul 2025",
+    "actions": ["📞 Call"]
+  },
+  {
+    "id": "LEX0003",
+    "name": "Vikram Shah",
+    "segment": "Professional",
+    "objective": "Career Shift",
+    "status": "Contacted",
+    "leadScore": "Medium",
+    "assignedTo": "Neha Kapoor",
+    "source": "LinkedIn",
+    "createdOn": "09 Jul 2025",
+    "actions": ["💬 Message"]
+  },
+  {
+    "id": "LEX0004",
+    "name": "Radhika Mehra",
+    "segment": "UG",
+    "objective": "Data Science",
+    "status": "Engaged",
+    "leadScore": "High",
+    "assignedTo": "Sagar Verma",
+    "source": "Referral",
+    "createdOn": "08 Jul 2025",
+    "actions": ["📞 Call", "💬 Message"]
+  },
+  {
+    "id": "LEX0005",
+    "name": "Nikhil Das",
+    "segment": "11-12",
+    "objective": "Study Abroad",
+    "status": "New",
+    "leadScore": "Low",
+    "assignedTo": "Anjali Menon",
+    "source": "School Event",
+    "createdOn": "07 Jul 2025",
+    "actions": ["📞 Call"]
+  },
+  {
+    "id": "LEX0006",
+    "name": "Meera Iyer",
+    "segment": "PG",
+    "objective": "Marketing",
+    "status": "Engaged",
+    "leadScore": "High",
+    "assignedTo": "Riya Sinha",
+    "source": "Website",
+    "createdOn": "06 Jul 2025",
+    "actions": ["📞 Call", "💬 Message"]
+  },
+  {
+    "id": "LEX0007",
+    "name": "Arjun Deshmukh",
+    "segment": "Career Changer",
+    "objective": "Entrepreneurship",
+    "status": "Contacted",
+    "leadScore": "Medium",
+    "assignedTo": "Rahul Dev",
+    "source": "Ad Campaign",
+    "createdOn": "05 Jul 2025",
+    "actions": ["💬 Message"]
+  },
+  {
+    "id": "LEX0008",
+    "name": "Tanya Arora",
+    "segment": "UG",
+    "objective": "Consulting",
+    "status": "Engaged",
+    "leadScore": "High",
+    "assignedTo": "Neha Kapoor",
+    "source": "Instagram",
+    "createdOn": "04 Jul 2025",
+    "actions": ["📞 Call"]
+  },
+  {
+    "id": "LEX0009",
+    "name": "Devansh Jain",
+    "segment": "UG",
+    "objective": "Law",
+    "status": "New",
+    "leadScore": "Low",
+    "assignedTo": "Amit Joshi",
+    "source": "Website",
+    "createdOn": "03 Jul 2025",
+    "actions": ["📞 Call"]
+  },
+  {
+    "id": "LEX0010",
+    "name": "Sanya Bansal",
+    "segment": "PG",
+    "objective": "Product Design",
+    "status": "Contacted",
+    "leadScore": "Medium",
+    "assignedTo": "Sagar Verma",
+    "source": "Career Fair",
+    "createdOn": "02 Jul 2025",
+    "actions": ["📞 Call", "💬 Message"]
+  }
+]
+
+export const AdminFormTable=[
+  {
+    "id": "FRM0001",
+    "formName": "Explorer Interest Form",
+    "type": "Lead Capture",
+    "targetAudience": "Explorers",
+    "status": "Active",
+    "submissions": 1245,
+    "createdOn": "10 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0002",
+    "formName": "Mentor Signup Form",
+    "type": "Registration",
+    "targetAudience": "Mentors",
+    "status": "Active",
+    "submissions": 980,
+    "createdOn": "11 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0003",
+    "formName": "Campus Feedback Survey",
+    "type": "Survey",
+    "targetAudience": "Students",
+    "status": "Inactive",
+    "submissions": 732,
+    "createdOn": "12 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0004",
+    "formName": "Event Registration Form",
+    "type": "Event",
+    "targetAudience": "Participants",
+    "status": "Active",
+    "submissions": 1453,
+    "createdOn": "13 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0005",
+    "formName": "Internship Application",
+    "type": "Application",
+    "targetAudience": "UG Students",
+    "status": "Active",
+    "submissions": 867,
+    "createdOn": "14 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0006",
+    "formName": "Career Counseling Request",
+    "type": "Support",
+    "targetAudience": "Explorers",
+    "status": "Inactive",
+    "submissions": 410,
+    "createdOn": "15 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0007",
+    "formName": "Scholarship Eligibility Check",
+    "type": "Lead Capture",
+    "targetAudience": "PG Students",
+    "status": "Active",
+    "submissions": 689,
+    "createdOn": "16 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0008",
+    "formName": "Training Feedback",
+    "type": "Survey",
+    "targetAudience": "Trainees",
+    "status": "Active",
+    "submissions": 520,
+    "createdOn": "17 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0009",
+    "formName": "Workshop Sign-up",
+    "type": "Event",
+    "targetAudience": "Learners",
+    "status": "Active",
+    "submissions": 1184,
+    "createdOn": "18 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0010",
+    "formName": "Parent Feedback Form",
+    "type": "Survey",
+    "targetAudience": "Parents",
+    "status": "Inactive",
+    "submissions": 324,
+    "createdOn": "19 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0011",
+    "formName": "Alumni Contact Update",
+    "type": "Data Collection",
+    "targetAudience": "Alumni",
+    "status": "Active",
+    "submissions": 591,
+    "createdOn": "20 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0012",
+    "formName": "Course Feedback Form",
+    "type": "Survey",
+    "targetAudience": "Students",
+    "status": "Active",
+    "submissions": 703,
+    "createdOn": "21 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0013",
+    "formName": "Job Interest Form",
+    "type": "Lead Capture",
+    "targetAudience": "Job Seekers",
+    "status": "Active",
+    "submissions": 842,
+    "createdOn": "22 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0014",
+    "formName": "Newsletter Signup",
+    "type": "Subscription",
+    "targetAudience": "General",
+    "status": "Active",
+    "submissions": 1050,
+    "createdOn": "23 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
+  },
+  {
+    "id": "FRM0015",
+    "formName": "Volunteer Registration",
+    "type": "Registration",
+    "targetAudience": "Volunteers",
+    "status": "Inactive",
+    "submissions": 278,
+    "createdOn": "24 May 2025",
+    "actions": ["View", "Edit", "Export", "Deactivate"]
   }
 ]
